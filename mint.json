@@ -26,17 +26,21 @@
     "name": "Dashboard",
     "url": "https://app.phare.io/"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
     {
-      "name": "Platform",
+      "name": "Phare Platform",
       "icon": "layer-group",
       "url": "https://phare.io"
+    },
+    {
+      "name": "Documentation",
+      "icon": "book-open",
+      "url": "https://docs.phare.io/introduction"
+    },
+    {
+      "name": "API Reference",
+      "icon": "rectangle-terminal",
+      "url": "https://docs.phare.io/api-reference/introduction"
     },
     {
       "name": "Changelog",
@@ -78,6 +82,18 @@
       "pages": [
         "api-reference/introduction"
       ]
+    },
+    {
+      "group": "Uptime",
+      "pages": [
+        {
+          "group": "Monitors",
+          "pages": [
+            "api-reference/monitors/list-monitors",
+            "api-reference/monitors/create-a-monitor"
+          ]
+        }
+      ]
     }
   ],
   "footerSocials": {
@@ -91,5 +107,4 @@
       "apiHost": "https://hog.phare.io"
     }
   }
-
 }
