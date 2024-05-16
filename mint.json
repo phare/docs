@@ -8,12 +8,12 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#FCD34D",
-    "light": "#FCD34D",
-    "dark": "#FCD34D",
+    "primary": "#000000",
+    "light": "#FFFFFF",
+    "dark": "#000000",
     "anchors": {
-      "from": "#FBBF24",
-      "to": "#FDE68A"
+      "from": "#000000",
+      "to": "#0a0a0a"
     }
   },
   "topbarLinks": [
@@ -27,16 +27,6 @@
     "url": "https://app.phare.io/"
   },
   "anchors": [
-    {
-      "name": "Phare Platform",
-      "icon": "layer-group",
-      "url": "https://phare.io"
-    },
-    {
-      "name": "Documentation",
-      "icon": "book-open",
-      "url": "https://docs.phare.io/introduction"
-    },
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
