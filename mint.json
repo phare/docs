@@ -1,29 +1,30 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Phare",
+  "openapi": ["api-reference/openapi.json"],
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#FCD34D",
+    "light": "#FCD34D",
+    "dark": "#FCD34D",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#FBBF24",
+      "to": "#FDE68A"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@phare.io"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.phare.io/"
   },
   "tabs": [
     {
@@ -33,19 +34,14 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Platform",
+      "icon": "layer-group",
+      "url": "https://phare.io"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Changelog",
+      "icon": "clock-rotate-left",
+      "url": "https://phare.io/changelog"
     }
   ],
   "navigation": [
@@ -53,19 +49,28 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "getting-started",
+        "user-management"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Uptime",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "uptime/uptime-overview",
+        "uptime/monitors",
+        "uptime/status-pages",
+        "uptime/incident-management",
+        "uptime/alerting"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "uptime/integration-overview",
+        "uptime/sms",
+        "uptime/email",
+        "uptime/slack",
+        "uptime/discord"
       ]
     },
     {
@@ -73,19 +78,11 @@
       "pages": [
         "api-reference/introduction"
       ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://twitter.com/usephare",
+    "github": "https://github.com/phare",
+    "linkedin": "https://www.linkedin.com/company/usephare"
   }
 }

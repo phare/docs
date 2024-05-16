@@ -1,195 +1,512 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Phare",
+        "description": "Learn how to use the phare.io API. Most of the things that can be done on the web platform can also be achieved with the API documented on this page.",
+        "termsOfService": "https://phare.io/legal/terms-of-service",
+        "contact": {
+            "name": "Phare",
+            "email": "contact@phare.io"
+        },
+        "version": "1.0"
     },
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
+    "servers": [
+        {
+            "url": "https://api.phare.io"
         }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
+    ],
+    "paths": {
+        "/uptime/monitors": {
+            "get": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "List monitors",
+                "description": "Get a paginated list of monitors",
+                "operationId": "getUptimeMonitors",
+                "responses": {
+                    "200": {
+                        "description": "Success, monitors retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.Monitor.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Create a monitor",
+                "description": "Create a monitor",
+                "operationId": "createUptimeMonitors",
+                "requestBody": {
+                    "description": "Monitor request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.Monitor.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, monitor created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Monitor.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
             }
-          },
-          "required": true
+        }
+    },
+    "components": {
+        "schemas": {
+            "meta": {
+                "description": "Meta data for pagination",
+                "properties": {
+                    "current_page": {
+                        "type": "number",
+                        "example": 2
+                    },
+                    "from": {
+                        "type": "number",
+                        "example": 11
+                    },
+                    "to": {
+                        "type": "number",
+                        "example": 20
+                    },
+                    "per_page": {
+                        "type": "number",
+                        "example": 100
+                    },
+                    "path": {
+                        "type": "string",
+                        "example": "{domain}/api/v1/{resource}?page=2"
+                    }
+                },
+                "type": "object"
+            },
+            "links": {
+                "description": "Links for pagination",
+                "properties": {
+                    "first": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "{domain}/api/v1/{resource}?page=2"
+                    },
+                    "last": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "{domain}/api/v1/{resource}?page=10",
+                        "nullable": true
+                    },
+                    "prev": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "{domain}/api/v1/{resource}?page=1",
+                        "nullable": true
+                    },
+                    "next": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "{domain}/api/v1/{resource}?page=1",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.Monitor.Request": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.Monitor"
+                    }
+                ]
+            },
+            "Uptime.Monitor.Resource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.Monitor"
+                    },
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "project_id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Uptime.Monitor.StatusEnum"
+                            },
+                            "paused": {
+                                "description": "Whether the monitor is currently paused",
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "one_day_availability": {
+                                "description": "Availability in the last 24h, in percents",
+                                "type": "number",
+                                "example": 99.9999
+                            },
+                            "one_day_response_time": {
+                                "description": "Average response time in the last 24h, in milliseconds",
+                                "type": "number",
+                                "example": 123
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Uptime.Monitor": {
+                "properties": {
+                    "alert_policy_id": {
+                        "description": "App\\Models\\Uptime\\Monitor",
+                        "type": "number",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Monitor name",
+                        "type": "string",
+                        "maximum": 30,
+                        "minimum": 2,
+                        "example": "Website"
+                    },
+                    "protocol": {
+                        "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
+                    },
+                    "request": {
+                        "description": "Monitoring request, depends of the chosen protocol",
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "title": "HTTP protocol",
+                                "properties": {
+                                    "method": {
+                                        "description": "Request method for http protocol",
+                                        "type": "string",
+                                        "enum": [
+                                            "GET",
+                                            "HEAD",
+                                            "OPTIONS"
+                                        ]
+                                    },
+                                    "url": {
+                                        "description": "Request url for http protocol",
+                                        "type": "string",
+                                        "maximum": 255,
+                                        "example": "https://phare.io/docs/introduction"
+                                    },
+                                    "keyword": {
+                                        "description": "Response keyword that must be present",
+                                        "type": "string",
+                                        "example": "pong",
+                                        "nullable": true
+                                    },
+                                    "secure": {
+                                        "description": "Verify request SSL certificate for http protocol",
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "title": "TCP & UPD protocol",
+                                "properties": {
+                                    "host": {
+                                        "description": "Request host for tcp & upd protocol",
+                                        "type": "string",
+                                        "example": "8.8.8.8"
+                                    },
+                                    "port": {
+                                        "description": "Request port for tcp & upd protocol",
+                                        "type": "string",
+                                        "maximum": 65536,
+                                        "minimum": 0,
+                                        "example": "80"
+                                    },
+                                    "message": {
+                                        "description": "Request message for tcp & upd protocol",
+                                        "type": "string",
+                                        "maximum": 50,
+                                        "example": "phare/ping\\r\\n"
+                                    },
+                                    "keyword": {
+                                        "description": "Response keyword that must be present",
+                                        "type": "string",
+                                        "maximum": 50,
+                                        "example": "pong",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "interval": {
+                        "description": "Monitoring interval in minutes",
+                        "type": "number",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            5,
+                            10,
+                            15,
+                            30
+                        ],
+                        "example": 1
+                    },
+                    "incident_confirmations": {
+                        "description": "Number of uninterrupted failed checks required to create an incident",
+                        "type": "number",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "example": 1
+                    },
+                    "recovery_confirmations": {
+                        "description": "Number of uninterrupted successful checks required to resolve an incident",
+                        "type": "number",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "example": 1
+                    },
+                    "regions": {
+                        "description": "List of regions where monitoring checks are performed",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Uptime.Monitor.RegionEnum"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.Monitor.ProtocolEnum": {
+                "type": "string",
+                "enum": [
+                    "http",
+                    "tcp",
+                    "udp"
+                ]
+            },
+            "Uptime.Monitor.RegionEnum": {
+                "type": "string",
+                "enum": [
+                    "eu-central-1",
+                    "eu-north-1",
+                    "us-west-2",
+                    "us-east-1",
+                    "ap-south-1",
+                    "ap-southeast-1"
+                ]
+            },
+            "Uptime.Monitor.StatusEnum": {
+                "type": "string",
+                "enum": [
+                    "fetching",
+                    "online",
+                    "offline",
+                    "partial"
+                ]
+            }
         },
         "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
+            "401": {
+                "description": "Error, access unauthorized",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "description": "Access unauthorized error schema",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Unauthenticated."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+            },
+            "403": {
+                "description": "Error, access forbidden",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "description": "Access forbidden error schema",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "The phare:write permission is required to perform this action."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
                 }
-              }
+            },
+            "404": {
+                "description": "Error, resource not found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "description": "Not found error schema",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Resource not found"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "422": {
+                "description": "Error, unprocessable entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "description": "Validation error schema",
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                },
+                                "errors": {
+                                    "properties": {
+                                        "key": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "The key field is required"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
             }
-          }
+        },
+        "parameters": {
+            "page": {
+                "name": "page",
+                "in": "query",
+                "description": "Page number to show",
+                "required": false,
+                "schema": {
+                    "type": "integer",
+                    "default": 1,
+                    "example": 1
+                }
+            },
+            "per_page": {
+                "name": "per_page",
+                "in": "query",
+                "description": "Number of ressources to return per page",
+                "required": false,
+                "schema": {
+                    "type": "integer",
+                    "default": 20,
+                    "maximum": 100,
+                    "minimum": 1,
+                    "example": 20
+                }
+            }
+        },
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "description": "Use a user token to access authenticated routes. The token must be specified in the Authorization HTTP header with the following format 'Authorization: Bearer <token>'.",
+                "scheme": "bearer"
+            }
         }
-      }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
+    "security": [
+        {
+            "BearerAuth": []
         }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
+    ],
+    "tags": [
+        {
+            "name": "Monitors",
+            "description": "Monitors"
         }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
+    ],
+    "x-tagGroups": [
+        {
+            "name": "Phare platform",
+            "tags": []
+        },
+        {
+            "name": "Phare uptime",
+            "tags": [
+                "Monitors"
+            ]
         }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    }
-  }
+    ]
 }
