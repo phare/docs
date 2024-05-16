@@ -84,5 +84,12 @@
     "x": "https://twitter.com/usephare",
     "github": "https://github.com/phare",
     "linkedin": "https://www.linkedin.com/company/usephare"
+  },
+  "analytics": {
+    "posthog": {
+      "apiKey": "phc_OWMKYUoVSX0YxsL5KHnEjjIzlJmxUhMurqQ9xxXpMZY",
+      "apiHost": "https://hog.phare.io"
+    }
   }
+
 }
