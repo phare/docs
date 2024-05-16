@@ -13,7 +13,7 @@
     "dark": "#000000",
     "anchors": {
       "from": "#000000",
-      "to": "#0a0a0a"
+      "to": "#000000"
     }
   },
   "topbarLinks": [
@@ -26,11 +26,17 @@
     "name": "Dashboard",
     "url": "https://app.phare.io/"
   },
-  "anchors": [
+  "tabs": [
     {
       "name": "API Reference",
-      "icon": "rectangle-terminal",
-      "url": "https://docs.phare.io/api-reference/introduction"
+      "url": "api-reference"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Phare Platform",
+      "icon": "layer-group",
+      "url": "https://phare.io/"
     },
     {
       "name": "Changelog",
