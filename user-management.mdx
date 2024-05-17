@@ -1,98 +1,29 @@
 ---
-title: 'Development'
-description: 'Learn how to preview changes locally'
+title: 'User management'
+description: 'Learn how to manage your organization’s members and roles.'
 ---
 
-<Info>
-  **Prerequisite** You should have installed Node.js (version 18.10.0 or
-  higher).
-</Info>
 
-Step 1. Install Mintlify on your OS:
+Phare allows you to invite an unlimited number of team members to your organization and manage their access with roles and project scopes.
 
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify
-```
-
-```bash yarn
-yarn global add mintlify
-```
-
-</CodeGroup>
-
-Step 2. Go to the docs are located (where you can find `mint.json`) and run the following command:
-
-```bash
-mintlify dev
-```
-
-The documentation website is now available at `http://localhost:3000`.
-
-### Custom Ports
-
-Mintlify uses port 3000 by default. You can use the `--port` flag to customize the port Mintlify runs on. For example, use this command to run in port 3333:
-
-```bash
-mintlify dev --port 3333
-```
-
-You will see an error like this if you try to run Mintlify in a port that's already taken:
-
-```md
-Error: listen EADDRINUSE: address already in use :::3000
-```
-
-## Mintlify Versions
-
-Each CLI is linked to a specific version of Mintlify. Please update the CLI if your local website looks different than production.
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Startup
-  Plan](https://mintlify.com/pricing)
-</Tip>
-
-You should see the following if the deploy successfully went through:
-
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/user-management/invite-user.webp" alt="Inviting new users" />
 </Frame>
 
-## Troubleshooting
+## Roles
 
-Here's how to solve some common problems when working with the CLI.
+Phare has three roles: **Owner**, **Admin**, and **Member**. Each role has a different set of permissions and access to your organization's resources.
 
-<AccordionGroup>
-  <Accordion title="Mintlify is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Windows">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
+- **Owner**: The owner is the creator of the organization. The owner hove the same access right as admin with the addition of deleting the organization and users with the admin role.
+- **Admin**: Admins have full access to all the organization's resources. Admin can freely join any project in the organization and promote other users to the admin role.
+- **Member**: Members have full access to the projects they are assigned to. They can also create new projects and invite new members to the organization.
 
-Repeat step 3.
+## Accessing projects
 
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
+You can choose which projects a **member** has access to when inviting them to your organization. You can also change a member's access to a project at any time.
 
-Curious about what changed in a CLI version? [Check out the CLI changelog.](/changelog/command-line)
+**Admin** and **Owner** have the ability to join the projects of their choice. Only joined project will be visible in the project selector to avoid cluttering the interface with projects you don't usually work on. Other projects can still be modified or deleted at any time on the organization's project page, without having to join them.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/user-management/project-selector.webp" alt="Project selector" />
+</Frame>

@@ -1,88 +1,19 @@
 ---
-title: 'Markdown Syntax'
-description: 'Text, title, and styling in standard markdown'
-icon: 'text-size'
+title: 'Status pages'
+description: 'Keep your customers in the loop with a sleek status page. Build trust with transparent communication on incidents and maintenance periods.'
 ---
 
-## Titles
+Status pages are a great way to keep your users in the loop. They are a public page that displays the status of your monitors, and any incidents or maintenance periods that are currently ongoing. Status pages built with Phare are extremely fast and carbon efficient!
 
-Best used for section headers.
+## Creating a status page
 
-```md
-## Titles
-```
+You can create an unlimited number of status pages for all your projects. Choose which monitoring data you want to display, and customize the look and feel of your status page to match your brand. Allow Phare a few seconds to generate an SSL certificate for your status page, and you're good to go! The status page can be customized at any time.
 
-### Subtitles
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/uptime/status-pages/status-pages-creation.webp" alt="Status page creation" />
+</Frame>
 
-Best use to subsection headers.
+## Status page domain
 
-```md
-### Subtitles
-```
+Currently, all status pages are created with a `*.status.phare.io` domain name, you will soon be able to create status pages with your own domain name and an SSL certificate handled by Phare.
 
-<Tip>
-
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
-
-</Tip>
-
-## Text Formatting
-
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
-
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
-
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
-
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
-
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
-
-## Linking to Pages
-
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
-
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
-
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
-
-## Blockquotes
-
-### Singleline
-
-To create a blockquote, add a `>` in front of a paragraph.
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```

@@ -1,59 +1,33 @@
 ---
-title: 'Images and Embeds'
-description: 'Add image, video, and other HTML elements'
-icon: 'image'
+title: 'Monitors'
+description: 'Monitor the availability of your website and servers.'
 ---
 
-<img
-  style={{ borderRadius: '0.5rem' }}
-  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
-/>
+Monitors are the core of Phare Uptime, they are used to monitor the availability of your website and servers, and send you alerts when something goes wrong. Monitors can perform three types of checks to determine if your website or server is online and working as expected: HTTP(s), TCP, and UDP.
 
-## Image
+### HTTP(s)
 
-### Using Markdown
+An HTTP(s) request is sent to your website, Phare Uptime check the response status code and the presence of an optional keyword in the response body to determine if your website is online and working. Additionally, you can activate SSL certificate monitoring to get alerted when your SSL certificate is expired or misconfigured.
 
-The [markdown syntax](https://www.markdownguide.org/basic-syntax/#images) lets you add images using the following code
+### TCP & UDP
 
-```md
-![title](/path/image.jpg)
-```
+A TCP or UDP connection is established with your server, Phare Uptime sends a fixed string and waits for a response to determine if your server is online and working as expected.
 
-Note that the image file size must be less than 5MB. Otherwise, we recommend hosting on a service like [Cloudinary](https://cloudinary.com/) or [S3](https://aws.amazon.com/s3/). You can then use that URL and embed.
+## Interval
 
-### Using Embeds
+You can configure the interval at which Phare Uptime will send requests to your website or server. The default interval is 1 minute, but you can configure it to be 1, 2, 3, 5, 10, 15 or 30 minutes.
 
-To get more customizability with images, you can also use [embeds](/writing-content/embed) to add images
+## Confirmations & recovery
 
-```html
-<img height="200" src="/path/image.jpg" />
-```
+Phare Uptime uses a confirmation system to avoid false positives.
+A monitor is marked as down or recovered only after a certain number of consecutive failures / successes.
+The default number of confirmations is two, but you can configure it to be anything between one (immediate confirmation) and five confirmations.
 
-## Embeds and HTML elements
+## Regions
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/4KzFe50RQkQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ width: '100%', borderRadius: '0.5rem' }}
-></iframe>
+Phare Uptime provides six regions around the world to monitor your website or server from different locations. You can choose to monitor your website or server from a single region, or from multiple regions. **Using at least two regions is recommended to avoid false positives**.
 
-<br />
+## Alert policy
 
-<Tip>
+Phare Uptime provides a powerful alerting system to notify your team members of an incident based on alert policies. You can attach a different alert policy to each monitor, and you can create as many alert policies as you want.
 
-Mintlify supports [HTML tags in Markdown](https://www.markdownguide.org/basic-syntax/#html). This is helpful if you prefer HTML tags to Markdown syntax, and lets you create documentation with infinite flexibility.
-
-</Tip>
-
-### iFrames
-
-Loads another HTML page within the document. Most commonly used for embedding videos.
-
-```html
-<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
-```

@@ -1,59 +1,82 @@
 ---
-title: 'Images and Embeds'
-description: 'Add image, video, and other HTML elements'
-icon: 'image'
+title: 'SMS'
+description: 'Set up the Phare SMS integration to receive a message on your phone when your website or server is down.'
+icon: 'message-lines'
 ---
 
-<img
-  style={{ borderRadius: '0.5rem' }}
-  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
-/>
+<Warning>This integration is only available with a Scale plan subscription in selected countries</Warning>
 
-## Image
+The SMS integration allows you to send alert on any of your team members' phone numbers. You can find and configure it in the [integration](https://app.phare.io/project/apps) section of your dashboard.
 
-### Using Markdown
+## Phone number validation
 
-The [markdown syntax](https://www.markdownguide.org/basic-syntax/#images) lets you add images using the following code
+To avoid spam and abuse, we require every one of your team members to verify their phone number before they can receive an alert. To do so, they need to go to the [user settings](https://app.phare.io/user/settings) page and follow the process to add their phone number.
 
-```md
-![title](/path/image.jpg)
-```
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/sms/add-phone-number.webp" alt="Add phone number" />
+</Frame>
 
-Note that the image file size must be less than 5MB. Otherwise, we recommend hosting on a service like [Cloudinary](https://cloudinary.com/) or [S3](https://aws.amazon.com/s3/). You can then use that URL and embed.
+## Configuration
 
-### Using Embeds
+Up to 25 team members can be configured to receive alerts for each SMS integration. When using the team members' search, you will see for each one if they have a verified phone number or not. You can add a team member without a verified phone number, but they will only receive alerts after they have verified their phone number.
 
-To get more customizability with images, you can also use [embeds](/writing-content/embed) to add images
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/sms/sms-configuration.webp" alt="SMS configuration" />
+</Frame>
 
-```html
-<img height="200" src="/path/image.jpg" />
-```
+## Receiving SMS
 
-## Embeds and HTML elements
+Phone numbers registered in the United States will receive SMS alerts from the following number:
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/4KzFe50RQkQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ width: '100%', borderRadius: '0.5rem' }}
-></iframe>
+- **(206) 647-7227**
 
-<br />
+Phone numbers outside the United States will receive SMS alerts with a fixed originator:
 
-<Tip>
+- **Phare**
 
-Mintlify supports [HTML tags in Markdown](https://www.markdownguide.org/basic-syntax/#html). This is helpful if you prefer HTML tags to Markdown syntax, and lets you create documentation with infinite flexibility.
+## Supported countries
 
-</Tip>
+At the moment, the SMS integration is available in the following countries:
 
-### iFrames
+<AccordionGroup>
+    <Accordion title="Europe">
+        - Austria
+        - Belgium
+        - Bulgaria
+        - Croatia
+        - Cyprus
+        - Czech Republic
+        - Denmark
+        - Estonia
+        - Finland
+        - France
+        - Germany
+        - Greece
+        - Hungary
+        - Iceland
+        - Ireland
+        - Italy
+        - Latvia
+        - Lithuania
+        - Luxembourg
+        - Malta
+        - Netherlands
+        - Norway
+        - Poland
+        - Portugal
+        - Romania
+        - Slovakia
+        - Slovenia
+        - Spain
+        - Sweden
+        - Switzerland
+        - United Kingdom
+    </Accordion>
 
-Loads another HTML page within the document. Most commonly used for embedding videos.
+    <Accordion title="North America">
+        - Canada
+        - United States
+    </Accordion>
+</AccordionGroup>
 
-```html
-<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
-```
+If your team is using a phone number in a country that Phare does not yet support, please [contact us](mailto:contact@phare.io), and we'll be happy to add it to our roadmap.

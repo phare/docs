@@ -245,7 +245,7 @@
                                         "description": "Request url for http protocol",
                                         "type": "string",
                                         "maximum": 255,
-                                        "example": "https://phare.io/docs/introduction"
+                                        "example": "https://docs.phare.io/introduction"
                                     },
                                     "keyword": {
                                         "description": "Response keyword that must be present",

@@ -1,33 +1,48 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Create programmatic interactions with the Phare API.'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Welcome, this API allows you to interact programmatically with the Phare platform, enabling seamless integration and automation of almost everything that can be done in your control panel.
 
-## Welcome
+## Create an API key
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+<Info>Only team members with the **Owner** or **Admin** role can create an API key in your organization.</Info>
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+To access the Phare API, you will need to create an API key with the right accesses, this can be done on [your control panel](https://app.phare.io/organization/api-keys).
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/api-reference/create-key.webp" alt="Create API key" />
+</Frame>
+
+While creating an API key, you will be able to choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform. You can find the list of available endpoints in the left navigation of this documentation.
+
+You can create as many keys as necessary to fit your use case.
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+The Phare API uses Bearer Token Authentication to secure access to its endpoints. To authenticate your requests, include the API key in the Authorization header of your HTTP requests. The format for this header is as follows:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash Request Authorization header
+Authorization: Bearer YOUR_API_KEY
 ```
+
+Here’s an example of a cURL command to list the monitors in your project using your API key:
+
+```sh
+curl \
+-X GET "https://api.phare.io/uptime/monitors" \
+-H "Authorization: Bearer YOUR_API_KEY"
+```
+
+<Warning>Keep your API key confidential at all time. Do not share it publicly or expose it in client-side code.</Warning>
+
+If you suspect that your API key has been compromised, revoke it immediately through your control panel and generate a new one.
+
+## Rate limiting
+
+Access to the API is currently rate limited to **100 calls per minute** across your organization. This means that all the API keys in your organization will share the same rate limiting.
+
+---
+
+If you are missing an API endpoint or need a custom rate limit for your organization, feel free to [contact us](mailto:contact@phare.io), we'll be happy to find a solution for your use case.

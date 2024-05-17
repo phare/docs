@@ -1,86 +1,55 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: 'Getting started'
+description: 'Get up and running with the Phare platform'
 ---
 
-## Setup your development
+In this guide, we will walk you through the onboarding process to get started with Phare. At the end of this guide, you will have your own organization account, and a basic understanding of how to make the most out of Phare.
 
-Learn how to update your docs locally and and deploy them to the public.
+## Account Creation
 
-### Edit and preview
+To get started with Phare, you need to create an account. You can create one on [the registration page](https://app.phare.io/register).
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
+Once you have created your account, you will receive a confirmation email. Click on the link in the email to confirm your account and log in to Phare.
 
-### Deploy your changes
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/getting-started/email-verification.webp" alt="Email verification" />
+</Frame>
 
-<AccordionGroup>
+## Plan Selection
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+The first step of the onboarding process is to [select a plan](https://phare.io/pricing) for your organization between Phare's Hobby (free) and Scale (paid) offer. Both plans offer the same features, but the Hobby (free) plan has a more limited monthly usage. You can change or upgrade your organization's plan at any point in the future.
 
-</AccordionGroup>
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/getting-started/plan-selection.webp" alt="Plan selection" />
+</Frame>
 
-## Update your docs
+If you choose to subscribe to the Scale (paid) plan, you will be automatically redirected to our payment processor website to fill your billing information.
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+## Project creation
 
-<CardGroup>
+Once you have selected your plan, you can create your first project to organize your resources. In Phare, every resource is attached to your organization, or a project inside your organization. Using multiple projects to organize resources is optional, to keep things simple, try to replicate the internal structure of your organization in Phare.
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+Finally, keep in mind that projects are also used to organize team management access. If a resource should only be accessible by a subset of your organization's team members, this resource should be in its own project.
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/getting-started/project-creation.webp" alt="Project creation" />
+</Frame>
 
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
+Congratulations! You have now completed the onboarding process for Phare. You can start to monitor your website and server uptime, manage incidents, and receive automated alerts.
 
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
-
+<CardGroup cols={2}>
+  <Card
+    title="Uptime"
+    icon="wave-pulse"
+    href="/uptime/overview"
+  >
+      Monitor your websites, manage incidents and create status pages
+  </Card>
+  <Card
+    title="Integrations"
+    icon="puzzle-piece"
+    href="/integrations/overview"
+  >
+      Connect your favorite apps and services with Phare
+  </Card>
 </CardGroup>

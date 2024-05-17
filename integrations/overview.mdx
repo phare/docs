@@ -1,0 +1,61 @@
+---
+title: 'Integrations overview'
+description: 'Seamlessly connect your favorite apps and services with Phare'
+---
+
+Integrations are a way to connect your Phare account with external services. At the moment, integration can only be used as notification channels, but more integration types will be added in the future.
+
+Integration can be configured in the [Integrations](https://app.phare.io/project/apps) section of your dashboard. You can create an unlimited number of integrations and choose for each one if they're available for your whole organization or scope them by project.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/overview/phare-integrations.webp" alt="Phare integrations" />
+</Frame>
+
+## Alert integrations
+
+Alert integrations are used to send notifications when an alert rule is triggered. You can define the integration to use for each alert rule in an alert policy to route the notification to the right channel for your team.
+
+The following integrations are available for alerting:
+
+<CardGroup cols={2}>
+    <Card
+        title="SMS"
+        icon="message-lines"
+        iconType="duotone"
+        color="#FBBF24"
+        href="/integrations/sms"
+    />
+    <Card
+        title="Email"
+        icon="envelope"
+        iconType="duotone"
+        color="#FBBF24"
+        href="/integrations/email"
+    />
+    <Card
+        title="Slack"
+        href="/integrations/slack"
+        icon={
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path d="M17.2852 0C14.6817 0 12.5712 2.11091 12.5712 4.71414C12.5707 5.33254 12.6921 5.94512 12.9287 6.51665C13.1652 7.08833 13.5123 7.60787 13.95 8.0456C14.3877 8.48334 14.9076 8.83067 15.4798 9.06791C16.0521 9.30515 16.6656 9.42758 17.2852 9.42827H22V4.71414C22.001 3.46503 21.5049 2.26668 20.6207 1.38264C19.7366 0.49859 18.5367 0.0012479 17.2852 0ZM17.2852 12.571H4.71397C2.11033 12.571 0 14.6819 0 17.2859C0 19.8891 2.11033 22 4.71397 22H17.286C19.8888 22 22 19.8891 22 17.2859C22 14.6819 19.8888 12.571 17.2852 12.571Z" fill="#36C5F0"/>
+                <path d="M48 17.2852C48 14.6814 45.8889 12.5706 43.2853 12.5706C40.6817 12.5706 38.5712 14.6814 38.5712 17.2852V21.9992H43.2853C44.5368 21.9979 45.7366 21.5006 46.6207 20.6166C47.505 19.7327 48.001 18.5343 48 17.2852ZM35.4286 17.2852V4.71396C35.4299 3.4649 34.9336 2.26659 34.0496 1.38259C33.1652 0.498571 31.9655 0.00124785 30.714 0C28.1103 0 26 2.11083 26 4.71396V17.2845C26 19.8892 28.1103 22 30.714 22C31.9655 21.9988 33.1652 21.5014 34.0496 20.6174C34.9336 19.7335 35.4299 18.5351 35.4286 17.286" fill="#2EB67D"/>
+                <path d="M30.714 48C31.9655 47.9988 33.1652 47.5014 34.0496 46.6173C34.9336 45.7333 35.4299 44.535 35.4286 43.2859C35.4299 42.0369 34.9336 40.8385 34.0496 39.9545C33.1652 39.0703 31.9655 38.573 30.714 38.5719H26V43.2859C26 45.889 28.1103 48 30.714 48ZM30.714 35.429H43.2862C45.8888 35.429 48 33.3181 48 30.7141C48.001 29.465 47.505 28.2666 46.6207 27.3827C45.7366 26.4986 44.5368 26.0012 43.2853 26H30.714C28.1103 26 26 28.1109 26 30.7141C25.9993 31.3324 26.1208 31.9451 26.3575 32.5167C26.594 33.0883 26.941 33.6077 27.3786 34.0455C27.8165 34.4832 28.3362 34.8307 28.9087 35.0679C29.4808 35.3051 30.0943 35.4276 30.714 35.4281" fill="#ECB22E"/>
+                <path d="M2.39227e-06 30.7141C-0.000621552 31.3324 0.120812 31.9451 0.357384 32.5167C0.593942 33.0883 0.940993 33.6077 1.37872 34.0455C1.81646 34.4832 2.33628 34.8307 2.90854 35.0679C3.48081 35.3051 4.09427 35.4276 4.71397 35.4281C5.96546 35.427 7.16524 34.9297 8.04944 34.0455C8.93363 33.1615 9.42974 31.9631 9.42863 30.7141V26H4.71397C2.11033 26 2.39227e-06 28.1109 2.39227e-06 30.7141ZM12.5712 30.7141V43.2852C12.5712 45.889 14.6817 48 17.2852 48C18.5368 47.9988 19.7366 47.5014 20.6207 46.6173C21.5049 45.7333 22.001 44.535 22 43.2859V30.7141C22.0007 30.0956 21.8791 29.483 21.6425 28.9112C21.4059 28.3397 21.0588 27.8201 20.6209 27.3823C20.1831 26.9447 19.6631 26.5972 19.0909 26.3601C18.5185 26.1227 17.905 26.0004 17.2852 26C14.6817 26 12.5712 28.1109 12.5712 30.7141Z" fill="#E01E5A"/>
+            </svg>
+        }
+    />
+    <Card
+        title="Discord"
+        href="/integrations/discord"
+        icon={
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path fill="#5865F2" d="M40.63 8a40.03 40.03 0 0 0-9.9-3c-.43.75-.93 1.75-1.27 2.55-3.7-.53-7.35-.53-10.97.01-.35-.8-.86-1.8-1.3-2.54-3.47.58-6.8 1.61-9.9 3.03C1.04 17.23-.65 26.17.21 34.99A40.1 40.1 0 0 0 12.36 41c.98-1.3 1.85-2.7 2.6-4.15a25.94 25.94 0 0 1-4.1-1.93c.34-.24.68-.5 1-.77a28.81 28.81 0 0 0 24.29-.03c.32.27.66.53 1 .77-1.3.76-2.67 1.41-4.1 1.94a28.98 28.98 0 0 0 2.6 4.15 40 40 0 0 0 12.15-6.05c1-10.22-1.73-19.08-7.17-26.93Zm-24.6 21.55c-2.38 0-4.32-2.14-4.33-4.75 0-2.61 1.9-4.76 4.31-4.76 2.42 0 4.36 2.13 4.32 4.75.01 2.6-1.9 4.75-4.3 4.76Zm15.94-.02c-2.37 0-4.32-2.14-4.32-4.75s1.9-4.76 4.31-4.76c2.41 0 4.36 2.14 4.32 4.75 0 2.61-1.9 4.76-4.3 4.76Z"/>
+            </svg>
+        }
+    />
+</CardGroup>
+
+---
+
+If your team is using a service not yet supported by Phare, please [contact us](mailto:contact@phare.io), we'll be happy to add it to our roadmap.
+
