@@ -70,7 +70,7 @@
                 ],
                 "summary": "Create a monitor",
                 "description": "Create a monitor",
-                "operationId": "createUptimeMonitors",
+                "operationId": "createUptimeMonitor",
                 "requestBody": {
                     "description": "Monitor request",
                     "required": true,
@@ -101,6 +101,135 @@
                     },
                     "422": {
                         "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/uptime/monitors/{monitorId}": {
+            "get": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Get a monitor",
+                "description": "Get a monitor by ID",
+                "operationId": "getUptimeMonitorById",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, monitor retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Monitor.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Update a monitor",
+                "description": "Update a monitor by ID",
+                "operationId": "updateUptimeMonitor",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Monitor request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.Monitor.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, monitor updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Monitor.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Delete a monitor",
+                "description": "Delete a monitor by ID",
+                "operationId": "deleteUptimeMonitor",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, monitor deleted"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
                     }
                 }
             }
@@ -173,9 +302,6 @@
             "Uptime.Monitor.Resource": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Uptime.Monitor"
-                    },
-                    {
                         "properties": {
                             "id": {
                                 "type": "number",
@@ -205,10 +331,23 @@
                             }
                         },
                         "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Uptime.Monitor"
                     }
                 ]
             },
             "Uptime.Monitor": {
+                "required": [
+                    "alert_policy_id",
+                    "name",
+                    "protocol",
+                    "request",
+                    "interval",
+                    "incident_confirmations",
+                    "recovery_confirmations",
+                    "regions"
+                ],
                 "properties": {
                     "alert_policy_id": {
                         "description": "App\\Models\\Uptime\\Monitor",
@@ -231,6 +370,11 @@
                         "oneOf": [
                             {
                                 "title": "HTTP protocol",
+                                "required": [
+                                    "method",
+                                    "url",
+                                    "secure"
+                                ],
                                 "properties": {
                                     "method": {
                                         "description": "Request method for http protocol",
@@ -247,22 +391,27 @@
                                         "maximum": 255,
                                         "example": "https://docs.phare.io/introduction"
                                     },
+                                    "secure": {
+                                        "description": "Verify request SSL certificate for http protocol",
+                                        "type": "boolean",
+                                        "example": true
+                                    },
                                     "keyword": {
                                         "description": "Response keyword that must be present",
                                         "type": "string",
                                         "example": "pong",
                                         "nullable": true
-                                    },
-                                    "secure": {
-                                        "description": "Verify request SSL certificate for http protocol",
-                                        "type": "boolean",
-                                        "example": true
                                     }
                                 },
                                 "type": "object"
                             },
                             {
                                 "title": "TCP & UPD protocol",
+                                "required": [
+                                    "host",
+                                    "port",
+                                    "message"
+                                ],
                                 "properties": {
                                     "host": {
                                         "description": "Request host for tcp & upd protocol",
@@ -337,7 +486,9 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Uptime.Monitor.RegionEnum"
-                        }
+                        },
+                        "maxItems": 6,
+                        "minItems": 1
                     }
                 },
                 "type": "object"

@@ -41,6 +41,11 @@
       "name": "Changelog",
       "icon": "clock-rotate-left",
       "url": "https://phare.io/changelog"
+    },
+     {
+      "name": "Service status",
+      "icon": "tower-cell",
+      "url": "https://phare.status.phare.io/"
     }
   ],
   "navigation": [
@@ -85,7 +90,10 @@
           "group": "Monitors",
           "pages": [
             "api-reference/monitors/list-monitors",
-            "api-reference/monitors/create-a-monitor"
+            "api-reference/monitors/get-a-monitor",
+            "api-reference/monitors/create-a-monitor",
+            "api-reference/monitors/update-a-monitor",
+            "api-reference/monitors/delete-a-monitor"
           ]
         }
       ]
