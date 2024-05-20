@@ -288,6 +288,76 @@
                     }
                 }
             }
+        },
+        "/uptime/monitors/{monitorId}/pause": {
+            "post": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Pause a monitor",
+                "description": "Pause a monitor by ID",
+                "operationId": "pauseUptimeMonitor",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to pause",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, monitor paused"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/uptime/monitors/{monitorId}/resume": {
+            "post": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Resume a monitor",
+                "description": "Resume a monitor by ID",
+                "operationId": "resumeUptimeMonitor",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to resume",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, monitor resumed"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
         }
     },
     "components": {

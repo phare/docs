@@ -89,7 +89,6 @@
         "api-reference/platform/get-api-info"
       ]
     },
-
     {
       "group": "Uptime",
       "pages": [
@@ -100,6 +99,8 @@
             "api-reference/monitors/get-a-monitor",
             "api-reference/monitors/create-a-monitor",
             "api-reference/monitors/update-a-monitor",
+            "api-reference/monitors/pause-a-monitor",
+            "api-reference/monitors/resume-a-monitor",
             "api-reference/monitors/delete-a-monitor"
           ]
         }
