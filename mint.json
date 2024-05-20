@@ -84,6 +84,13 @@
       ]
     },
     {
+      "group": "Platform",
+      "pages": [
+        "api-reference/platform/get-api-info"
+      ]
+    },
+
+    {
       "group": "Uptime",
       "pages": [
         {

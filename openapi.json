@@ -16,6 +16,61 @@
         }
     ],
     "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Platform"
+                ],
+                "summary": "Get API info",
+                "description": "Get basic API information",
+                "operationId": "getInfo",
+                "responses": {
+                    "200": {
+                        "description": "Success, information retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "description": "API title",
+                                            "type": "string",
+                                            "example": "Phare"
+                                        },
+                                        "version": {
+                                            "description": "API version",
+                                            "type": "string",
+                                            "example": "1.0"
+                                        },
+                                        "support": {
+                                            "description": "Support email address",
+                                            "type": "string",
+                                            "example": "support@phare.io"
+                                        },
+                                        "website": {
+                                            "description": "Platform website url",
+                                            "type": "string",
+                                            "example": "https://phare.io"
+                                        },
+                                        "documentation": {
+                                            "description": "API documentation url",
+                                            "type": "string",
+                                            "example": "https://docs.phare.io/"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            }
+        },
         "/uptime/monitors": {
             "get": {
                 "tags": [
@@ -308,6 +363,7 @@
                                 "example": 1
                             },
                             "project_id": {
+                                "description": "Parent project ID",
                                 "type": "number",
                                 "example": 1
                             },
@@ -327,7 +383,8 @@
                             "one_day_response_time": {
                                 "description": "Average response time in the last 24h, in milliseconds",
                                 "type": "number",
-                                "example": 123
+                                "example": 123,
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -350,7 +407,7 @@
                 ],
                 "properties": {
                     "alert_policy_id": {
-                        "description": "App\\Models\\Uptime\\Monitor",
+                        "description": "Associated alert policy ID",
                         "type": "number",
                         "example": 1
                     },
