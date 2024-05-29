@@ -86,7 +86,17 @@
     {
       "group": "Platform",
       "pages": [
-        "api-reference/platform/get-api-info"
+        "api-reference/platform/get-api-info",
+        {
+          "group": "Alert Policies",
+          "pages": [
+            "api-reference/alert-policies/list-alert-policies",
+            "api-reference/alert-policies/create-an-alert-policy",
+            "api-reference/alert-policies/get-an-alert-policy",
+            "api-reference/alert-policies/update-an-alert-policy",
+            "api-reference/alert-policies/delete-an-alert-policy"
+          ]
+        }
       ]
     },
     {
