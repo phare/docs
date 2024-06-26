@@ -42,3 +42,28 @@ Phare Uptime provides nine regions around the world to monitor your website or s
 
 Phare Uptime provides a powerful alerting system to notify your team members of an incident based on alert policies. You can attach a different alert policy to each monitor, and you can create as many alert policies as you want.
 
+## Firewall protection
+
+Our monitoring infrastructure uses a vast range of IPs from the [Cloudflare global network](https://www.cloudflare.com/en-gb/ips/) to provide the widest available monitoring offer at an affordable price. Phare is not the only company using this range of IP addresses. Therefore, IP filtering should not be relied upon to control access to our monitoring traffic.
+
+The simplest solution is to filter by user-agent. However, if you require a more robust option, please [contact us](mailto:support@phare.io).
+
+## User agent
+
+Phare Uptime monitoring HTTP requests always contain the following user-agent:
+
+> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
+
+## Limits
+
+Our monitoring infrastructure allows us to work at an extraordinary scale, but comes with a few drawbacks:
+
+- **Enforced HTTPS validation**: Website accessed with the HTTPS protocol MUST use a valid SSL certificate. Self-signed, expired or poorly configured SSL certificate will yield an error. There is no way to bypass this validation.
+- **No HTTPS with IP hostname**: It is possible to monitor a website using an IP address hostname with the HTTP protocol but not with the HTTPS protocol.
+- **No TCP port 25**: Monitoring a service with TCP on port 25 is not possible.
+
+We understand that these limits can be a major blocking point, feel free to [contact us](mailto:support@phare.io) if you would like to discuss alternatives or contournement solutions.
+
+
+Depending on your firewall configuration, it is possible that traffic coming from the Phare monitoring infrastructure gets blocked.
+To avoid any issue, you can make sure to allow Phare monitoring traffic
