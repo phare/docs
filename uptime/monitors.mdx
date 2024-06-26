@@ -3,7 +3,7 @@ title: 'Monitors'
 description: 'Monitor the availability of your website and servers.'
 ---
 
-Monitors are the core of Phare Uptime, they are used to monitor the availability of your website and servers, and send you alerts when something goes wrong. Monitors can perform three types of checks to determine if your website or server is online and working as expected: HTTP(s), TCP, and UDP.
+Monitors are the core of Phare Uptime, they are used to monitor the availability of your website and servers, and send you alerts when something goes wrong. Monitors can perform HTTP(s) and TCP checks to determine if your website or server is online and working as expected.
 
 <Frame type="glass">
     <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
@@ -20,9 +20,9 @@ Monitors are the core of Phare Uptime, they are used to monitor the availability
 
 An HTTP(s) request is sent to your website, Phare Uptime check the response status code and the presence of an optional keyword in the response body to determine if your website is online and working. Additionally, you can activate SSL certificate monitoring to get alerted when your SSL certificate is expired or misconfigured.
 
-### TCP & UDP
+### TCP
 
-A TCP or UDP connection is established with your server, Phare Uptime sends a fixed string and waits for a response to determine if your server is online and working as expected.
+A TCP socket connection is established with your server, Phare Uptime sends a fixed string and waits for a response to determine if your server is online and working as expected.
 
 ## Interval
 
