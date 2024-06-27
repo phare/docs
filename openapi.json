@@ -803,8 +803,7 @@
                                 "title": "HTTP protocol",
                                 "required": [
                                     "method",
-                                    "url",
-                                    "secure"
+                                    "url"
                                 ],
                                 "properties": {
                                     "method": {
@@ -821,11 +820,6 @@
                                         "type": "string",
                                         "maximum": 255,
                                         "example": "https://docs.phare.io/introduction"
-                                    },
-                                    "secure": {
-                                        "description": "Verify request SSL certificate for http protocol",
-                                        "type": "boolean",
-                                        "example": true
                                     },
                                     "keyword": {
                                         "description": "Response keyword that must be present",
@@ -928,8 +922,7 @@
                 "type": "string",
                 "enum": [
                     "http",
-                    "tcp",
-                    "udp"
+                    "tcp"
                 ]
             },
             "Uptime.Monitor.RegionEnum": {
