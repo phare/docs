@@ -1,0 +1,98 @@
+---
+title: 'Changelog'
+sidebarTitle: '2024'
+description: 'Follow the latest updates and improvements made to the Phare platform.'
+---
+
+## New changelog
+_July 1st, 2024_
+
+Phare's changelog has been moved on our documentation site to harmonize the way that we write content on new Phare features. All previous entries where migrated to [this page](/changelog/platform/2024). We hope this new format will allow us to publish new entries faster and with a higher frequency.
+
+---
+
+## New monitoring regions
+_May 28th, 2024_
+
+Following our recent monitoring infrastructure migration, three new regions are released for uptime monitoring:
+
+Say hello to Japan, the United Kingdom and Mexico.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/changelog/41-new-monitoring-regions.webp" alt="New monitoring regions" />
+</Frame>
+
+---
+
+## New monitoring infrastructure
+_May 26th, 2024_
+
+Our monitoring infrastructure is the biggest operating cost and most important piece of the Phare Uptime product. As we perform millions of monitoring checks from many regions around the world, this infrastructure should be scalable, efficient and more importantly reliable. As we grew over the past few months, our previous solution based on [AWS Lambda](https://aws.amazon.com/lambda/) started to show its limit in terms of performance and cost, forcing us to look for an alternative solution.
+
+Today we migrated all monitoring checks to a newly written infrastructure based on [Cloudflare workers](https://workers.cloudflare.com/). This solution allows us to maintain our generous free plan and a competitive price for our paid customers.
+
+---
+
+## Alert policies API
+_May 24th, 2024_
+
+API endpoints to [manage alert policies](/api-reference/alert-policies/list-alert-policies) have been released and documented.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/changelog/40-alert-policy-api.webp" alt="Alert policies API" />
+</Frame>
+
+---
+
+## REST API
+_May 20th, 2024_
+
+The Phare REST API has been released with associated [documentation](/api-reference/introduction). All endpoints required to manage monitors are already available, other endpoints will be added in the next few weeks until all the action you can perform in your dashboard can also be done programmatically.
+
+You will need to generate an API key to authenticate your organization, you are able to choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform.
+
+More informations are available on the [API documentation](/api-reference/introduction) page.
+
+<Frame type="glass">
+    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
+        <iframe
+            src="https://iframe.mediadelivery.net/embed/238508/0ec7b14b-4512-4fc5-b74e-b42f8152c596?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+            loading="lazy"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
+        ></iframe>
+    </div>
+</Frame>
+
+---
+
+## New Documentation
+_May 15th, 2024_
+
+Documentation has been moved to [docs.phare.io](/introduction) and offers an improved user experience. The documentation source code has also been published to [GitHub](https://github.com/phare/docs), allowing anyone to contribute.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/changelog/39-new-documentation.webp" alt="New documentation" />
+</Frame>
+
+---
+
+## Incident comment and update alert
+_May 7th, 2024_
+
+Two new alert rules have been created to let you know when your team is working on resolving an incident. The first one will alert you everytime a new comment is published on an incident timeline, and the second when a team member publishes a status update for the incident.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/changelog/38-new-alert-rules.webp" alt="Incident comment and update alert" />
+</Frame>
+
+---
+
+## Hosting provider migration
+_May 2nd, 2024_
+
+Phare migrated to a new datacenter managed by [Hetzner](https://www.hetzner.com/) in Germany. The switch was made on May 2nd and resulted in ~6 minutes of downtime on uptime monitoring and ~10 minutes of downtime on dashboard access. This infrastructure migration was performed to improve speed and reliability of the service.
+
+A lot of work has also been put into disaster recovery, with four times more backup point every day and multi-region (all in Europe) replication.
+
+This ensures that the service can be put back up with the smallest possible downtime in case our current datacenter has a major outage.

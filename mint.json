@@ -40,7 +40,7 @@
     {
       "name": "Changelog",
       "icon": "clock-rotate-left",
-      "url": "https://phare.io/changelog"
+      "url": "changelog"
     },
      {
       "name": "Service status",
@@ -75,6 +75,13 @@
         "integrations/email",
         "integrations/slack",
         "integrations/discord"
+      ]
+    },
+    {
+      "group": "Platform",
+      "pages": [
+        "changelog/platform/2024",
+        "changelog/platform/2023"
       ]
     },
     {

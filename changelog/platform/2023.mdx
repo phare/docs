@@ -1,0 +1,497 @@
+---
+title: 'Changelog'
+sidebarTitle: '2023'
+description: 'Follow the latest updates and improvements made to the Phare platform.'
+---
+
+## Alert policy duplication
+_December 17th, 2023_
+
+You can now duplicate an entire alert policy with all its rules to adapt Phare to how your company needs to be alerted.
+
+<Frame type="glass">
+    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
+        <iframe
+            src="https://iframe.mediadelivery.net/embed/238508/9e75f896-215f-4b5c-96c9-fc61ba7d38bf?autoplay=true&loop=true&muted=true&preload=true&responsive=true"
+            loading="lazy"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
+        ></iframe>
+    </div>
+</Frame>
+
+---
+
+## Status pages RSS and ATOM feed
+_November 4th, 2023_
+
+Status pages now offer an incident feed in RSS and ATOM format to let your users get updates on incidents.
+
+---
+
+## Status pages brand logo and feed subscription
+_November 2nd, 2023_
+
+You can now add your brand logo to your status page, which will be displayed in the top left corner of the page. Current and past incidents are now shown on the status page, and your users can subscribe to an RSS or Atom feed to get updates on incidents.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Status Page branding" src="/images/changelog/37-status-page-branding.webp" />
+</Frame>
+
+---
+
+## Incident comments
+_October 29th, 2023_
+
+To help you resolve incidents faster, project members can now comment on the incident timeline. Comments can be written using a rich text editor, and are compatible with the Markdown syntax.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incident impact & comments" src="/images/changelog/36-incident-impact-and-comments.webp" />
+</Frame>
+
+---
+
+## Incident impact
+_October 27th, 2023_
+
+The design of the incident management page has been improved, with all actions now part of the timeline. You can now select an impact level for your incidents.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incident management" src="/images/changelog/35-incident-management.webp" />
+</Frame>
+
+---
+
+## Admin user role
+_October 23rd, 2023_
+
+A new **Admin** role is now available. This role is similar to the former **Owner** role, with the exception that it can't delete the organization, making it easier to share the management of an organization with other team members.
+
+You can review the available permissions of each role in the [user management documentation](https://docs.phare.io/user-management). Role can be modified on existing users, as well as directly when inviting a new user.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Invite user" src="/images/changelog/34-user-roles.webp " />
+</Frame>
+
+---
+
+## Status pages
+_October 21st, 2023_
+
+Status pages are now available for all users, and they're **the most carbon-efficient status page on the market with an incredibly fast load time**. You can create unlimited status pages with a phare domain name, and personalize it with limited branding options.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Status Page" src="/images/changelog/33-status-pages.webp" />
+</Frame>
+
+---
+
+## European mail server
+_September 17th, 2023_
+
+The mail server used to send you alert notifications has been moved to a new provider based in Europe, making Phare 100% european for non-subscribed users. This is part of Phare commitment to privacy and data protection, using only services from companies that are headquartered in Europe and hosted in european datacenters.
+
+The only exception is Stripe, a US-based company used to process billing information and payments.
+
+---
+
+## New branding
+_August 21st, 2023_
+
+Bye bye MinKit and hello Phare! The platform has been renamed to Phare and has a new logo. The new name is a reference to the lighthouse, a beacon of light that helps ships navigate safely. This symbole is a good representation of our mission to give you a signal when you need it so that you can run high quality production websites.
+
+We hope that you like the new name and logo.
+
+The old domain name `minkit.io` will continue to work for about a year, but you should update your bookmarks and password manager as soon as possible to avoid any inconvenience in the future.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="New branding" src="/images/changelog/32-minkit-becomes-phare.webp" />
+</Frame>
+
+---
+
+## Improved monitoring page
+_August 18th, 2023_
+
+Visualisation of incident periods in the performance chart has been improved, and you can now get your website's average response time, cumulated downtime and availability % for the selected time period (24 hours, 7 days, 30 days or 90 days).
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Monitoring statistics" src="/images/changelog/31-monitoring-statistics.webp" />
+</Frame>
+
+---
+
+## Faster monitoring statistics
+_August 17th, 2023_
+
+A lot of work has been done to improve the monitoring statistics. With 15M records in the database, it was starting to be a bit slow to load monitoring results for our own standard, because we're obsessed with speed. [ClickHouse](https://clickhouse.com/) came to the rescue, saving up to 500ms on every page load. If you visit your monitoring page twice a day, that's 6 minutes of your life saved every year! You're welcome.
+
+---
+
+## Reviews
+_August 15th, 2023_
+
+A new review page has been added to the website with a list of all the places where you can leave a review of the platform. If you like Phare, please consider leaving an honest review on one of these platforms. The first 85 reviews created on Capterra will **receive a $20 gift card**!
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Write a review" src="/images/changelog/30-review.webp" />
+</Frame>
+
+---
+
+## Deletion safeguard
+_July 29th, 2023_
+
+A new safeguard has been added to the platform to prevent accidental deletion of important data. When you try to delete your user account, a project, or your organization, you will be asked to confirm your action with a small typing challenge. This will prevent you from accidentally deleting your account or organization.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Deletion safeguard" src="/images/changelog/29-deletion-safeguard.webp" />
+</Frame>
+
+---
+
+## Alert rules duplication
+_July 28th, 2023_
+
+You can now duplicate an alert rule to rapidly create a new one with the same configuration. This is useful if you want to create a new alert rule with a similar configuration to an existing one.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Alert rules duplication" src="/images/changelog/28-alert-rule-duplication.webp" />
+</Frame>
+
+---
+
+## Performance monitoring history
+_June 4th, 2023_
+
+It is now possible to navigate the performance history of your monitors, with three available time ranges of 24 hours, 7 days and 90 days. This is a first step towards giving you more flexibility on how you view and access your monitoring data.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Performance monitoring history" src="/images/changelog/27-performance-history.webp" />
+</Frame>
+
+---
+
+## Improved uptime precision
+_May 29th, 2023_
+
+Uptime percentage is now calculated with four digits precision which allows us to better calculate your long time SLA. For example, 99.9999% uptime means that your service can be down for 31 seconds per year.
+
+Badges also got updated with four digits precision.
+
+<Frame type="glass">
+<img class="border rounded-lg" alt="Improved uptime precision" src="/images/changelog/26-improved-uptime-precision.webp" />
+</Frame>
+
+---
+
+## Incident events improvements
+_May 27th, 2023_
+
+Incident events now show more precise date and time information. With the exact time of the event, and the elapsed time since the creation of the incident.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incident event date time" src="/images/changelog/24-incident-event-date-time.webp" />
+</Frame>
+
+A tooltip with the exact date and time is also available on hover of all the already existing dates and times in the Phare dashboard.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Datetime tooltip" src="/images/changelog/25-datetime-tooltip.webp" />
+</Frame>
+
+---
+
+
+## Multi-quota billing alerts
+_May 17th, 2023_
+
+A fairly technical feature, but important for the future of the platform. With the release of the SMS integration last week, we now offer two different billing quotas: SMS alerts and monitoring events. The billing alert system, which is responsible for sending you emails when a quota is exhausted, was the last piece of the billing infrastructure that only supported Monitoring events.
+
+In simpler terms, the platform now has all the required foundation to bill anything, as part of a monthly plan or as additional usage. New feature will not require work on the billing infrastructure anymore, allowing me to ship faster!
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Multi-quota alerts" src="/images/changelog/23-multi-quota-alerts.webp" />
+</Frame>
+
+---
+
+## Integrations documentation
+_May 14th, 2023_
+
+The [documentation for the integrations](https://docs.phare.io/integrations/overview) has been created, mostly to include information on the new SMS integration. You can find a few tips on configuration, supported country, the address email and phone numbers we use to send alerts, and much more.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Integration documentation" src="/images/changelog/22-integrations-documentation.webp" />
+</Frame>
+
+---
+
+## SMS integration
+_May 13th, 2023_
+
+Phare now offers SMS alerts! You can receive SMS alerts by configuring the new SMS integration. The SMS integration is only available on the Scale plan with 100 alerts included monthly.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="SMS integration" src="/images/changelog/20-sms-integrations.webp" />
+</Frame>
+
+You can add a phone number to their profile, which will be used to send SMS alerts. You will have to validate your phone number by entering a code sent by SMS. Team members that do not yet confirm a phone number can still be added to the SMS integration, but they will not receive the SMS alerts, a fallback solution will be added in the future.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="SMS integration" src="/images/changelog/21-sms-integration-configuration.webp" />
+</Frame>
+
+---
+
+## Improved design
+_May 10th, 2023_
+
+The [home](https://phare.io) and [pricing](https://phare.io/pricing) pages got updated with frostier design; we hope that you like as much as we do. A few other pages got updated as well to improve consistency across the website.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Improved design" src="/images/changelog/19-improved-design.webp" />
+</Frame>
+
+---
+
+## Public launch
+_May 5th, 2023_
+
+The public launch on [ProductHunt](https://www.producthunt.com/posts/phare-uptime) went well, we're happy to see the first unsolicited users signing up and using the platform. We're also happy to see that the platform is stable and reliable, as only a few minor bugs were reported and fixed since the launch.
+
+Thanks to everyone who voted for us on ProductHunt and participated in any way to the launch, it means a lot.
+
+During the same period, we also acquired our first paying customer, which is a great milestone for the project.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Phare on ProductHunt" src="/images/changelog/18-producthunt-launch.webp" />
+</Frame>
+
+---
+
+## Documentation
+_May 4th, 2023_
+
+Documentation has been published, it's still a work in progress, but it's already a great resource to learn about what our platform has to offer and how to use it.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Documentation" src="/images/changelog/17-documentation.webp" />
+</Frame>
+
+---
+
+## Bunny CDN
+_April 10th, 2023_
+
+This week we migrated from [Cloudflare](https://www.cloudflare.com/) to [Bunny.net](https://bunny.net/). Bunny is a reliable content delivery platform with lightning-fast performances, making our platform even faster than before.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Performance" src="/images/changelog/16-performance.webp" />
+</Frame>
+
+But speed is not the only reason we spent a few days to migrate our service. Bunny is a European Union company, based in Slovenia.
+
+This migration is part of our effort to rely as much as possible on European provider and ensure maximum privacy to our users.
+
+---
+
+## Billing overage management
+_April 09th, 2023_
+
+One feature was missing in the billing cycle released last week, managing overage, which occurs when your organization consumes more events than allowed in its subscription plan. You will now receive two emails, when 90% and 100% of your monthly allowed quota has been used. A free overage of 10 additional percent is offered before your account gets locked until the next billing period, or until you subscribe or upgrade your plan.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Overage management" src="/images/changelog/15-overage-management.webp" />
+</Frame>
+
+---
+
+## End of beta
+_April 8th, 2023_
+
+With 3.5M checks successfully performed, 272 incidents reported, and 639 notifications sent, we can confidently say all systems are stable enough to end the beta program. The last 6 weeks have been productive, with lots of features and improvements on the platform, and we heard a public launch might happen in early May!
+
+If you would like to support our launch on ProductHunt, you can [subscribe here to get notified](https://www.producthunt.com/products/phare).
+
+---
+
+## Paid plan activation
+_April 6th, 2023_
+
+With the end of the beta program incoming, the payment integration has been activated, which means no more unlimited usage on the free plan! We spent most of this week making sure the billing system was working as expected, and that monitoring events are reported fairly every month.
+
+---
+
+## Incidents on performance chart
+_April 2nd, 2023_
+
+A small change, but a welcome one to the performance chart, as you can now see incidents directly, and how they impact your website performance.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incidents on performance chart" src="/images/changelog/14-incidents-on-performance-chart.webp" />
+</Frame>
+
+---
+
+## Frequently asked questions
+_April 1st, 2023_
+
+The pricing page now shows some frequently asked questions that I hope makes everything clearer about how Phare works. This is a small first step to fully fledged documentation.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Frequently asked questions" src="/images/changelog/13-faq.webp" />
+</Frame>
+
+---
+
+## Stress test
+_March 28th, 2023_
+
+To make sure that our platform continues to work flawlessly under load, thousands of test monitors have been created for a few days to expose any performance weakness. We could identify a few culprits in the way we calculated uptime average and stored monitoring results, that are now fixed.
+
+On older monitors, the statistic page could take up to a second to show, which is not on par with the rest of the platform in terms of performance. It has been improved and should now be displayed in under 100ms.
+
+---
+
+## Pagination
+_March 26th, 2023_
+
+Dealing with so many monitors was impossible without a pagination, which is now active on most pages like projects, environments, monitors, incidents, and alert policies.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Pagination" src="/images/changelog/12-pagination.webp" />
+</Frame>
+
+---
+
+## Authentication pages redesign
+_March 24th, 2023_
+
+A small redesign of the authentication pages was made to make the pages more coherent with the overall design of the new landing pages created last week.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Authentication pages" src="/images/changelog/11-authentication-pages.webp" />
+</Frame>
+
+---
+
+## Legal
+_March 22nd, 2023_
+
+We published our [terms of services](https://phare.io/legal/terms-of-service) and [privacy policy](https://phare.io/legal/privacy-policy). This was not the funniest task, but a necessary one as we approach open beta.
+
+---
+
+## Improved billing
+_March 19th, 2023_
+
+Billing is not yet active during the private beta, giving time to make sure everything is simple and works as expected. Wording around plans, billing, and quotas have been reviewed and changed to make things easier to understand. The offer is also simplified with a limited free (Hobby) plan, and a single paid (Scale) plan. The paid plan, as the name suggests, grows with your organization needs thanks to additional quotas that can be configured.
+
+A detailed pricing calculator is now available on a new [pricing page](https://phare.io/pricing).
+
+The billing page presents a fresh look with more detailed information on included and additional usage for all products:
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Phare billing management" src="/images/changelog/10-billing-management.webp" />
+</Frame>
+
+---
+
+## Members management
+_March 15th, 2023_
+It is now possible to invite your colleagues to your organization, all accounts have unlimited numbers, the more, the merrier.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Phare members management" src="/images/changelog/9-members-management.webp" />
+</Frame>
+
+You can assign members to projects and choose who has access to a project during creation.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Phare project with members" src="/images/changelog/8-project-with-members.webp" />
+</Frame>
+
+For now, all members can perform every possible action in the scope of their respective project. More granular role management will come later.
+
+---
+
+## New landing page
+_March 9th, 2023_
+
+Our landing page received a small makeover, a new marketing-oriented page has been created to present the Phare Uptime product with more details.
+
+Go check out the new [Phare Uptime landing page](https://phare.io/products/uptime).
+
+---
+
+
+## New alert rules
+_March 9th, 2023_
+
+Two new rules have been added with the introduction of incident management, one that triggers when a new incident is created and one when an incident has recovered.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incident alert rules" src="/images/changelog/7-incident-alert-rules.webp" />
+</Frame>
+
+Theses two new rules replace the former `Monitor status changed` rule that longer exists. All user's default alert policy rules have been updated to reflect this change.
+
+---
+
+## Incident management
+_March 8th, 2023_
+
+Monitors now automatically create and resolve incidents, this behavior can be configured in each monitor's settings with two new parameters.
+
+- Incident confirmations: number of failing checks required before creating an incident.
+- Recovery confirmations: number of successful checks required before resolving an incident.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incident management configuration" src="/images/changelog/6-incident-management-configuration.webp" />
+</Frame>
+
+All incidents are shown in the incidents section of MinUptime, you can quickly see their status and act accordingly.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incidents" src="/images/changelog/5-incidents.webp" />
+</Frame>
+
+To help you fix the situation, a timeline of events linked to an incident is shown on the incident's page.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Incidents timeline" src="/images/changelog/4-incidents-timeline.webp" />
+</Frame>
+
+---
+
+## Discord integration
+_March 6th, 2023_
+
+Discord is now an available integration, it can already be used for all types of alerts, and be configured to specific project and environments like the existing Slack and Email integration.
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Discord integration" src="/images/changelog/3-discord-integration.webp" />
+</Frame>
+
+---
+
+## Timezone and time format
+_March 2nd, 2023_
+
+Users can now select their Timezone and preferred time format (24 or 12-hour clock)
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="Timezone and time format" src="/images/changelog/2-timezone-and-time-format.webp" />
+</Frame>
+
+---
+
+## New monitor alert rules
+_April 14th, 2023_
+
+Two new alert rules have been added to receive alerts when a monitor is created or deleted
+
+<Frame type="glass">
+    <img class="border rounded-lg" alt="New monitor rules" src="/images/changelog/1-new-monitor-rules.webp" />
+</Frame>
