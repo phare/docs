@@ -869,18 +869,19 @@
                         ]
                     },
                     "interval": {
-                        "description": "Monitoring interval in minutes",
+                        "description": "Monitoring interval in seconds",
                         "type": "number",
                         "enum": [
-                            1,
-                            2,
-                            3,
-                            5,
-                            10,
-                            15,
-                            30
+                            30,
+                            60,
+                            120,
+                            180,
+                            300,
+                            600,
+                            900,
+                            1800
                         ],
-                        "example": 1
+                        "example": 60
                     },
                     "incident_confirmations": {
                         "description": "Number of uninterrupted failed checks required to create an incident",
