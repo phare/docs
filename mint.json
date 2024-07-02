@@ -29,7 +29,7 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://app.phare.io/"
+    "url": "https://app.phare.io/login"
   },
   "anchors": [
     {
