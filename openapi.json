@@ -826,6 +826,23 @@
                                         "type": "string",
                                         "example": "pong",
                                         "nullable": true
+                                    },
+                                    "timeout": {
+                                        "description": "Request timeout in in milliseconds.",
+                                        "type": "number",
+                                        "enum": [
+                                            1000,
+                                            2000,
+                                            3000,
+                                            4000,
+                                            5000,
+                                            6000,
+                                            7000,
+                                            8000,
+                                            9000,
+                                            10000
+                                        ],
+                                        "example": 7000
                                     }
                                 },
                                 "type": "object"
@@ -860,8 +877,24 @@
                                         "description": "Response keyword that must be present",
                                         "type": "string",
                                         "maximum": 50,
-                                        "example": "pong",
-                                        "nullable": true
+                                        "example": "pong"
+                                    },
+                                    "timeout": {
+                                        "description": "Request timeout in in milliseconds.",
+                                        "type": "number",
+                                        "enum": [
+                                            1000,
+                                            2000,
+                                            3000,
+                                            4000,
+                                            5000,
+                                            6000,
+                                            7000,
+                                            8000,
+                                            9000,
+                                            10000
+                                        ],
+                                        "example": 7000
                                     }
                                 },
                                 "type": "object"
