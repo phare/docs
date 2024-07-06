@@ -71,6 +71,303 @@
                 }
             }
         },
+        "/{product}/alert-policies/{alertPolicyId}/alert-rules": {
+            "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "List alert rules",
+                "description": "Get a paginated list of alert rules for a given alert policy.",
+                "operationId": "getUptimeAlertPolicyAlertRules",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    },
+                    {
+                        "name": "alertPolicyId",
+                        "in": "path",
+                        "description": "ID of the alert policy to retrieve alert rules for",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, alert rules retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.AlertRule.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Create an alert rule",
+                "description": "Create an alert rule for a given alert policy",
+                "operationId": "createUptimeAlertPolicyAlertRule",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    },
+                    {
+                        "name": "alertPolicyId",
+                        "in": "path",
+                        "description": "ID of the alert policy to create an alert rule for",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Alert rule request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.AlertRule.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, alert rule created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.AlertRule.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/{product}/alert-policies/{alertPolicyId}/alert-rules/{alertRuleId}": {
+            "get": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Get an alert rule",
+                "description": "Get an alert rule by ID for a given alert policy",
+                "operationId": "getUptimeAlertPolicyAlertRule",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    },
+                    {
+                        "name": "alertPolicyId",
+                        "in": "path",
+                        "description": "ID of the alert policy to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "alertRuleId",
+                        "in": "path",
+                        "description": "ID of the alert rule to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, alert rule retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.AlertRule.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Update an alert rule",
+                "description": "Update an alert rule by ID for a given alert policy",
+                "operationId": "updateUptimeAlertPolicyAlertRule",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    },
+                    {
+                        "name": "alertPolicyId",
+                        "in": "path",
+                        "description": "ID of the alert policy to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "alertRuleId",
+                        "in": "path",
+                        "description": "ID of the alert rule to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Alert rule request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.AlertRule.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, alert rule updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.AlertRule.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Alert Rules"
+                ],
+                "summary": "Delete an alert rule",
+                "description": "Delete an alert rule by ID for a given alert policy",
+                "operationId": "deleteUptimeAlertPolicyAlertRule",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/product"
+                    },
+                    {
+                        "name": "alertPolicyId",
+                        "in": "path",
+                        "description": "ID of the alert policy to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "alertRuleId",
+                        "in": "path",
+                        "description": "ID of the alert rule to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, alert rule deleted"
+                    },
+                    "409": {
+                        "description": "Error, alert rule cannot be deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Conflict error schema",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "This alert rule is used by at least one entity and cannot be deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
         "/{product}/alert-policies": {
             "get": {
                 "tags": [
@@ -175,7 +472,7 @@
                 ],
                 "summary": "Get an alert policy",
                 "description": "Get an alert policy by ID",
-                "operationId": "getUptimeAlertPolicyById",
+                "operationId": "getUptimeAlertPolicy",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/product"
@@ -323,6 +620,130 @@
                 }
             }
         },
+        "/uptime/incidents": {
+            "get": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "List incidents",
+                "description": "Get a paginated list of incidents",
+                "operationId": "getUptimeIncidents",
+                "responses": {
+                    "200": {
+                        "description": "Success, incidents retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.Incident.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    }
+                ]
+            }
+        },
+        "/uptime/incidents/{incidentId}": {
+            "get": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Get an incident",
+                "description": "Get an incident by ID",
+                "operationId": "getUptimeIncident",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, incident retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Incident.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Delete an incident",
+                "description": "Delete an incident by ID",
+                "operationId": "deleteUptimeIncident",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, incident deleted"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
         "/uptime/monitors": {
             "get": {
                 "tags": [
@@ -419,12 +840,12 @@
                 ],
                 "summary": "Get a monitor",
                 "description": "Get a monitor by ID",
-                "operationId": "getUptimeMonitorById",
+                "operationId": "getUptimeMonitor",
                 "parameters": [
                     {
                         "name": "monitorId",
                         "in": "path",
-                        "description": "ID of the monitor to update",
+                        "description": "ID of the monitor to show",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -669,6 +1090,13 @@
                 },
                 "type": "object"
             },
+            "Uptime.AlertRule.Request": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.AlertRule"
+                    }
+                ]
+            },
             "Uptime.AlertPolicy.Request": {
                 "allOf": [
                     {
@@ -703,6 +1131,137 @@
                     },
                     {
                         "$ref": "#/components/schemas/Uptime.AlertPolicy"
+                    },
+                    {
+                        "properties": {
+                            "created_at": {
+                                "description": "Date of creation for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Date of last update for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Uptime.AlertRule.Resource": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "alert_policy_id": {
+                                "description": "Parent alert policy ID",
+                                "type": "number",
+                                "example": 1
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Uptime.AlertRule"
+                    },
+                    {
+                        "properties": {
+                            "created_at": {
+                                "description": "Date of creation for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Date of last update for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Uptime.Incident.Resource": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "organization_id": {
+                                "description": "Parent organization ID",
+                                "type": "number",
+                                "example": 1
+                            },
+                            "project_id": {
+                                "description": "Parent project ID",
+                                "type": "number",
+                                "example": 1
+                            },
+                            "uptime_monitor_id": {
+                                "description": "Parent uptime monitor ID",
+                                "type": "number",
+                                "example": 1
+                            },
+                            "title": {
+                                "description": "Incident title",
+                                "type": "string",
+                                "maximum": 30,
+                                "example": "Service is not working as expected"
+                            },
+                            "slug": {
+                                "description": "Incident unique slug name",
+                                "type": "string",
+                                "example": "APP-123"
+                            },
+                            "impact": {
+                                "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                            },
+                            "state": {
+                                "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
+                            },
+                            "error": {
+                                "description": "Description of the error that caused the incident",
+                                "type": "string",
+                                "example": "The server answered with an unexpected status code: 503."
+                            },
+                            "incident_at": {
+                                "description": "Date of incident confirmation",
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            },
+                            "recovery_at": {
+                                "description": "Date of incident recovery",
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "created_at": {
+                                "description": "Date of creation for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Date of last update for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -743,6 +1302,21 @@
                     },
                     {
                         "$ref": "#/components/schemas/Uptime.Monitor"
+                    },
+                    {
+                        "properties": {
+                            "created_at": {
+                                "description": "Date of creation for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Date of last update for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -764,6 +1338,44 @@
                         "maximum": 30,
                         "minimum": 2,
                         "example": "Website"
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.AlertRule": {
+                "required": [
+                    "integration_id",
+                    "event",
+                    "rate_limit"
+                ],
+                "properties": {
+                    "integration_id": {
+                        "description": "The ID of the integration used to send a notification when the alert rule is executed",
+                        "type": "number",
+                        "example": 1
+                    },
+                    "event": {
+                        "description": "Name of the event that will trigger the execution of the alert rule",
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/Uptime.ProductEvents"
+                            }
+                        ]
+                    },
+                    "rate_limit": {
+                        "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
+                        "type": "number",
+                        "enum": [
+                            0,
+                            5,
+                            10,
+                            30,
+                            60,
+                            180,
+                            720,
+                            1440
+                        ],
+                        "example": 5
                     }
                 },
                 "type": "object"
@@ -952,6 +1564,46 @@
                 },
                 "type": "object"
             },
+            "Uptime.ProductEvents": {
+                "type": "string",
+                "enum": [
+                    "uptime_monitor_created",
+                    "uptime_monitor_deleted",
+                    "uptime_incident_created",
+                    "uptime_incident_recovered",
+                    "uptime_incident_comment_created",
+                    "uptime_incident_update_published"
+                ]
+            },
+            "Uptime.Incident.ImpactEnum": {
+                "type": "string",
+                "enum": [
+                    "unknown",
+                    "operational",
+                    "degradedPerformance",
+                    "partialOutage",
+                    "majorOutage",
+                    "maintenance"
+                ]
+            },
+            "Uptime.Incident.StateEnum": {
+                "type": "string",
+                "enum": [
+                    "unknown",
+                    "investigating",
+                    "identified",
+                    "monitoring",
+                    "resolved"
+                ]
+            },
+            "Uptime.Incident.StatusEnum": {
+                "type": "string",
+                "enum": [
+                    "ongoing",
+                    "recovering",
+                    "recovered"
+                ]
+            },
             "Uptime.Monitor.ProtocolEnum": {
                 "type": "string",
                 "enum": [
@@ -1117,12 +1769,16 @@
     ],
     "tags": [
         {
+            "name": "Alert Policies",
+            "description": "Alert Policies"
+        },
+        {
             "name": "Monitors",
             "description": "Monitors"
         },
         {
-            "name": "Alert Policies",
-            "description": "Alert Policies"
+            "name": "Incidents",
+            "description": "Incidents"
         }
     ],
     "x-tagGroups": [

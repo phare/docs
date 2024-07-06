@@ -103,6 +103,16 @@
             "api-reference/alert-policies/update-an-alert-policy",
             "api-reference/alert-policies/delete-an-alert-policy"
           ]
+        },
+        {
+          "group": "Alert Rules",
+          "pages": [
+            "api-reference/alert-rules/list-alert-rules",
+            "api-reference/alert-rules/create-an-alert-rule",
+            "api-reference/alert-rules/get-an-alert-rule",
+            "api-reference/alert-rules/update-an-alert-rule",
+            "api-reference/alert-rules/delete-an-alert-rule"
+          ]
         }
       ]
     },
@@ -119,6 +129,14 @@
             "api-reference/monitors/pause-a-monitor",
             "api-reference/monitors/resume-a-monitor",
             "api-reference/monitors/delete-a-monitor"
+          ]
+        },
+        {
+          "group": "Incidents",
+          "pages": [
+            "api-reference/incidents/list-incidents",
+            "api-reference/incidents/get-an-incident",
+            "api-reference/incidents/delete-an-incident"
           ]
         }
       ]
