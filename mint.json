@@ -97,21 +97,21 @@
         {
           "group": "Alert Policies",
           "pages": [
-            "api-reference/alert-policies/list-alert-policies",
-            "api-reference/alert-policies/create-an-alert-policy",
-            "api-reference/alert-policies/get-an-alert-policy",
-            "api-reference/alert-policies/update-an-alert-policy",
-            "api-reference/alert-policies/delete-an-alert-policy"
+            "api-reference/platform/alert-policies/list-alert-policies",
+            "api-reference/platform/alert-policies/create-an-alert-policy",
+            "api-reference/platform/alert-policies/get-an-alert-policy",
+            "api-reference/platform/alert-policies/update-an-alert-policy",
+            "api-reference/platform/alert-policies/delete-an-alert-policy"
           ]
         },
         {
           "group": "Alert Rules",
           "pages": [
-            "api-reference/alert-rules/list-alert-rules",
-            "api-reference/alert-rules/create-an-alert-rule",
-            "api-reference/alert-rules/get-an-alert-rule",
-            "api-reference/alert-rules/update-an-alert-rule",
-            "api-reference/alert-rules/delete-an-alert-rule"
+            "api-reference/platform/alert-rules/list-alert-rules",
+            "api-reference/platform/alert-rules/create-an-alert-rule",
+            "api-reference/platform/alert-rules/get-an-alert-rule",
+            "api-reference/platform/alert-rules/update-an-alert-rule",
+            "api-reference/platform/alert-rules/delete-an-alert-rule"
           ]
         }
       ]
@@ -122,21 +122,21 @@
         {
           "group": "Monitors",
           "pages": [
-            "api-reference/monitors/list-monitors",
-            "api-reference/monitors/get-a-monitor",
-            "api-reference/monitors/create-a-monitor",
-            "api-reference/monitors/update-a-monitor",
-            "api-reference/monitors/pause-a-monitor",
-            "api-reference/monitors/resume-a-monitor",
-            "api-reference/monitors/delete-a-monitor"
+            "api-reference/uptime/monitors/list-monitors",
+            "api-reference/uptime/monitors/get-a-monitor",
+            "api-reference/uptime/monitors/create-a-monitor",
+            "api-reference/uptime/monitors/update-a-monitor",
+            "api-reference/uptime/monitors/pause-a-monitor",
+            "api-reference/uptime/monitors/resume-a-monitor",
+            "api-reference/uptime/monitors/delete-a-monitor"
           ]
         },
         {
           "group": "Incidents",
           "pages": [
-            "api-reference/incidents/list-incidents",
-            "api-reference/incidents/get-an-incident",
-            "api-reference/incidents/delete-an-incident"
+            "api-reference/uptime/incidents/list-incidents",
+            "api-reference/uptime/incidents/get-an-incident",
+            "api-reference/uptime/incidents/delete-an-incident"
           ]
         }
       ]
