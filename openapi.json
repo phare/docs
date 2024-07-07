@@ -1031,6 +1031,224 @@
                     }
                 }
             }
+        },
+        "/uptime/status-pages": {
+            "get": {
+                "tags": [
+                    "Status Pages"
+                ],
+                "summary": "List status pages",
+                "description": "Get a paginated list of status pages",
+                "operationId": "getUptimeStatusPages",
+                "responses": {
+                    "200": {
+                        "description": "Success, status pages retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.StatusPage.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Status Pages"
+                ],
+                "summary": "Create a status page",
+                "description": "Create a status page",
+                "operationId": "createUptimeStatusPage",
+                "requestBody": {
+                    "description": "Status page request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.StatusPage.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, status page created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.StatusPage.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/uptime/status-pages/{statusPageId}": {
+            "get": {
+                "tags": [
+                    "Status Pages"
+                ],
+                "summary": "Get a status page",
+                "description": "Get a status page by ID",
+                "operationId": "getUptimeStatusPage",
+                "parameters": [
+                    {
+                        "name": "statusPageId",
+                        "in": "path",
+                        "description": "ID of the status page to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, status page retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.StatusPage.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Status Pages"
+                ],
+                "summary": "Update a status page",
+                "description": "Update a status page by ID",
+                "operationId": "updateUptimeStatusPage",
+                "parameters": [
+                    {
+                        "name": "statusPageId",
+                        "in": "path",
+                        "description": "ID of the status page to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Status page request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.StatusPage.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, status page updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.StatusPage.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Status Pages"
+                ],
+                "summary": "Delete a status page",
+                "description": "Delete a status page by ID",
+                "operationId": "deleteUptimeStatusPage",
+                "parameters": [
+                    {
+                        "name": "statusPageId",
+                        "in": "path",
+                        "description": "ID of the status page to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, status page deleted"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1108,6 +1326,36 @@
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/Uptime.Monitor"
+                    }
+                ]
+            },
+            "Uptime.StatusPage.Request": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.StatusPage"
+                    },
+                    {
+                        "required": [
+                            "logo"
+                        ],
+                        "properties": {
+                            "logo": {
+                                "description": "Manage the logo of the status page (accepted formats: png/jpeg/svg)",
+                                "oneOf": [
+                                    {
+                                        "description": "Any image file with the following format: png / jpeg / svg.",
+                                        "type": "string",
+                                        "format": "file"
+                                    },
+                                    {
+                                        "description": "A boolean can be passed instead of a file, if true the current logo will stay unchanged, if false it will be removed",
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                ]
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -1270,6 +1518,7 @@
                     {
                         "properties": {
                             "id": {
+                                "description": "Monitor ID",
                                 "type": "number",
                                 "example": 1
                             },
@@ -1302,6 +1551,54 @@
                     },
                     {
                         "$ref": "#/components/schemas/Uptime.Monitor"
+                    },
+                    {
+                        "properties": {
+                            "created_at": {
+                                "description": "Date of creation for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Date of last update for the entity",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Uptime.StatusPage.Resource": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "description": "Status page ID",
+                                "type": "number",
+                                "example": 1
+                            },
+                            "project_id": {
+                                "description": "Parent project ID",
+                                "type": "number",
+                                "example": 1
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Uptime.StatusPage"
+                    },
+                    {
+                        "properties": {
+                            "logo_url": {
+                                "description": "URL of the uploaded logo",
+                                "type": "string",
+                                "example": "https://cdn.phare.io/media/b1955080-c015-43c4-ba73-c907c49e839e/conversions/DBP2AUPCsK1p5ZSY8G40uVfKP6oIdwEPTF6Qq1N7-fitted.webp",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
                     },
                     {
                         "properties": {
@@ -1564,6 +1861,114 @@
                 },
                 "type": "object"
             },
+            "Uptime.StatusPage": {
+                "required": [
+                    "name",
+                    "slug",
+                    "title",
+                    "description",
+                    "search_engine_indexed",
+                    "website_url",
+                    "colors",
+                    "components"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Status page name",
+                        "type": "string",
+                        "maximum": 30,
+                        "minimum": 2,
+                        "example": "Phare status"
+                    },
+                    "slug": {
+                        "description": "Status page sub-domain (slug.status.phare.io)",
+                        "type": "string",
+                        "maximum": 30,
+                        "minimum": 2,
+                        "example": "phare"
+                    },
+                    "title": {
+                        "description": "Status page HTML title",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 2,
+                        "example": "Phare status"
+                    },
+                    "description": {
+                        "description": "Status page HTML description",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 2,
+                        "example": "Status page of phare.io"
+                    },
+                    "search_engine_indexed": {
+                        "description": "Whether search engines are allowed to index the page",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "website_url": {
+                        "description": "URL to redirect users clicking the status page logo",
+                        "type": "string",
+                        "maximum": 250,
+                        "example": "https://phare.io"
+                    },
+                    "colors": {
+                        "description": "Colors to customize the status page",
+                        "properties": {
+                            "operational": {
+                                "type": "string",
+                                "example": "#16a34a"
+                            },
+                            "degradedPerformance": {
+                                "type": "string",
+                                "example": "#fbbf24"
+                            },
+                            "partialOutage": {
+                                "type": "string",
+                                "example": "#f59e0b"
+                            },
+                            "majorOutage": {
+                                "type": "string",
+                                "example": "#ef4444"
+                            },
+                            "maintenance": {
+                                "type": "string",
+                                "example": "#6366f1"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "components": {
+                        "description": "List of components to show on the status page",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "title": "Monitor component",
+                                    "required": [
+                                        "componentable_type",
+                                        "componentable_id"
+                                    ],
+                                    "properties": {
+                                        "componentable_type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "App\\Models\\Uptime\\Monitor"
+                                            ]
+                                        },
+                                        "componentable_id": {
+                                            "description": "ID of the monitor to show",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "Uptime.ProductEvents": {
                 "type": "string",
                 "enum": [
@@ -1779,6 +2184,10 @@
         {
             "name": "Incidents",
             "description": "Incidents"
+        },
+        {
+            "name": "Status Pages",
+            "description": "Status Pages"
         }
     ],
     "x-tagGroups": [

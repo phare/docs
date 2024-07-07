@@ -138,6 +138,16 @@
             "api-reference/uptime/incidents/get-an-incident",
             "api-reference/uptime/incidents/delete-an-incident"
           ]
+        },
+        {
+          "group": "Status Pages",
+          "pages": [
+            "api-reference/uptime/status-pages/list-status-pages",
+            "api-reference/uptime/status-pages/get-a-status-page",
+            "api-reference/uptime/status-pages/create-a-status-page",
+            "api-reference/uptime/status-pages/update-a-status-page",
+            "api-reference/uptime/status-pages/delete-a-status-page"
+          ]
         }
       ]
     }
