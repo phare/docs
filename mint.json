@@ -74,7 +74,8 @@
         "integrations/sms",
         "integrations/email",
         "integrations/slack",
-        "integrations/discord"
+        "integrations/discord",
+        "integrations/outgoing-webhook"
       ]
     },
     {

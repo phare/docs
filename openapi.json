@@ -1972,12 +1972,12 @@
             "Uptime.ProductEvents": {
                 "type": "string",
                 "enum": [
-                    "uptime_monitor_created",
-                    "uptime_monitor_deleted",
-                    "uptime_incident_created",
-                    "uptime_incident_recovered",
-                    "uptime_incident_comment_created",
-                    "uptime_incident_update_published"
+                    "uptime.monitor.created",
+                    "uptime.monitor.deleted",
+                    "uptime.incident.created",
+                    "uptime.incident.recovered",
+                    "uptime.incident_comment.created",
+                    "uptime.incident_update.published"
                 ]
             },
             "Uptime.Incident.ImpactEnum": {
