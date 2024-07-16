@@ -4,6 +4,27 @@ sidebarTitle: '2024'
 description: 'Follow the latest updates and improvements made to the Phare platform.'
 ---
 
+## Outgoing webhooks integration
+_July 17th, 2024_
+
+Outgoing webhooks are now available Phare platform, allowing you to connect with third-party tools or build your own integration.
+
+The webhook payload can be customized for each alert rule event that you would like to use. You are free to use any valid JSON structure with access to many variables to help you build the perfect payload for your use case.
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/changelog/48-outgoing-webhook-alert-rule.webp" alt="Outgoing webhooks alert rules" />
+</Frame>
+
+Webhooks are secured with an HMAC sha256 signature to ensure the authenticity of the payload, in a way that is resistant to replay and timing attacks. A retry policy is also in place to ensure that your webhook is safely delivered, even if your server is temporarily down.
+
+One more thing, you can also browse the history of the payloads sent to your webhook to easily debug and monitor the integration.
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/changelog/49-outgoing-webhook-logs.webp" alt="Outgoing webhooks logs" />
+</Frame>
+
+You can learn more about the outgoing webhooks integration in the [documentation](/integrations/outgoing-webhook).
+
 ## Billing quotas estimation
 _July 11th, 2024_
 
