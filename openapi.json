@@ -1335,9 +1335,6 @@
                         "$ref": "#/components/schemas/Uptime.StatusPage"
                     },
                     {
-                        "required": [
-                            "logo"
-                        ],
                         "properties": {
                             "logo": {
                                 "description": "Manage the logo of the status page (accepted formats: png/jpeg/svg)",
@@ -1345,12 +1342,17 @@
                                     {
                                         "description": "Any image file with the following format: png / jpeg / svg.",
                                         "type": "string",
-                                        "format": "file"
+                                        "format": "file",
+                                        "nullable": true
                                     },
                                     {
-                                        "description": "A boolean can be passed instead of a file, if true the current logo will stay unchanged, if false it will be removed",
+                                        "description": "If false is passed to the request the logo will be removed",
                                         "type": "boolean",
-                                        "example": true
+                                        "enum": [
+                                            false
+                                        ],
+                                        "example": false,
+                                        "nullable": true
                                     }
                                 ]
                             }
@@ -1864,7 +1866,6 @@
             "Uptime.StatusPage": {
                 "required": [
                     "name",
-                    "slug",
                     "title",
                     "description",
                     "search_engine_indexed",
@@ -1880,12 +1881,20 @@
                         "minimum": 2,
                         "example": "Phare status"
                     },
-                    "slug": {
-                        "description": "Status page sub-domain (slug.status.phare.io)",
+                    "subdomain": {
+                        "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                         "type": "string",
                         "maximum": 30,
                         "minimum": 2,
-                        "example": "phare"
+                        "example": "example"
+                    },
+                    "domain": {
+                        "description": "Custom domain name for the status page",
+                        "type": "string",
+                        "maximum": 253,
+                        "minimum": 4,
+                        "example": "status.example.com",
+                        "nullable": true
                     },
                     "title": {
                         "description": "Status page HTML title",

@@ -24,7 +24,34 @@ You can create an unlimited number of status pages for all your projects. Choose
   <img class="border rounded-lg" src="/images/uptime/status-pages/status-pages-creation.webp" alt="Status page creation" />
 </Frame>
 
-## Status page domain
+## Phare domain
 
-Currently, all status pages are created with a `*.status.phare.io` domain name, you will soon be able to create status pages with your own domain name and an SSL certificate handled by Phare.
+All status pages possesses a unique `*.status.phare.io` domain name, protected by an SSL certificate.
 
+## Custom domain
+
+You can host your status page on a custom domain. This is a great way to keep your brand consistent across all your services. To set up a custom domain, you need to create a CNAME record in your DNS settings that points to `cname.status.phare.io`.
+
+| Type  | Name               | Target                |
+|:------|:-------------------|:----------------------|
+| CNAME | status.example.com | cname.status.phare.io |
+
+The domain name needs to be configured properly for Phare to generate a valid SSL certificate and activate HTTPS on your status page, which can take a few minutes.
+
+Once your custom domain is verified, the Phare domain (`*.status.phare.io`) associated to your status page will automatically redirect to your custom domain.
+
+### Custom domain with Cloudflare DNS
+
+If you are using Cloudflare DNS, you need create the CNAME record with the `DNS-only` mode (uncheck proxy status) as shown on the following screenshot:
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/uptime/status-pages/custom-domain-cloudflare.webp" alt="Custom domain on Cloudflare" />
+</Frame>
+
+### Custom domain with Bunny.net
+
+If you are using Bunny.net as your DNS provider, you can configure the CNAME record as shown on the following screenshot:
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/uptime/status-pages/custom-domain-bunny.webp" alt="Custom domain on Bunny.net" />
+</Frame>

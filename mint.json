@@ -45,7 +45,7 @@
      {
       "name": "Service status",
       "icon": "tower-cell",
-      "url": "https://phare.status.phare.io/"
+      "url": "https://status.phare.io/"
     }
   ],
   "navigation": [
