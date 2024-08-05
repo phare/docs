@@ -2197,6 +2197,14 @@
         {
             "name": "Status Pages",
             "description": "Status Pages"
+        },
+        {
+            "name": "Platform",
+            "description": "Platform"
+        },
+        {
+            "name": "Alert Rules",
+            "description": "Alert Rules"
         }
     ],
     "x-tagGroups": [
