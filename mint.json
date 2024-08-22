@@ -43,9 +43,9 @@
       "url": "changelog"
     },
     {
-      "name": "Articles",
+      "name": "Blog",
       "icon": "newspaper",
-      "url": "articles"
+      "url": "https://phare.io/blog/"
     },
     {
       "name": "Service status",
@@ -88,12 +88,6 @@
       "pages": [
         "changelog/platform/2024",
         "changelog/platform/2023"
-      ]
-    },
-    {
-      "group": "Articles",
-      "pages": [
-        "articles/downsampling-time-series-data"
       ]
     },
     {
@@ -162,6 +156,16 @@
           ]
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/articles",
+      "destination": "https://phare.io/blog/"
+    },
+    {
+      "source": "/articles/downsampling-time-series-data",
+      "destination": "https://phare.io/blog/downsampling-time-series-data/"
     }
   ],
   "footerSocials": {
