@@ -1274,7 +1274,7 @@
                     },
                     "path": {
                         "type": "string",
-                        "example": "{domain}/api/v1/{resource}?page=2"
+                        "example": "https://api.phare.io/{resource}?page=2"
                     }
                 },
                 "type": "object"
@@ -1285,24 +1285,24 @@
                     "first": {
                         "type": "string",
                         "format": "url",
-                        "example": "{domain}/api/v1/{resource}?page=2"
+                        "example": "https://api.phare.io/{resource}?page=2"
                     },
                     "last": {
                         "type": "string",
                         "format": "url",
-                        "example": "{domain}/api/v1/{resource}?page=10",
+                        "example": "https://api.phare.io/{resource}?page=10",
                         "nullable": true
                     },
                     "prev": {
                         "type": "string",
                         "format": "url",
-                        "example": "{domain}/api/v1/{resource}?page=1",
+                        "example": "https://api.phare.io/{resource}?page=1",
                         "nullable": true
                     },
                     "next": {
                         "type": "string",
                         "format": "url",
-                        "example": "{domain}/api/v1/{resource}?page=1",
+                        "example": "https://api.phare.io/{resource}?page=1",
                         "nullable": true
                     }
                 },
@@ -1831,7 +1831,8 @@
                             300,
                             600,
                             900,
-                            1800
+                            1800,
+                            3600
                         ],
                         "example": 60
                     },
@@ -2067,7 +2068,7 @@
                             "properties": {
                                 "message": {
                                     "type": "string",
-                                    "example": "Unauthenticated."
+                                    "example": "Unauthorized"
                                 }
                             },
                             "type": "object"
