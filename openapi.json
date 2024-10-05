@@ -1478,7 +1478,7 @@
                             "status": {
                                 "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
                             },
-                            "error": {
+                            "description": {
                                 "description": "Description of the error that caused the incident",
                                 "type": "string",
                                 "example": "The server answered with an unexpected status code: 503."
