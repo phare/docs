@@ -1483,6 +1483,11 @@
                                 "type": "string",
                                 "example": "The server answered with an unexpected status code: 503."
                             },
+                            "exclude_from_downtime": {
+                                "description": "Flag to exclude the incident from downtime calculations",
+                                "type": "boolean",
+                                "example": false
+                            },
                             "incident_at": {
                                 "description": "Date of incident confirmation",
                                 "type": "string",
