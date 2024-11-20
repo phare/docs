@@ -1787,18 +1787,6 @@
                                         "minimum": 0,
                                         "example": "80"
                                     },
-                                    "message": {
-                                        "description": "Request message for tcp & upd protocol",
-                                        "type": "string",
-                                        "maximum": 50,
-                                        "example": "phare/ping\\r\\n"
-                                    },
-                                    "keyword": {
-                                        "description": "Response keyword that must be present",
-                                        "type": "string",
-                                        "maximum": 50,
-                                        "example": "pong"
-                                    },
                                     "timeout": {
                                         "description": "Request timeout in in milliseconds.",
                                         "type": "number",
