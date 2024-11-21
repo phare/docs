@@ -1,21 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 600 600">
-  <rect width="600" height="600" fill="#fff" rx="300"/>
-  <mask id="a" width="500" height="500" x="50" y="50" maskUnits="userSpaceOnUse" style="mask-type:alpha">
-    <circle cx="300" cy="300" r="250" fill="#FDE68A"/>
-  </mask>
-  <g mask="url(#a)">
-    <rect width="20" height="288" x="219" fill="#000"/>
-    <rect width="20" height="188.9" x="275.9" y="401.2" fill="#000" transform="rotate(-30 275.9 401.2)"/>
-    <rect width="20" height="600" x="9.8" y="94.9" fill="#000" transform="rotate(-45 9.8 95)"/>
-    <rect width="20" height="600" x="-35.8" y="158.7" fill="#FDE68A" transform="rotate(-60 -35.8 158.7)"/>
-    <rect width="20" height="600" x="-63.4" y="232" fill="#FCD34D" transform="rotate(-75 -63.4 232)"/>
-    <rect width="20" height="600" x="-71" y="310" fill="#FBBF24" transform="rotate(-90 -71 310)"/>
-    <rect width="20" height="600" x="-58.2" y="387.3" fill="#F59E0B" transform="rotate(-105 -58.2 387.3)"/>
-    <rect width="20" height="600" x="-25.8" y="458.7" fill="#000" transform="rotate(-120 -25.8 458.7)"/>
-    <rect width="20" height="600" x="23.9" y="519.2" fill="#000" transform="rotate(-135 24 519.2)"/>
-    <rect width="20" height="273.1" x="251.1" y="281.7" fill="#000" transform="rotate(-150 251.1 281.7)"/>
-    <rect width="20" height="331.5" x="230.5" y="333" fill="#000" transform="rotate(-165 230.5 333)"/>
-    <circle cx="300" cy="300" r="120.6" fill="#fff"/>
-    <rect width="147" height="500" x="50" y="72" fill="#000"/>
-  </g>
+<style>.black{fill:#000000}.white{fill:#ffffff}@media (prefers-color-scheme:dark){.black{fill:#ffffff}.white{fill:#000000}}</style>
+<rect x="-0.000793457" width="600" height="600" rx="300" class="white" fill="white"/>
+<path d="M221.999 63.4062L246.999 56.625V196.302L221.999 213.317V63.4062Z" class="black" fill="black"/>
+<path d="M347.317 408.43L369.059 395.879L425.54 517.265L403.414 528.68L347.317 408.43Z" class="black" fill="black"/>
+<path d="M312.838 417.652L337.385 412.256L354.952 545.019L330.467 549.234L312.838 417.652Z" class="black" fill="black"/>
+<path d="M379.052 387.681L395.643 368.959L490.073 463.41L472.902 481.578L379.052 387.681Z" class="black" fill="black"/>
+<path d="M402.142 358.761L412.138 335.72L528.378 402.864L517.053 425.179L402.142 358.761Z" fill="#FDE68A"/>
+<path d="M414.621 326.165L417.348 300.965L547.607 335.862L542.89 360.449L414.621 326.165Z" fill="#FCD34D"/>
+<path d="M416.971 291L412.053 266H547.569L549.808 291H416.971Z" fill="#FBBF24"/>
+<path d="M408.246 255.59L395.691 233.043L527.726 197.672L536.944 221.078L408.246 255.59Z" fill="#F59E0B"/>
+<path d="M387.557 222.878L368.018 205.373L487.909 136.09L503.615 155.906L387.557 222.878Z" class="black" fill="black"/>
+<path d="M357.91 198.961L333.176 188.406L432.585 89.0149L453.378 103.521L357.91 198.961Z" class="black" fill="black"/>
+<path d="M322.598 185.904L294.901 183.785L366.511 59.9417L390.664 67.9188L322.598 185.904Z" class="black" fill="black"/>
+<path d="M285.008 184.685L257.192 191.768L294.908 51.0622L320.581 51.8199L285.008 184.685Z" class="black" fill="black"/>
+<path d="M196.999 529V72.9995C196.999 72.9995 49.9993 136.5 49.9992 300C49.9991 463.5 196.999 529 196.999 529Z" class="black" fill="black"/>
 </svg>
