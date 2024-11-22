@@ -1337,21 +1337,41 @@
                     {
                         "properties": {
                             "logo": {
-                                "description": "Manage the logo of the status page (accepted formats: png/jpeg/svg)",
+                                "description": "Manage the logo of the status page (accepted formats: jpeg / png / svg)",
                                 "oneOf": [
                                     {
-                                        "description": "Any image file with the following format: png / jpeg / svg.",
+                                        "description": "Any image file with the following format: jpeg / png / svg.",
                                         "type": "string",
                                         "format": "file",
                                         "nullable": true
                                     },
                                     {
-                                        "description": "If false is passed to the request the logo will be removed",
-                                        "type": "boolean",
+                                        "description": "If \"false\" is passed to the request the logo will be removed",
+                                        "type": "string",
                                         "enum": [
-                                            false
+                                            "false"
                                         ],
-                                        "example": false,
+                                        "example": "false",
+                                        "nullable": true
+                                    }
+                                ]
+                            },
+                            "favicon": {
+                                "description": "Manage the favicon of the status page (accepted formats: ico / png / svg)",
+                                "oneOf": [
+                                    {
+                                        "description": "Any image file with the following format: ico / png / svg.",
+                                        "type": "string",
+                                        "format": "file",
+                                        "nullable": true
+                                    },
+                                    {
+                                        "description": "If \"false\" is passed to the request the favicon will be removed",
+                                        "type": "string",
+                                        "enum": [
+                                            "false"
+                                        ],
+                                        "example": "false",
                                         "nullable": true
                                     }
                                 ]
@@ -1595,17 +1615,6 @@
                     },
                     {
                         "$ref": "#/components/schemas/Uptime.StatusPage"
-                    },
-                    {
-                        "properties": {
-                            "logo_url": {
-                                "description": "URL of the uploaded logo",
-                                "type": "string",
-                                "example": "https://cdn.phare.io/media/b1955080-c015-43c4-ba73-c907c49e839e/conversions/DBP2AUPCsK1p5ZSY8G40uVfKP6oIdwEPTF6Qq1N7-fitted.webp",
-                                "nullable": true
-                            }
-                        },
-                        "type": "object"
                     },
                     {
                         "properties": {
