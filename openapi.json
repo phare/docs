@@ -1954,6 +1954,10 @@
                             "maintenance": {
                                 "type": "string",
                                 "example": "#6366f1"
+                            },
+                            "empty": {
+                                "type": "string",
+                                "example": "#d3d3d3"
                             }
                         },
                         "type": "object"
