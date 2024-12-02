@@ -77,10 +77,11 @@
       "pages": [
         "integrations/overview",
         "integrations/sms",
-        "integrations/email",
-        "integrations/slack",
         "integrations/discord",
-        "integrations/outgoing-webhook"
+        "integrations/email",
+        "integrations/outgoing-webhook",
+        "integrations/pushover",
+        "integrations/slack"
       ]
     },
     {

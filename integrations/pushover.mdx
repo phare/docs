@@ -1,0 +1,40 @@
+---
+title: 'Pushover'
+description: 'Set up the Phare integration with Pushover to receive alerts on your preferred device.'
+icon: 'p'
+---
+
+The Pushover integration allows you to send alert on your preferred device using the Pushover app. You can find and configure it in the [integration](https://app.phare.io/organization/apps) section of your dashboard.
+
+## Pre-requisites
+
+In order to use the Pushover integration, you need to have a Pushover account and create an application on the Pushover website to obtain an API Key.
+
+You can find your user key in the [Pushover dashboard](https://pushover.net/) and the link to [create a new application](https://pushover.net/apps/build) at the bottom of your dashboard page. You are free to configure the application as you wish, or you can copy the following settings:
+
+- Name: Phare
+- Description: Receive notifications from Phare.io
+- URL: https://phare.io
+- Icon: [Phare logo](https://phare.io/img/logo-pushover.png)
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/pushover/pushover-app-creation.webp" alt="Pushover app creation" />
+</Frame>
+
+## Configuration
+
+To configure the Pushover integration in Phare, you need to provide your user key and the API key you obtained when creating the application.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/pushover/pushover-configuration.webp" alt="Pushover configuration" />
+</Frame>
+
+## Usage
+
+Once the integration is configured, you can select it as a notification channel when creating or editing alert rules. Each alert rule can specify a Pushover priority, allowing fine-grained control over the priority of each notification.
+
+Alerts configured with the `Emergency` priority will require two additional parameters: `retry` and `expire`. These parameters are used to resend the notification if it's not acknowledged within the specified time frame and their behavior is [documented in the Pushover documentation](https://pushover.net/api#priority).
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/pushover/pushover-alert-rule.webp" alt="Pushover alert rule configuration" />
+</Frame>
