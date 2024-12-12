@@ -1977,7 +1977,7 @@
                                         "componentable_type": {
                                             "type": "string",
                                             "enum": [
-                                                "App\\Models\\Uptime\\Monitor"
+                                                "uptime/monitor"
                                             ]
                                         },
                                         "componentable_id": {
