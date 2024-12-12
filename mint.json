@@ -153,7 +153,8 @@
             "api-reference/uptime/status-pages/get-a-status-page",
             "api-reference/uptime/status-pages/create-a-status-page",
             "api-reference/uptime/status-pages/update-a-status-page",
-            "api-reference/uptime/status-pages/delete-a-status-page"
+            "api-reference/uptime/status-pages/delete-a-status-page",
+            "api-reference/uptime/status-pages/get-a-status-page-current-status"
           ]
         }
       ]
