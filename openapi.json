@@ -1607,13 +1607,8 @@
                                 "type": "boolean",
                                 "example": true
                             },
-                            "one_day_availability": {
-                                "description": "Availability in the last 24h, in percents",
-                                "type": "number",
-                                "example": 99.9999
-                            },
-                            "one_day_response_time": {
-                                "description": "Average response time in the last 24h, in milliseconds",
+                            "response_time": {
+                                "description": "Rolling average response time of the last 10 requests, in milliseconds",
                                 "type": "number",
                                 "example": 123,
                                 "nullable": true
@@ -1626,6 +1621,12 @@
                     },
                     {
                         "properties": {
+                            "last_checked_at": {
+                                "description": "Date of the last monitoring check",
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            },
                             "created_at": {
                                 "description": "Date of creation for the entity",
                                 "type": "string",
