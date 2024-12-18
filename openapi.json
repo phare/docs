@@ -1642,74 +1642,17 @@
                     }
                 ]
             },
-            "Uptime.PublicIncident.Resource": {
-                "allOf": [
-                    {
-                        "properties": {
-                            "id": {
-                                "type": "number",
-                                "example": 1
-                            },
-                            "title": {
-                                "description": "Incident title",
-                                "type": "string",
-                                "maximum": 30,
-                                "example": "Service is not working as expected"
-                            },
-                            "impact": {
-                                "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                            },
-                            "state": {
-                                "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
-                            },
-                            "status": {
-                                "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                            },
-                            "exclude_from_downtime": {
-                                "description": "Flag to exclude the incident from downtime calculations",
-                                "type": "boolean",
-                                "example": false
-                            },
-                            "incident_at": {
-                                "description": "Date of incident confirmation",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
-                            },
-                            "recovery_at": {
-                                "description": "Date of incident recovery",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
-                            },
-                            "created_at": {
-                                "description": "Date of creation for the entity",
-                                "type": "string",
-                                "format": "date-time"
-                            },
-                            "updated_at": {
-                                "description": "Date of last update for the entity",
-                                "type": "string",
-                                "format": "date-time"
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
-            },
             "Uptime.StatusPageCurrentStatus.Resource": {
                 "allOf": [
                     {
                         "properties": {
-                            "impact": {
-                                "description": "Current computed impact of all the status pages’ components",
-                                "enum": [
-                                    "operational",
-                                    "degradedPerformance",
-                                    "partialOutage",
-                                    "majorOutage",
-                                    "maintenance"
-                                ]
+                            "current_incident_impact": {
+                                "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                            },
+                            "updated_at": {
+                                "description": "Date of the data calculation",
+                                "type": "string",
+                                "format": "date-time"
                             },
                             "components": {
                                 "description": "Components of the status page and their current status",
@@ -1732,20 +1675,19 @@
                                                     "minimum": 2,
                                                     "example": "Website"
                                                 },
-                                                "quarter_availability": {
+                                                "response_time": {
+                                                    "description": "Rolling average response time of the last 10 requests, in milliseconds",
+                                                    "type": "number",
+                                                    "example": 123,
+                                                    "nullable": true
+                                                },
+                                                "availability": {
                                                     "description": "Availability in the last 90 days, in percents",
                                                     "type": "number",
                                                     "example": 99.9999
                                                 },
-                                                "impact": {
-                                                    "description": "Current monitor impact",
-                                                    "enum": [
-                                                        "operational",
-                                                        "degradedPerformance",
-                                                        "partialOutage",
-                                                        "majorOutage",
-                                                        "maintenance"
-                                                    ]
+                                                "current_incident_impact": {
+                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                                 }
                                             },
                                             "type": "object"
@@ -1757,7 +1699,50 @@
                                 "description": "Active incidents linked to the status page",
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/components/schemas/Uptime.PublicIncident.Resource"
+                                    "oneOf": [
+                                        {
+                                            "title": "Monitor component",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "description": "Incident title",
+                                                    "type": "string",
+                                                    "maximum": 30,
+                                                    "example": "Service is not working as expected"
+                                                },
+                                                "impact": {
+                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                },
+                                                "state": {
+                                                    "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                                                },
+                                                "status": {
+                                                    "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
+                                                },
+                                                "exclude_from_downtime": {
+                                                    "description": "Flag to exclude the incident from downtime calculations",
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "incident_at": {
+                                                    "description": "Date of incident confirmation",
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "nullable": true
+                                                },
+                                                "recovery_at": {
+                                                    "description": "Date of incident recovery",
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
                                 }
                             }
                         },
