@@ -1649,6 +1649,11 @@
                             "current_incident_impact": {
                                 "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                             },
+                            "availability": {
+                                "description": "Average availability of all associated monitors in the last 90 days, in percents",
+                                "type": "number",
+                                "example": 99.9999
+                            },
                             "updated_at": {
                                 "description": "Date of the data calculation",
                                 "type": "string",
