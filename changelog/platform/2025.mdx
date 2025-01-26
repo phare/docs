@@ -4,6 +4,59 @@ sidebarTitle: '2025'
 description: 'Follow the updates and improvements made to the Phare platform in 2025.'
 ---
 
+## Improved integration reliability
+__January 27th, 2025__
+
+A lot of work has been done to improve the reliability of all integrations with third-party services. Including a new delivery and error logs page, failure notifications, and automatic pause for failing integrations.
+
+### Delivery and error logs
+
+All integrations now provide a detailed logs page to help you diagnose and fix issues.
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/changelog/70-integration-logs.webp" alt="Integration logs" />
+</Frame>
+
+### Failure notifications
+
+All integrations now notify the organization owner when an issue occurs. For the SMS, Email and Webhook integrations, a detailed list of failed number, address or requests is provided to help you identify the issue.
+
+The failure notification for the Outgoing Webhook integration is only sent if all delivery attempts have failed, which means organization owner will be notified [1 hour and 18 minutes]( https://docs.phare.io/integrations/outgoing-webhook#retry-policy) after the event creation.
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/changelog/71-integration-issue-notification.webp" alt="Integration issue notification" />
+</Frame>
+
+### Automatic pause
+
+Integrations that have been failing more than 3 consecutive times in a 7 days rolling window will be automatically paused. A notification will be sent to the organization owner when this happens.
+
+---
+
+## Data retention change
+__January 20th, 2025__
+
+To improve the performance of the platform and reduce unnecessary data retention, a few rules are now enforced for organizations on the **Hobby** plan:
+
+Organizations must have at least one active member in the past 6 months to keep their account active. Two reminder email will be sent to the organization owner before the account is deactivated. The first reminder is sent 14 days before the account deactivation, and the second reminder is sent 3 days before the account deactivation.
+
+Monitor that have been failing uninterrupted for more than 48h will be automatically paused. A notification will be sent to the organization owner when a monitor is paused.
+
+These rules are only enforced for organizations on the **Hobby** plan, and are necessary to keep this plan free and sustainable for everyone.
+
+---
+
+## Custom error pages for status pages
+__January 14th, 2025__
+
+When visiting a status page with an error (404, 500, etc.), a custom error page is now displayed to provide a better user experience, instead of redirecting users to a phare.io error page.
+
+<Frame type="glass">
+    <img class="border rounded-lg" src="/images/changelog/72-custom-status-page-error.webp" alt="Custom satus page error" />
+</Frame>
+
+---
+
 ## Account security improvements
 __January 8th, 2025__
 
