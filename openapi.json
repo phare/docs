@@ -2250,7 +2250,7 @@
                             "properties": {
                                 "message": {
                                     "type": "string",
-                                    "example": "The phare:write permission is required to perform this action."
+                                    "example": "The platform:write permission is required to perform this action."
                                 }
                             },
                             "type": "object"
