@@ -76,12 +76,13 @@
       "group": "Integrations",
       "pages": [
         "integrations/overview",
-        "integrations/sms",
         "integrations/discord",
         "integrations/email",
         "integrations/outgoing-webhook",
         "integrations/pushover",
-        "integrations/slack"
+        "integrations/sms",
+        "integrations/slack",
+        "integrations/telegram"
       ]
     },
     {
