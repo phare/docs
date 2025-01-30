@@ -17,8 +17,7 @@ jobs:
       - name: Purge cache
         run: |
           curl \
-          --request POST \
-          --url 'https://api.bunny.net/pullzone/${{ secrets.BUNNYCDN_DOCS_PULLZONE_ID }}/purgeCache' \
-          --header 'AccessKey: ${{ secrets.BUNNY_CDN_SECRET }}' \
-          --header 'content-type: application/json'
-
+          -X POST \
+          "https://api.bunny.net/pullzone/${{ secrets.BUNNYCDN_DOCS_PULLZONE_ID }}/purgeCache" \
+          -H "AccessKey: ${{ secrets.BUNNYCDN_SECRET }}" \
+          -H "content-type: application/json"
