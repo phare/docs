@@ -1,0 +1,24 @@
+name: Purge cache
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  purge-cache:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+      - name: Purge cache
+        run: |
+          curl \
+          --request POST \
+          --url 'https://api.bunny.net/pullzone/${{ secrets.BUNNYCDN_DOCS_PULLZONE_ID }}/purgeCache' \
+          --header 'AccessKey: ${{ secrets.BUNNY_CDN_SECRET }}' \
+          --header 'content-type: application/json'
+
