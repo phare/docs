@@ -1859,6 +1859,7 @@
                     "protocol",
                     "request",
                     "interval",
+                    "timeout",
                     "incident_confirmations",
                     "recovery_confirmations",
                     "regions"
@@ -1910,27 +1911,6 @@
                                         "type": "string",
                                         "example": "pong",
                                         "nullable": true
-                                    },
-                                    "timeout": {
-                                        "description": "Request timeout in in milliseconds.",
-                                        "type": "number",
-                                        "enum": [
-                                            1000,
-                                            2000,
-                                            3000,
-                                            4000,
-                                            5000,
-                                            6000,
-                                            7000,
-                                            8000,
-                                            9000,
-                                            10000,
-                                            15000,
-                                            20000,
-                                            25000,
-                                            30000
-                                        ],
-                                        "example": 7000
                                     }
                                 },
                                 "type": "object"
@@ -1954,27 +1934,6 @@
                                         "maximum": 65536,
                                         "minimum": 0,
                                         "example": "80"
-                                    },
-                                    "timeout": {
-                                        "description": "Request timeout in in milliseconds.",
-                                        "type": "number",
-                                        "enum": [
-                                            1000,
-                                            2000,
-                                            3000,
-                                            4000,
-                                            5000,
-                                            6000,
-                                            7000,
-                                            8000,
-                                            9000,
-                                            10000,
-                                            15000,
-                                            20000,
-                                            25000,
-                                            30000
-                                        ],
-                                        "example": 7000
                                     }
                                 },
                                 "type": "object"
@@ -1996,6 +1955,27 @@
                             3600
                         ],
                         "example": 60
+                    },
+                    "timeout": {
+                        "description": "Monitoring timeout in milliseconds",
+                        "type": "number",
+                        "enum": [
+                            1000,
+                            2000,
+                            3000,
+                            4000,
+                            5000,
+                            6000,
+                            7000,
+                            8000,
+                            9000,
+                            10000,
+                            15000,
+                            20000,
+                            25000,
+                            30000
+                        ],
+                        "example": 7000
                     },
                     "incident_confirmations": {
                         "description": "Number of uninterrupted failed checks required to create an incident",
