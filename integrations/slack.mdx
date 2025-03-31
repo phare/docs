@@ -4,7 +4,17 @@ description: 'Set up the Phare Slack integration to receive a message in your Sl
 icon: 'slack'
 ---
 
-The Slack integration allows you to send alert on a Slack workspace channel. You can find and configure it in the [integration](https://app.phare.io/organization/apps) section of your dashboard.
+The Slack integration allows you to send alerts on a Slack workspace channel.
+
+## Installation
+
+To add integrate Phare with your Slack workspace, browse the [list of available integrations](https://app.phare.io/organization/apps) on your dashboard, select Slack, and click on the **New installation** button.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/slack/slack-installation.webp" alt="Slack installation" />
+</Frame>
+
+You will then be redirected to Slack to authorize the Phare application to send messages to your Slack workspace.
 
 ## Configuration
 
@@ -13,3 +23,19 @@ You can configure a single Slack channel per integration, and create as many int
 If you are a member of multiple Slack workspaces, make sure to select the right one when authorizing the Phare application.
 
 A default name will be used for your integration, but you can change it to anything you want. The name will be used to identify the integration in the list of integrations when configuring alert rules.
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/slack/slack-configuration.webp" alt="Slack configuration" />
+</Frame>
+
+## Receiving Slack messages
+
+When an alert policy using the Slack integration is triggered, a message will be sent to the selected Slack channel. You can find out more about alert policies in the [alerting documentation](/uptime/alerting).
+
+<Frame type="glass">
+  <img class="border rounded-lg" src="/images/integrations/slack/slack-notification.webp" alt="Slack notification" />
+</Frame>
+
+## Privacy
+
+Phare only shares with Slack the information required to display the notification you configured. Phare store your workspace name and identifier, as well as an access token to send messages to your Slack workspace. You can review Phare's [privacy policy](https://phare.io/legal/privacy-policy) for more information on your data are handled.
