@@ -18,11 +18,11 @@ Monitors are the core of Phare Uptime, they are used to monitor the availability
 
 ### HTTP(s)
 
-An HTTP(s) request is sent to your website, Phare Uptime check the response status code and the presence of an optional keyword in the response body to determine if your website is online and working. Additionally, you can activate SSL certificate monitoring to get alerted when your SSL certificate is expired or misconfigured.
+An HTTP(s) request is sent to your website, Phare Uptime check the response status code and the presence of an optional keyword in the response body to determine if your website is online and working. SSL certificate monitoring is automatically activated for websites using HTTPS, which will alert you when a certificate is expired or misconfigured.
 
 ### TCP
 
-A TCP socket connection is established with your server, Phare Uptime sends a fixed string and waits for a response to determine if your server is online and working as expected.
+A TCP socket connection is established with your server to determine if it is online and working as expected.
 
 ## Interval
 
@@ -36,7 +36,7 @@ The default number of confirmations is two, but you can configure it to be anyth
 
 ## Regions
 
-Phare Uptime provides nine regions around the world to monitor your website or server from different locations. You can choose to monitor your website or server from a single region, or from multiple regions. **Using at least two regions is recommended to avoid false positives**.
+Phare Uptime provides 11 regions around the world to monitor your website or server from different locations. You can choose to monitor your website or server from a single region or from multiple regions. **Using at least two regions is recommended to avoid false positives, and be resilient against large scale outage**.
 
 ## Alert policy
 
@@ -44,9 +44,9 @@ Phare Uptime provides a powerful alerting system to notify your team members of 
 
 ## Firewall protection
 
-Our monitoring infrastructure uses a vast range of IPs provided by [Bunny.net global network](https://bunnycdn.com/api/system/edgeserverlist) to provide the widest available monitoring offer at an affordable price. Phare is not the only company using these IP addresses. Therefore, IP filtering should not be relied upon to control access to our monitoring traffic.
+IP filtering is not recommended as Phare rely on IPs provided by [Bunny.net global network](https://bunnycdn.com/api/system/edgeserverlist) to provide the widest available monitoring offer at an affordable price. The easiest solution to filter Phare's uptime agent traffic is to filter by user-agent.
 
-The simplest solution is to filter by user-agent. However, if you require a more robust option, please [contact us](mailto:support@phare.io).
+If you require a more robust option, please [contact us](mailto:support@phare.io).
 
 ## User agent
 
@@ -54,12 +54,18 @@ Phare Uptime monitoring HTTP requests always contain the following user-agent:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
 
+## Private monitoring agent
+
+It is possible to set up a private monitoring agent in a region of your choice. This can be used to comply with complex requirements, large scale monitoring, or private VPN access.
+
+You can [contact us](mailto:support@phare.io) to discuss your needs.
+
 ## Limits
 
-Our monitoring infrastructure allows us to work at an extraordinary scale, but comes with a few drawbacks:
+Phare's monitoring infrastructure works at an extraordinary scale, but comes with a few drawbacks:
 
-- **Enforced HTTPS validation**: Website accessed with the HTTPS protocol MUST use a valid SSL certificate. Self-signed, expired or poorly configured SSL certificate will yield an error. There is no way to bypass this validation.
-- **No HTTPS with IP hostname**: It is possible to monitor a website using an IP address hostname with the HTTP protocol but not with the HTTPS protocol.
-- **No TCP port 25**: Monitoring a service with TCP on port 25 is not possible.
+- **No IP filtering**: Phare uptime agent uses a vast range of IPs provided by [Bunny.net global network](https://bunnycdn.com/api/system/edgeserverlist) that are shared.
+- **Enforced HTTPS validation**: Website accessed with the HTTPS protocol MUST use a valid SSL certificate.
+- **Restricted ports**: The following ports are restricted and cannot be used for TCP monitoring: 25, 465, 587, and 2525.
 
-We understand that these limits can be a major blocking point, feel free to [contact us](mailto:support@phare.io) if you would like to discuss alternatives or contournement solutions.
+We understand that these limits can be a major blocking point, feel free to [contact us](mailto:support@phare.io) if you would like to discuss alternative solutions.
