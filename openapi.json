@@ -1612,6 +1612,20 @@
                                 "type": "number",
                                 "example": 123,
                                 "nullable": true
+                            },
+                            "one_day_availability": {
+                                "description": "Availability percentage for the last 24 hours",
+                                "type": "number",
+                                "format": "float",
+                                "example": 99.9999,
+                                "nullable": true
+                            },
+                            "seven_days_availability": {
+                                "description": "Availability percentage for the last 7 days",
+                                "type": "number",
+                                "format": "float",
+                                "example": 99.9999,
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -2182,15 +2196,17 @@
             "Uptime.Monitor.RegionEnum": {
                 "type": "string",
                 "enum": [
-                    "as-ind-bom",
-                    "as-jpn-nrt",
+                    "as-jpn-hnd",
                     "as-sgp-sin",
-                    "eu-deu-muc",
+                    "as-tha-bkk",
+                    "eu-deu-fra",
                     "eu-gbr-lhr",
                     "eu-swe-arn",
                     "na-mex-mex",
-                    "na-usa-pdx",
-                    "na-usa-ric"
+                    "na-usa-iad",
+                    "na-usa-sea",
+                    "oc-aus-syd",
+                    "sa-bra-gru"
                 ]
             },
             "Uptime.Monitor.StatusEnum": {
