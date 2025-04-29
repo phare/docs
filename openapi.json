@@ -71,34 +71,14 @@
                 }
             }
         },
-        "/{product}/alert-policies/{alertPolicyId}/alert-rules": {
+        "/alert-rules": {
             "get": {
                 "tags": [
                     "Alert Rules"
                 ],
                 "summary": "List alert rules",
-                "description": "Get a paginated list of alert rules for a given alert policy.",
-                "operationId": "getUptimeAlertPolicyAlertRules",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to retrieve alert rules for",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    }
-                ],
+                "description": "Get a paginated list of alert rules.",
+                "operationId": "getAlertRules",
                 "responses": {
                     "200": {
                         "description": "Success, alert rules retrieved",
@@ -129,29 +109,23 @@
                     "403": {
                         "$ref": "#/components/responses/403"
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Alert Rules"
                 ],
                 "summary": "Create an alert rule",
-                "description": "Create an alert rule for a given alert policy",
-                "operationId": "createUptimeAlertPolicyAlertRule",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to create an alert rule for",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
+                "description": "Create an alert rule",
+                "operationId": "createUptimeAlertRule",
                 "requestBody": {
                     "description": "Alert rule request",
                     "required": true,
@@ -186,31 +160,19 @@
                 }
             }
         },
-        "/{product}/alert-policies/{alertPolicyId}/alert-rules/{alertRuleId}": {
+        "/alert-rules/{alertRuleId}": {
             "get": {
                 "tags": [
                     "Alert Rules"
                 ],
                 "summary": "Get an alert rule",
-                "description": "Get an alert rule by ID for a given alert policy",
-                "operationId": "getUptimeAlertPolicyAlertRule",
+                "description": "Get an alert rule by ID",
+                "operationId": "getAlertRule",
                 "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to update",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
                     {
                         "name": "alertRuleId",
                         "in": "path",
-                        "description": "ID of the alert rule to update",
+                        "description": "ID of the alert rule to show",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -244,21 +206,9 @@
                     "Alert Rules"
                 ],
                 "summary": "Update an alert rule",
-                "description": "Update an alert rule by ID for a given alert policy",
-                "operationId": "updateUptimeAlertPolicyAlertRule",
+                "description": "Update an alert rule by ID",
+                "operationId": "updateUptimeAlertRule",
                 "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to update",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
                     {
                         "name": "alertRuleId",
                         "in": "path",
@@ -310,21 +260,9 @@
                     "Alert Rules"
                 ],
                 "summary": "Delete an alert rule",
-                "description": "Delete an alert rule by ID for a given alert policy",
-                "operationId": "deleteUptimeAlertPolicyAlertRule",
+                "description": "Delete an alert rule by ID",
+                "operationId": "deleteUptimeAlertRule",
                 "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to delete",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
                     {
                         "name": "alertRuleId",
                         "in": "path",
@@ -349,258 +287,6 @@
                                         "message": {
                                             "type": "string",
                                             "example": "This alert rule is used by at least one entity and cannot be deleted."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    }
-                }
-            }
-        },
-        "/{product}/alert-policies": {
-            "get": {
-                "tags": [
-                    "Alert Policies"
-                ],
-                "summary": "List alert policies",
-                "description": "Get a paginated list of alert policies.",
-                "operationId": "getUptimeAlertPolicies",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success, alert policies retrieved",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "items": {
-                                                "$ref": "#/components/schemas/Uptime.AlertPolicy.Resource"
-                                            }
-                                        },
-                                        "meta": {
-                                            "$ref": "#/components/schemas/meta"
-                                        },
-                                        "links": {
-                                            "$ref": "#/components/schemas/links"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Alert Policies"
-                ],
-                "summary": "Create an alert policy",
-                "description": "Create an alert policy",
-                "operationId": "createUptimeAlertPolicy",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    }
-                ],
-                "requestBody": {
-                    "description": "Alert policy request",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Uptime.AlertPolicy.Request"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Success, alert policy created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Uptime.AlertPolicy.Resource"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    },
-                    "422": {
-                        "$ref": "#/components/responses/422"
-                    }
-                }
-            }
-        },
-        "/{product}/alert-policies/{alertPolicyId}": {
-            "get": {
-                "tags": [
-                    "Alert Policies"
-                ],
-                "summary": "Get an alert policy",
-                "description": "Get an alert policy by ID",
-                "operationId": "getUptimeAlertPolicy",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to update",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success, alert policy retrieved",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Uptime.AlertPolicy.Resource"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Alert Policies"
-                ],
-                "summary": "Update an alert policy",
-                "description": "Update an alert policy by ID",
-                "operationId": "updateUptimeAlertPolicy",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to update",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "description": "Alert policy request",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Uptime.AlertPolicy.Request"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success, alert policy updated",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Uptime.AlertPolicy.Resource"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/components/responses/404"
-                    },
-                    "422": {
-                        "$ref": "#/components/responses/422"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Alert Policies"
-                ],
-                "summary": "Delete an alert policy",
-                "description": "Delete an alert policy by ID",
-                "operationId": "deleteUptimeAlertPolicy",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/product"
-                    },
-                    {
-                        "name": "alertPolicyId",
-                        "in": "path",
-                        "description": "ID of the alert policy to delete",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Success, alert policy deleted"
-                    },
-                    "409": {
-                        "description": "Error, alert policy cannot be deleted",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "description": "Conflict error schema",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "This alert policy is used by at least one entity and cannot be deleted."
                                         }
                                     },
                                     "type": "object"
@@ -1360,13 +1046,6 @@
                     }
                 ]
             },
-            "Uptime.AlertPolicy.Request": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Uptime.AlertPolicy"
-                    }
-                ]
-            },
             "Uptime.Monitor.Request": {
                 "allOf": [
                     {
@@ -1426,54 +1105,11 @@
                     }
                 ]
             },
-            "Uptime.AlertPolicy.Resource": {
-                "allOf": [
-                    {
-                        "properties": {
-                            "id": {
-                                "type": "number",
-                                "example": 1
-                            },
-                            "product": {
-                                "description": "Phare product that can use the alert policy",
-                                "type": "string",
-                                "enum": [
-                                    "uptime"
-                                ]
-                            }
-                        },
-                        "type": "object"
-                    },
-                    {
-                        "$ref": "#/components/schemas/Uptime.AlertPolicy"
-                    },
-                    {
-                        "properties": {
-                            "created_at": {
-                                "description": "Date of creation for the entity",
-                                "type": "string",
-                                "format": "date-time"
-                            },
-                            "updated_at": {
-                                "description": "Date of last update for the entity",
-                                "type": "string",
-                                "format": "date-time"
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
-            },
             "Uptime.AlertRule.Resource": {
                 "allOf": [
                     {
                         "properties": {
                             "id": {
-                                "type": "number",
-                                "example": 1
-                            },
-                            "alert_policy_id": {
-                                "description": "Parent alert policy ID",
                                 "type": "number",
                                 "example": 1
                             }
@@ -1806,40 +1442,13 @@
                     }
                 ]
             },
-            "Uptime.AlertPolicy": {
-                "required": [
-                    "project_id",
-                    "name"
-                ],
-                "properties": {
-                    "project_id": {
-                        "description": "Restrict the use to a single project ID",
-                        "type": "number",
-                        "example": 1,
-                        "nullable": true
-                    },
-                    "name": {
-                        "description": "Monitor name",
-                        "type": "string",
-                        "maximum": 30,
-                        "minimum": 2,
-                        "example": "Website"
-                    }
-                },
-                "type": "object"
-            },
             "Uptime.AlertRule": {
                 "required": [
-                    "integration_id",
                     "event",
+                    "integration_id",
                     "rate_limit"
                 ],
                 "properties": {
-                    "integration_id": {
-                        "description": "The ID of the integration used to send a notification when the alert rule is executed",
-                        "type": "number",
-                        "example": 1
-                    },
                     "event": {
                         "description": "Name of the event that will trigger the execution of the alert rule",
                         "oneOf": [
@@ -1847,6 +1456,17 @@
                                 "$ref": "#/components/schemas/Uptime.ProductEvents"
                             }
                         ]
+                    },
+                    "project_id": {
+                        "description": "The ID of a project to use as a scope",
+                        "type": "number",
+                        "example": 1,
+                        "nullable": true
+                    },
+                    "integration_id": {
+                        "description": "The ID of the integration used to send a notification when the alert rule is executed",
+                        "type": "number",
+                        "example": 1
                     },
                     "rate_limit": {
                         "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
@@ -1868,7 +1488,6 @@
             },
             "Uptime.Monitor": {
                 "required": [
-                    "alert_policy_id",
                     "name",
                     "protocol",
                     "request",
@@ -1879,11 +1498,6 @@
                     "regions"
                 ],
                 "properties": {
-                    "alert_policy_id": {
-                        "description": "Associated alert policy ID",
-                        "type": "number",
-                        "example": 1
-                    },
                     "name": {
                         "description": "Monitor name",
                         "type": "string",
@@ -2301,18 +1915,6 @@
             }
         },
         "parameters": {
-            "product": {
-                "name": "product",
-                "in": "path",
-                "description": "The Phare product ",
-                "required": true,
-                "schema": {
-                    "type": "string",
-                    "enum": [
-                        "uptime"
-                    ]
-                }
-            },
             "page": {
                 "name": "page",
                 "in": "query",
@@ -2352,10 +1954,6 @@
         }
     ],
     "tags": [
-        {
-            "name": "Alert Policies",
-            "description": "Alert Policies"
-        },
         {
             "name": "Monitors",
             "description": "Monitors"

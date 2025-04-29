@@ -104,16 +104,6 @@
       "pages": [
         "api-reference/platform/get-api-info",
         {
-          "group": "Alert Policies",
-          "pages": [
-            "api-reference/platform/alert-policies/list-alert-policies",
-            "api-reference/platform/alert-policies/create-an-alert-policy",
-            "api-reference/platform/alert-policies/get-an-alert-policy",
-            "api-reference/platform/alert-policies/update-an-alert-policy",
-            "api-reference/platform/alert-policies/delete-an-alert-policy"
-          ]
-        },
-        {
           "group": "Alert Rules",
           "pages": [
             "api-reference/platform/alert-rules/list-alert-rules",

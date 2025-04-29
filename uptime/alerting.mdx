@@ -1,9 +1,9 @@
 ---
 title: 'Alerting'
-description: 'Learn how to configure alert policies and alert rules with Phare Uptime.'
+description: 'Learn how to configure alert rules with Phare Uptime.'
 ---
 
-Alerting is the process of notifying your team members when an event happens. Phare Uptime provides a powerful alerting system based on alert policies and alert rules.
+Phare Uptime allows you to receive real-time notifications when specific events occur, such as monitor failures, SSL certificate issues, or incident updates. The system is built around flexible, scoped alert rules.
 
 <Frame type="glass">
     <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
@@ -16,18 +16,41 @@ Alerting is the process of notifying your team members when an event happens. Ph
     </div>
 </Frame>
 
-## Alert policies
+### Alert Rules
 
-An alert policy is a set of rules that can be applied to one or more monitors. Alert policies are meant to be reused across multiple monitors. For example, you can create a specific alert policy for your production servers, and apply it to all your production servers.
+An alert rule defines:
 
-## Alert rules
+- Event: The event that triggers the alert (e.g., incident created, certificate expiring).
+- Scope: Whether the rule applies organization-wide or within a specific project.
+- Rate limit: Prevents spamming your team members with notifications.
+- Alert integration: Which integration to use for sending notifications (e.g., email, Slack, Discord).
 
-An alert rule is a set of conditions that define how a specific event should be handled.
+### Event
 
-### Rate limiting
+The event specifies what action or occurrence will trigger the alert. Phare Uptime supports a variety of events, including:
 
-Alert rules can be rate limited to avoid spamming your team members. For example, you can create an alert rule that sends an email notification to your team members when an incident is created, and rates limit it to one email every 5 minutes.
+- Monitor created
+- Monitor deleted
+- Monitor certificate updated
+- Monitor certificate expiring
+- Incident created
+- Incident recovered
+- Incident comment created
+- Incident update published
 
-### Notification channels
+### Scope
 
-Each alert rule can be configured to send notifications to different channels, for example, you can send incident notification by email to your team members, and a Slack notification when a monitor is created in your organization.
+You can choose the scope of each alert rule:
+
+- Organization: The rule applies to all matching events in the organization.
+- Project: The rule applies only to events that occur within a specific project.
+
+This scoped system provides both flexibility and clarity, ensuring alerts are relevant to the right context.
+
+### Rate Limiting
+
+To prevent notification overload, alert rules support rate limiting. This allows you to restrict how often an alert rule will send a notification in a given time frame. For example, you can set a rule to notify you only once every 10 minutes, even if the triggering event occurs multiple times within that period.
+
+### Notification Channels
+
+Any [alert rule integration](/integrations/overview) can be used to send notifications. You can create an unlimited number of alert rules for each integration, allowing you to customize how and when you receive notifications.
