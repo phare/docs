@@ -1221,6 +1221,13 @@
                     }
                 ]
             },
+            "Uptime.Certificate.Resource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.Certificate"
+                    }
+                ]
+            },
             "Uptime.Monitor.Resource": {
                 "allOf": [
                     {
@@ -1482,6 +1489,46 @@
                             1440
                         ],
                         "example": 5
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.Certificate": {
+                "required": [
+                    "serial_number",
+                    "issuer",
+                    "not_before",
+                    "not_after",
+                    "last_seen_at"
+                ],
+                "properties": {
+                    "serial_number": {
+                        "description": "Monitor certificate serial number",
+                        "type": "string",
+                        "maximum": 53,
+                        "minimum": 53,
+                        "example": "3P:8H:A5:0R:4E:B1:0R:9I:N3:3G:S4:H1:3O:2T:4V:4I:B3:E1"
+                    },
+                    "issuer": {
+                        "description": "Monitor certificate issuer",
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Let’s Encrypt"
+                    },
+                    "not_before": {
+                        "description": "Date when the certificate is valid from",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "not_after": {
+                        "description": "Date when the certificate is valid until",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "last_seen_at": {
+                        "description": "Date when the certificate was last seen",
+                        "type": "string",
+                        "format": "date-time"
                     }
                 },
                 "type": "object"
@@ -1929,7 +1976,7 @@
             "per_page": {
                 "name": "per_page",
                 "in": "query",
-                "description": "Number of ressources to return per page",
+                "description": "Number of resources to return per page",
                 "required": false,
                 "schema": {
                     "type": "integer",
