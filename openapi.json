@@ -1136,6 +1136,13 @@
                     }
                 ]
             },
+            "Uptime.Certificate.Resource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.Certificate"
+                    }
+                ]
+            },
             "Uptime.Incident.Resource": {
                 "allOf": [
                     {
@@ -1218,13 +1225,6 @@
                             }
                         },
                         "type": "object"
-                    }
-                ]
-            },
-            "Uptime.Certificate.Resource": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Uptime.Certificate"
                     }
                 ]
             },
@@ -1496,10 +1496,12 @@
             "Uptime.Certificate": {
                 "required": [
                     "serial_number",
-                    "issuer",
+                    "subject_common_name",
+                    "subject_alternative_names",
+                    "issuer_common_name",
+                    "issuer_organization",
                     "not_before",
-                    "not_after",
-                    "last_seen_at"
+                    "not_after"
                 ],
                 "properties": {
                     "serial_number": {
@@ -1509,10 +1511,34 @@
                         "minimum": 53,
                         "example": "3P:8H:A5:0R:4E:B1:0R:9I:N3:3G:S4:H1:3O:2T:4V:4I:B3:E1"
                     },
-                    "issuer": {
-                        "description": "Monitor certificate issuer",
+                    "subject_common_name": {
+                        "description": "Monitor certificate subject common name",
                         "type": "string",
-                        "maximum": 100,
+                        "maximum": 64,
+                        "example": "example.com",
+                        "nullable": true
+                    },
+                    "subject_alternative_names": {
+                        "description": "Monitor certificate subject alternative names",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "example.com",
+                            "www.example.com"
+                        ]
+                    },
+                    "issuer_common_name": {
+                        "description": "Monitor certificate issuer common name",
+                        "type": "string",
+                        "maximum": 64,
+                        "example": "R3"
+                    },
+                    "issuer_organization": {
+                        "description": "Monitor certificate issuer organization",
+                        "type": "string",
+                        "maximum": 64,
                         "example": "Let’s Encrypt"
                     },
                     "not_before": {
@@ -1522,11 +1548,6 @@
                     },
                     "not_after": {
                         "description": "Date when the certificate is valid until",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "last_seen_at": {
-                        "description": "Date when the certificate was last seen",
                         "type": "string",
                         "format": "date-time"
                     }
@@ -1812,6 +1833,7 @@
                 "enum": [
                     "uptime.monitor.created",
                     "uptime.monitor.deleted",
+                    "uptime.monitor_certificate.discovered",
                     "uptime.incident.created",
                     "uptime.incident.recovered",
                     "uptime.incident_comment.created",
