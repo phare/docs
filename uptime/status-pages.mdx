@@ -54,32 +54,33 @@ Hello there fellow Bunny.net enjoyer!
 
 Because Phare also uses Bunny.net for sub-domain management, an extra security step is required on your end to allow us to generate an SSL certificate. Don't worry though, it's a quick and easy process!
 
-1. Navigate to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and open a new support ticket.
-2. Select the DNS department and write a message similar to the following with the custom domain you want to use:
+1. Create a TXT record in your DNS settings with the following values, this will allow Bunny.net support to verify that your request is genuine:
+
+| Type | Name               | Target                |
+|:-----|:-------------------|:----------------------|
+| TXT  | status.example.com | Bunny Support - Phare |
+
+2. Navigate to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and open a new support ticket.
+3. Select the **DNS** department and write a message similar to the following with the custom domain you want to use:
 
 ```text
 Hello Bunny.net team,
 
 I created a CNAME entry for my subdomain status.example.com that points to cname.status.phare.io.
 
-Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please allow them to do so?
+Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please whitelist my domain for multi-use across the bunny platform? I've created a TXT record called `Bunny Support - Phare` as proof of ownership.
 
 Thank you for being awesome!
 ```
 
-3. Wait a few minutes for the ticket to be processed by one of their great support agents.
-
-4. Once the ticket is resolved, go back to [your status page dashboard](https://app.phare.io/uptime/status-pages) and click the `Verify again` button to activate your custom domain.
+4. Wait a few minutes for the ticket to be processed by one of their great support agents.
+5. Once the ticket is resolved, go back to [your status page dashboard](https://app.phare.io/uptime/status-pages) and click the `Verify again` button to activate your custom domain.
 
 <Frame type="glass">
     <img class="border rounded-lg" src="/images/uptime/status-pages/verify-failed-status-page-domain.webp" alt="Verify failed status page domain" />
 </Frame>
 
-While a Bunny support agent is processing your request, you can configure the CNAME record as shown on the following screenshot:
-
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/custom-domain-bunny.webp" alt="Custom domain on Bunny.net" />
-</Frame>
+If you're having trouble with the verification process, please [reach to get support](https://phare.io/contact).
 
 ## Status badges
 
