@@ -5,7 +5,7 @@ description: 'Keep your customers in the loop with a sleek status page. Build tr
 
 Status pages are a great way to keep your users in the loop. They are a public page that displays the status of your monitors, and any incidents or maintenance periods that are currently ongoing. Status pages built with Phare are extremely fast and carbon efficient!
 
-<Frame type="glass">
+<Frame>
     <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
         <iframe
             src="https://iframe.mediadelivery.net/embed/238508/dc0fe30e-efbe-4192-a05c-5a0e6c1d5802?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
@@ -20,8 +20,8 @@ Status pages are a great way to keep your users in the loop. They are a public p
 
 You can create an unlimited number of status pages for all your projects. Choose which monitoring data you want to display, and customize the look and feel of your status page to match your brand. Allow Phare a few seconds to generate an SSL certificate for your status page, and you're good to go! The status page can be customized at any time.
 
-<Frame type="glass">
-  <img class="border rounded-lg" src="/images/uptime/status-pages/status-pages-creation.webp" alt="Status page creation" />
+<Frame>
+  <img src="/images/uptime/status-pages/status-pages-creation.webp" alt="Status page creation" />
 </Frame>
 
 ## Phare domain
@@ -44,8 +44,8 @@ Once your custom domain is verified, the Phare domain (`*.status.phare.io`) asso
 
 If you are using Cloudflare DNS, you need create the CNAME with proxy status in `DNS-only` mode (the cloud icon must stay gray and not orange) as shown on the following screenshot:
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/custom-domain-cloudflare.webp" alt="Custom domain on Cloudflare" />
+<Frame>
+    <img src="/images/uptime/status-pages/custom-domain-cloudflare.webp" alt="Custom domain on Cloudflare" />
 </Frame>
 
 ### Custom domain with Bunny.net
@@ -54,30 +54,40 @@ Hello there fellow Bunny.net enjoyer!
 
 Because Phare also uses Bunny.net for sub-domain management, an extra security step is required on your end to allow us to generate an SSL certificate. Don't worry though, it's a quick and easy process!
 
-1. Create a TXT record in your DNS settings with the following values, this will allow Bunny.net support to verify that your request is genuine:
+<Steps>
+    <Step title="Create a TXT record">
+        Create a TXT record in your DNS settings with the following values, this will allow Bunny.net support to verify that your request is genuine
 
 | Type | Name               | Target                |
 |:-----|:-------------------|:----------------------|
 | TXT  | status.example.com | Bunny Support - Phare |
+    </Step>
+    <Step title="Open a support ticket">
+        Navigate to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and open a new support ticket.
+    </Step>
+    <Step title="Write a message">
+        Select the **DNS** department and write a message similar to the following with the custom domain you want to use:
 
-2. Navigate to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and open a new support ticket.
-3. Select the **DNS** department and write a message similar to the following with the custom domain you want to use:
+        ```text
+        Hello Bunny.net team,
 
-```text
-Hello Bunny.net team,
+        I created a CNAME entry for my subdomain status.example.com that points to cname.status.phare.io.
 
-I created a CNAME entry for my subdomain status.example.com that points to cname.status.phare.io.
+        Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please whitelist my domain for multi-use across the bunny platform? I've created a TXT record called `Bunny Support - Phare` as proof of ownership.
 
-Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please whitelist my domain for multi-use across the bunny platform? I've created a TXT record called `Bunny Support - Phare` as proof of ownership.
+        Thank you for being awesome!
+        ```
+    </Step>
+    <Step title="Wait for the ticket to be processed">
+        Wait a few minutes for the ticket to be processed by one of their great support agents.
+    </Step>
+    <Step title="Verify your custom domain">
+        Once the ticket is resolved, go back to [your status page dashboard](https://app.phare.io/uptime/status-pages) and click the `Verify again` button to activate your custom domain.
+    </Step>
+</Steps>
 
-Thank you for being awesome!
-```
-
-4. Wait a few minutes for the ticket to be processed by one of their great support agents.
-5. Once the ticket is resolved, go back to [your status page dashboard](https://app.phare.io/uptime/status-pages) and click the `Verify again` button to activate your custom domain.
-
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/verify-failed-status-page-domain.webp" alt="Verify failed status page domain" />
+<Frame>
+    <img src="/images/uptime/status-pages/verify-failed-status-page-domain.webp" alt="Verify failed status page domain" />
 </Frame>
 
 If you're having trouble with the verification process, please [reach to get support](https://phare.io/contact).
@@ -86,8 +96,8 @@ If you're having trouble with the verification process, please [reach to get sup
 
 Once your status page is created, you get access to a set of status badges that you can embed on your website or repository. These badges are a great way to show your users that your service is up and running, and can be accessed from your status page's action menu.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/status-badges-menu.webp" alt="Status badges menu" />
+<Frame>
+    <img src="/images/uptime/status-pages/status-badges-menu.webp" alt="Status badges menu" />
 </Frame>
 
 ### Embed badges
@@ -109,14 +119,14 @@ All colors accept hexadecimal values, with the following formats:
 
 If you're not feeling creative, you can use one of the provided style presets.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/embed-status-badge.webp" alt="Embed status badges" />
+<Frame>
+    <img src="/images/uptime/status-pages/embed-status-badge.webp" alt="Embed status badges" />
 </Frame>
 
 ### Shield badges
 
 Shield badges are the classic status badges to embed in your Git repository. They are designed to be displayed in your README file, and come in all the popular styles. Shield badges are based on the [Shields.io](https://shields.io) service, and [can be customized](https://shields.io/badges/endpoint-badge).
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/uptime/status-pages/shield-status-badge.webp" alt="Shield status badges" />
+<Frame>
+    <img src="/images/uptime/status-pages/shield-status-badge.webp" alt="Shield status badges" />
 </Frame>

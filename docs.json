@@ -1,0 +1,185 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Phare",
+  "colors": {
+    "primary": "#000000",
+    "light": "#FFFFFF",
+    "dark": "#000000"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "getting-started",
+              "user-management"
+            ]
+          },
+          {
+            "group": "Uptime",
+            "pages": [
+              "uptime/overview",
+              "uptime/monitors",
+              "uptime/status-pages",
+              "uptime/incident-management",
+              "uptime/alerting"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/discord",
+              "integrations/email",
+              "integrations/outgoing-webhook",
+              "integrations/pushover",
+              "integrations/sms",
+              "integrations/slack",
+              "integrations/telegram"
+            ]
+          }
+        ]
+      },
+      {
+        "anchor": "API Reference",
+        "icon": "rectangle-terminal",
+        "groups": [
+          {
+            "group": "API Documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Platform",
+            "pages": [
+              "api-reference/platform/get-api-info",
+              {
+                "group": "Alert Rules",
+                "pages": [
+                  "api-reference/platform/alert-rules/list-alert-rules",
+                  "api-reference/platform/alert-rules/create-an-alert-rule",
+                  "api-reference/platform/alert-rules/get-an-alert-rule",
+                  "api-reference/platform/alert-rules/update-an-alert-rule",
+                  "api-reference/platform/alert-rules/delete-an-alert-rule"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Uptime",
+            "pages": [
+              {
+                "group": "Monitors",
+                "pages": [
+                  "api-reference/uptime/monitors/list-monitors",
+                  "api-reference/uptime/monitors/get-a-monitor",
+                  "api-reference/uptime/monitors/create-a-monitor",
+                  "api-reference/uptime/monitors/update-a-monitor",
+                  "api-reference/uptime/monitors/pause-a-monitor",
+                  "api-reference/uptime/monitors/resume-a-monitor",
+                  "api-reference/uptime/monitors/delete-a-monitor"
+                ]
+              },
+              {
+                "group": "Incidents",
+                "pages": [
+                  "api-reference/uptime/incidents/list-incidents",
+                  "api-reference/uptime/incidents/get-an-incident",
+                  "api-reference/uptime/incidents/delete-an-incident"
+                ]
+              },
+              {
+                "group": "Status Pages",
+                "pages": [
+                  "api-reference/uptime/status-pages/list-status-pages",
+                  "api-reference/uptime/status-pages/get-a-status-page",
+                  "api-reference/uptime/status-pages/create-a-status-page",
+                  "api-reference/uptime/status-pages/update-a-status-page",
+                  "api-reference/uptime/status-pages/delete-a-status-page",
+                  "api-reference/uptime/status-pages/get-a-status-page-current-status"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "anchor": "Changelog",
+        "icon": "clock-rotate-left",
+        "groups": [
+          {
+            "group": "Platform",
+            "pages": [
+              "changelog/platform/2025",
+              "changelog/platform/2024",
+              "changelog/platform/2023"
+            ]
+          }
+        ]
+      },
+      {
+        "anchor": "Blog",
+        "href": "https://phare.io/blog/",
+        "icon": "newspaper"
+      },
+      {
+        "anchor": "Service status",
+        "href": "https://status.phare.io/",
+        "icon": "tower-cell"
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://phare.io"
+  },
+  "api": {
+    "openapi": [
+      "openapi.json"
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@phare.io"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://app.phare.io/login"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/phare",
+      "linkedin": "https://www.linkedin.com/company/usephare"
+    }
+  },
+  "integrations": {
+    "posthog": {
+      "apiKey": "phc_OWMKYUoVSX0YxsL5KHnEjjIzlJmxUhMurqQ9xxXpMZY",
+      "apiHost": "https://hog.phare.io"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/articles",
+      "destination": "https://phare.io/blog/"
+    },
+    {
+      "source": "/articles/downsampling-time-series-data",
+      "destination": "https://phare.io/blog/downsampling-time-series-data/"
+    }
+  ]
+}

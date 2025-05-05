@@ -4,249 +4,263 @@ sidebarTitle: '2025'
 description: 'Follow the updates and improvements made to the Phare platform in 2025.'
 ---
 
-## Monitor certificate expiration alerts
-_May 5th, 2025_
+<Update label="May 2025">
+    <Frame>
+        <img src="/images/changelog/80-monitor-certificate-expiring-alert-rule.webp" alt="Monitor certificate expiring alert rule" />
+    </Frame>
 
-You can now create alert rules to be notified when your monitor certificates are about to expire. This new feature complements the SSL certificate tracking system introduced earlier this week, giving you proactive control over your certificate renewals.
+    ## New alert event: Monitor certificate expiring
 
-How it works:
-- Create a **Monitor Certificate Expiring** alert rule
-- Select how many days in advance you want to be notified (from 1 to 60 days)
-- Choose which integration to use for notifications (Email, SMS, Webhook, etc.)
-- Get timely notifications so you never miss a certificate renewal again
+    You can now create alert rules to be notified when your monitor certificates are about to expire. This new feature complements the SSL certificate tracking system introduced earlier this week, giving you proactive control over your certificate renewals.
 
-Like other alert rules, you can scope it to a specific project or to the entire organization, and it works with all existing integrations.
+    How it works:
+    - Create a **Monitor Certificate Expiring** alert rule
+    - Select how many days in advance you want to be notified (from 1 to 60 days)
+    - Choose which integration to use for notifications (Email, SMS, Webhook, etc.)
+    - Get timely notifications so you never miss a certificate renewal again
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/80-monitor-certificate-expiring-alert-rule.webp" alt="Monitor certificate expiring alert rule" />
-</Frame>
+    Like other alert rules, you can scope it to a specific project or to the entire organization, and it works with all existing integrations.
 
----
+    <br/>
 
-## SSL certificate tracking is now built into Phare
-_May 1st, 2025_
+    <Frame>
+        <img src="/images/changelog/79-monitor-certificate-discovered.webp" alt="Monitor certificate discovered notification" />
+    </Frame>
 
-Phare now tracks SSL certificates as first-class objects, giving you visibility on all the certificates used in your projects.
+    ## New alert event: Monitor certificate discovered
 
-How it works:
+    You can now create alert rules to be notified when a new certificate is discovered on any monitor. It's a great way to make sure they're getting renewed on time, or to get alerted of any unexpected changes to your monitors' SSL certificates.
+    <br/>
 
-- Certificates are discovered and stored automatically when performing monitor checks
-- Support for multiple certificates per domain and shared certificates across monitors
+    <Frame>
+        <img src="/images/changelog/81-certificate-discovery.webp" alt="SSL certificate tracking" />
+    </Frame>
 
-This allows you to quickly view all certificates used by a monitor, and all monitors using a certificate.
+    ## SSL certificate tracking
 
-But that's not all, you can also set up a new alert rule to get notified when a new certificate is discovered on any monitor. It's a great way to make sure they're getting renewed on time.
+    Phare now tracks SSL certificates as first-class objects, giving you visibility on all the certificates used in your projects.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/79-monitor-certificate-discovered.webp" alt="Monitor certificate discovered notification" />
-</Frame>
+    How it works:
 
----
+    - Certificates are discovered and stored automatically when performing monitor checks
+    - Support for multiple certificates per domain and shared certificates across monitors
 
-## New scoped alert rules system
-_April 29th, 2025_
+    This allows you to quickly view all certificates used by a monitor, and all monitors using a certificate.
+</Update>
 
-Alert policies have been replaced with a more intuitive scoped alert rules system. You can now define alert rules that apply at the organization or project level, making alerting easier to manage and more transparent.
+<Update label="April 2025">
+    <Frame>
+        <img src="/images/changelog/78-alerting-system.webp" alt="New alerting system" />
+    </Frame>
 
-How it works:
-- Alert policies do not exist anymore
-- Alert rules can be directly created
-- Choose a scope for each rule: project-specific or organization-wide.
+    ## New scoped alert rules system
 
-This greatly simplifies the alerting system, while keeping a good level of flexibility.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/78-alerting-system.webp" alt="New alerting system" />
-</Frame>
+    Alert policies have been replaced with a more intuitive scoped alert rules system. You can now define alert rules that apply at the organization or project level, making alerting easier to manage and more transparent.
 
-The [API endpoints for managing alert rules](/api-reference/platform/alert-rules/list-alert-rules) have also been updated to reflect this change, which should make it easier to manage your alert rules programmatically.
+    How it works:
+    - Alert policies do not exist anymore
+    - Alert rules can be directly created
+    - Choose a scope for each rule: project-specific or organization-wide.
 
----
+    This greatly simplifies the alerting system, while keeping a good level of flexibility.
 
-## Enhanced messaging reliability and logging
-_April 18th, 2025_
+    The [API endpoints for managing alert rules](/api-reference/platform/alert-rules/list-alert-rules) have also been updated to reflect this change, which should make it easier to manage your alert rules programmatically.
 
-To improve the resilience of the email notifications, a failover SMTP (Brevo) has been introduced to ensure uninterrupted delivery in case the primary SMTP (Scaleway) fails.
+    <br/>
 
-Real-time tracking of email delivery statuses has been implemented to allow for immediate detection of undelivered emails.
+    <Frame>
+        <img src="/images/changelog/77-recipient-delivery-logs.webp" alt="Recipient delivery logs" />
+    </Frame>
 
-The Email, Telegram, and SMS integration have also been updated to provide per-recipient logs, giving you more details in case of delivery issues.
+    ## Enhanced messaging reliability and logging
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/77-recipient-delivery-logs.webp" alt="Recipient delivery logs" />
-</Frame>
+    To improve the resilience of the email notifications, a failover SMTP (Brevo) has been introduced to ensure uninterrupted delivery in case the primary SMTP (Scaleway) fails.
 
----
+    Real-time tracking of email delivery statuses has been implemented to allow for immediate detection of undelivered emails.
 
-## New monitoring regions and infrastructure overhaul
-_April 14th, 2025_
+    The Email, Telegram, and SMS integration have also been updated to provide per-recipient logs, giving you more details in case of delivery issues.
 
-After two months of rollout and testing, Phare’s newest regions, Australia, Thailand, and Brazil, are now generally available. These regions bring faster, closer monitoring to key areas across APAC and South America.
+    <br/>
 
-All regions, new and existing, now run on an upgraded infrastructure. Expect lower latency, improved efficiency, and even more reliable insights, no changes needed.
+    <Frame>
+        <img src="/images/changelog/76-new-monitoring-regions.webp" alt="New monitoring regions" />
+    </Frame>
 
-A major step forward in global monitoring, now fully live!
+    ## New monitoring regions and infrastructure overhaul
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/76-new-monitoring-regions.webp" alt="New monitoring regions" />
-</Frame>
+    After two months of rollout and testing, Phare’s newest regions, Australia, Thailand, and Brazil, are now generally available. These regions bring faster, closer monitoring to key areas across APAC and South America.
 
----
+    All regions, new and existing, now run on an upgraded infrastructure. Expect lower latency, improved efficiency, and even more reliable insights, no changes needed.
 
-## New Scale plan price
-_April 7th, 2025_
+    A major step forward in global monitoring, now fully live!
 
-After nearly a year of intense optimization and some seriously messy spreadsheet formulas, it's finally done, Phare Scale plan is now just 5€, down from 49€!
+    <br/>
 
-That’s 90% off! And it’s not just about slashing prices, it’s about making powerful, high-quality tools accessible to everyone, without locking features behind expensive enterprise plans.
+    ## New Scale plan price
 
-The pricing page has been [updated to reflect this change and clarify things](https://phare.io/pricing).
+    After nearly a year of intense optimization and some seriously messy spreadsheet formulas, it's finally done, Phare Scale plan is now just 5€, down from 49€!
 
-Now’s the perfect time to hop on board. Don’t miss out, let’s scale together.
+    That’s 90% off! And it’s not just about slashing prices, it’s about making powerful, high-quality tools accessible to everyone, without locking features behind expensive enterprise plans.
 
----
+    The pricing page has been [updated to reflect this change and clarify things](https://phare.io/pricing).
 
-## Discord community
-__April 2nd, 2025__
+    Now’s the perfect time to hop on board. Don’t miss out, let’s scale together.
 
-Phare now has a Discord community, because sometimes you just want to drop a quick message, rant about a bug, or throw out a wild feature idea explained in a meme.
+    <br/>
 
-Join to chat about Phare, share feedback, report issues, or just see what’s brewing. It's also the best place to talk to the guy that write the code, and bully him into adding a dark mode (please don’t).
+    <Frame>
+        <img src="/images/changelog/75-phare-discord.webp" alt="Phare on Discord" />
+    </Frame>
 
-Jump in, say hi, and let’s have fun: https://phare.io/discord
+    ## Discord community
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/75-phare-discord.webp" alt="Phare on Discord" />
-</Frame>
 
----
+    Phare now has a Discord community, because sometimes you just want to drop a quick message, rant about a bug, or throw out a wild feature idea explained in a meme.
 
-## Preview regions
-__February 17th, 2025__
+    Join to chat about Phare, share feedback, report issues, or just see what’s brewing. It's also the best place to talk to the guy that write the code, and bully him into adding a dark mode (please don’t).
 
-Six new regions are available in preview to test Phare's brand-new monitoring infrastructure. They’re free to use for the next two months but come with no guarantees yet.
+    Jump in, say hi, and let’s have fun: https://phare.io/discord
+</Update>
 
-Choose from US West / East 🇺🇸, Japan 🇯🇵, Germany 🇩🇪, or one of the new regions, Australia 🇦🇺 and Brazil 🇧🇷. Or why not all of them to help us test the new infrastructure at scale?
+<Update label="February 2025">
+    <Frame>
+        <img src="/images/changelog/74-preview-regions.webp" alt="Preview regions" />
+    </Frame>
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/74-preview-regions.webp" alt="Preview regions" />
-</Frame>
+    ## Preview regions
 
----
 
-## Telegram integration
-__January 30th, 2025__
+    Six new regions are available in preview to test Phare's brand-new monitoring infrastructure. They’re free to use for the next two months but come with no guarantees yet.
 
-A new integration with Telegram is now available to send notifications to your Telegram application. The integration supports sending messages to a group or a private chat, and can be used with all existing alert events.
+    Choose from US West / East 🇺🇸, Japan 🇯🇵, Germany 🇩🇪, or one of the new regions, Australia 🇦🇺 and Brazil 🇧🇷. Or why not all of them to help us test the new infrastructure at scale?
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/73-telegram-integration.webp" alt="Telegram integration" />
-</Frame>
+    <br/>
 
-Read the [Telegram integration documentation](/integrations/telegram) to get started.
+    <Frame>
+        <img src="/images/changelog/73-telegram-integration.webp" alt="Telegram integration" />
+    </Frame>
 
----
+    ## Telegram integration
 
-## Improved integration reliability
-__January 27th, 2025__
+    A new integration with Telegram is now available to send notifications to your Telegram application. The integration supports sending messages to a group or a private chat, and can be used with all existing alert events.
 
-A lot of work has been done to improve the reliability of all integrations with third-party services. Including a new delivery and error logs page, failure notifications, and automatic pause for failing integrations.
+    Read the [Telegram integration documentation](/integrations/telegram) to get started.
+</Update>
 
-### Delivery and error logs
+<Update label="January 2025">
+    <Frame>
+        <img src="/images/changelog/73-telegram-integration.webp" alt="Telegram integration" />
+    </Frame>
 
-All integrations now provide a detailed logs page to help you diagnose and fix issues.
+    ## Telegram integration
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/70-integration-logs.webp" alt="Integration logs" />
-</Frame>
+    A new integration with Telegram is now available to send notifications to your Telegram application. The integration supports sending messages to a group or a private chat, and can be used with all existing alert events.
 
-### Failure notifications
+    Read the [Telegram integration documentation](/integrations/telegram) to get started.
 
-All integrations now notify the organization owner when an issue occurs. For the SMS, Email and Webhook integrations, a detailed list of failed number, address or requests is provided to help you identify the issue.
+    <br/>
 
-The failure notification for the Outgoing Webhook integration is only sent if all delivery attempts have failed, which means organization owner will be notified [1 hour and 18 minutes]( https://docs.phare.io/integrations/outgoing-webhook#retry-policy) after the event creation.
+    <Frame>
+        <img src="/images/changelog/70-integration-logs.webp" alt="Integration logs" />
+    </Frame>
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/71-integration-issue-notification.webp" alt="Integration issue notification" />
-</Frame>
+    ## Improved integration reliability
 
-### Automatic pause
+    A lot of work has been done to improve the reliability of all integrations with third-party services. Including a new delivery and error logs page, failure notifications, and automatic pause for failing integrations.
 
-Integrations that have been failing more than 3 consecutive times in a 7 days rolling window will be automatically paused. A notification will be sent to the organization owner when this happens.
+    ### Delivery and error logs
 
----
+    All integrations now provide a detailed logs page to help you diagnose and fix issues.
 
-## Data retention change
-__January 20th, 2025__
+    <Frame>
+        <img src="/images/changelog/70-integration-logs.webp" alt="Integration logs" />
+    </Frame>
 
-To improve the performance of the platform and reduce unnecessary data retention, a few rules are now enforced for organizations on the **Hobby** plan:
+    ### Failure notifications
 
-Organizations must have at least one active member in the past 6 months to keep their account active. Two reminder email will be sent to the organization owner before the account is deactivated. The first reminder is sent 14 days before the account deactivation, and the second reminder is sent 3 days before the account deactivation.
+    All integrations now notify the organization owner when an issue occurs. For the SMS, Email and Webhook integrations, a detailed list of failed number, address or requests is provided to help you identify the issue.
 
-Monitor that have been failing uninterrupted for more than 48h will be automatically paused. A notification will be sent to the organization owner when a monitor is paused.
+    The failure notification for the Outgoing Webhook integration is only sent if all delivery attempts have failed, which means organization owner will be notified [1 hour and 18 minutes]( https://docs.phare.io/integrations/outgoing-webhook#retry-policy) after the event creation.
 
-These rules are only enforced for organizations on the **Hobby** plan, and are necessary to keep this plan free and sustainable for everyone.
+    <Frame>
+        <img src="/images/changelog/71-integration-issue-notification.webp" alt="Integration issue notification" />
+    </Frame>
 
----
+    ### Automatic pause
 
-## Custom error pages for status pages
-__January 14th, 2025__
+    Integrations that have been failing more than 3 consecutive times in a 7 days rolling window will be automatically paused. A notification will be sent to the organization owner when this happens.
 
-When visiting a status page with an error (404, 500, etc.), a custom error page is now displayed to provide a better user experience, instead of redirecting users to a phare.io error page.
+    <br/>
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/72-custom-status-page-error.webp" alt="Custom satus page error" />
-</Frame>
+    ## Data retention change
 
----
+    To improve the performance of the platform and reduce unnecessary data retention, a few rules are now enforced for organizations on the **Hobby** plan:
 
-## Account security improvements
-__January 8th, 2025__
+    Organizations must have at least one active member in the past 6 months to keep their account active. Two reminder email will be sent to the organization owner before the account is deactivated. The first reminder is sent 14 days before the account deactivation, and the second reminder is sent 3 days before the account deactivation.
 
-The security of your user account has been improved with the addition of a password confirmation step when updating your email address or deactivating two-factor authentication. This step ensures that you are the owner of the account and that no one else can make changes without your consent. The two-factor authentication activation flow has also been improved with the possibility to manually set up your authenticator app without having to scan a QR code.
+    Monitor that have been failing uninterrupted for more than 48h will be automatically paused. A notification will be sent to the organization owner when a monitor is paused.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/69-password-confirmation-flow.webp" alt="Password confirmation" />
-</Frame>
+    These rules are only enforced for organizations on the **Hobby** plan, and are necessary to keep this plan free and sustainable for everyone.
 
----
+    <br/>
 
-## Embed status badge customization
-__January 6th, 2025__
+    <Frame>
+        <img src="/images/changelog/72-custom-status-page-error.webp" alt="Custom satus page error" />
+    </Frame>
 
-Embed status badges can now be customized with a custom background color to match your website's design. A theme selector is available to choose between light and dark mode, and a color picker to select the background color for each theme.
+    ## Custom error pages for status pages
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/68-embed-status-badges-customization.webp" alt="Embed status badges customization" />
-</Frame>
+    When visiting a status page with an error (404, 500, etc.), a custom error page is now displayed to provide a better user experience, instead of redirecting users to a phare.io error page.
 
----
+    <br/>
 
-## Embed status badges
-__January 3rd, 2025__
+    <Frame>
+        <img src="/images/changelog/69-password-confirmation-flow.webp" alt="Password confirmation" />
+    </Frame>
 
-Three embeddable status badges are now available to display your status page's current status on your website. The badges do not load any third party scripts, are free from cookies, and adapt to your website dark and light mode.
+    ## Account security improvements
 
-#### Pulse badge
+    The security of your user account has been improved with the addition of a password confirmation step when updating your email address or deactivating two-factor authentication. This step ensures that you are the owner of the account and that no one else can make changes without your consent. The two-factor authentication activation flow has also been improved with the possibility to manually set up your authenticator app without having to scan a QR code.
 
-The pulse badge only display the current status of your status page without any additional information, making it perfect to build your own components around it.
+    <br/>
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/65-embed-pulse-badge.webp" alt="Embed pulse badges" />
-</Frame>
+    <Frame>
+        <img src="/images/changelog/68-embed-status-badges-customization.webp" alt="Embed status badges customization" />
+    </Frame>
 
-#### Static badge
+    ## Embed status badge customization
 
-The static badge displays the current status of your status page with a pulse and a static label.
+    Embed status badges can now be customized with a custom background color to match your website's design. A theme selector is available to choose between light and dark mode, and a color picker to select the background color for each theme.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/66-embed-static-badge.webp" alt="Embed static badges" />
-</Frame>
+    <br/>
 
-#### Live badge
+    ## Embed status badges
 
-The live badge displays the current status of your status page with a pulse and a live label.
+    Three embeddable status badges are now available to display your status page's current status on your website. The badges do not load any third party scripts, are free from cookies, and adapt to your website dark and light mode.
 
-<Frame type="glass">
-    <img class="border rounded-lg" src="/images/changelog/67-embed-live-badge.webp" alt="Embed live badges" />
-</Frame>
+
+    #### Pulse badge
+
+    The pulse badge only display the current status of your status page without any additional information, making it perfect to build your own components around it.
+
+    <Frame>
+        <img src="/images/changelog/65-embed-pulse-badge.webp" alt="Embed pulse badges" />
+    </Frame>
+
+    #### Static badge
+
+    The static badge displays the current status of your status page with a pulse and a static label.
+
+    <Frame>
+        <img src="/images/changelog/66-embed-static-badge.webp" alt="Embed static badges" />
+    </Frame>
+
+    #### Live badge
+
+    The live badge displays the current status of your status page with a pulse and a live label.
+
+    <Frame>
+        <img src="/images/changelog/67-embed-live-badge.webp" alt="Embed live badges" />
+    </Frame>
+</Update>
