@@ -1834,6 +1834,7 @@
                     "uptime.monitor.created",
                     "uptime.monitor.deleted",
                     "uptime.monitor_certificate.discovered",
+                    "uptime.monitor_certificate.expiring",
                     "uptime.incident.created",
                     "uptime.incident.recovered",
                     "uptime.incident_comment.created",
