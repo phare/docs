@@ -6,6 +6,28 @@ description: "Follow the updates and improvements made to the Phare platform in 
 
 <Update label="May 2025">
     <Frame>
+        <img src="/images/changelog/82-user-agent-secret.webp" alt="User agent secret key" />
+    </Frame>
+
+    ## User agent secret key
+
+    It is now possible to set a secret key of your choice to the user agent used for monitoring. This allows you to easily identify the requests made by Phare in your application logs, or filter them accurately in your firewall rules.
+
+    The chosen secret key is passed as a user agent parameter with the following format:
+
+    ```text
+    Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=your-secret-key)
+    ```
+
+    The user agent is left unchanged if no secret key is set:
+
+    ```text
+    Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)
+    ```
+
+    <br />
+
+    <Frame>
         <img src="/images/changelog/80-monitor-certificate-expiring-alert-rule.webp" alt="Monitor certificate expiring alert rule" />
     </Frame>
 
