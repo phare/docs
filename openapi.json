@@ -1591,8 +1591,8 @@
                                         "description": "Request method for http protocol",
                                         "type": "string",
                                         "enum": [
-                                            "GET",
                                             "HEAD",
+                                            "GET",
                                             "OPTIONS"
                                         ]
                                     },
@@ -1606,6 +1606,33 @@
                                         "description": "Response keyword that must be present",
                                         "type": "string",
                                         "example": "pong",
+                                        "nullable": true
+                                    },
+                                    "user_agent_secret": {
+                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                        "type": "string",
+                                        "example": "definitely-not-a-bot",
+                                        "nullable": true
+                                    },
+                                    "headers": {
+                                        "description": "Additional HTTP headers to add to the request",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Header name",
+                                                    "type": "string",
+                                                    "example": "X-Phare-Says"
+                                                },
+                                                "value": {
+                                                    "description": "Header value",
+                                                    "type": "string",
+                                                    "example": "Hello world!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "maxItems": 10,
                                         "nullable": true
                                     }
                                 },
