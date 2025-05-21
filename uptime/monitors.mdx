@@ -1,71 +1,81 @@
 ---
-title: 'Monitors'
-description: 'Monitor the availability of your website and servers.'
+title: "Monitors"
+description: "Monitor the availability of your websites and APIs."
 ---
 
-Monitors are the core of Phare Uptime, they are used to monitor the availability of your website and servers, and send you alerts when something goes wrong. Monitors can perform HTTP(s) and TCP checks to determine if your website or server is online and working as expected.
+Monitors are the backbone of Phare Uptime, they're your tireless digital assistants checking if your website or server is alive and kicking. Set them up once, and they'll dutifully perform HTTP(S) and TCP checks according to your schedule.
 
 <Frame>
-    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
-        <iframe
-            src="https://iframe.mediadelivery.net/embed/238508/2f903d7c-82ae-490b-a37c-9e6e7bcf446b?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
-            loading="lazy"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
-            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
-        ></iframe>
-    </div>
+    <iframe
+        width="704"
+        height="396"
+        frameborder="0"
+        title="Create a new monitor"
+        src="https://iframe.mediadelivery.net/embed/238508/2f903d7c-82ae-490b-a37c-9e6e7bcf446b?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+        loading="lazy"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+        allowfullscreen
+    ></iframe>
 </Frame>
 
 ### HTTP(s)
 
-An HTTP(s) request is sent to your website, Phare Uptime check the response status code and the presence of an optional keyword in the response body to determine if your website is online and working. SSL certificate monitoring is automatically activated for websites using HTTPS, which will alert you when a certificate is expired or misconfigured.
+When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keep an eye on your SSL certificates too, making sure it's valid and well configured.
 
 ### TCP
 
-A TCP socket connection is established with your server to determine if it is online and working as expected.
+For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly.
 
 ## Interval
 
-You can configure the interval at which Phare Uptime will send requests to your website or server. The default interval is 1 minute, but you can configure it to be as low as 30 seconds or 1 / 2 / 3 / 5 / 10 / 15 / 30 minutes.
+You decide how often Phare checks on your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anything between a quick 30 seconds or a relaxed 1 hour.
 
 ## Confirmations & recovery
 
-Phare Uptime uses a confirmation system to avoid false positives.
-A monitor is marked as down or recovered only after a certain number of consecutive failures / successes.
-The default number of confirmations is two, but you can configure it to be anything between one (immediate confirmation) and five confirmations.
+Nobody likes false alarms. That's why Phare allows double-checks, or more, before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
 
 ## Regions
 
-Phare Uptime provides 11 regions around the world to monitor your website or server from different locations. You can choose to monitor your website or server from a single region or from multiple regions. **Using at least two regions is recommended to avoid false positives, and be resilient against large scale outage**.
+With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommend to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
 
 ## Alert Rules
 
-Phare Uptime provides a powerful alerting system to notify your team members of an incident based on [alert rules](/uptime/alerting).
+Phare alert rules system allows you to decide which events trigger notifications. There's a few alert event that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
 
 ## Firewall protection
 
-IP filtering is not recommended as Phare rely on IPs provided by [Bunny.net global network](https://bunnycdn.com/api/system/edgeserverlist) to provide the widest available monitoring offer at an affordable price. The easiest solution to filter Phare's uptime agent traffic is to filter by user-agent.
+IP filtering is not reliable as the Phare Uptime monitoring agent is deployed on [Bunny.net's global network](https://bunnycdn.com/api/system/edgeserverlist), meaining that IPs could be shared with other Bunny.net customers.
 
-If you require a more robust option, please [contact us](mailto:support@phare.io).
+The easiest way to filter the Phare Uptime monitoring agent is to use the `User-Agent` header. You can also add a secret value to the user agent to make it unique to your organization.
+
+Need something more robust? [Contact support](https://phare.io/contact).
 
 ## User agent
 
-Phare Uptime monitoring HTTP requests always contain the following user-agent:
+Every HTTP request from Phare carries this user-agent signature:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
 
+If you added a `secret-value` to the user agent, it will look like this:
+
+> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=secret-value)`
+
+## Need help deciding which settings are right for you?
+
+If you're unsure about the best settings for your monitoring needs, you can find the [Best practices to configure an uptime monitoring service](https://phare.io/blog/best-practices-to-configure-an-uptime-monitoring-service/) on the Phare blog.
+
 ## Private monitoring agent
 
-It is possible to set up a private monitoring agent in a region of your choice. This can be used to comply with complex requirements, large scale monitoring, or private VPN access.
+Need specialized monitoring for complex requirements, large-scale operations, or access through private VPNs? A private monitoring agent can be setup in your preferred region.
 
-You can [contact us](mailto:support@phare.io) to discuss your needs.
+[Let's talk](https://phare.io/contact) about your specific needs.
 
 ## Limits
 
-Phare's monitoring infrastructure works at an extraordinary scale, but comes with a few drawbacks:
+Phare's monitoring infrastructure operates at impressive scale, but comes with a few constraints:
 
-- **No IP filtering**: Phare uptime agent uses a vast range of IPs provided by [Bunny.net global network](https://bunnycdn.com/api/system/edgeserverlist) that are shared.
-- **Enforced HTTPS validation**: Website accessed with the HTTPS protocol MUST use a valid SSL certificate.
-- **Restricted ports**: The following ports are restricted and cannot be used for TCP monitoring: 25, 465, 587, and 2525.
+- **No IP filtering**: The monitoring agent uses Bunny.net's shared IP range, making IP filtering unreliable.
+- **Strict HTTPS validation**: HTTPS websites must have valid SSL certificates—no exceptions.
+- **Certain ports restricted**: TCP monitoring doesn't support ports 25, 465, 587, and 2525.
 
-We understand that these limits can be a major blocking point, feel free to [contact us](mailto:support@phare.io) if you would like to discuss alternative solutions.
+If these limitations are showstoppers for you, [reach out](https://phare.io/contact) to discuss alternatives.

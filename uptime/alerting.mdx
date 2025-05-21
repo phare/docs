@@ -1,33 +1,37 @@
 ---
-title: 'Alerting'
-description: 'Learn how to configure alert rules with Phare Uptime.'
+title: "Alerting"
+description: "Learn how to configure alert rules with Phare Uptime."
 ---
 
-Phare Uptime allows you to receive real-time notifications when specific events occur, such as monitor failures, SSL certificate issues, or incident updates. The system is built around flexible, scoped alert rules.
+Stay in the loop with Phare's real-time notification system. Whether it's a sudden outage, an expiring SSL certificate, or an incident update, the flexible alert rules system ensure the right people get the right information at the right time.
 
 <Frame>
-    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
-        <iframe
-            src="https://iframe.mediadelivery.net/embed/238508/be98c500-251c-41cc-90d7-a20f0077cbeb?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
-            loading="lazy"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
-            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
-        ></iframe>
-    </div>
+    <iframe
+        width="704"
+        height="396"
+        frameborder="0"
+        title="Create an alert rule"
+        src="https://iframe.mediadelivery.net/embed/238508/be98c500-251c-41cc-90d7-a20f0077cbeb?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+        loading="lazy"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+        allowfullscreen
+    ></iframe>
 </Frame>
 
 ### Alert Rules
 
-An alert rule defines:
+Think of alert rules as your notification command center. Each rule defines four key elements:
 
-- Event: The event that triggers the alert (e.g., incident created, certificate expiring).
-- Scope: Whether the rule applies organization-wide or within a specific project.
-- Rate limit: Prevents spamming your team members with notifications.
-- Alert integration: Which integration to use for sending notifications (e.g., email, Slack, Discord).
+- **Event**: What triggers the alert (like a monitor failing or a certificate nearing expiration)
+- **Scope**: Where the rule applies (organization-wide or just in specific projects)
+- **Rate limit**: How often the notification can be sent (preventing notification fatigue)
+- **Integration**: Where to send the alert (email, Slack, Discord, etc.)
+
+Additional settings can be configured depending on the event type and integration you choose.
 
 ### Event
 
-The event specifies what action or occurrence will trigger the alert. Phare Uptime supports a variety of events, including:
+Phare can alert you on various events including:
 
 - Monitor created
 - Monitor deleted
@@ -38,19 +42,21 @@ The event specifies what action or occurrence will trigger the alert. Phare Upti
 - Incident comment created
 - Incident update published
 
+You choose which events matter most to your team, and can set up multiple alert rules for a single event type.
+
 ### Scope
 
-You can choose the scope of each alert rule:
+Keep your alerts relevant by setting the right scope:
 
-- Organization: The rule applies to all matching events in the organization.
-- Project: The rule applies only to events that occur within a specific project.
+- **Organization**: Catch all matching events across your entire organization
+- **Project**: Focus only on events within specific projects
 
-This scoped system provides both flexibility and clarity, ensuring alerts are relevant to the right context.
+This targeted approach ensures nobody gets alerts they don't need to act on.
 
 ### Rate Limiting
 
-To prevent notification overload, alert rules support rate limiting. This allows you to restrict how often an alert rule will send a notification in a given time frame. For example, you can set a rule to notify you only once every 10 minutes, even if the triggering event occurs multiple times within that period.
+Too many notifications can lead to alert fatigue. That's why Phare lets you set limits on how frequently a notification can be sent. Even if an event triggers multiple times, you'll only be notified based on your preferred cadence, like at most once every 10 minutes.
 
 ### Notification Channels
 
-Any [alert rule integration](/integrations/overview) can be used to send notifications. You can create an unlimited number of alert rules for each integration, allowing you to customize how and when you receive notifications.
+Connect any [integration](/integrations/overview) to your alert rules to receive notifications through your preferred channels. Create as many alert rules as you need, customizing each one to get the right balance of information without overwhelming your team.

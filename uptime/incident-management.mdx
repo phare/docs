@@ -1,38 +1,40 @@
 ---
-title: 'Incident Management'
-description: 'Learn how to manage the lifecycle of an incident with Phare Uptime incident management.'
+title: "Incident Management"
+description: "Learn how to manage the lifecycle of an incident with Phare Uptime incident management."
 ---
 
-
-Incident management is the process of managing the lifecycle of an incident. Phare Uptime provides a fully automated incident management system to manage the lifecycle of an incident, from creation to recovery.
+When things go wrong, having a clear process makes all the difference. Phare's incident management system takes care of the entire incident lifecycle automatically, from the moment a problem is detected to when everything's back to normal.
 
 ## Incident creation
 
-An incident is created when a monitor fails, in respect to the monitor's confirmation configuration and checks (keywords, SSL...). The default alert rules will email you a notification when an incident is created.
+When a monitor detects trouble (respecting your confirmation settings and any keyword/SSL checks), Phare springs into action by creating an incident. Right away, your team gets notified through your default alert rules—no manual intervention required.
 
 ## Incident recovery
 
-An incident is resolved when a monitor succeeds, in respect to the monitor's recovery configuration and checks (keywords, SSL...). The default alert rules will email you a notification when an incident recovers.
+When your service recovers (again, respecting your recovery confirmation settings), Phare automatically resolves the incident and lets your team know through your alert rules.
 
 ## Impact
 
-Incidents can be classified by their impact on your users. Project members can manually set the impact of an incident to one of the following values:
+Not all incidents are created equal. That's why Phare lets your team classify incidents by their impact level:
 
-- **Unknown**: The impact of the incident is not known yet. (default)
-- **Operational**: The incident has no impact on your users.
-- **Maintenance**: The incident is caused by a planned maintenance.
-- **Degraded performance**: The incident has a degraded performance impact on your users.
-- **Partial outage**: The incident impacts only some users or some parts of your service.
-- **Major outage**: The incident impacts all your users or all your service.
+- **Unknown**: Still investigating, not sure how bad it is
+- **Operational**: False alarm—everything's working as expected
+- **Maintenance**: Planned downtime for heavy-duty updates
+- **Degraded performance**: Things are slower / working less well than usual
+- **Partial outage**: Some users are affected or certain features are down
+- **Major outage**: Everything is on fire, users can't access the service or are severely impacted
 
-The impact of an incident can be used internally to prioritize the incident resolution, and is reported in status pages if one is linked to the monitor that triggered the incident. In case of incident impact is set to **unknown**, Phare will set your monitor status to **down** without additional details in your status page.
+Impact levels help your team prioritize responses internally and keep users informed through status pages. If left as "unknown," status pages will simply show the monitor as "down" without additional details.
 
 ## Event timeline
 
-The event timeline is a powerful tool to help you understand what happened during an incident. It shows you the status of the monitor at each check, and the alert rules that were triggered.
+The event timeline gives you the full picture of what happened during an incident. You can see every check status, which alert rules fired, and follow the incident's progression from start to finish.
 
-Project members can comment on the incident timeline to share findings and resolve the incident faster. Comments can be written using a rich text editor, and are compatible with the Markdown syntax.
+Team members can add comments to share insights or document solutions, helping everyone resolve issues faster. The rich text editor supports Markdown, making it easy to include formatted text, code snippets, or links to relevant resources.
 
 <Frame>
-  <img src="/images/uptime/incident-management/incident-timeline.webp" alt="Incident event timeline" />
+    <img
+        src="/images/uptime/incident-management/incident-timeline.webp"
+        alt="Incident event timeline"
+    />
 </Frame>

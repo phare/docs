@@ -1,72 +1,79 @@
 ---
-title: 'Status pages'
-description: 'Keep your customers in the loop with a sleek status page. Build trust with transparent communication on incidents and maintenance periods.'
+title: "Status pages"
+description: "Keep your customers in the loop with a sleek status page. Build trust with transparent communication on incidents and maintenance periods."
 ---
 
-Status pages are a great way to keep your users in the loop. They are a public page that displays the status of your monitors, and any incidents or maintenance periods that are currently ongoing. Status pages built with Phare are extremely fast and carbon efficient!
+Status pages are your public-facing communication hub during both good times and bad. They show your users the real-time status of your services, any ongoing incidents, and planned maintenance. The best part? Status pages by Phare are lightning-fast and the most [eco-friendly](https://www.websitecarbon.com/website/status-phare-io/) you can find!
 
 <Frame>
-    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
-        <iframe
-            src="https://iframe.mediadelivery.net/embed/238508/dc0fe30e-efbe-4192-a05c-5a0e6c1d5802?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
-            loading="lazy"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
-            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
-        ></iframe>
-    </div>
+    <iframe
+        width="704"
+        height="396"
+        frameborder="0"
+        title="Create a status page"
+        src="https://iframe.mediadelivery.net/embed/238508/dc0fe30e-efbe-4192-a05c-5a0e6c1d5802?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+        loading="lazy"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+        allowfullscreen
+    ></iframe>
 </Frame>
 
 ## Creating a status page
 
-You can create an unlimited number of status pages for all your projects. Choose which monitoring data you want to display, and customize the look and feel of your status page to match your brand. Allow Phare a few seconds to generate an SSL certificate for your status page, and you're good to go! The status page can be customized at any time.
+Create as many status pages as your projects need, there's no limit. Pick which monitors to display, customize the look to match your brand, and give Phare a few seconds to generate an SSL certificate. Your status page will be ready to shine! Want to make changes later? No problem—customize anytime.
 
 <Frame>
-  <img src="/images/uptime/status-pages/status-pages-creation.webp" alt="Status page creation" />
+    <img
+        src="/images/uptime/status-pages/status-pages-creation.webp"
+        alt="Status page creation"
+    />
 </Frame>
 
 ## Phare domain
 
-All status pages possesses a unique `*.status.phare.io` domain name, protected by an SSL certificate.
+Every status page gets its own `*.status.phare.io` domain name, complete with SSL protection out of the box.
 
 ## Custom domain
 
-You can host your status page on a custom domain. This is a great way to keep your brand consistent across all your services. To set up a custom domain, you need to create a CNAME record in your DNS settings that points to `cname.status.phare.io`.
+Want your status page on your own domain? Simply create a CNAME record in your DNS settings pointing to `cname.status.phare.io`:
 
 | Type  | Name               | Target                |
-|:------|:-------------------|:----------------------|
+| :---- | :----------------- | :-------------------- |
 | CNAME | status.example.com | cname.status.phare.io |
 
-The domain name needs to be configured properly for Phare to generate a valid SSL certificate and activate HTTPS on your status page, which can take a few minutes.
-
-Once your custom domain is verified, the Phare domain (`*.status.phare.io`) associated to your status page will automatically redirect to your custom domain.
+Make sure your DNS is configured correctly so Phare can generate a valid SSL certificate—this usually takes a few minutes. Once verified, your Phare domain will automatically redirect to your custom domain.
 
 ### Custom domain with Cloudflare DNS
 
-If you are using Cloudflare DNS, you need create the CNAME with proxy status in `DNS-only` mode (the cloud icon must stay gray and not orange) as shown on the following screenshot:
+Using Cloudflare? Make sure to create your CNAME with proxy status in `DNS-only` mode (keep the cloud icon gray, not orange) as shown below:
 
 <Frame>
-    <img src="/images/uptime/status-pages/custom-domain-cloudflare.webp" alt="Custom domain on Cloudflare" />
+    <img
+        src="/images/uptime/status-pages/custom-domain-cloudflare.webp"
+        alt="Custom domain on Cloudflare"
+    />
 </Frame>
 
 ### Custom domain with Bunny.net
 
-Hello there fellow Bunny.net enjoyer!
+Hello fellow Bunny enthusiast!
 
-Because Phare also uses Bunny.net for sub-domain management, an extra security step is required on your end to allow us to generate an SSL certificate. Don't worry though, it's a quick and easy process!
+Since Phare also uses Bunny.net for domain management, there's an extra security step needed. Don't worry, it's quick and straightforward:
 
 <Steps>
     <Step title="Create a TXT record">
-        Create a TXT record in your DNS settings with the following values, this will allow Bunny.net support to verify that your request is genuine
+        Add this TXT record to your DNS settings to help Bunny.net verify your request:
 
 | Type | Name               | Target                |
-|:-----|:-------------------|:----------------------|
+| :--- | :----------------- | :-------------------- |
 | TXT  | status.example.com | Bunny Support - Phare |
+
     </Step>
     <Step title="Open a support ticket">
-        Navigate to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and open a new support ticket.
+        Head over to your [Bunny.net support hub](https://dash.bunny.net/support/tickets) and create a new ticket.
     </Step>
     <Step title="Write a message">
-        Select the **DNS** department and write a message similar to the following with the custom domain you want to use:
+        Select the **DNS** department and send something like this (with your actual domain):
 
         ```text
         Hello Bunny.net team,
@@ -79,54 +86,60 @@ Because Phare also uses Bunny.net for sub-domain management, an extra security s
         ```
     </Step>
     <Step title="Wait for the ticket to be processed">
-        Wait a few minutes for the ticket to be processed by one of their great support agents.
+        Bunny's support team is usually quick, sit tight for a few minutes.
     </Step>
     <Step title="Verify your custom domain">
-        Once the ticket is resolved, go back to your <a href="https://app.phare.io/uptime/status-pages" rel="nofollow">status page dashboard</a> and click the `Verify again` button to activate your custom domain.
+        Once resolved, go back to your <a href="https://app.phare.io/uptime/status-pages" rel="nofollow">status page dashboard</a> and hit the `Verify again` button to activate your custom domain.
     </Step>
+
 </Steps>
 
 <Frame>
-    <img src="/images/uptime/status-pages/verify-failed-status-page-domain.webp" alt="Verify failed status page domain" />
+    <img
+        src="/images/uptime/status-pages/verify-failed-status-page-domain.webp"
+        alt="Verify failed status page domain"
+    />
 </Frame>
 
-If you're having trouble with the verification process, please [reach to get support](https://phare.io/contact).
+Having trouble? [Contact support](https://phare.io/contact).
 
 ## Status badges
 
-Once your status page is created, you get access to a set of status badges that you can embed on your website or repository. These badges are a great way to show your users that your service is up and running, and can be accessed from your status page's action menu.
+Once your status page is live, you get access to status badges you can proudly display on your website or repository. They're a great way to show transparency and confidence in your service reliability. Access them through your status page's action menu.
 
 <Frame>
-    <img src="/images/uptime/status-pages/status-badges-menu.webp" alt="Status badges menu" />
+    <img
+        src="/images/uptime/status-pages/status-badges-menu.webp"
+        alt="Status badges menu"
+    />
 </Frame>
 
 ### Embed badges
 
-Embed badges are designed to be displayed on your website, and can be customized to match your brand. You can force a light or dark color theme, or let the badge automatically switch based on the user's system preferences. The following parameters are available:
+These badges are designed for your website and can be customized to fit right in with your design. They can adapt to light/dark themes or be forced to either style. You can adjust:
 
-- `align`: Only used for aligning the live status badge. Possible values are `start`, `center`, and `end`.
-- `background-light`: Background color used when the badge is in light mode.
-- `background-dark`: Background color used when the badge is in dark mode.
-- `text-light`: Text color used when the badge is in light mode.
-- `text-dark`: Text color used when the badge is in dark mode.
+- `align`: For the live status badge positioning. Options: `start`, `center`, or `end`.
+- `background-light`: Background color in light mode.
+- `background-dark`: Background color in dark mode.
+- `text-light`: Text color in light mode.
+- `text-dark`: Text color in dark mode.
 
-All colors accept hexadecimal values, with the following formats:
-
-- `RGB`: #FFF
-- `RGBA`: #FFFF
-- `RRGGBB`: #FFFFFF
-- `RRGGBBAA`: #FFFFFFFF
-
-If you're not feeling creative, you can use one of the provided style presets.
+Colors accept standard hex formats (RGB, RGBA, RRGGBB, or RRGGBBAA). Not feeling creative? There's already some stylish presets ready to go.
 
 <Frame>
-    <img src="/images/uptime/status-pages/embed-status-badge.webp" alt="Embed status badges" />
+    <img
+        src="/images/uptime/status-pages/embed-status-badge.webp"
+        alt="Embed status badges"
+    />
 </Frame>
 
 ### Shield badges
 
-Shield badges are the classic status badges to embed in your Git repository. They are designed to be displayed in your README file, and come in all the popular styles. Shield badges are based on the [Shields.io](https://shields.io) service, and [can be customized](https://shields.io/badges/endpoint-badge).
+These are the classic badges you see in GitHub repositories. Perfect for your README file, they come in all the popular shield styles. Based on the [Shields.io](https://shields.io) service, they're [fully customizable](https://shields.io/badges/endpoint-badge) to match your project's look.
 
 <Frame>
-    <img src="/images/uptime/status-pages/shield-status-badge.webp" alt="Shield status badges" />
+    <img
+        src="/images/uptime/status-pages/shield-status-badge.webp"
+        alt="Shield status badges"
+    />
 </Frame>
