@@ -1,21 +1,37 @@
 ---
-title: 'Integrations overview'
-description: 'Seamlessly connect your favorite apps and services with Phare'
+title: "Integrations overview"
+description: "Seamlessly connect your favorite apps and services with Phare"
 ---
 
-Integrations are a way to connect your Phare account with external services. At the moment, integration can only be used as notification channels, but more integration types will be added in the future.
+Phare plays nicely other tools, making it easy to integrate with your preferred apps and services. Wether you want to receive alerts in your favorite chat app, or send JSON data to a third-party service, you should be covered.
 
-Integration can be configured in the <a href="https://app.phare.io/organization/apps" rel="nofollow">integration</a> section of your dashboard. You can create an unlimited number of integrations and choose for each one if they're available for your whole organization or scope them by project.
+Setting up integrations is a breeze, visit your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a> to get started. Create as many connections as you need to ensure the right people have access to the right information.
 
 <Frame>
-  <img src="/images/integrations/overview/phare-integrations.webp" alt="Phare integrations" />
+    <img
+        src="/images/integrations/overview/phare-integrations.webp"
+        alt="Phare integrations"
+    />
 </Frame>
 
 ## Alert integrations
 
-Alert integrations are used to send notifications when an alert rule is triggered. You can define the integration to use for each alert rule to route the notification to the right channel for your team.
+Alert integrations are notification channel that can be used when configuring [alert rules](/uptime/alerting). By choosing the right integration for each alert rule, you can make sure the right people get notified on their preferred platforms.
 
-The following integrations are available for alerting:
+All alert integrations are designed to be resilient and deliver notifications during critical moments. An aggressive retry strategy ensures that if any notification fails to send, it will be retried until it goes through. This means you can rest easy knowing that your team will be alerted, even if there are temporary hiccups in the connection or with third-party services. In case a notification still fails after multiple attempts, Phare will log the error and notify the organization owner by email, so they can take action if needed.
+
+Email are sent through two different SMTP providers, [Scaleway](https://www.scaleway.com/) and [Brevo](https://www.brevo.com/), ensuring redundancy and reliability. If one provider experiences issues, the other will step in to deliver your alerts.
+
+<Frame>
+    <img
+        src="/images/integrations/overview/alert-integration-logs.webp"
+        alt="Phare alert integrations logs"
+    />
+</Frame>
+
+Detailed logs of all sent notifications are available in the Phare dashboard, so you can easily track the status of your alerts and troubleshoot any issues.
+
+Here's the list of available alert integrations:
 
 <CardGroup cols={2}>
     <Card
@@ -24,12 +40,7 @@ The following integrations are available for alerting:
         href="/integrations/discord"
         horizontal
     />
-    <Card
-        title="Email"
-        icon="envelope"
-        href="/integrations/email"
-        horizontal
-    />
+    <Card title="Email" icon="envelope" href="/integrations/email" horizontal />
     <Card
         title="Outgoing webhooks"
         icon="webhook"
@@ -38,7 +49,14 @@ The following integrations are available for alerting:
     />
     <Card
         title="Pushover"
-        icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><path fill="currentColor" d="m280.949 172.514 74.48-9.8-72.52 163.66c12.74-.98 25.233-5.307 37.48-12.98 12.253-7.68 23.527-17.317 33.82-28.91 10.287-11.6 19.187-24.503 26.7-38.71 7.513-14.213 12.903-28.18 16.17-41.9 1.96-8.493 2.86-16.66 2.7-24.5-.167-7.84-2.21-14.7-6.13-20.58-3.92-5.88-9.883-10.617-17.89-14.21-8-3.593-18.86-5.39-32.58-5.39-16.007 0-31.77 2.613-47.29 7.84-15.513 5.227-29.887 12.823-43.12 22.79-13.227 9.96-24.74 22.373-34.54 37.24-9.8 14.86-16.823 31.763-21.07 50.71-1.633 6.207-2.613 11.187-2.94 14.94-.327 3.76-.407 6.863-.24 9.31.16 2.453.483 4.333.97 5.64a35.55 35.55 0 0 1 1.23 3.92c-16.66 0-28.83-3.35-36.51-10.05-7.673-6.693-9.55-18.37-5.63-35.03 3.92-17.313 12.823-33.81 26.71-49.49 13.88-15.68 30.373-29.483 49.48-41.41 19.113-11.92 40.02-21.39 62.72-28.41 22.707-7.027 44.84-10.54 66.4-10.54 18.947 0 34.87 2.693 47.77 8.08 12.907 5.393 22.953 12.5 30.14 21.32 7.187 8.82 11.677 19.11 13.47 30.87 1.8 11.76 1.23 24.01-1.71 36.75-3.593 15.353-10.373 30.79-20.34 46.31-9.96 15.513-22.453 29.56-37.48 42.14-15.027 12.573-32.26 22.78-51.7 30.62-19.433 7.84-40.093 11.76-61.98 11.76h-2.45l-62.23 139.65h-70.56l138.67-311.64Z"/></svg>}
+        icon={
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+                <path
+                    fill="currentColor"
+                    d="m280.949 172.514 74.48-9.8-72.52 163.66c12.74-.98 25.233-5.307 37.48-12.98 12.253-7.68 23.527-17.317 33.82-28.91 10.287-11.6 19.187-24.503 26.7-38.71 7.513-14.213 12.903-28.18 16.17-41.9 1.96-8.493 2.86-16.66 2.7-24.5-.167-7.84-2.21-14.7-6.13-20.58-3.92-5.88-9.883-10.617-17.89-14.21-8-3.593-18.86-5.39-32.58-5.39-16.007 0-31.77 2.613-47.29 7.84-15.513 5.227-29.887 12.823-43.12 22.79-13.227 9.96-24.74 22.373-34.54 37.24-9.8 14.86-16.823 31.763-21.07 50.71-1.633 6.207-2.613 11.187-2.94 14.94-.327 3.76-.407 6.863-.24 9.31.16 2.453.483 4.333.97 5.64a35.55 35.55 0 0 1 1.23 3.92c-16.66 0-28.83-3.35-36.51-10.05-7.673-6.693-9.55-18.37-5.63-35.03 3.92-17.313 12.823-33.81 26.71-49.49 13.88-15.68 30.373-29.483 49.48-41.41 19.113-11.92 40.02-21.39 62.72-28.41 22.707-7.027 44.84-10.54 66.4-10.54 18.947 0 34.87 2.693 47.77 8.08 12.907 5.393 22.953 12.5 30.14 21.32 7.187 8.82 11.677 19.11 13.47 30.87 1.8 11.76 1.23 24.01-1.71 36.75-3.593 15.353-10.373 30.79-20.34 46.31-9.96 15.513-22.453 29.56-37.48 42.14-15.027 12.573-32.26 22.78-51.7 30.62-19.433 7.84-40.093 11.76-61.98 11.76h-2.45l-62.23 139.65h-70.56l138.67-311.64Z"
+                />
+            </svg>
+        }
         href="/integrations/pushover"
         horizontal
     />
@@ -48,12 +66,7 @@ The following integrations are available for alerting:
         href="/integrations/sms"
         horizontal
     />
-    <Card
-        title="Slack"
-        icon="slack"
-        href="/integrations/slack"
-        horizontal
-    />
+    <Card title="Slack" icon="slack" href="/integrations/slack" horizontal />
     <Card
         title="Telegram"
         icon="telegram"
@@ -62,9 +75,6 @@ The following integrations are available for alerting:
     />
 </CardGroup>
 
-All integrations notify the organization owner when an issue occurs. For the SMS, Email and Outgoing Webhooks integrations, a detailed list of failed number, address or requests is provided to help you identify the issue.
-
 ---
 
-If your team is using a service not yet supported by Phare, please [contact us](mailto:support@phare.io), we'll be happy to add it to our roadmap.
-
+Is your team's favorite tool missing from this list? [Contact support](https://phare.io/contact), to have it added to the roadmap!

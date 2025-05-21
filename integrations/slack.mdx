@@ -4,25 +4,27 @@ description: 'Set up the Phare integration for Slack to receive a message in you
 icon: 'slack'
 ---
 
-The Phare integration for Slack allows you to send alerts on a Slack workspace channel.
+Keep your team in the loop with the Phare integration for Slack! Get alerts delivered directly to your team's go-to communication hub, where the conversations already happen.
 
 ## Installation
 
-To integrate Phare with your Slack workspace, browse the list of <a href="https://app.phare.io/organization/apps" rel="nofollow">available integrations</a>, select Slack, and click on the **New installation** button.
+Getting started is easy. Head over to your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>, find Slack in the list, and click the **New installation** button.
 
 <Frame>
   <img src="/images/integrations/slack/slack-installation.webp" alt="Slack installation" />
 </Frame>
 
-You will then be redirected to Slack to authorize the Phare application to send messages to your Slack workspace.
+You'll be redirected to Slack's authorization page where you can give Phare permission to send those important notifications to your workspace.
 
 ## Configuration
 
-You can configure a single Slack channel per integration, and create as many integrations as needed to receive alerts on multiple Slack channels. When installing the Phare integration for Slack you will be redirected to Slack to authorize the Phare application to send messages to your Slack workspace.
+Each Slack installation connects to one channel, but don't worry, you can create multiple integrations if you want alerts in different channels. Maybe critical issues go to #incidents while minor hiccups go to #monitoring? The choice is yours!
 
-If you are a member of multiple Slack workspaces, make sure to select the right one when authorizing the Phare application.
+<Tip>
+    Pro tip: If you belong to several Slack workspaces, double-check you're connecting to the right one during setup.
+</Tip>
 
-A default name will be used for your integration, but you can change it to anything you want. The name will be used to identify the integration in the list of integrations when configuring alert rules.
+A default name will be suggested for your integration, feel free to change it for something more descriptive that makes sense for your team, especially helpful when you're setting up multiple Slack integrations.
 
 <Frame>
   <img src="/images/integrations/slack/slack-configuration.webp" alt="Slack configuration" />
@@ -30,7 +32,7 @@ A default name will be used for your integration, but you can change it to anyth
 
 ## Receiving Slack messages
 
-When an alert rule using the Phare integration for Slack is triggered, a message will be sent to the selected Slack channel. You can find out more about alert policies in the [alerting documentation](/uptime/alerting).
+When an alert rule triggers, Phare will send an informative message to your selected Slack channel with all the details your team needs. To learn more about configuring when and how these alerts trigger, check out our [alerting documentation](/uptime/alerting).
 
 <Frame>
   <img src="/images/integrations/slack/slack-notification.webp" alt="Slack notification" />
@@ -38,4 +40,4 @@ When an alert rule using the Phare integration for Slack is triggered, a message
 
 ## Privacy
 
-Phare only shares with Slack the information required to display the notification you configured. Phare store your workspace name and identifier, as well as an access token to send messages to your Slack workspace. You can review Phare's [privacy policy](https://phare.io/legal/privacy-policy) for more information on your data are handled.
+Phare only shares the minimum information needed with Slack to deliver your notifications. Phare stores your workspace name, identifier, and an access token for sending messages. For the full details on how your data are handled, take a look at the [privacy policy](https://phare.io/legal/privacy-policy).

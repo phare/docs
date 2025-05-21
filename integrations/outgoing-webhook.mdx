@@ -1,37 +1,43 @@
 ---
-title: 'Outgoing webhook'
-description: 'Receive alerts by webhooks on third-party tools or build your own integration.'
-icon: 'webhook'
+title: "Outgoing webhook"
+description: "Receive alerts by webhooks on third-party tools or build your own integration."
+icon: "webhook"
 ---
 
-Outgoing webhooks enable Phare to communicate information to another service using HTTP callbacks. An HTTP POST request with a payload is sent to a designated URL that could be an HTTP endpoint in your own stack or a compatible third party.
+Want to build your own custom integration or connect Phare to a tool that isn’t officially supported? Outgoing webhooks are your best friend! They send HTTP callbacks with your alert data to any endpoint you specify, perfect for DIY integrations, logging or connecting to specialized systems.
 
 ## Configuration
 
-To configure an outgoing webhook, two information are required:
+Setting up an outgoing webhook is straightforward, you just need two pieces of information:
 
-- **Callback URL**: The URL where the webhook payload will be sent.
-- **Signing secret**: A secret key that will be used to sign the webhook payload, allowing you to verify that the payload was sent by Phare.
+- **Callback URL**: Where should the data be sent? This could be an endpoint in your own application or a third-party service that accepts webhooks.
+- **Signing secret**: A secret key that proves the data came from Phare and wasn't tampered with along the way.
 
-Phare generates a safe secret for you, but you can provide your own if needed.
+A secure signing secret is automatically generated for you, but you're welcome to use your own if you prefer.
 
 <Frame>
-  <img src="/images/integrations/outgoing-webhook/outgoing-webhook-installation.webp" alt="Outgoing webhooks installation" />
+    <img
+        src="/images/integrations/outgoing-webhook/outgoing-webhook-installation.webp"
+        alt="Outgoing webhooks installation"
+    />
 </Frame>
 
 ## Using the integration
 
-Once installed in one of your projects, the outgoing webhook integration can be used when creating new alert rules. A default JSON payload is pre-filled based on the alert event you selected, but you can customize the payload JSON structure to fit your needs.
+Once your webhook is set up, you can connect it to alert rules in your projects. A default JSON payload based on the alert event you've chosen will be generated, customize it as needed to fit your specific use case.
 
 <Frame>
-  <img src="/images/integrations/outgoing-webhook/outgoing-webhook-alert-rule.webp" alt="Outgoing webhooks alert rule" />
+    <img
+        src="/images/integrations/outgoing-webhook/outgoing-webhook-alert-rule.webp"
+        alt="Outgoing webhooks alert rule"
+    />
 </Frame>
 
 ## Payload customization
 
-You can use a defined set of variables in the JSON payload to customize the message sent to the webhook, with each alert event having its own set of variables. The structure of the payload is not restricted as long as it is a valid JSON object.
+Make your webhooks work exactly how you want! You can reshape the JSON payload structure any way you like (as long as it's valid JSON), and use variables to inject dynamic data from the triggering event.
 
-The list of available variables for each alert event is defined as follows:
+Each alert event type has its own set of available variables. Here's what you can use:
 
 ### Monitors
 
@@ -67,6 +73,52 @@ The list of available variables for each alert event is defined as follows:
         | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
         | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
         | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
+    </Accordion>
+    <Accordion title="Monitor Certificate Discovered">
+        | Variable      | Value                                       |
+        | :------------ | :------------------------------------------ |
+        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
+        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
+        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
+        | **$MONITOR_ID**   | Id of the monitor                           |
+        | **$MONITOR_NAME** | Name of the monitor                         |
+        | **$MONITOR_STATUS** | Status of the monitor                      |
+        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
+        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
+        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
+        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
+        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
+        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
+        | **$CERTIFICATE_SERIAL_NUMBER** | Serial number of the certificate |
+        | **$CERTIFICATE_SUBJECT_COMMON_NAME** | Common name of the certificate |
+        | **$CERTIFICATE_SUBJECT_ALTERNATIVE_NAMES** | Subject alternative names of the certificate |
+        | **$CERTIFICATE_ISSUER_COMMON_NAME** | Issuer common name of the certificate |
+        | **$CERTIFICATE_ISSUER_ORGANIZATION** | Issuer organization of the certificate |
+        | **$CERTIFICATE_NOT_BEFORE** | Not before date of the certificate |
+        | **$CERTIFICATE_NOT_AFTER** | Not after date of the certificate |
+    </Accordion>
+    <Accordion title="Monitor Certificate Expiring">
+        | Variable      | Value                                       |
+        | :------------ | :------------------------------------------ |
+        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
+        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
+        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
+        | **$MONITOR_ID**   | Id of the monitor                           |
+        | **$MONITOR_NAME** | Name of the monitor                         |
+        | **$MONITOR_STATUS** | Status of the monitor                      |
+        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
+        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
+        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
+        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
+        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
+        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
+        | **$CERTIFICATE_SERIAL_NUMBER** | Serial number of the certificate |
+        | **$CERTIFICATE_SUBJECT_COMMON_NAME** | Common name of the certificate |
+        | **$CERTIFICATE_SUBJECT_ALTERNATIVE_NAMES** | Subject alternative names of the certificate |
+        | **$CERTIFICATE_ISSUER_COMMON_NAME** | Issuer common name of the certificate |
+        | **$CERTIFICATE_ISSUER_ORGANIZATION** | Issuer organization of the certificate |
+        | **$CERTIFICATE_NOT_BEFORE** | Not before date of the certificate |
+        | **$CERTIFICATE_NOT_AFTER** | Not after date of the certificate |
     </Accordion>
 </AccordionGroup>
 
@@ -146,7 +198,7 @@ The list of available variables for each alert event is defined as follows:
         | **$INCIDENT_COMMENT_ID** | Id of the comment |
         | **$INCIDENT_COMMENT_CONTENT** | Content of the comment |
     </Accordion>
-    <Accordion title="Incident Comment Created">
+    <Accordion title="Incident Update Publish">
         | Variable      | Value                                       |
         | :------------ | :------------------------------------------ |
         | **$PROJECT_ID**   | Id of the project this incident belongs to   |
@@ -176,19 +228,24 @@ The list of available variables for each alert event is defined as follows:
     </Accordion>
 </AccordionGroup>
 
+
 ## Webhook security
 
-Outgoing webhooks sent by Phare are signed with HMAC-SHA256 to ensure that the payload is coming from Phare and has not been tampered with. The signature also includes a timestamp to prevent replay attacks.
+Trust but verify! Phare outgoing webhooks come with built-in security through HMAC-SHA256 signatures. This ensures the payloads you receive:
 
-Verifying the signature of the webhook payload is done by computing the HMAC-SHA256 of three parts concatenated in a single string with the following format:
+1. Actually came from Phare
+2. Haven't been tampered with in transit
+3. Aren't being replayed from previous requests
+
+To verify a webhook's authenticity, compute the HMAC-SHA256 of this concatenated string:
 
 ```text
 {version}.{timestamp}.{payload}
 ```
 
-The version is always `v0`, it is used to ensure backward compatibility in case of future changes to the signature algorithm. The timestamp is sent in the `X-Phare-Request-Timestamp` header and the signature of the payload is sent in the `X-Phare-Request-Signature` header.
+The version is always `v0` (this will be bumped if the algorithm ever change). You'll find the timestamp in the `X-Phare-Request-Timestamp` header and the signature in the `X-Phare-Request-Signature` header.
 
-You can find a few implementation examples below:
+Here are some code examples to help you implement verification:
 
 <CodeGroup>
 ```javascript Node.js
@@ -233,22 +290,30 @@ if ($hash === $signature) {
 ```
 </CodeGroup>
 
-<Info>You should also ensure that the timestamp is not too old to prevent replay attacks. A good practice is to check that the timestamp is not older than 5 minutes.</Info>
+<Tip>
+    Pro security tip: Always check that the timestamp isn't too old, it is recommended
+    to reject a webhook older than 5 minutes to prevent replay attacks.
+</Tip>
 
 ## Retry policy
 
-In case the webhook fails to deliver the payload to the callback URL, Phare will retry sending the payload up to five times with an exponential backoff strategy.
+Network hiccups happen, which is why Phare outgoing webhooks don't give up easily. If your endpoint doesn't respond with a 2xx status code within 30 seconds, it will be retried up to five times using an exponential backoff strategy:
 
-To be considered successful, the webhook must return a status code in the `2xx` range within 30 seconds. If the webhook fails to deliver the payload after all retries, the webhook will not be retried again.
+1. First attempt: Immediate delivery
+2. First retry: After 1 minute
+3. Second retry: After 5 minutes
+4. Third retry: After 10 minutes
+5. Final retry: After 1 hour
 
-The first webhook payload is sent immediately after the event is triggered, in case of failure, the same payload will be resented after 1 minute, then 5 minutes, 10 minutes, and finally 1 hour.
-
-The theoretical maximum time between the first request and the last retry, including the 30-second timeout is 1 hour and 18 minutes.
+This means that from first attempt to last retry, your webhook could arrive anytime within a 1 hour and 18 minute window (including timeouts).
 
 ## Debugging
 
-To help you troubleshoot issues with your outgoing webhooks, Phare provides a log of all the requests sent to your callback URL including request and response details.
+Webhooks not working as expected? Logs are available with the request and response details making troubleshooting a breeze, you only need to click the row you would like to inspect.
 
 <Frame>
-  <img src="/images/integrations/outgoing-webhook/outgoing-webhook-logs.webp" alt="Outgoing webhooks logs" />
+    <img
+        src="/images/integrations/outgoing-webhook/outgoing-webhook-logs.webp"
+        alt="Outgoing webhooks logs"
+    />
 </Frame>

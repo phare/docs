@@ -4,13 +4,16 @@ description: 'Set up the Phare integration with Pushover to receive alerts on yo
 icon: 'p'
 ---
 
-The Pushover integration allows you to send alert on your preferred device using the Pushover app. You can find and configure it in the <a href="https://app.phare.io/organization/apps" rel="nofollow">integration</a> section of your dashboard.
+Want your monitoring alerts delivered straight to your pocket? The Pushover integration lets you receive instant notifications on your phone, tablet, or desktop. Configure it in your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>.
 
 ## Pre-requisites
 
-In order to use the Pushover integration, you need to have a Pushover account and create an application on the Pushover website to obtain an API Key.
+Before you can start receiving Pushover notifications from Phare, you'll need two things:
 
-You can find your user key in the [Pushover dashboard](https://pushover.net/) and the link to [create a new application](https://pushover.net/apps/build) at the bottom of your dashboard page. You are free to configure the application as you wish, or you can copy the following settings:
+1. A Pushover account (they have a one-time purchase model, no subscriptions!)
+2. A Pushover application set up to connect with Phare
+
+You can find your user key in the [Pushover dashboard](https://pushover.net/), and create a new application via the link at the bottom of that page. Feel free to customize your app however you like, or use these ready-made settings:
 
 - Name: Phare
 - Description: Receive notifications from Phare.io
@@ -23,7 +26,7 @@ You can find your user key in the [Pushover dashboard](https://pushover.net/) an
 
 ## Configuration
 
-To configure the Pushover integration in Phare, you need to provide your user key and the API key you obtained when creating the application.
+Setting up the integration is simple, just connect the dots between Phare and Pushover by adding your user key and the API key from your newly created Pushover application.
 
 <Frame>
   <img src="/images/integrations/pushover/pushover-configuration.webp" alt="Pushover configuration" />
@@ -31,9 +34,13 @@ To configure the Pushover integration in Phare, you need to provide your user ke
 
 ## Usage
 
-Once the integration is configured, you can select it as a notification channel when creating or editing alert rules. Each alert rule can specify a Pushover priority, allowing fine-grained control over the priority of each notification.
+With everything connected, you can choose Pushover as a notification channel when creating or editing alert rules. One of the coolest features? You can set different priority levels for different types of alerts, making that 3AM wake-up call reserved for truly critical issues.
 
-Alerts configured with the `Emergency` priority will require two additional parameters: `retry` and `expire`. These parameters are used to resend the notification if it's not acknowledged within the specified time frame and their behavior is [documented in the Pushover documentation](https://pushover.net/api#priority).
+If you choose the `Emergency` priority level, you'll need to specify two additional parameters:
+- `retry`: How often (in seconds) the alert should repeat
+- `expire`: How long (in seconds) the alert should continue trying before giving up
+
+These parameters help ensure critical alerts don't go unnoticed, and you can learn more about them in the [Pushover API documentation](https://pushover.net/api#priority).
 
 <Frame>
   <img src="/images/integrations/pushover/pushover-alert-rule.webp" alt="Pushover alert rule configuration" />

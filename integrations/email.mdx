@@ -1,25 +1,28 @@
 ---
-title: 'Email'
-description: 'Set up the Phare email integration to receive alerts when your website or server is down.'
-icon: 'envelope'
+title: "Email"
+description: "Set up the Phare email integration to receive alerts when your website or server is down."
+icon: "envelope"
 ---
 
-The Email integration allows you to send alert on any of your team members' emails. You can find and configure it in the <a href="https://app.phare.io/organization/apps" rel="nofollow">integration</a> section of your dashboard.
+Good old email, still the backbone of professional communications! Phare's Email integration makes sure critical alerts land right in your team's inboxes. Set it up in the <a href="https://app.phare.io/organization/apps" rel="nofollow">integration section</a> of your dashboard.
 
 ## Email validation
 
-To avoid spam and abuse, emails can only be sent to one of your registered team member's email. Support for generic email addresses will be added in the future.
+To keep things secure and spam-free, only email addresses belonging to registered team members can receive alerts. Don't worry, support for generic addresses and distribution lists is on the roadmap, and you can [contact support](https://phare.io/contact) if you need a workaround in the meantime.
 
 ## Configuration
 
-Up to 25 team members can be configured to receive alerts for each Email integration.
+You can include up to 25 team members in each Email integration. Need to notify different groups for different alerts? Just create multiple Email integrations with the right people in each.
 
 ## Receiving Emails
 
-All alert emails are sent from the following email address:
+All alerts come from the following address:
 
 - **alerts@phare.io**
 
-Phare's rely on two SMTP providers to send emails for reliability and redundancy:
+Email delivery is no joke! That's why Phare uses not one, but two reliable SMTP providers for failover and redundancy:
+
 - [Scaleway](https://www.scaleway.com/)
 - [Brevo](https://www.brevo.com/)
+
+This dual-provider approach means your critical alerts have a better chance of reaching you, even in the rare event one provider is experiencing issues.
