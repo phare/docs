@@ -16,19 +16,16 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "introduction",
-              "getting-started",
-              "user-management"
-            ]
+            "pages": ["introduction", "getting-started", "user-management"]
           },
           {
             "group": "Uptime",
             "pages": [
               "uptime/overview",
               "uptime/monitors",
-              "uptime/status-pages",
               "uptime/incident-management",
+              "uptime/status-pages",
+              "uptime/certificates",
               "uptime/alerting"
             ]
           },
@@ -53,9 +50,7 @@
         "groups": [
           {
             "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "pages": ["api-reference/introduction"]
           },
           {
             "group": "Platform",
@@ -143,9 +138,7 @@
     "href": "https://phare.io"
   },
   "api": {
-    "openapi": [
-      "openapi.json"
-    ]
+    "openapi": ["openapi.json"]
   },
   "navbar": {
     "links": [
