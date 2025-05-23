@@ -18,19 +18,6 @@ Setting up integrations is a breeze, visit your <a href="https://app.phare.io/or
 
 Alert integrations are notification channel that can be used when configuring [alert rules](/uptime/alerting). By choosing the right integration for each alert rule, you can make sure the right people get notified on their preferred platforms.
 
-All alert integrations are designed to be resilient and deliver notifications during critical moments. An aggressive retry strategy ensures that if any notification fails to send, it will be retried until it goes through. This means you can rest easy knowing that your team will be alerted, even if there are temporary hiccups in the connection or with third-party services. In case a notification still fails after multiple attempts, Phare will log the error and notify the organization owner by email, so they can take action if needed.
-
-Email are sent through two different SMTP providers, [Scaleway](https://www.scaleway.com/) and [Brevo](https://www.brevo.com/), ensuring redundancy and reliability. If one provider experiences issues, the other will step in to deliver your alerts.
-
-<Frame>
-    <img
-        src="/images/integrations/overview/alert-integration-logs.webp"
-        alt="Phare alert integrations logs"
-    />
-</Frame>
-
-Detailed logs of all sent notifications are available in the Phare dashboard, so you can easily track the status of your alerts and troubleshoot any issues.
-
 Here's the list of available alert integrations:
 
 <CardGroup cols={2}>
@@ -74,6 +61,23 @@ Here's the list of available alert integrations:
         horizontal
     />
 </CardGroup>
+
+### Resilience
+
+All alert integrations are designed to be resilient and deliver notifications during critical moments. An aggressive retry strategy ensures that if any notification fails to send, it will be retried until it goes through. This means you can rest easy knowing that your team will be alerted, even if there are temporary hiccups in the connection or with third-party services. In case a notification still fails after multiple attempts, Phare will log the error and notify the organization owner by email, so they can take action if needed.
+
+Email are sent through two different SMTP providers, [Scaleway](https://www.scaleway.com/) and [Brevo](https://www.brevo.com/), ensuring redundancy and reliability. If one provider experiences issues, the other will step in to deliver your alerts.
+
+### Detailed logs
+
+<Frame>
+    <img
+        src="/images/integrations/overview/alert-integration-logs.webp"
+        alt="Phare alert integrations logs"
+    />
+</Frame>
+
+Detailed logs of all sent notifications are available in the Phare dashboard, so you can easily track the status of your alerts and troubleshoot any issues.
 
 ---
 

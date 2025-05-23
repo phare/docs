@@ -5,9 +5,26 @@ description: "Learn how to manage the lifecycle of an incident with Phare Uptime
 
 When things go wrong, having a clear process makes all the difference. Phare's incident management system takes care of the entire incident lifecycle automatically, from the moment a problem is detected to when everything's back to normal.
 
-## Incident creation
+## Programmatic incidents
 
-When a monitor detects trouble (respecting your confirmation settings and any keyword/SSL checks), Phare springs into action by creating an incident. Right away, your team gets notified through your default alert rules—no manual intervention required.
+When a monitor detects trouble (respecting your confirmation settings and any keyword/SSL checks), Phare springs into action by creating an incident. Each incident is automatically linked to the affected monitor and includes detailed information about what went wrong. Right away, your team gets notified through your configured alert rules, no manual intervention required.
+
+Programmatic incidents track the entire lifecycle from detection through resolution, giving you a complete picture of what happened during the outage.
+
+## Manual incidents
+
+Sometimes you need to create an incident even when your monitors haven't detected a problem. Perhaps a customer reported an issue with a service you're not actively monitoring, or you want to proactively communicate about planned maintenance.
+
+Phare makes it easy to create incidents manually:
+
+1. Select the affected monitor(s)
+2. Set the impact level
+3. Add a descriptive title
+4. Include details about the situation
+
+Manual incidents follow the same lifecycle as programmatic ones, but you'll need to resolve them manually when the issue is fixed. This gives you full control over the incident's duration and communication timeline.
+
+Manual incidents are especially useful for planned maintenance, allowing you to notify users in advance about expected downtime and keep them updated throughout the process.
 
 ## Incident recovery
 
@@ -28,13 +45,44 @@ Impact levels help your team prioritize responses internally and keep users info
 
 ## Event timeline
 
-The event timeline gives you the full picture of what happened during an incident. You can see every check status, which alert rules fired, and follow the incident's progression from start to finish.
-
-Team members can add comments to share insights or document solutions, helping everyone resolve issues faster. The rich text editor supports Markdown, making it easy to include formatted text, code snippets, or links to relevant resources.
-
 <Frame>
     <img
         src="/images/uptime/incident-management/incident-timeline.webp"
         alt="Incident event timeline"
     />
 </Frame>
+
+The event timeline gives you the full picture of what happened during an incident. You can see every region status, which alert rules fired, and follow the incident's progression from start to finish. This chronological view helps with post-incident analysis and improves future response procedures.
+
+## Incident comments
+
+Team members can add private comments to share insights or document solutions, helping everyone resolve issues faster. These internal notes are perfect for:
+
+- Documenting troubleshooting steps
+- Sharing relevant links to logs or dashboards
+- Coordinating response efforts between team members
+- Recording root cause analysis findings
+
+The rich text editor supports Markdown, making it easy to include formatted text, code snippets, or links to relevant resources. Comments are only visible to your team members and never appear on public status pages.
+
+Each comment is timestamped and attributed to its author, creating a clear record of who did what during incident response.
+
+## Incident updates
+
+<Frame>
+    <img
+        src="/images/uptime/incident-management/uptime-status-pages-publish-update.webp"
+        alt="Publish an incident update"
+    />
+</Frame>
+
+While comments help your team collaborate privately, incident updates are designed for external communication. These updates allow you to keep your users informed about:
+
+- What's happening with the incident
+- What you're doing to fix it
+- When they can expect resolution
+- Workarounds they can use in the meantime
+
+Each update allow you to communicate progress as you mitigate the issue, and automatically published to your connected status pages, helping maintain transparency with your users during outages.
+
+Consistent, clear communication during incidents builds trust with your users, they'll appreciate knowing you're on top of the situation even when things aren't working perfectly.

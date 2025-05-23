@@ -20,7 +20,9 @@ Monitors are the backbone of Phare Uptime, they're your tireless digital assista
 
 ### HTTP(s)
 
-When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keep an eye on your SSL certificates too, making sure it's valid and well configured.
+When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keeps an eye on your SSL certificates too, making sure they're valid and well configured.
+
+You can find more details about the [HTTP(s) monitoring settings](#configuration-options-for-https) below.
 
 ### TCP
 
@@ -36,11 +38,79 @@ Nobody likes false alarms. That's why Phare allows double-checks, or more, befor
 
 ## Regions
 
-With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommend to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
+With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
 
 ## Alert Rules
 
-Phare alert rules system allows you to decide which events trigger notifications. There's a few alert event that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
+Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
+
+## Configuration options for HTTP(s)
+
+### Method
+
+When creating HTTP monitors, you can choose which method to use for your requests. Phare currently supports:
+
+- **HEAD**: Ideal for quick availability checks. Retrieves only headers, saving bandwidth and processing time, perfect for frequent checks on large websites.
+- **GET**: The standard choice for most monitoring. Gets the full page content, allowing you to verify text content and properly test APIs content or websites that do not support HEAD requests.
+- **OPTIONS**: Useful for checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
+
+### User agent
+
+Every HTTP request from Phare carries the following user-agent signature:
+
+> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
+
+If you added a `secret-value` to the user agent for firewall filtering, it will look like this:
+
+> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=secret-value)`
+
+### Headers
+
+Need to get past authentication or test an API with specific requirements? Phare lets you add custom headers to your HTTP monitors. This feature opens up possibilities for:
+
+- Testing APIs with authorization tokens
+- Bypassing basic authentication on staging environments
+- Setting content negotiation preferences
+- Adding custom tracking identifiers
+
+<Info>
+  To prevent abuse, it is not possible to set a custom user agent headers, with the exception of adding a secret value for firewall filtering.
+</Info>
+
+## Suggestions
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/uptime-monitor-suggestions.webp"
+        alt="Phare Uptime monitoring suggestions"
+    />
+</Frame>
+
+As you set up your monitors, Phare's suggestion system analyzes your configuration and offers improvements to boost reliability, and reduce false positives:
+
+- Adding more monitoring regions for better global coverage
+- Increasing confirmation counts to prevent false positives
+- Alerting you to redirections that might impact performance reporting
+- Recommending more frequent checks for critical services
+
+## Statistics
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/uptime-monitoring-statistics.webp"
+        alt="Phare Uptime monitoring statistics"
+    />
+</Frame>
+
+Each monitor will show detailed statistics to help you understand your service performance at a glance:
+
+- **Performance charts** appear shortly after creating a monitor, showing response time trends
+- View the performance data by region to spot geographical performance variations
+- Zoom in on specific timeframes by clicking and dragging to select portions of the chart
+- Track key metrics including average response time, total downtime, and SLA percentages
+- Historical data from 24 hours up to 90 days lets you spot both immediate issues and long-term trends
+
+Be aware that charts are rendered leveraging [downsampling techniques](https://phare.io/blog/downsampling-time-series-data/) to present meaningful visualizations without overwhelming your browser. This is why you won't see every single data point on the chart.
 
 ## Firewall protection
 
@@ -50,25 +120,15 @@ The easiest way to filter the Phare Uptime monitoring agent is to use the `User-
 
 Need something more robust? [Contact support](https://phare.io/contact).
 
-## User agent
-
-Every HTTP request from Phare carries this user-agent signature:
-
-> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
-
-If you added a `secret-value` to the user agent, it will look like this:
-
-> `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=secret-value)`
-
-## Need help deciding which settings are right for you?
-
-If you're unsure about the best settings for your monitoring needs, you can find the [Best practices to configure an uptime monitoring service](https://phare.io/blog/best-practices-to-configure-an-uptime-monitoring-service/) on the Phare blog.
-
 ## Private monitoring agent
 
 Need specialized monitoring for complex requirements, large-scale operations, or access through private VPNs? A private monitoring agent can be setup in your preferred region.
 
 [Let's talk](https://phare.io/contact) about your specific needs.
+
+## Good practices
+
+If you're unsure about the best settings for your monitoring needs, you can find the [Best practices to configure an uptime monitoring service](https://phare.io/blog/best-practices-to-configure-an-uptime-monitoring-service/) on the Phare blog.
 
 ## Limits
 
