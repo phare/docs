@@ -5,7 +5,21 @@ description: "Follow the updates and improvements made to the Phare platform in 
 ---
 
 <Update label="May 2025">
-     <Frame>
+    <Frame>
+        <img src="/images/changelog/86-new-monitoring-options.webp" alt="New monitoring options" />
+    </Frame>
+
+    ## TLS over TCP, and new monitoring options
+
+    Monitoring secure TCP services with a TLS connection is now possible, allowing you to monitor a wider range of services. Certificates discovered during TCP monitoring are now tracked, and you can set up alert rules to be notified when they are about to expire.
+
+    All types of monitors can now skip SSL/TLS certificate validation, which is useful for testing services with self-signed certificates.
+
+    HTTP(S) monitors can now be configured to fail when facing a 3xx redirect response.
+
+    <br/>
+
+    <Frame>
         <img src="/images/changelog/85-design-refresh.webp" alt="Phare design refresh" />
     </Frame>
 
