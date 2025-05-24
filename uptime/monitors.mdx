@@ -26,7 +26,7 @@ You can find more details about the [HTTP(s) monitoring settings](#configuration
 
 ### TCP
 
-For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly.
+For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly. Phare currently supports plain and TLS connections.
 
 ## Interval
 
@@ -132,10 +132,9 @@ If you're unsure about the best settings for your monitoring needs, you can find
 
 ## Limits
 
-Phare's monitoring infrastructure operates at impressive scale, but comes with a few constraints:
+Phare's monitoring infrastructure operates at an impressive scale, but comes with a few constraints:
 
 - **No IP filtering**: The monitoring agent uses Bunny.net's shared IP range, making IP filtering unreliable.
-- **Strict HTTPS validation**: HTTPS websites must have valid SSL certificates—no exceptions.
 - **Certain ports restricted**: TCP monitoring doesn't support ports 25, 465, 587, and 2525.
 
 If these limitations are showstoppers for you, [reach out](https://phare.io/contact) to discuss alternatives.
