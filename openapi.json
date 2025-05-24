@@ -1588,7 +1588,7 @@
                                 ],
                                 "properties": {
                                     "method": {
-                                        "description": "Request method for http protocol",
+                                        "description": "HTTP request method",
                                         "type": "string",
                                         "enum": [
                                             "HEAD",
@@ -1597,10 +1597,24 @@
                                         ]
                                     },
                                     "url": {
-                                        "description": "Request url for http protocol",
+                                        "description": "HTTP request url",
                                         "type": "string",
                                         "maximum": 255,
                                         "example": "https://docs.phare.io/introduction"
+                                    },
+                                    "tls_skip_verify": {
+                                        "description": "Skip SSL verification",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "example": false,
+                                        "nullable": true
+                                    },
+                                    "follow_redirects": {
+                                        "description": "Follow redirects",
+                                        "type": "boolean",
+                                        "default": true,
+                                        "example": true,
+                                        "nullable": true
                                     },
                                     "keyword": {
                                         "description": "Response keyword that must be present",
@@ -1639,24 +1653,38 @@
                                 "type": "object"
                             },
                             {
-                                "title": "TCP & UPD protocol",
+                                "title": "TCP protocol",
                                 "required": [
                                     "host",
                                     "port",
-                                    "message"
+                                    "connection"
                                 ],
                                 "properties": {
                                     "host": {
-                                        "description": "Request host for tcp & upd protocol",
+                                        "description": "TCP request hostname or IP address",
                                         "type": "string",
                                         "example": "8.8.8.8"
                                     },
                                     "port": {
-                                        "description": "Request port for tcp & upd protocol",
+                                        "description": "TCP request port",
                                         "type": "string",
-                                        "maximum": 65536,
-                                        "minimum": 0,
                                         "example": "80"
+                                    },
+                                    "connection": {
+                                        "description": "Connection type for TCP protocol",
+                                        "type": "string",
+                                        "enum": [
+                                            "plain",
+                                            "tls"
+                                        ],
+                                        "example": "plain"
+                                    },
+                                    "tls_skip_verify": {
+                                        "description": "Skip TLS verification",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "example": false,
+                                        "nullable": true
                                     }
                                 },
                                 "type": "object"
