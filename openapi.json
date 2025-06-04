@@ -1278,12 +1278,6 @@
                     },
                     {
                         "properties": {
-                            "last_checked_at": {
-                                "description": "Date of the last monitoring check",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
-                            },
                             "created_at": {
                                 "description": "Date of creation for the entity",
                                 "type": "string",
