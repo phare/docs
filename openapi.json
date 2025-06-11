@@ -1665,13 +1665,7 @@
                                         "example": "80"
                                     },
                                     "connection": {
-                                        "description": "Connection type for TCP protocol",
-                                        "type": "string",
-                                        "enum": [
-                                            "plain",
-                                            "tls"
-                                        ],
-                                        "example": "plain"
+                                        "$ref": "#/components/schemas/Uptime.Monitor.ConnectionEnum"
                                     },
                                     "tls_skip_verify": {
                                         "description": "Skip TLS verification",
@@ -1721,6 +1715,116 @@
                             30000
                         ],
                         "example": 7000
+                    },
+                    "success_assertions": {
+                        "description": "List of assertions that must be true for the check to be considered successful",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "title": "Status code assertion",
+                                    "required": [
+                                        "type",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "status_code"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "in",
+                                                "not_in"
+                                            ],
+                                            "example": "in"
+                                        },
+                                        "value": {
+                                            "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
+                                            "type": "string",
+                                            "example": "2xx,30x,418"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "title": "Response header assertion",
+                                    "required": [
+                                        "type",
+                                        "selector",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "response_header"
+                                            ]
+                                        },
+                                        "selector": {
+                                            "description": "The name of the header to assert",
+                                            "type": "string",
+                                            "example": "Content-Type"
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "equals",
+                                                "not_equals"
+                                            ],
+                                            "example": "equals"
+                                        },
+                                        "value": {
+                                            "description": "The value of the header to assert",
+                                            "type": "string",
+                                            "example": "application/json"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "title": "Response body assertion",
+                                    "required": [
+                                        "type",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "response_body"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "contains",
+                                                "not_contains"
+                                            ],
+                                            "example": "contains"
+                                        },
+                                        "value": {
+                                            "description": "A word or sentence to check in the response body",
+                                            "type": "string",
+                                            "example": "Hello, World!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
                     },
                     "incident_confirmations": {
                         "description": "Number of uninterrupted failed checks required to create an incident",
@@ -1917,6 +2021,13 @@
                     "ongoing",
                     "recovering",
                     "recovered"
+                ]
+            },
+            "Uptime.Monitor.ConnectionEnum": {
+                "type": "string",
+                "enum": [
+                    "plain",
+                    "tls"
                 ]
             },
             "Uptime.Monitor.ProtocolEnum": {
