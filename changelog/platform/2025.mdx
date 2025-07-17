@@ -5,6 +5,20 @@ description: "Follow the updates and improvements made to the Phare platform in 
 ---
 
 <Update label="June 2025">
+    ## Support for brotli and zstandard compression
+
+    Phare's monitoring agent (A.K.A Beacon) now supports Brotli and Zstandard compression algorithms. The deflate implementation has also been updated to be compatible with the RFC 1950 standard on top of the existing RFC 1951 implementation.
+
+    The monitoring agent `Content-Encoding` header as been updated to reflect this change:
+
+    ```text
+    Content-Encoding: gzip, deflate, br, zstd
+    ```
+
+    This should save a few bytes over the years ✌️
+
+    <br/>
+
     <Frame>
         <img src="/images/changelog/90-multi-monitor-incidents.webp" alt="Multi-monitor incidents" />
     </Frame>
