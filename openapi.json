@@ -1161,11 +1161,6 @@
                                 "type": "number",
                                 "example": 1
                             },
-                            "uptime_monitor_id": {
-                                "description": "Parent uptime monitor ID",
-                                "type": "number",
-                                "example": 1
-                            },
                             "title": {
                                 "description": "Incident title",
                                 "type": "string",
@@ -1608,12 +1603,6 @@
                                         "type": "boolean",
                                         "default": true,
                                         "example": true,
-                                        "nullable": true
-                                    },
-                                    "keyword": {
-                                        "description": "Response keyword that must be present",
-                                        "type": "string",
-                                        "example": "pong",
                                         "nullable": true
                                     },
                                     "user_agent_secret": {
