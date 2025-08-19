@@ -1966,6 +1966,16 @@
                                 }
                             ]
                         }
+                    },
+                    "timeframe": {
+                        "description": "Number of days of status and incident history to display.",
+                        "type": "number",
+                        "enum": [
+                            30,
+                            60,
+                            90
+                        ],
+                        "example": 90
                     }
                 },
                 "type": "object"
