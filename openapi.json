@@ -1582,6 +1582,9 @@
                                         "enum": [
                                             "HEAD",
                                             "GET",
+                                            "POST",
+                                            "PUT",
+                                            "PATCH",
                                             "OPTIONS"
                                         ]
                                     },
@@ -1596,6 +1599,13 @@
                                         "type": "boolean",
                                         "default": false,
                                         "example": false,
+                                        "nullable": true
+                                    },
+                                    "body": {
+                                        "description": "HTTP request body for POST, PUT and PATCH requests",
+                                        "type": "string",
+                                        "maximum": 500,
+                                        "example": "Hello, World!",
                                         "nullable": true
                                     },
                                     "follow_redirects": {
