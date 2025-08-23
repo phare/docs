@@ -19,33 +19,11 @@ Monitors are the backbone of Phare Uptime, they're your tireless digital assista
     ></iframe>
 </Frame>
 
-### HTTP(s)
+## HTTP(s)
 
 When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keeps an eye on your SSL certificates too, making sure they're valid and well configured.
 
 You can find more details about the [HTTP(s) monitoring settings](#configuration-options-for-https) below.
-
-### TCP
-
-For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly. Phare currently supports plain and TLS connections.
-
-## Interval
-
-You decide how often Phare checks on your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anything between a quick 30 seconds or a relaxed 1 hour.
-
-## Confirmations & recovery
-
-Nobody likes false alarms. That's why Phare allows double-checks, or more, before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
-
-## Regions
-
-With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
-
-## Alert Rules
-
-Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
-
-## Configuration options for HTTP(s)
 
 ### Method
 
@@ -88,7 +66,7 @@ Need to get past authentication or test an API with specific requirements? Phare
 - Adding custom tracking identifiers
 
 <Info>
-  To prevent abuse, it is not possible to set a custom user agent headers, with the exception of adding a secret value for firewall filtering.
+    To prevent abuse, it is not possible to set a custom user agent headers, with the exception of adding a secret value for firewall filtering.
 </Info>
 
 ### Success assertions
@@ -107,8 +85,32 @@ Phare allows you to define specific success assertions to ensure your service is
 - **Response body**: Look for specific text or patterns in the response body to confirm the service is delivering the expected content. Not available with `HEAD` and `OPTIONS` methods.
 
 <Info>
-  Response body and response header assertions are performed case-insensitively.
+    Response body and response header assertions are performed case-insensitively.
 </Info>
+
+## TCP
+
+For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly. Phare currently supports plain and TLS connections.
+
+### Connection
+
+Phare supports plain and TLS connections for TCP monitoring. You can choose the appropriate option based on your service requirements.
+
+## Interval
+
+You decide how often Phare checks on your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anything between a quick 30 seconds or a relaxed 1 hour.
+
+## Confirmations & recovery
+
+Nobody likes false alarms. That's why Phare allows double-checks, or more, before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
+
+## Regions
+
+With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
+
+## Alert Rules
+
+Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
 
 ## Suggestions
 
