@@ -53,7 +53,20 @@ When creating HTTP monitors, you can choose which method to use for your request
 
 - **HEAD**: Ideal for quick availability checks. Retrieves only headers, saving bandwidth and processing time, perfect for frequent checks on large websites.
 - **GET**: The standard choice for most monitoring. Gets the full page content, allowing you to verify text content and properly test APIs content or websites that do not support HEAD requests.
-- **OPTIONS**: Useful for checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
+- **POST**, **PUT**, **PATCH**:For testing form submissions or API endpoints that require data input. You can customize the request body to simulate real user interactions or API calls.
+- **OPTIONS**: For checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
+
+When sending a request body with the POST, PUT or PATCH methods, a `Content-Type` header of your choice will be automatically added. You are free to change it if needed.
+
+### Skip SSL verification
+
+By default, Phare performs strict SSL certificate validation to ensure secure connections on all `https://` endpoints. However, if you're monitoring a staging environment or a server with a self-signed certificate, you can choose to skip SSL verification. When this option is enabled, Phare will ignare any SSL issues such as certificate expiration, intermediate certificate chain, or OCSP revocation status.
+
+### Follow redirects
+
+Phare can automatically follow HTTP redirects (3xx status codes) when this option is enabled. This is particularly useful to test scenarios where redirection is expected, or when monitoring URLs that may change over time. If disabled, Phare will report the initial redirect response, allowing you to monitor the redirection behavior itself.
+
+When enabled, the Phare monitoring agent will follow up to 5 redirects before failing the check. Each redirect is counted in the chosen timeout limit, so ensure your timeout is sufficient to accommodate all potential redirects.
 
 ### User agent
 
@@ -76,6 +89,25 @@ Need to get past authentication or test an API with specific requirements? Phare
 
 <Info>
   To prevent abuse, it is not possible to set a custom user agent headers, with the exception of adding a secret value for firewall filtering.
+</Info>
+
+### Success assertions
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/success-assertions.webp"
+        alt="Phare Uptime success assertions"
+    />
+</Frame>
+
+Phare allows you to define specific success assertions to ensure your service is not only up but also functioning correctly. You can choose to validate:
+
+- **Status code**: Specify exact status codes (`200`) or use wildcards (`2xx`), you can also combine multiple codes (`200,3xx`).
+- **Response header**: Check for the presence of specific header against a value of your choice.
+- **Response body**: Look for specific text or patterns in the response body to confirm the service is delivering the expected content. Not available with `HEAD` and `OPTIONS` methods.
+
+<Info>
+  Response body and response header assertions are performed case-insensitively.
 </Info>
 
 ## Suggestions
