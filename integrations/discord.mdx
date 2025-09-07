@@ -17,3 +17,38 @@ Need alerts in different Discord channels? No problem! You can create multiple D
 </Tip>
 
 A name will be automatically suggested for your integration, feel free to give it a more descriptive name that helps you identify it when setting up alert rules later, especially if you're connecting to multiple channels or servers.
+
+## Reinstallation
+
+If the integration is experiencing error or if an update is available, you will be able to reinstall your Discord integration with a single click. This will redirect you to Discord to reauthorize the Phare app and select the right server, channel and up-to-date permissions. Your alert rules will remain unchanged.
+
+<Frame>
+    <img
+        src="/images/integrations/discord/update-integration.webp"
+        alt="Update the Phare integration for Discord"
+    />
+</Frame>
+
+## Threads & permissions
+
+To keep your Discord channels organized, Phare creates a new thread for each incident. This way, all messages related to a specific incident are grouped together, making it easy to track the status and updates without cluttering the main channel.
+
+<Frame>
+    <img
+        src="/images/integrations/discord/discord-threads.webp"
+        alt="Phare incident threads on Discord"
+    />
+</Frame>
+
+This feature can only work if you allow the following permissions during the integration setup:
+
+- **View Channels**: Allows the Phare bot to join the channel you choose for the incoming-webhook
+- **Send Messages**: Allows the Phare bot to send messages to the channel
+- **Send Messages in Threads**: Allows the Phare bot to send messages in public threads
+- **Create Public Threads**: Allows the Phare bot to create public threads in the channel
+
+If you choose not to grant any of these permissions, the integration will send alert notifications directly to the channel instead of creating threads.
+
+## Private Channels
+
+If you wish to receive alerts in a private channel, the Phare bot must be invited to that channel. You can do this by mentioning the bot in the channel or by using the "Invite to Channel" option in Discord.
