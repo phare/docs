@@ -42,3 +42,32 @@ When an alert rule triggers, Phare will send an informative message to your sele
 ## Privacy
 
 Phare only shares the minimum information needed with Slack to deliver your notifications. Phare stores your workspace name, identifier, and an access token for sending messages. For the full details on how your data is handled, take a look at the [privacy policy](https://phare.io/legal/privacy-policy).
+
+## Reinstallation
+
+If the integration is experiencing error or if an update is available, you will be able to reinstall your Phare integration for Slack with a single click. This will redirect you to Slack to reauthorize the Phare integration and select the right server, channel and up-to-date permissions. Your alert rules will remain unchanged.
+
+<Frame>
+    <img
+        src="/images/integrations/slack/update-integration.webp"
+        alt="Update the Phare integration for Slack"
+    />
+</Frame>
+
+
+## Threads & private channels
+
+To keep your Slack channels organized, Phare creates a new thread for each incident. This way, all messages related to a specific incident are grouped together, making it easy to track the status and updates without cluttering the main channel.
+
+<Frame>
+    <img
+        src="/images/integrations/slack/slack-threads.webp"
+        alt="Phare incident threads on Slack"
+    />
+</Frame>
+
+If you wish to receive alerts as threads in a private channel, the Phare bot must be invited to that channel. You can do this by inviting the Phare bot to your private channel with the following command:
+
+```
+/invite @phare
+```
