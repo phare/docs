@@ -35,6 +35,7 @@
               "integrations/overview",
               "integrations/discord",
               "integrations/email",
+              "integrations/ntfy",
               "integrations/outgoing-webhook",
               "integrations/pushover",
               "integrations/sms",

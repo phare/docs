@@ -1,0 +1,28 @@
+---
+title: "Integrate Ntfy.sh with Phare"
+description: "Set up the Phare integration with Ntfy.sh to receive alerts on your preferred device."
+sidebarTitle: "Ntfy"
+icon: "terminal"
+---
+
+Ntfy is a simple and open-source notification service that allows you to receive push notifications on your devices. With the Phare integration for Ntfy, you can get real-time alerts about your monitored services directly to your preferred platform. Configure it in your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>.
+
+## Pre-requisites
+
+Before you can start receiving Ntfy notifications from Phare, you'll need to have installed the app on your device or create an account on the [web client](https://ntfy.sh/). Once you're set up, you can create a topic on which you wish to receive notifications.
+
+<Warning>Keep in mind that all Ntfy topics are public, so choose a unique name to avoid unwanted noise, or create your own server protected with an access token.</Warning>
+
+## Configuration
+
+To configure the integration in Phare, head over to your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>, find Ntfy in the list, and click the **New installation** button. Fill in the topic you created earlier and custom server hostname if required.
+
+<Frame>
+  <img src="/images/integrations/ntfy/ntfy-configuration.webp" alt="Ntfy configuration" />
+</Frame>
+
+## Usage
+
+With everything connected, you can choose Ntfy as a notification channel when creating or editing alert rules. The best part? You can set different priority levels for different types of alerts, making that 3AM wake-up notification reserved for truly critical issues.
+
+You can learn more about Ntfy priority levels in the [Ntfy documentation](https://docs.ntfy.sh/publish/#message-priority).
