@@ -1998,6 +1998,8 @@
                     "uptime.monitor_certificate.discovered",
                     "uptime.monitor_certificate.expiring",
                     "uptime.incident.created",
+                    "uptime.incident.propagated",
+                    "uptime.incident.partially_recovered",
                     "uptime.incident.recovered",
                     "uptime.incident_comment.created",
                     "uptime.incident_update.published"
@@ -2055,6 +2057,7 @@
                     "eu-deu-fra",
                     "eu-gbr-lhr",
                     "eu-swe-arn",
+                    "ng-nld-ams",
                     "na-mex-mex",
                     "na-usa-iad",
                     "na-usa-sea",
