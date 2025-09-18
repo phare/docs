@@ -30,20 +30,49 @@ Think of alert rules as your notification command center. Each rule defines four
 
 Additional settings can be configured depending on the event type and integration you choose.
 
-### Event
+### Events
 
-Phare can alert you of various events, including:
+Phare can alert you of various events, each with their own configuration options and utility. You choose which events matter most to your team, and can set up multiple alert rules for a single event type.
 
-- Monitor created
-- Monitor deleted
-- Monitor certificate updated
-- Monitor certificate expiring
-- Incident created
-- Incident recovered
-- Incident comment created
-- Incident update published
+#### > Monitor created
 
-You choose which events matter most to your team, and can set up multiple alert rules for a single event type.
+Sent when a new monitor is created, great for logging or auditing purposes.
+
+#### > Monitor deleted
+
+Sent when a monitor is deleted, great for logging or auditing purposes.
+
+#### > Monitor certificate updated
+
+Sent when a monitor's SSL certificate is updated, useful for tracking changes and certificate renewal confirmation.
+
+#### > Monitor certificate expiring
+
+Sent when a monitor's SSL certificate is nearing expiration, based on a configurable threshold.
+
+#### > Incident created
+
+Sent when a new incident is created, this is the main alert for incident management.
+
+#### > Incident propagated
+
+Sent when an incident propagate to an additional monitor. Requires smart incident merging to be enabled.
+
+#### > Incident partially recovered
+
+Sent when a monitor recovers but the incident is still ongoing due to other affected monitors. Requires smart incident merging to be enabled.
+
+#### > Incident recovered
+
+Sent when an incident has fully recovered, indicating that all affected monitors are back to normal.
+
+#### > Incident comment created
+
+Sent when a new comment is added to an incident, useful for keeping team members informed of updates and discussions.
+
+#### > Incident update published
+
+Sent when a new public incident update is published on a status page, useful for notifying stakeholders and users about the incident status.
 
 ### Scope
 
