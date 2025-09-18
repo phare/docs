@@ -7,6 +7,24 @@ rss: true
 
 <Update label="September 2025">
     <Frame>
+        <img src="/images/changelog/100-smart-incident-merging.webp" alt="Smart Incident Merging" />
+    </Frame>
+
+    ## Smart Incident merging
+
+    Smart Incident merging is now available! This feature can be activated on a per-project basis, allowing you to choose a merge time window that fits your needs. Only similar incidents are merged together, and when paired with the thread support released a few weeks ago, this drastically reduces notification noise.
+
+    Two new alert rule events are available:
+    - **Incident Propagated**: A new monitor starts failing and is merged into an existing incident.
+    - **Incident Partially Recovered**: One of the previously failing monitors recovers, but the incident remains open.
+
+    Smart Incident merging is not enabled by default for existing accounts—you need to opt-in from your project settings.
+
+    Read the extended [Smart Incident merging documentation](/uptime/incidents#smart-incident-merging) for more information on this new feature.
+
+    <br/>
+
+    <Frame>
         <img src="/images/changelog/99-ntfy-integration.webp" alt="Ntfy integration" />
     </Frame>
 
