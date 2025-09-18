@@ -85,3 +85,35 @@ While comments help your team collaborate privately, incident updates are design
 Each update allow you to communicate progress as you mitigate the issue, and automatically published to your connected status pages, helping maintain transparency with your users during outages.
 
 Consistent, clear communication during incidents builds trust with your users, they'll appreciate knowing you're on top of the situation even when things aren't working perfectly.
+
+## Smart incident merging
+
+Smart incident merging reduces noise by grouping multiple, similar failures into a single incident that evolves over time. Instead of opening a new incident for every affected monitor, Phare can merge them together, keep one timeline, and notify your team more intelligently.
+
+### Configuration
+
+Smart incident merging can be configured per-project, allowing you to tailor the behavior to different services or teams. You can also set a preferred time window for merging, balancing responsiveness with noise reduction.
+
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-merging-configuration.webp"
+        alt="Smart Incident merging project settings"
+    />
+</Frame>
+
+<Note>Start with a moderate window of 10 to 30 minutes. If you often experiences bursty or cascading failures, a longer window will reduce duplicate incidents further.</Note>
+
+### How it works
+
+Only incidents belonging to the same project can be merged together. When a new incident is created, even before confirmation, Phare checks for any existing open incidents in the project that share the same reported issue. If it finds one within the configured time window, it merges the new incident into the existing one.
+
+This approach, even tough simple, provide fast and quality results for most incident scenarios.
+
+### Dedicated alert rule events
+
+Two alert rule events are available to help you react precisely to incident propagation and partial recoveries:
+
+- [Incident Propagated](/uptime/alerting#>-incident-propagated)
+- [Incident Partially Recovered](/uptime/alerting#>-incident-partially-recovered)
+
+Paired with notification thread on the [Email](/integrations/email), [Discord](/integrations/discord), or [Slack](/integrations/slack) integrations, you can keep notifications focused: one creation, threaded follow‑ups for expansions and partial recoveries, and a final recovery when everything is back to normal.
