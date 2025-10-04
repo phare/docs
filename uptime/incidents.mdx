@@ -117,3 +117,50 @@ Two alert rule events are available to help you react precisely to incident prop
 - [Incident Partially Recovered](/uptime/alerting#>-incident-partially-recovered)
 
 Paired with notification thread on the [Email](/integrations/email), [Discord](/integrations/discord), or [Slack](/integrations/slack) integrations, you can keep notifications focused: one creation, threaded follow‑ups for expansions and partial recoveries, and a final recovery when everything is back to normal.
+
+## Incident AI
+
+Incident AI leverages the [Mistral AI](https://mistral.ai/) platform to analyze incident data and generate useful summaries and post-mortem reports. By understanding the context and details of each incident, Incident AI helps your team to solve issues faster and improve future response strategies.
+
+### Configuration
+
+Incident AI can be activated per-project, allowing to comply with different data policies across your organization.
+
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-ai-configuration.webp"
+        alt="Incident AI project settings"
+    />
+</Frame>
+
+### How it works
+
+When activated, Phare will automatically generate an AI incident summary when an automated incident is created, and a post-mortem report when it is resolved. Incident AI is not active on manually created incidents.
+
+Each AI generation will consume one credit from your plan's monthly allowance, when your quota is exhausted, no further AI generation will be performed until the next billing cycle. Additional quota can be configured if your organization is subscribed to the Scale plan.
+
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-ai-generations.webp"
+        alt="Incident AI project settings"
+    />
+</Frame>
+
+<Note>Incident AI is in its early stages and may not always produce perfect results. Carefully review AI-generated content before sharing it with your team or users.</Note>
+
+### Privacy
+
+To protect your data, Incident AI only processes strictly necessary information related to the incident, such as:
+
+- Incident data
+- Impacted monitors
+- Failed requests responses
+- Incident event timeline
+- Incident comments
+- Incident updates
+
+Sensitive data like monitor name, API keys, HTTP header values, or users email are redacted with anonymization tokens in the payload sent to Mistral AI. Phare uses Mistral's paid plan which [does not train artificial intelligence models on your data](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models#scale-plan-pay-per-use-subscription).
+
+### Improving Incident AI
+
+You can rate each AI generation by using the thumbs up/down buttons next to the AI content to provide your feedback. Phare will use this feedback in the future to fine-tune a custom model specifically for incident management. Only rated AI generations will be used for this purpose.
