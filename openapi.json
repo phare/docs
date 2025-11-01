@@ -1986,6 +1986,15 @@
                             90
                         ],
                         "example": 90
+                    },
+                    "subscription_channels": {
+                        "description": "List of active subscription channels",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Uptime.StatusPage.SubscriptionChannelEnum"
+                        },
+                        "maxItems": 2,
+                        "minItems": 0
                     }
                 },
                 "type": "object"
@@ -2072,6 +2081,13 @@
                     "online",
                     "offline",
                     "partial"
+                ]
+            },
+            "Uptime.StatusPage.SubscriptionChannelEnum": {
+                "type": "string",
+                "enum": [
+                    "rss",
+                    "atom"
                 ]
             }
         },
