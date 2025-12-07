@@ -102,6 +102,22 @@ Since Phare also uses Bunny.net for domain management, there's an extra security
     />
 </Frame>
 
+#### **Removing & re‑adding a site in Bunny DNS**
+> [!WARNING]  
+> 
+> If you delete a site from **your own** Bunny DNS account and later try to add it back, the following error appears:
+> 
+> > “It appears that the domain, or a subdomain of it, is already registered in another account.”
+> 
+> **Important:** Anyone who actually goes through the *remove‑and‑re‑add* cycle sees this error. If you never perform that cycle, you can safely ignore it; however if you do have to remove a site and re‑add it (for whatever reason) follow the below steps,
+> 
+> **How to fix**
+> 1. **Disable the status page in Phare** – this instantly removes the domain from Phare’s Bunny account.  
+> 2. **Add the site back to your own Bunny account** – the “already registered” error disappears.
+> 
+> **Bonus tip**  
+> Because Bunny support originally enabled Multi‑Domain for your domain when you raised a ticket, that setting stays active after you apply the fix. You won’t need to request Multi‑Domain activation again when you re‑add the site.
+
 Having trouble? [Contact support](https://phare.io/contact).
 
 ## Subscription
