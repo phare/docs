@@ -59,7 +59,7 @@ Using Cloudflare? Make sure to create your CNAME with proxy status in `DNS-only`
 
 Hello fellow Bunny enthusiast!
 
-Since Phare also uses Bunny.net for domain management, there's an extra security step needed. Don't worry, it's quick and straightforward:
+Since Phare also uses Bunny.net as a DNS and certificate provider, there's an extra security step, called **multi-domain**, required to make your domain work with Phare. Don't worry, it's quick and straightforward:
 
 <Steps>
     <Step title="Create a TXT record">
@@ -102,21 +102,23 @@ Since Phare also uses Bunny.net for domain management, there's an extra security
     />
 </Frame>
 
-#### **Removing & re‑adding a site in Bunny DNS**
-> [!WARNING]  
-> 
-> If you delete a site from **your own** Bunny DNS account and later try to add it back, the following error appears:
-> 
-> > “It appears that the domain, or a subdomain of it, is already registered in another account.”
-> 
-> **Important:** Anyone who actually goes through the *remove‑and‑re‑add* cycle sees this error. If you never perform that cycle, you can safely ignore it; however if you do have to remove a site and re‑add it (for whatever reason) follow the below steps,
-> 
-> **How to fix**
-> 1. **Disable the status page in Phare** – this instantly removes the domain from Phare’s Bunny account.  
-> 2. **Add the site back to your own Bunny account** – the “already registered” error disappears.
-> 
-> **Bonus tip**  
-> Because Bunny support originally enabled Multi‑Domain for your domain when you raised a ticket, that setting stays active after you apply the fix. You won’t need to request Multi‑Domain activation again when you re‑add the site.
+#### Known Issues
+
+If you remove your domain name from **your own** Bunny DNS account, and later try to add it back, you will encounter the following error:
+
+<Danger>
+  It appears that the domain, or a subdomain of it, is already registered in
+  another account.
+</Danger>
+
+This is due to the way Bunny handles domain ownership verification. When you remove the domain from your account, it will still be registered on Phare's account to handle your status page, preventing you from re-adding it.
+
+**How to fix:**
+
+1. [Disable your status page](https://app.phare.io/uptime/status-pages) in Phare
+2. [Add your domain](https://dash.bunny.net/dns/zones) back to your Bunny account
+
+The multi‑domain setting that was previously enabled by Bunny's support agents will stay active, allowing you to recreate your status page right away.
 
 Having trouble? [Contact support](https://phare.io/contact).
 
