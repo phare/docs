@@ -115,6 +115,7 @@
           {
             "group": "Platform",
             "pages": [
+              "changelog/platform/2026",
               "changelog/platform/2025",
               "changelog/platform/2024",
               "changelog/platform/2023"
