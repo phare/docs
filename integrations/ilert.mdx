@@ -1,0 +1,84 @@
+---
+title: "Integrate ilert with Phare"
+description: "Set up the Phare integration with ilert to route monitoring alerts to your on-call team with automatic incident management."
+sidebarTitle: "ilert"
+icon: "https://phare.io/img/app/apps/ilert.svg"
+---
+
+Need proper on-call management for your monitoring alerts? The ilert integration makes sure the right people get notified when things go wrong, with automatic escalation and resolution when your services bounce back. Set it up in your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>.
+
+## Pre-requisites
+
+Before you can start routing alerts to ilert, you'll need an active ilert account with permissions to create alert sources. That's it!
+
+## ilert Setup
+
+First stop: your ilert dashboard. You'll need to create an alert source to catch those Phare alerts.
+
+1. Head to **Alert sources** in ilert
+2. Click **Create new alert source**
+3. Search for "Phare.io", click the Phare.io tile and hit **Next**
+
+<Frame>
+    <img
+        src="/images/integrations/ilert/find-ilert-phare-integration.webp"
+        alt="Find the Phare integration in ilert"
+    />
+</Frame>
+
+4. Give a name to your alert source and configure it as you wish
+
+<Frame>
+    <img
+        src="/images/integrations/ilert/create-phare-integration.webp"
+        alt="Create and configure the Phare integration in ilert"
+    />
+</Frame>
+
+5. Once configured, you will receive an integration key for the alert source
+
+<Frame>
+    <img
+        src="/images/integrations/ilert/phare-integration-key.webp"
+        alt="Phare integration key in ilert"
+    />
+</Frame>
+
+That's it for the ilert side of things, copy the integration key somewhere safe, and follow the next steps to forward
+Phare alerts to your newly created ilert alert source.
+
+## Phare Setup
+
+1. Navigate to your <a href="https://app.phare.io/organization/apps" rel="nofollow">integrations dashboard</a>
+2. Find **ilert** and click **New installation**
+3. Configure the **ilert** integration with a name and your **integration key** from the previous step
+
+<Frame>
+    <img
+        src="/images/integrations/ilert/create-ilert-integration.webp"
+        alt="Create and configure the ilert integration in Phare"
+    />
+</Frame>
+
+4. Click **Create** to save your integration
+
+Your ilert integration is ready to be used, you can now create alert rules to send data to ilert.
+
+## Alert Rules
+
+1. Head over to the <a href="https://app.phare.io/uptime/alert-rules" rel="nofollow">alert rules</a> page, and ensure the project on the top left of your screen is the right one.
+2. Create two new Alert Rules (or edit existing ones) with the following event configuration:
+- Incident created
+- Incident recovered
+3. Save your changes
+
+<Frame>
+    <img
+        src="/images/integrations/ilert/ilert-phare-alert-rules.webp"
+        alt="Phare alert rules for ilert"
+    />
+</Frame>
+
+## Automatic Resolution
+
+When your service comes back online, Phare will now automatically tell ilert to resolve the alert. No manual cleanup needed! Your on-call team gets the complete story from problem to resolution, all without lifting a finger.
