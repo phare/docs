@@ -36,199 +36,176 @@ Once your webhook is set up, you can connect it to alert rules in your projects.
 
 ## Payload customization
 
-Make your webhooks work exactly how you want! You can reshape the JSON payload structure any way you like (as long as it's valid JSON), and use variables to inject dynamic data from the triggering event.
+You can customize the payload that will be sent to your webhook endpoint by defining a valid JSON schema with placeholders like `{{ incident.slug }}`. When the webhook is sent, Phare swaps the placeholders with real values.
 
-Each alert event type has its own set of available variables. Here's what you can use:
+<Info>JSON keys do no support placeholders.</Info>
 
-### Monitors
+### Example template
+
+```json
+{
+  "event": "uptime.monitor.created",
+  "monitor": {
+    "id": "{{ monitor.id }}",
+    "name": "{{ monitor.name }}",
+    "status": "{{ monitor.status }}",
+    "protocol": "{{ monitor.protocol }}",
+    "request": "{{ monitor.request }}",
+    "regions": "{{ monitor.regions }}",
+    "interval": "{{ monitor.interval }}",
+    "incident_confirmations": "{{ monitor.incident_confirmations }}",
+    "recovery_confirmations": "{{ monitor.recovery_confirmations }}"
+  },
+  "project": {
+    "id": "{{ project.id }}",
+    "name": "{{ project.name }}",
+    "slug": "{{ project.slug }}"
+  }
+}
+```
+
+### Looping over list of entities
+
+To define a schema for an entity that is part of a list, use `$each` and `$item`. The loop name should match the entity list name you want to iterate, such as `affected_monitors`, in the entity schema use the `item` variable to access the current item properties.
+
+```json
+{
+  "affected_monitors": {
+    "$each": "affected_monitors",
+    "$item": {
+      "id": "{{ item.id }}",
+      "name": "{{ item.name }}"
+    }
+  }
+}
+```
+
+Nested loops are not currently supported.
+
+### Available entities by event
 
 <AccordionGroup>
     <Accordion title="Monitor Created">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
-        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
-        | **$MONITOR_ID**   | Id of the monitor                           |
-        | **$MONITOR_NAME** | Name of the monitor                         |
-        | **$MONITOR_STATUS** | Status of the monitor                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
+        - `monitor`
+        - `project`
     </Accordion>
     <Accordion title="Monitor Deleted">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
-        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
-        | **$MONITOR_ID**   | Id of the monitor                           |
-        | **$MONITOR_NAME** | Name of the monitor                         |
-        | **$MONITOR_STATUS** | Status of the monitor                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
+        - `monitor`
+        - `project`
     </Accordion>
     <Accordion title="Monitor Certificate Discovered">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
-        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
-        | **$MONITOR_ID**   | Id of the monitor                           |
-        | **$MONITOR_NAME** | Name of the monitor                         |
-        | **$MONITOR_STATUS** | Status of the monitor                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
-        | **$CERTIFICATE_SERIAL_NUMBER** | Serial number of the certificate |
-        | **$CERTIFICATE_SUBJECT_COMMON_NAME** | Common name of the certificate |
-        | **$CERTIFICATE_SUBJECT_ALTERNATIVE_NAMES** | Subject alternative names of the certificate |
-        | **$CERTIFICATE_ISSUER_COMMON_NAME** | Issuer common name of the certificate |
-        | **$CERTIFICATE_ISSUER_ORGANIZATION** | Issuer organization of the certificate |
-        | **$CERTIFICATE_NOT_BEFORE** | Not before date of the certificate |
-        | **$CERTIFICATE_NOT_AFTER** | Not after date of the certificate |
+        - `certificate`
+        - `monitor`
+        - `project`
     </Accordion>
     <Accordion title="Monitor Certificate Expiring">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this monitor belongs to   |
-        | **$PROJECT_NAME** | Name of the project this monitor belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this monitor belongs to |
-        | **$MONITOR_ID**   | Id of the monitor                           |
-        | **$MONITOR_NAME** | Name of the monitor                         |
-        | **$MONITOR_STATUS** | Status of the monitor                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor |
-        | **$CERTIFICATE_SERIAL_NUMBER** | Serial number of the certificate |
-        | **$CERTIFICATE_SUBJECT_COMMON_NAME** | Common name of the certificate |
-        | **$CERTIFICATE_SUBJECT_ALTERNATIVE_NAMES** | Subject alternative names of the certificate |
-        | **$CERTIFICATE_ISSUER_COMMON_NAME** | Issuer common name of the certificate |
-        | **$CERTIFICATE_ISSUER_ORGANIZATION** | Issuer organization of the certificate |
-        | **$CERTIFICATE_NOT_BEFORE** | Not before date of the certificate |
-        | **$CERTIFICATE_NOT_AFTER** | Not after date of the certificate |
+        - `certificate`
+        - `monitor`
+        - `project`
     </Accordion>
-</AccordionGroup>
-
-### Incidents
-
-<AccordionGroup>
     <Accordion title="Incident Created">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this incident belongs to   |
-        | **$PROJECT_NAME** | Name of the project this incident belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this incident belongs to |
-        | **$MONITOR_ID**   | Id of the monitor that triggered the incident                           |
-        | **$MONITOR_NAME** | Name of the monitor that triggered the incident                         |
-        | **$MONITOR_STATUS** | Status of the monitor that triggered the incident                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor that triggered the incident              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor that triggered the incident         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor that triggered the incident is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor that triggered the incident         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor that triggered the incident |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor that triggered the incident |
-        | **$INCIDENT_ID** | Id of the incident |
-        | **$INCIDENT_SLUG** | Slug of the incident |
-        | **$INCIDENT_TITLE** | Title of the incident |
-        | **$INCIDENT_ERROR** | Error message of the incident |
-        | **$INCIDENT_STATE** | State of the incident |
-        | **$INCIDENT_STATUS** | Status of the incident |
-        | **$INCIDENT_IMPACT** | Impact of the incident |
+        - `incident`
+        - `project`
+        - `affected_monitors` (list)
     </Accordion>
     <Accordion title="Incident Recovered">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this incident belongs to   |
-        | **$PROJECT_NAME** | Name of the project this incident belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this incident belongs to |
-        | **$MONITOR_ID**   | Id of the monitor that triggered the incident                           |
-        | **$MONITOR_NAME** | Name of the monitor that triggered the incident                         |
-        | **$MONITOR_STATUS** | Status of the monitor that triggered the incident                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor that triggered the incident              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor that triggered the incident         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor that triggered the incident is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor that triggered the incident         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor that triggered the incident |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor that triggered the incident |
-        | **$INCIDENT_ID** | Id of the incident |
-        | **$INCIDENT_SLUG** | Slug of the incident |
-        | **$INCIDENT_TITLE** | Title of the incident |
-        | **$INCIDENT_ERROR** | Error message of the incident |
-        | **$INCIDENT_STATE** | State of the incident |
-        | **$INCIDENT_STATUS** | Status of the incident |
-        | **$INCIDENT_IMPACT** | Impact of the incident |
+        - `incident`
+        - `project`
+        - `affected_monitors` (list)
+    </Accordion>
+    <Accordion title="Incident Propagated">
+        - `incident`
+        - `project`
+        - `propagated_monitor` (the newly affected monitor)
+        - `affected_monitors` (list)
+    </Accordion>
+    <Accordion title="Incident Partially Recovered">
+        - `incident`
+        - `project`
+        - `recovered_monitor` (the recovered monitor)
+        - `affected_monitors` (list)
     </Accordion>
     <Accordion title="Incident Comment Created">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this incident belongs to   |
-        | **$PROJECT_NAME** | Name of the project this incident belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this incident belongs to |
-        | **$MONITOR_ID**   | Id of the monitor that triggered the incident                           |
-        | **$MONITOR_NAME** | Name of the monitor that triggered the incident                         |
-        | **$MONITOR_STATUS** | Status of the monitor that triggered the incident                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor that triggered the incident              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor that triggered the incident         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor that triggered the incident is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor that triggered the incident         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor that triggered the incident |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor that triggered the incident |
-        | **$INCIDENT_ID** | Id of the incident |
-        | **$INCIDENT_SLUG** | Slug of the incident |
-        | **$INCIDENT_TITLE** | Title of the incident |
-        | **$INCIDENT_ERROR** | Error message of the incident |
-        | **$INCIDENT_STATE** | State of the incident |
-        | **$INCIDENT_STATUS** | Status of the incident |
-        | **$INCIDENT_IMPACT** | Impact of the incident |
-        | **$USER_ID** | Id of the user who created the comment |
-        | **$USER_EMAIL** | Email of the user who created the comment |
-        | **$INCIDENT_COMMENT_ID** | Id of the comment |
-        | **$INCIDENT_COMMENT_CONTENT** | Content of the comment |
+        - `comment`
+        - `creator`
+        - `incident`
+        - `project`
+        - `affected_monitors` (list)
     </Accordion>
-    <Accordion title="Incident Update Publish">
-        | Variable      | Value                                       |
-        | :------------ | :------------------------------------------ |
-        | **$PROJECT_ID**   | Id of the project this incident belongs to   |
-        | **$PROJECT_NAME** | Name of the project this incident belongs to |
-        | **$PROJECT_SLUG** | Slug of the project this incident belongs to |
-        | **$MONITOR_ID**   | Id of the monitor that triggered the incident                           |
-        | **$MONITOR_NAME** | Name of the monitor that triggered the incident                         |
-        | **$MONITOR_STATUS** | Status of the monitor that triggered the incident                      |
-        | **$MONITOR_PROTOCOL** | Protocol used by the monitor that triggered the incident              |
-        | **$MONITOR_REQUEST**  | Object containing request information for the monitor that triggered the incident         |
-        | **$MONITOR_REGIONS**  | Array of regions where the monitor that triggered the incident is running                  |
-        | **$MONITOR_INTERVAL** | Interval in seconds between each check for the monitor that triggered the incident         |
-        | **$MONITOR_INCIDENT_CONFIRMATIONS** | Number of confirmations required to trigger an incident for the monitor that triggered the incident |
-        | **$MONITOR_RECOVERY_CONFIRMATIONS** | Number of confirmations required to recover from an incident for the monitor that triggered the incident |
-        | **$INCIDENT_ID** | Id of the incident |
-        | **$INCIDENT_SLUG** | Slug of the incident |
-        | **$INCIDENT_TITLE** | Title of the incident |
-        | **$INCIDENT_ERROR** | Error message of the incident |
-        | **$INCIDENT_STATE** | State of the incident |
-        | **$INCIDENT_STATUS** | Status of the incident |
-        | **$INCIDENT_IMPACT** | Impact of the incident |
-        | **$USER_ID** | Id of the user who published the update |
-        | **$USER_EMAIL** | Email of the user who published the update |
-        | **$INCIDENT_UPDATE_ID** | Id of the update |
-        | **$INCIDENT_UPDATE_STATE** | State of the update |
-        | **$INCIDENT_UPDATE_CONTENT** | Content of the update |
+    <Accordion title="Incident Update Published">
+        - `update`
+        - `creator`
+        - `incident`
+        - `project`
+        - `affected_monitors` (list)
     </Accordion>
 </AccordionGroup>
 
+### Available fields by object
+
+<AccordionGroup>
+    <Accordion title="incident">
+        | Field | What it means |
+        | :--- | :--- |
+        | `id` | Unique incident ID |
+        | `slug` | Short incident code |
+        | `title` | Incident title |
+        | `description` | Incident description |
+        | `state` | Current state |
+        | `status` | Current status |
+        | `impact` | Impact level |
+    </Accordion>
+    <Accordion title="monitor">
+        | Field | What it means |
+        | :--- | :--- |
+        | `id` | Unique monitor ID |
+        | `name` | Monitor name |
+        | `status` | Current status |
+        | `protocol` | Protocol type |
+        | `request` | Request details |
+        | `regions` | Regions used for checks |
+        | `interval` | Check interval (seconds) |
+        | `incident_confirmations` | Confirmations required to open an incident |
+        | `recovery_confirmations` | Confirmations required to resolve an incident |
+    </Accordion>
+    <Accordion title="project">
+        | Field | What it means |
+        | :--- | :--- |
+        | `id` | Project ID |
+        | `name` | Project name |
+        | `slug` | Project slug |
+    </Accordion>
+    <Accordion title="certificate">
+        | Field | What it means |
+        | :--- | :--- |
+        | `serial_number` | Certificate serial number |
+        | `subject_common_name` | Common name |
+        | `subject_alternative_names` | Alternative names |
+        | `issuer_common_name` | Issuer name |
+        | `issuer_organization` | Issuer organization |
+        | `not_before` | Valid from |
+        | `not_after` | Valid until |
+    </Accordion>
+    <Accordion title="comment">
+        | Field | What it means |
+        | :--- | :--- |
+        | `id` | Comment ID |
+        | `content` | Comment content |
+    </Accordion>
+    <Accordion title="update">
+        | Field | What it means |
+        | :--- | :--- |
+        | `id` | Update ID |
+        | `state` | Update state |
+        | `content` | Update content |
+    </Accordion>
+    <Accordion title="creator">
+        | Field | What it means |
+        | :--- | :--- |
+        | `type` | Creator type |
+        | `label` | Display label |
+    </Accordion>
+</AccordionGroup>
 
 ## Webhook security
 
@@ -241,10 +218,11 @@ Trust but verify! Phare outgoing webhooks come with built-in security through HM
 To verify a webhook's authenticity, compute the HMAC-SHA256 of this concatenated string:
 
 ```text
-{version}.{timestamp}.{payload}
+{version}:{timestamp}:{payload}
 ```
 
-The version is always `v0` (this will be bumped if the algorithm ever change). You'll find the timestamp in the `X-Phare-Request-Timestamp` header and the signature in the `X-Phare-Request-Signature` header.
+The version is always `v0` (this will be bumped if the algorithm ever changes). You'll find the timestamp in the `X-Phare-Request-Timestamp` header and the signature in the `X-Phare-Request-Signature` header.
+You can also use `X-Phare-Request-Id` and `X-Phare-Request-Event` to correlate deliveries.
 
 Here are some code examples to help you implement verification:
 
@@ -298,7 +276,7 @@ if ($hash === $signature) {
 
 ## Retry policy
 
-Network hiccups happen, which is why Phare outgoing webhooks don't give up easily. If your endpoint doesn't respond with a 2xx status code within 30 seconds, it will be retried up to five times using an exponential backoff strategy:
+Network hiccups happen, which is why Phare outgoing webhooks don't give up easily. If your endpoint doesn't respond with a 2xx status code within 30 seconds, it will be retried up to four times (five attempts total) using an exponential backoff strategy:
 
 1. First attempt: Immediate delivery
 2. First retry: After 1 minute
