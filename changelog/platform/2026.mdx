@@ -7,6 +7,16 @@ rss: true
 
 <Update label="January 2026">
     <Frame>
+        <img src="/images/changelog/110-new-webhook-schema.avif" alt="New outgoing webhook JSON schema" />
+    </Frame>
+
+    ## Outgoing webhook schema upgrades
+
+    Schemas now support loops, and the default schemas for every alert event have been revamped to expose richer data out of the box. The new placeholder syntax uses `{{ entity.property }}` and is documented in the [Outgoing Webhooks docs](/integrations/outgoing-webhook#payload-customization).
+
+    <br/>
+
+    <Frame>
         <img src="/images/changelog/109-notification-preferences.avif" alt="Custom quota notification thresholds" />
     </Frame>
 
