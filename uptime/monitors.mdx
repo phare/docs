@@ -4,7 +4,7 @@ description: "Monitor the availability of your websites, APIs and servers."
 sidebarTitle: "Monitors"
 ---
 
-Monitors are the backbone of Phare Uptime, they're your tireless digital assistants checking if your website or server is alive and kicking. Set them up once, and they'll dutifully perform HTTP(S) and TCP checks according to your schedule.
+Monitors are the backbone of Phare Uptime. They are tireless digital assistants checking if your website or server is alive and kicking. Set them up once, and they'll dutifully perform HTTP(S) and TCP checks according to your schedule.
 
 <Frame>
     <iframe
@@ -21,7 +21,7 @@ Monitors are the backbone of Phare Uptime, they're your tireless digital assista
 
 ## HTTP(s)
 
-When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keeps an eye on your SSL certificates too, making sure they're valid and well configured.
+When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keeps an eye on your SSL certificates too, making sure they're valid and well-configured.
 
 You can find more details about the [HTTP(s) monitoring settings](#configuration-options-for-https) below.
 
@@ -30,21 +30,21 @@ You can find more details about the [HTTP(s) monitoring settings](#configuration
 When creating HTTP monitors, you can choose which method to use for your requests. Phare currently supports:
 
 - **HEAD**: Ideal for quick availability checks. Retrieves only headers, saving bandwidth and processing time, perfect for frequent checks on large websites.
-- **GET**: The standard choice for most monitoring. Gets the full page content, allowing you to verify text content and properly test APIs content or websites that do not support HEAD requests.
-- **POST**, **PUT**, **PATCH**:For testing form submissions or API endpoints that require data input. You can customize the request body to simulate real user interactions or API calls.
+- **GET**: The standard choice for most monitoring. Gets the full page content, allowing you to verify text content and properly test API content or websites that do not support HEAD requests.
+- **POST**, **PUT**, **PATCH**: For testing form submissions or API endpoints that require data input. You can customize the request body to simulate real user interactions or API calls.
 - **OPTIONS**: For checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
 
-When sending a request body with the POST, PUT or PATCH methods, a `Content-Type` header of your choice will be automatically added. You are free to change it if needed.
+When sending a request body with the POST, PUT or PATCH methods, a `Content-Type` header of your choice will be added automatically. You are free to change it if needed.
 
 ### Skip SSL verification
 
-By default, Phare performs strict SSL certificate validation to ensure secure connections on all `https://` endpoints. However, if you're monitoring a staging environment or a server with a self-signed certificate, you can choose to skip SSL verification. When this option is enabled, Phare will ignare any SSL issues such as certificate expiration, intermediate certificate chain, or OCSP revocation status.
+By default, Phare performs strict SSL certificate validation to ensure secure connections on all `https://` endpoints. However, if you're monitoring a staging environment or a server with a self-signed certificate, you can choose to skip SSL verification. When this option is enabled, Phare will ignore SSL issues such as certificate expiration, intermediate certificate chain problems, or OCSP revocation status.
 
 ### Follow redirects
 
-Phare can automatically follow HTTP redirects (3xx status codes) when this option is enabled. This is particularly useful to test scenarios where redirection is expected, or when monitoring URLs that may change over time. If disabled, Phare will report the initial redirect response, allowing you to monitor the redirection behavior itself.
+Phare can automatically follow HTTP redirects (3xx status codes) when this option is enabled. This is particularly useful to test scenarios where redirects are expected, or when monitoring URLs that may change over time. If disabled, Phare will report the initial redirect response, allowing you to monitor the redirection behavior itself.
 
-When enabled, the Phare monitoring agent will follow up to 5 redirects before failing the check. Each redirect is counted in the chosen timeout limit, so ensure your timeout is sufficient to accommodate all potential redirects.
+When enabled, the Phare monitoring agent will follow up to 5 redirects before failing the check. Each redirect counts toward the chosen timeout limit, so ensure the timeout is sufficient to accommodate all potential redirects.
 
 ### User agent
 
@@ -52,7 +52,7 @@ Every HTTP request from Phare carries the following user-agent signature:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
 
-If you added a `secret-value` to the user agent header for firewall filtering, it will look like this:
+If you add a `secret-value` to the user agent header for firewall filtering, it will look like this:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=secret-value)`
 
@@ -66,7 +66,7 @@ Need to get past authentication or test an API with specific requirements? Phare
 - Adding custom tracking identifiers
 
 <Info>
-    To prevent abuse, it is not possible to set a custom user agent headers, with the exception of adding a secret value for firewall filtering.
+    To prevent abuse, it is not possible to set a custom `User-Agent` header, with the exception of adding a secret value for firewall filtering.
 </Info>
 
 ### Success assertions
@@ -81,7 +81,7 @@ Need to get past authentication or test an API with specific requirements? Phare
 Phare allows you to define specific success assertions to ensure your service is not only up but also functioning correctly. You can choose to validate:
 
 - **Status code**: Specify exact status codes (`200`) or use wildcards (`2xx`), you can also combine multiple codes (`200,3xx`).
-- **Response header**: Check for the presence of specific header against a value of your choice.
+- **Response header**: Check for the presence of a specific header with a value of your choice.
 - **Response body**: Look for specific text or patterns in the response body to confirm the service is delivering the expected content. Not available with `HEAD` and `OPTIONS` methods.
 
 <Info>
@@ -90,7 +90,7 @@ Phare allows you to define specific success assertions to ensure your service is
 
 ## TCP
 
-For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything's responding correctly. Phare currently supports plain and TLS connections.
+For services beyond websites, TCP monitoring establishes a direct connection to your server port to make sure everything responds correctly. Phare currently supports plain and TLS connections.
 
 ### Connection
 
@@ -98,19 +98,61 @@ Phare supports plain and TLS connections for TCP monitoring. You can choose the 
 
 ## Interval
 
-You decide how often Phare checks on your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anything between a quick 30 seconds or a relaxed 1 hour.
+You decide how often Phare checks your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anywhere between 30 seconds and 1 hour.
 
 ## Confirmations & recovery
 
-Nobody likes false alarms. That's why Phare allows double-checks, or more, before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
+Nobody likes false alarms. That's why Phare allows extra checks before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
 
 ## Regions
 
-With 11 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps your monitoring resilient even if one region experiences issues.
+With 12 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps monitoring resilient even if one region experiences issues.
 
-## Alert Rules
+### Region list
 
-Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors, you can find the full list in the [alerting documentation](/uptime/alerting).
+Region API codes follow the format `<continent>-<country>-<iata>`.
+
+#### Asia
+
+| Country | City | API code |
+| :--- | :--- | :--- |
+| 🇯🇵 Japan | Tokyo | `as-jpn-hnd` |
+| 🇸🇬 Singapore | Singapore | `as-sgp-sin` |
+| 🇹🇭 Thailand | Bangkok | `as-tha-bkk` |
+
+#### Europe
+
+| Country | City | API code |
+| :--- | :--- | :--- |
+| 🇩🇪 Germany | Frankfurt | `eu-deu-fra` |
+| 🇫🇷 France | Paris | `eu-fra-cdg` |
+| 🇬🇧 United Kingdom | London | `eu-gbr-lhr` |
+| 🇸🇪 Sweden | Stockholm | `eu-swe-arn` |
+| 🇳🇱 Netherlands | Amsterdam | `ng-nld-ams` |
+
+#### North America
+
+| Country | City | API code |
+| :--- | :--- | :--- |
+| 🇲🇽 Mexico | Mexico City | `na-mex-mex` |
+| 🇺🇸 US East | Ashburn | `na-usa-iad` |
+| 🇺🇸 US West | Seattle | `na-usa-sea` |
+
+#### Oceania
+
+| Country | City | API code |
+| :--- | :--- | :--- |
+| 🇦🇺 Australia | Sydney | `oc-aus-syd` |
+
+#### South America
+
+| Country | City | API code |
+| :--- | :--- | :--- |
+| 🇧🇷 Brazil | Sao Paulo | `sa-bra-gru` |
+
+## Alert rules
+
+Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors. The full list is in the [alerting documentation](/uptime/alerting).
 
 ## Suggestions
 
@@ -121,7 +163,7 @@ Phare's alert rules system allows you to decide which events trigger notificatio
     />
 </Frame>
 
-As you set up your monitors, Phare's suggestion system analyzes your configuration and offers improvements to boost reliability, and reduce false positives:
+As you set up your monitors, Phare's suggestion system analyzes your configuration and offers improvements to boost reliability and reduce false positives:
 
 - Adding more monitoring regions for better global coverage
 - Increasing confirmation counts to prevent false positives
@@ -149,7 +191,7 @@ Be aware that charts are rendered leveraging [downsampling techniques](https://p
 
 ## Firewall protection
 
-IP filtering is not reliable as the Phare Uptime monitoring agent is deployed on [Bunny.net's global network](https://bunnycdn.com/api/system/edgeserverlist), meaning that IPs could be shared with other Bunny.net customers.
+IP filtering is not reliable because the Phare Uptime monitoring agent is deployed on [Bunny.net's global network](https://bunnycdn.com/api/system/edgeserverlist), which means IPs could be shared with other Bunny.net customers.
 
 The easiest way to filter the Phare Uptime monitoring agent is to use the `User-Agent` header. You can also add a secret value to the user agent to make it unique to your organization.
 
@@ -157,9 +199,9 @@ Need something more robust? [Contact support](https://phare.io/contact).
 
 ## Private monitoring agent
 
-Need specialized monitoring for complex requirements, large-scale operations, or access through private VPNs? A private monitoring agent can be setup in your preferred region.
+Need specialized monitoring for complex requirements, large-scale operations, or access through private VPNs? A private monitoring agent can be set up in a preferred region.
 
-[Let's talk](https://phare.io/contact) about your specific needs.
+[Contact Phare](https://phare.io/contact) to discuss specific needs.
 
 ## Good practices
 
@@ -167,9 +209,8 @@ If you're unsure about the best settings for your monitoring needs, you can find
 
 ## Limits
 
-Phare's monitoring infrastructure operates at an impressive scale, but comes with a few constraints:
+Phare's monitoring infrastructure is built for scale and resilience, but there is one important constraint:
 
-- **No IP filtering**: The monitoring agent uses Bunny.net's shared IP range, making IP filtering unreliable.
-- **Certain ports restricted**: TCP monitoring doesn't support ports 25, 465, 587, and 2525.
+- **No IP allowlisting**: Monitoring traffic comes from Bunny.net's shared IP ranges, so fixed IPs can't be provided.
 
-If these limitations are showstoppers for you, [reach out](https://phare.io/contact) to discuss alternatives.
+If this is a blocker, a private monitoring agent can provide dedicated IPs, or [reach out](https://phare.io/contact) to discuss alternatives.

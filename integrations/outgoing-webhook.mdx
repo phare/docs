@@ -34,11 +34,24 @@ Once your webhook is set up, you can connect it to alert rules in your projects.
     />
 </Frame>
 
+## Delivery details
+
+Outgoing webhooks are sent as `POST` requests with a 30-second timeout. Each request includes:
+
+- `Content-Type: application/json`
+- `User-Agent: Phare 1.0 (+https://phare.io)`
+- `X-Phare-Request-Id`: Unique delivery ID
+- `X-Phare-Request-Event`: Alert event key
+- `X-Phare-Request-Timestamp`: Unix timestamp
+- `X-Phare-Request-Signature`: HMAC-SHA256 signature
+
+The request body is the rendered JSON schema from the Payload customization section below.
+
 ## Payload customization
 
 You can customize the payload that will be sent to your webhook endpoint by defining a valid JSON schema with placeholders like `{{ incident.slug }}`. When the webhook is sent, Phare swaps the placeholders with real values.
 
-<Info>JSON keys do no support placeholders.</Info>
+<Info>JSON keys do not support placeholders.</Info>
 
 ### Example template
 
@@ -66,7 +79,7 @@ You can customize the payload that will be sent to your webhook endpoint by defi
 
 ### Looping over list of entities
 
-To define a schema for an entity that is part of a list, use `$each` and `$item`. The loop name should match the entity list name you want to iterate, such as `affected_monitors`, in the entity schema use the `item` variable to access the current item properties.
+To define a schema for an entity that is part of a list, use `$each` and `$item`. The loop name should match the entity list name you want to iterate, such as `affected_monitors`. In the entity schema, use the `item` variable to access the current item properties.
 
 ```json
 {

@@ -16,7 +16,13 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["introduction", "getting-started", "user-management"]
+            "pages": [
+              "introduction",
+              "getting-started",
+              "user-management",
+              "account-settings",
+              "billing-quotas"
+            ]
           },
           {
             "group": "Uptime",

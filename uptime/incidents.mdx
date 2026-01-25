@@ -8,7 +8,7 @@ When things go wrong, having a clear process makes all the difference. Phare's i
 
 ## Programmatic incidents
 
-When a monitor detects trouble (respecting your confirmation settings and any keyword/SSL checks), Phare springs into action by creating an incident. Each incident is automatically linked to the affected monitor and includes detailed information about what went wrong. Right away, your team gets notified through your configured alert rules, no manual intervention required.
+When a monitor detects trouble (respecting your confirmation settings and any keyword/SSL checks), Phare springs into action by creating an incident. Each incident is automatically linked to the affected monitor and includes detailed information about what went wrong. Right away, alert recipients are notified through your configured alert rules, no manual intervention required.
 
 Programmatic incidents track the entire lifecycle from detection through resolution, giving you a complete picture of what happened during the outage.
 
@@ -27,20 +27,20 @@ Manual incidents follow the same lifecycle as programmatic ones, but you'll need
 
 ## Incident recovery
 
-When your service recovers (again, respecting your recovery confirmation settings), Phare automatically resolves the incident and lets your team know through your alert rules.
+When your service recovers (again, respecting your recovery confirmation settings), Phare automatically resolves the incident and notifies recipients through your alert rules.
 
 ## Impact
 
-Not all incidents are created equal. That's why Phare lets your team classify incidents by their impact level:
+Not all incidents are created equal. That's why Phare lets you classify incidents by their impact level:
 
 - **Unknown**: Still investigating, not sure how bad it is
-- **Operational**: False alarm—everything's working as expected
+- **Operational**: False alarm. Everything's working as expected
 - **Maintenance**: Planned downtime for heavy-duty updates
 - **Degraded performance**: Things are slower / working less well than usual
 - **Partial outage**: Some users are affected or certain features are down
 - **Major outage**: Everything is on fire, users can't access the service or are severely impacted
 
-Impact levels help your team prioritize responses internally and keep users informed through status pages. If left as "unknown," status pages will simply show the monitor as "down" without additional details.
+Impact levels help prioritize responses internally and keep users informed through status pages. If left as "unknown," status pages will simply show the monitor as "down" without additional details.
 
 ## Event timeline
 
@@ -51,7 +51,7 @@ Impact levels help your team prioritize responses internally and keep users info
     />
 </Frame>
 
-The event timeline gives you the full picture of what happened during an incident. You can see every region status, which alert rules fired, and follow the incident's progression from start to finish. This chronological view helps with post-incident analysis and improves future response procedures.
+The event timeline gives you the full picture of what happened during an incident. You can see every region's status, which alert rules fired, and follow the incident's progression from start to finish. This chronological view helps with post-incident analysis and improves response procedures over time.
 
 ## Incident comments
 
@@ -62,7 +62,7 @@ Team members can add private comments to share insights or document solutions, h
 - Coordinating response efforts between team members
 - Recording root cause analysis findings
 
-The rich text editor supports Markdown, making it easy to include formatted text, code snippets, or links to relevant resources. Comments are only visible to your team members and never appear on public status pages.
+The rich text editor supports Markdown, making it easy to include formatted text, code snippets, or links to relevant resources. Comments are only visible to organization members and never appear on public status pages.
 
 Each comment is timestamped and attributed to its author, creating a clear record of who did what during incident response.
 
@@ -75,24 +75,24 @@ Each comment is timestamped and attributed to its author, creating a clear recor
     />
 </Frame>
 
-While comments help your team collaborate privately, incident updates are designed for external communication. These updates allow you to keep your users informed about:
+While comments help private collaboration, incident updates are designed for external communication. These updates allow you to keep users informed about:
 
 - What's happening with the incident
 - What you're doing to fix it
 - When they can expect resolution
 - Workarounds they can use in the meantime
 
-Each update allow you to communicate progress as you mitigate the issue, and automatically published to your connected status pages, helping maintain transparency with your users during outages.
+Each update allows you to communicate progress as you mitigate the issue and is automatically published to connected status pages, helping maintain transparency with users during outages.
 
-Consistent, clear communication during incidents builds trust with your users, they'll appreciate knowing you're on top of the situation even when things aren't working perfectly.
+Consistent, clear communication during incidents builds trust. Users appreciate knowing the situation is under control even when things aren't working perfectly.
 
 ## Smart incident merging
 
-Smart incident merging reduces noise by grouping multiple, similar failures into a single incident that evolves over time. Instead of opening a new incident for every affected monitor, Phare can merge them together, keep one timeline, and notify your team more intelligently.
+Smart incident merging reduces noise by grouping multiple, similar failures into a single incident that evolves over time. Instead of opening a new incident for every affected monitor, Phare can merge them together, keep one timeline, and notify recipients more intelligently.
 
 ### Configuration
 
-Smart incident merging can be configured per-project, allowing you to tailor the behavior to different services or teams. You can also set a preferred time window for merging, balancing responsiveness with noise reduction.
+Smart incident merging can be configured per-project, allowing you to tailor the behavior to different services or groups. You can also set a preferred time window for merging, balancing responsiveness with noise reduction.
 
 <Frame>
     <img
@@ -101,13 +101,13 @@ Smart incident merging can be configured per-project, allowing you to tailor the
     />
 </Frame>
 
-<Note>Start with a moderate window of 10 to 30 minutes. If you often experiences bursty or cascading failures, a longer window will reduce duplicate incidents further.</Note>
+<Note>Start with a moderate window of 10 to 30 minutes. If you often experience bursty or cascading failures, a longer window will reduce duplicate incidents further.</Note>
 
 ### How it works
 
 Only incidents belonging to the same project can be merged together. When a new incident is created, even before confirmation, Phare checks for any existing open incidents in the project that share the same reported issue. If it finds one within the configured time window, it merges the new incident into the existing one.
 
-This approach, even tough simple, provide fast and quality results for most incident scenarios.
+This approach, even though simple, provides fast and reliable results for most incident scenarios.
 
 ### Dedicated alert rule events
 
@@ -116,15 +116,15 @@ Two alert rule events are available to help you react precisely to incident prop
 - [Incident Propagated](/uptime/alerting#>-incident-propagated)
 - [Incident Partially Recovered](/uptime/alerting#>-incident-partially-recovered)
 
-Paired with notification thread on the [Email](/integrations/email), [Discord](/integrations/discord), or [Slack](/integrations/slack) integrations, you can keep notifications focused: one creation, threaded follow‑ups for expansions and partial recoveries, and a final recovery when everything is back to normal.
+Paired with notification threads on the [Email](/integrations/email), [Discord](/integrations/discord), or [Slack](/integrations/slack) integrations, notifications stay focused: one creation, threaded follow‑ups for expansions and partial recoveries, and a final recovery when everything is back to normal.
 
 ## Incident AI
 
-Incident AI leverages the [Mistral AI](https://mistral.ai/) platform to analyze incident data and generate useful summaries and post-mortem reports. By understanding the context and details of each incident, Incident AI helps your team to solve issues faster and improve future response strategies.
+Incident AI leverages the [Mistral AI](https://mistral.ai/) platform to analyze incident data and generate useful summaries and post-mortem reports. By understanding the context and details of each incident, Incident AI helps resolve issues faster and improve future response strategies.
 
 ### Configuration
 
-Incident AI can be activated per-project, allowing to comply with different data policies across your organization.
+Incident AI can be activated per-project, allowing compliance with different data policies across your organization.
 
 <Frame>
     <img
@@ -137,7 +137,7 @@ Incident AI can be activated per-project, allowing to comply with different data
 
 When activated, Phare will automatically generate an AI incident summary when an automated incident is created, and a post-mortem report when it is resolved. Incident AI is not active on manually created incidents.
 
-Each AI generation will consume one credit from your plan's monthly allowance, when your quota is exhausted, no further AI generation will be performed until the next billing cycle. Additional quota can be configured if your organization is subscribed to the Scale plan.
+Each AI generation consumes one credit from your plan's monthly allowance. When the quota is exhausted, no further AI generation is performed until the next billing cycle. Additional quota can be configured if your organization is subscribed to the Scale plan.
 
 <Frame>
     <img
@@ -146,7 +146,7 @@ Each AI generation will consume one credit from your plan's monthly allowance, w
     />
 </Frame>
 
-<Note>Incident AI is in its early stages and may not always produce perfect results. Carefully review AI-generated content before sharing it with your team or users.</Note>
+<Note>Incident AI is in its early stages and may not always produce perfect results. Carefully review AI-generated content before sharing it with users.</Note>
 
 ### Privacy
 
@@ -154,12 +154,12 @@ To protect your data, Incident AI only processes strictly necessary information 
 
 - Incident data
 - Impacted monitors
-- Failed requests responses
+- Failed request responses
 - Incident event timeline
 - Incident comments
 - Incident updates
 
-Sensitive data like monitor name, API keys, HTTP header values, or users email are redacted with anonymization tokens in the payload sent to Mistral AI. Phare uses Mistral's paid plan which [does not train artificial intelligence models on your data](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models#scale-plan-pay-per-use-subscription).
+Sensitive data like monitor name, API keys, HTTP header values, or user emails are redacted with anonymization tokens in the payload sent to Mistral AI. Phare uses Mistral's paid plan which [does not train artificial intelligence models on your data](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models#scale-plan-pay-per-use-subscription).
 
 ### Improving Incident AI
 

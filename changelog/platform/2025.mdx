@@ -12,9 +12,9 @@ rss: true
 
     ## Public growth metrics
 
-    Phare now share growth metrics openly, you can follow the journey with live user registration stats, monthly uptime monitoring checks, detailed revenues and cost breakdown.
+    Phare now shares growth metrics openly, so you can follow the journey with live user registration stats, monthly uptime monitoring checks, detailed revenue, and cost breakdown.
 
-    Visit th [open metrics page](https://phare.io/open).
+    Visit the [open metrics page](https://phare.io/open).
 </Update>
 
 <Update label="November 2025">
@@ -35,7 +35,7 @@ rss: true
 
     ## Customize status page subscription channels
 
-    You can now customize which subscription channels are available for your users on your status page. The current selection of subscription channel is RSS and Atom.
+    You can now customize which subscription channels are available for your users on your status page. The current selection of subscription channels is RSS and Atom.
 
     <br/>
 
@@ -52,7 +52,7 @@ rss: true
 
     ## Improved combobox selection
 
-    A small convenience update for those of you with dozens of monitors or team members, Phare's combobox now come with an easy way to select or deselect all options, allowing you to act faster without having to do 60 clicks.
+    A small convenience update for those of you with dozens of monitors or team members, Phare's combobox now comes with an easy way to select or deselect all options, allowing you to act faster without having to do 60 clicks.
 
     <br/>
 
@@ -62,7 +62,7 @@ rss: true
 
     ## AI-generated incident summaries and post-mortems
 
-    Resolving incidents just got a whole lot easier! Programmatic incidents are now automatically enriched with AI-generated summaries and post-mortems, giving you a clear overviews of what happened, without the manual effort.
+    Resolving incidents just got a whole lot easier. Programmatic incidents are now automatically enriched with AI-generated summaries and post-mortems, giving you a clear overview of what happened without the manual effort.
 
     This feature is powered by Mistral’s Magistral Small model, chosen for its efficiency and privacy-friendly design.
 
@@ -71,7 +71,7 @@ rss: true
     - **Hobby**: 10 AI generations / month
     - **Scale**: 100 AI generations / month + optional pay-as-you-go
 
-    You can also rate each AI summary directly from the incident page, your feedback helps us continuously improve accuracy and usefulness.
+    You can also rate each AI summary directly from the incident page. Feedback helps improve accuracy and usefulness over time.
 
     Read more about [Incident AI](/uptime/incidents#incident-ai) in the documentation.
 </Update>
@@ -81,7 +81,7 @@ rss: true
         <img src="/images/changelog/100-smart-incident-merging.webp" alt="Smart Incident Merging" />
     </Frame>
 
-    ## Smart Incident merging
+    ## Smart incident merging
 
     Smart Incident merging is now available! This feature can be activated on a per-project basis, allowing you to choose a merge time window that fits your needs. Only similar incidents are merged together, and when paired with the thread support released a few weeks ago, this drastically reduces notification noise.
 
@@ -89,7 +89,7 @@ rss: true
     - **Incident Propagated**: A new monitor starts failing and is merged into an existing incident.
     - **Incident Partially Recovered**: One of the previously failing monitors recovers, but the incident remains open.
 
-    Smart Incident merging is not enabled by default for existing accounts, you need to opt-in from your project settings.
+    Smart incident merging is not enabled by default for existing accounts, so you need to opt in from your project settings.
 
     Read the extended [Smart Incident merging documentation](/uptime/incidents#smart-incident-merging) for more information on this new feature.
 
@@ -101,7 +101,7 @@ rss: true
 
     ## Ntfy.sh integration
 
-    A new integration with [ntfy.sh](https://ntfy.sh) is now available to send alerts to your ntfy application. The integration supports sending messages to a topic throught a custom server hostname and access token authentication. It can already be used with all existing alert events.
+    A new integration with [ntfy.sh](https://ntfy.sh) is now available to send alerts to your ntfy application. The integration supports sending messages to a topic through a custom server hostname and access token authentication. It can already be used with all existing alert events.
 
     You can find the documentation for the [ntfy integration here](/integrations/ntfy).
 
@@ -115,7 +115,7 @@ rss: true
 
     The Phare integration for Slack now sends all notifications related to the same incident in a dedicated thread, making it easier to follow and manage incident notifications without cluttering your main channels.
 
-    This update require you to reinstall the integration to grant the permissions necessary for creating threads. You can do this from the integrations page of your dashboard, as explained in the [Slack integration documentation](/integrations/slack#reinstallation).
+    This update requires you to reinstall the integration to grant the permissions necessary for creating threads. You can do this from the integrations page of your dashboard, as explained in the [Slack integration documentation](/integrations/slack#reinstallation).
 
     <br/>
 
@@ -127,7 +127,7 @@ rss: true
 
     The Phare integration for Discord now sends all notifications related to the same incident in a dedicated thread, making it easier to follow and manage incident notifications without cluttering your main channels.
 
-    This update require you to reinstall the integration to grant the permissions necessary for creating threads. You can do this from the integrations page of your dashboard, as explained in the [Discord integration documentation](/integrations/discord#reinstallation).
+    This update requires you to reinstall the integration to grant the permissions necessary for creating threads. You can do this from the integrations page of your dashboard, as explained in the [Discord integration documentation](/integrations/discord#reinstallation).
 
     <br/>
 
@@ -149,7 +149,7 @@ rss: true
 
     ## Alert rule filtering for incident events
 
-    Some alert rules can now be filtered to only send notification for specific incident types. This is particularly useful to avoid being notified of manually created incidents, or send notifications to different channels based on the incident type.
+    Some alert rules can now be filtered to only send notifications for specific incident types. This is particularly useful to avoid being notified of manually created incidents, or to send notifications to different channels based on the incident type.
 
     The following alert events now support filtering by incident type:
     - Incident created
@@ -185,13 +185,13 @@ rss: true
 
     ## Mute projects
 
-    It is now possible to mute an entire project that is being a little too noisy, you won't get notified but:
+    It is now possible to mute an entire project that is being a little too noisy. Notifications are muted, but:
 
     - Incidents still show up in the dashboard
-    - Notification are logged with a "muted" status
+    - Notifications are logged with a "muted" status
     - You can still access the uptime percentage and other stats of your monitors
 
-    Perfect for temporarily unstable infra, or that one API that breaks a few time a day.
+    Perfect for temporarily unstable infra, or that one API that breaks a few times a day.
 
     The feature can be activated from the Alert Rules page of your dashboard, and a special indicator will be shown for all muted projects.
 
@@ -205,10 +205,10 @@ rss: true
 
     Many improvements landed on the incident timeline to improve the incident management experience:
 
-    - Details of monitors modification done during an incident active period are now show in the timeline
-    - Details of an incident modification done during an incident active period are now show in the timeline
+    - Details of monitor modifications done during an incident active period are now shown in the timeline
+    - Details of incident modifications done during an incident active period are now shown in the timeline
     - Relevant actions performed by API are now logged in the timeline, with the name of the API key used to perform the action
-    - The timeline design as been refresh and made more compact to allow you to see more data
+    - The timeline design has been refreshed and made more compact to show more data
 
     <br/>
 
@@ -216,7 +216,7 @@ rss: true
 
     Phare's monitoring agent (A.K.A Beacon) now supports Brotli and Zstandard compression algorithms. The deflate implementation has also been updated to be compatible with the RFC 1950 standard on top of the existing RFC 1951 implementation.
 
-    The monitoring agent `Content-Encoding` header as been updated to reflect this change:
+    The monitoring agent `Content-Encoding` header has been updated to reflect this change:
 
     ```text
     Content-Encoding: gzip, deflate, br, zstd
@@ -232,7 +232,7 @@ rss: true
 
     ## Create incidents for multiple monitors
 
-    It is now possible to create incidents for multiple monitors at once, this is a big structural change that will allow building cool features like incident merging.
+    It is now possible to create incidents for multiple monitors at once. This is a big structural change that will allow building features like incident merging.
 
     <br/>
 
@@ -242,9 +242,9 @@ rss: true
 
     ## Credits payment for Scale plan
 
-    The Scale plan now supports prepayment, allowing you to pay for a few months, or a few years in advance. This allow you to only receive a single invoice for the entire period, and avoid monthly payments.
+    The Scale plan now supports prepayment, allowing you to pay for a few months or a few years in advance. This allows you to receive a single invoice for the entire period and avoid monthly payments.
 
-    This come with a slight change for users already on the Scale plan, as the plan is now payed at the end of the month instead of the beginning.
+    This comes with a slight change for users already on the Scale plan, as the plan is now paid at the end of the month instead of the beginning.
 </Update>
 
 <Update label="June 2025">
@@ -252,14 +252,14 @@ rss: true
         <img src="/images/changelog/88-enhanced-incident-details.webp" alt="Enhanced incident details" />
     </Frame>
 
-    ##  Enhanced incident details
+    ## Enhanced incident details
 
-    The information available in incident reports has been extended to includes:
+    The information available in incident reports has been extended to include:
 
     - ✅ *Resolved address*: See the final hostname and port.
     - 🔢 *Status code*: Quickly verify the HTTP response status.
     - 🧪 *Assertion results*: View detailed outcomes for each assertion.
-    - 📦 *Response size*: View the bytes size of the response body.
+    - 📦 *Response size*: View the byte size of the response body.
     - 🧾 *Response headers*: Inspect the HTTP headers returned by the server.
     - 🔍 *Request trace*: Follow the full journey of the request through each step.
 
@@ -271,7 +271,7 @@ rss: true
 
     Organizations on the **Hobby** plan are now automatically deactivated after 4 months of inactivity, instead of 6 months. This means that if your organization has no active members for 4 months, it will be deactivated and all data will be deleted after receiving two reminder emails.
 
-    This change is necessary to keep the platform sustainable, and requesting 3 sign ins per year seems reasonable to ask for a free plan.
+    This change is necessary to keep the platform sustainable, and requesting three sign-ins per year seems reasonable for a free plan.
 
     <br/>
 
@@ -309,7 +309,7 @@ rss: true
 
     ## Refreshed design
 
-    Phare has a fresh new look! The design has been refreshed to be more modern and user-friendly, navigation should be more intuitive.
+    Phare has a fresh new look. The design has been refreshed to be more modern and user-friendly, and navigation should be more intuitive.
 
     <br/>
 
@@ -450,13 +450,13 @@ rss: true
 
     ## New Scale plan price
 
-    After nearly a year of intense optimization and some seriously messy spreadsheet formulas, it's finally done, Phare Scale plan is now just 5€, down from 49€!
+    After nearly a year of intense optimization and some seriously messy spreadsheet formulas, it's finally done: the Phare Scale plan is now just 5€, down from 49€.
 
     That’s 90% off! And it’s not just about slashing prices, it’s about making powerful, high-quality tools accessible to everyone, without locking features behind expensive enterprise plans.
 
     The pricing page has been [updated to reflect this change and clarify things](https://phare.io/pricing).
 
-    Now’s the perfect time to hop on board. Don’t miss out, let’s scale together.
+    Now’s the perfect time to hop on board. Don’t miss out.
 
     <br/>
 
@@ -469,9 +469,9 @@ rss: true
 
     Phare now has a Discord community, because sometimes you just want to drop a quick message, rant about a bug, or throw out a wild feature idea explained in a meme.
 
-    Join to chat about Phare, share feedback, report issues, or just see what’s brewing. It's also the best place to talk to the guy that write the code, and bully him into adding a dark mode (please don’t).
+    Join to chat about Phare, share feedback, report issues, or just see what’s brewing. It's also the best place to talk to the guy who writes the code and tease him about adding a dark mode (please don’t).
 
-    Jump in, say hi, and let’s have fun: https://phare.io/discord
+    Jump in, say hi, and have fun: https://phare.io/discord
 
 </Update>
 
@@ -485,7 +485,7 @@ rss: true
 
     Six new regions are available in preview to test Phare's brand-new monitoring infrastructure. They’re free to use for the next two months but come with no guarantees yet.
 
-    Choose from US West / East 🇺🇸, Japan 🇯🇵, Germany 🇩🇪, or one of the new regions, Australia 🇦🇺 and Brazil 🇧🇷. Or why not all of them to help us test the new infrastructure at scale?
+    Choose from US West / East 🇺🇸, Japan 🇯🇵, Germany 🇩🇪, or one of the new regions, Australia 🇦🇺 and Brazil 🇧🇷. Or try all of them to help test the new infrastructure at scale.
 
     <br/>
 
@@ -520,7 +520,7 @@ rss: true
 
     ## Improved integration reliability
 
-    A lot of work has been done to improve the reliability of all integrations with third-party services. Including a new delivery and error logs page, failure notifications, and automatic pause for failing integrations.
+    A lot of work has been done to improve the reliability of all integrations with third-party services, including a new delivery and error logs page, failure notifications, and automatic pause for failing integrations.
 
     ### Delivery and error logs
 
@@ -532,9 +532,9 @@ rss: true
 
     ### Failure notifications
 
-    All integrations now notify the organization owner when an issue occurs. For the SMS, Email and Webhook integrations, a detailed list of failed number, address or requests is provided to help you identify the issue.
+    All integrations now notify the organization owner when an issue occurs. For the SMS, Email, and Webhook integrations, a detailed list of failed numbers, addresses, or requests is provided to help you identify the issue.
 
-    The failure notification for the Outgoing Webhook integration is only sent if all delivery attempts have failed, which means organization owner will be notified [1 hour and 18 minutes]( https://docs.phare.io/integrations/outgoing-webhook#retry-policy) after the event creation.
+    The failure notification for the Outgoing Webhook integration is only sent if all delivery attempts have failed, which means the organization owner will be notified [1 hour and 18 minutes](https://docs.phare.io/integrations/outgoing-webhook#retry-policy) after the event creation.
 
     <Frame>
         <img src="/images/changelog/71-integration-issue-notification.webp" alt="Integration issue notification" />
@@ -542,7 +542,7 @@ rss: true
 
     ### Automatic pause
 
-    Integrations that have been failing more than 3 consecutive times in a 7 days rolling window will be automatically paused. A notification will be sent to the organization owner when this happens.
+    Integrations that have been failing more than three consecutive times in a 7-day rolling window will be automatically paused. A notification will be sent to the organization owner when this happens.
 
     <br/>
 
@@ -550,16 +550,16 @@ rss: true
 
     To improve the performance of the platform and reduce unnecessary data retention, a few rules are now enforced for organizations on the **Hobby** plan:
 
-    Organizations must have at least one active member in the past 6 months to keep their account active. Two reminder email will be sent to the organization owner before the account is deactivated. The first reminder is sent 14 days before the account deactivation, and the second reminder is sent 3 days before the account deactivation.
+    Organizations must have at least one active member in the past 6 months to keep their account active. Two reminder emails will be sent to the organization owner before the account is deactivated. The first reminder is sent 14 days before the account deactivation, and the second reminder is sent 3 days before the account deactivation.
 
-    Monitor that have been failing uninterrupted for more than 48h will be automatically paused. A notification will be sent to the organization owner when a monitor is paused.
+    Monitors that have been failing uninterrupted for more than 48h will be automatically paused. A notification will be sent to the organization owner when a monitor is paused.
 
     These rules are only enforced for organizations on the **Hobby** plan, and are necessary to keep this plan free and sustainable for everyone.
 
     <br/>
 
     <Frame>
-        <img src="/images/changelog/72-custom-status-page-error.webp" alt="Custom satus page error" />
+        <img src="/images/changelog/72-custom-status-page-error.webp" alt="Custom status page error" />
     </Frame>
 
     ## Custom error pages for status pages
@@ -590,12 +590,12 @@ rss: true
 
     ## Embed status badges
 
-    Three embeddable status badges are now available to display your status page's current status on your website. The badges do not load any third party scripts, are free from cookies, and adapt to your website dark and light mode.
+    Three embeddable status badges are now available to display your status page's current status on your website. The badges do not load any third-party scripts, are free from cookies, and adapt to your website dark and light modes.
 
 
     #### Pulse badge
 
-    The pulse badge only display the current status of your status page without any additional information, making it perfect to build your own components around it.
+    The pulse badge only displays the current status of your status page without any additional information, making it perfect to build your own components around it.
 
     <Frame>
         <img src="/images/changelog/65-embed-pulse-badge.webp" alt="Embed pulse badges" />

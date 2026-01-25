@@ -79,9 +79,9 @@ Here's the list of available alert integrations:
 
 ### Resilience
 
-All alert integrations are designed to be resilient and deliver notifications during critical moments. An aggressive retry strategy ensures that if any notification fails to send, it will be retried until it goes through. This means you can rest easy knowing that your team will be alerted, even if there are temporary hiccups in the connection or with third-party services. In case a notification still fails after multiple attempts, Phare will log the error and notify the organization owner by email, so they can take action if needed.
+All alert integrations are designed to be resilient and deliver notifications during critical moments. An aggressive retry strategy ensures that if any notification fails to send, it will be retried until it goes through. This means you can rest easy knowing that alert recipients are notified, even if there are temporary hiccups in the connection or with third-party services. In case a notification still fails after multiple attempts, Phare will log the error and notify the organization owner by email, so action can be taken if needed.
 
-Email are sent through two different SMTP providers, [Scaleway](https://www.scaleway.com/) and [Brevo](https://www.brevo.com/), ensuring redundancy and reliability. If one provider experiences issues, the other will step in to deliver your alerts.
+Emails are sent through two different SMTP providers, [Scaleway](https://www.scaleway.com/) and [Brevo](https://www.brevo.com/), ensuring redundancy and reliability. If one provider experiences issues, the other will step in to deliver your alerts.
 
 ### Detailed logs
 
@@ -96,4 +96,4 @@ Detailed logs of all sent notifications are available in the Phare dashboard, so
 
 ---
 
-Is your team's favorite tool missing from this list? [Contact support](https://phare.io/contact), to have it added to the roadmap!
+Is a favorite tool missing from this list? [Contact support](https://phare.io/contact) to have it added to the roadmap.

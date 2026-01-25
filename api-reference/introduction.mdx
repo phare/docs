@@ -5,15 +5,15 @@ description: 'Create programmatic interactions with the Phare API.'
 
 <Warning>Please be aware that **the Phare API is currently in beta** and is subject to change.</Warning>
 
-Welcome, this API allows you to interact programmatically with the Phare platform, enabling seamless integration and automation of almost everything that can be done in your control panel.
+This API lets you interact programmatically with the Phare platform, enabling integration and automation for most tasks available in the control panel.
 
 ## Create an API key
 
 <Info>Only team members with the **Owner** or **Admin** role can create an API key in your organization.</Info>
 
-To access the Phare API, you will need to create an API key with the right accesses, this can be done in your <a href="https://app.phare.io/organization/api-keys" rel="nofollow">control panel</a>.
+To access the Phare API, create an API key with the right access. This can be done in the <a href="https://app.phare.io/organization/api-keys" rel="nofollow">control panel</a>.
 
-While creating an API key, you will be able to choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform. You can find the list of available endpoints in the left navigation of this documentation.
+When creating an API key, choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform. The list of available endpoints is in the left navigation of this documentation.
 
 You can create as many keys as necessary to fit your use case.
 
@@ -44,14 +44,14 @@ curl \
 -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-<Warning>Keep your API key confidential at all time. Do not share it publicly or expose it in client-side code.</Warning>
+<Warning>Keep your API key confidential at all times. Do not share it publicly or expose it in client-side code.</Warning>
 
 If you suspect that your API key has been compromised, revoke it immediately through your control panel and generate a new one.
 
 ## Rate limiting
 
-Access to the API is currently rate limited to **100 calls per minute** across your organization. This means that all the API keys in your organization will share the same rate limiting.
+Access to the API is currently rate limited to **100 calls per minute** across the organization. All API keys share the same limit.
 
 ---
 
-If you are missing an API endpoint or need a custom rate limit for your organization, feel free to [contact us](mailto:support@phare.io), we'll be happy to find a solution for your use case.
+If an API endpoint is missing or a custom rate limit is needed, [contact support](mailto:support@phare.io). Phare can help find a solution that fits the use case.

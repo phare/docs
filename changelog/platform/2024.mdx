@@ -72,7 +72,7 @@ You can now customize the favicon displayed on your status pages. This feature a
 ## Simplified TCP monitoring
 _November 20th, 2024_
 
-TCP monitoring has been simplified to make it easier to set up and manage monitoring your services. No more need to specify a payload and an expected response.
+TCP monitoring has been simplified to make it easier to set up and manage monitoring for your services. No need to specify a payload and an expected response.
 
 <Frame>
     <img src="/images/changelog/59-simplified-tcp-monitoring.webp" alt="Simplified TCP monitoring" />
@@ -83,7 +83,7 @@ TCP monitoring has been simplified to make it easier to set up and manage monito
 ## Refreshed status pages
 _November 11th, 2024_
 
-Status pages design has been slightly refreshed to provide a better look and feel. This also includes a few bug fixes and improve how incidents and downtime is presented to your users in a more coherent way.
+Status page design has been slightly refreshed to provide a better look and feel. This also includes a few bug fixes and improves how incidents and downtime are presented to your users in a more coherent way.
 
 <Frame>
     <img src="/images/changelog/58-refreshed-status-pages.webp" alt="Refreshed status pages" />
@@ -125,13 +125,13 @@ You now have the ability to exclude an incident from the downtime calculation, a
 ## Incident creation
 _October 7th, 2024_
 
-Incidents can now be created manually, this feature allows you to easily track and manage incidents that are not automatically detected by uptime monitoring checks.
+Incidents can now be created manually. This feature allows you to easily track and manage incidents that are not automatically detected by uptime monitoring checks.
 
-It is now also possible to modify incident created automatically by the platform, allowing you to customize incident titles shown on your status page, and add more details to the incident report.
+It is now also possible to modify incidents created automatically by the platform, allowing you to customize incident titles shown on your status page and add more details to the incident report.
 
-Manually created incident uses alert policies under the hood, and are not automatically resolved when associated monitors are successful.
+Manually created incidents use alert policies under the hood and are not automatically resolved when associated monitors are successful.
 
-We hope that you will be able to better communicate with your users during incidents with this new feature.
+This feature makes it easier to communicate with users during incidents.
 
 <Frame>
     <img src="/images/changelog/54-create-incidents.webp" alt="Phare incident creation" />
@@ -142,11 +142,11 @@ We hope that you will be able to better communicate with your users during incid
 ## Phare for good
 _August 30th, 2024_
 
-We are thrilled to announce the "Phare for Good" initiative, offering an extended free plan to open source projects and nonprofit organizations.
+Phare is introducing the "Phare for Good" initiative, offering an extended free plan to open source projects and nonprofit organizations.
 
-This is our way of supporting those who are making a positive impact by providing our full suite of monitoring and incident management tools, completely free.
+This initiative supports projects making a positive impact by providing the full suite of monitoring and incident management tools, completely free.
 
-If you're driving change through technology or social causes, we're here to help keep your online presence strong and reliable.
+If you're driving change through technology or social causes, Phare is here to help keep your online presence strong and reliable.
 
 Join the program here: https://phare.io/for-good
 
@@ -159,12 +159,12 @@ Join the program here: https://phare.io/for-good
 ## Blog
 _August 22th, 2024_
 
-We've had some exciting knowledge to share recently, so we've decided to launch an official blog for Phare. We'll post new content occasionally, but only when we have something valuable to share.
+An official blog is now live for Phare. New content is posted occasionally, but only when there is something valuable to share.
 
 You can already read a few articles:
 
 - [Downsampling time series data](https://phare.io/blog/downsampling-time-series-data/)
-- [How we run Ghost on Docker with subdirectory routing](https://phare.io/blog/how-we-run-ghost-on-docker-with-subdirectory-routing/)
+- [Running Ghost on Docker with subdirectory routing](https://phare.io/blog/how-%77%65-run-ghost-on-docker-with-subdirectory-routing/)
 - [Best practices to configure an uptime monitoring service](https://phare.io/blog/best-practices-to-configure-an-uptime-monitoring-service/)
 
 ---
@@ -185,11 +185,11 @@ Your monitoring pages have also been redesigned slightly and given a new filter 
 ## Improved monitoring performance chart
 _July 29th, 2024_
 
-The algorithm used to generate the performance chart has been improved to provide a more accurate representation of your monitor's performance. This change allows for better anomaly removal and a more precise representation of the overall performance showed by your monitor.
+The algorithm used to generate the performance chart has been improved to provide a more accurate representation of your monitor's performance. This change allows for better anomaly removal and a more precise representation of the overall performance shown by your monitor.
 
-Incidents are now displayed on the chart with their respective impact color, making it easier to understand any correlation at a glance.
+Incidents are now displayed on the chart with their respective impact colors, making it easier to understand any correlation at a glance.
 
-If you're interested in learning more about how we generate the performance chart, you can read our article on [downsampling time series data](/articles/downsampling-time-series-data).
+If you're interested in learning more about how Phare generates the performance chart, read the article on [downsampling time series data](/articles/downsampling-time-series-data).
 
 <Frame>
     <img src="/images/changelog/51-performance-chart.webp" alt="Performance chart" />
@@ -215,7 +215,7 @@ Instructions on how to set up a custom domain for your status page can be found 
 ## Outgoing webhooks integration
 _July 17th, 2024_
 
-Outgoing webhooks are now available Phare platform, allowing you to connect with third-party tools or build your own integration.
+Outgoing webhooks are now available on the Phare platform, allowing you to connect with third-party tools or build your own integration.
 
 The webhook payload can be customized for each alert rule event that you would like to use. You are free to use any valid JSON structure with access to many variables to help you build the perfect payload for your use case.
 
@@ -223,9 +223,9 @@ The webhook payload can be customized for each alert rule event that you would l
     <img src="/images/changelog/48-outgoing-webhook-alert-rule.webp" alt="Outgoing webhooks alert rules" />
 </Frame>
 
-Webhooks are secured with an HMAC sha256 signature to ensure the authenticity of the payload, in a way that is resistant to replay and timing attacks. A retry policy is also in place to ensure that your webhook is safely delivered, even if your server is temporarily down.
+Webhooks are secured with an HMAC SHA-256 signature to ensure the authenticity of the payload in a way that is resistant to replay and timing attacks. A retry policy is also in place to ensure that your webhook is safely delivered, even if your server is temporarily down.
 
-One more thing, you can also browse the history of the payloads sent to your webhook to easily debug and monitor the integration.
+One more thing: you can also browse the history of the payloads sent to your webhook to easily debug and monitor the integration.
 
 <Frame>
     <img src="/images/changelog/49-outgoing-webhook-logs.webp" alt="Outgoing webhooks logs" />
@@ -238,7 +238,7 @@ You can learn more about the outgoing webhooks integration in the [documentation
 ## Billing quotas estimation
 _July 11th, 2024_
 
-Billing quotas forecasting has been released on the Phare platform. This new feature provides greater visibility into your billing quota usage, helping you manage your resources more effectively.
+Billing quota forecasting has been released on the Phare platform. This new feature provides greater visibility into your billing quota usage, helping you manage your resources more effectively.
 
 On your organization billing page, you can now see detailed forecasts of your quota usage. This includes predictions based on your current usage patterns, allowing you to plan ahead and avoid service interruptions.
 
@@ -252,7 +252,7 @@ You will also be alerted when creating or updating a monitor if the action excee
     <img src="/images/changelog/47-monitoring-quotas-forecast.webp" alt="Monitoring quotas forecast" />
 </Frame>
 
-Billing transparency is a key part of our platform, and we are committed to providing you with the tools you need to monitor and control your usage effectively.
+Billing transparency is a key part of the Phare platform, and the tooling helps you monitor and control usage effectively.
 
 ---
 
@@ -267,7 +267,7 @@ New API endpoints are available to help you programmatically interact with the P
 
 These new API endpoints enhance your ability to automate and streamline your monitoring, alerting, and incident management workflows, offering a more integrated and efficient approach to maintaining service reliability.
 
-This release ends the current phase of API development with all major entities now available, allowing us to focus on stability to plan the end of the beta phase.
+This release ends the current phase of API development with all major entities now available, allowing Phare to focus on stability and plan the end of the beta phase.
 
 <Frame>
     <img src="/images/changelog/45-new-api-endpoints.webp" alt="New API endpoints" />
@@ -293,7 +293,7 @@ While the default timeout value of 7 seconds is optimized for most scenarios, pr
 ## Smart monitoring suggestion
 _July 3rd, 2024_
 
-We are introducing smart monitoring suggestions, designed to help you effortlessly optimize your monitors. This new feature provides tailored recommendations to enhance the accuracy and reliability of your monitoring.
+Phare is introducing smart monitoring suggestions, designed to help you effortlessly optimize your monitors. This new feature provides tailored recommendations to enhance the accuracy and reliability of your monitoring.
 
 Smart Suggestions will alert you of unnecessary redirects, which can slow down your site's reported performance, and recommend using multiple regions for monitoring if you currently use only a single region. By following these suggestions, you can ensure more comprehensive coverage and faster detection of potential issues.
 
@@ -319,14 +319,14 @@ With this update, you can detect and respond to issues faster than ever, ensurin
 ## New changelog
 _July 1st, 2024_
 
-Phare's changelog has been moved on our documentation site to harmonize the way that we write content on new Phare features. All previous entries where migrated to [this page](/changelog/platform/2024). We hope this new format will allow us to publish new entries faster and with a higher frequency.
+Phare's changelog has moved to the documentation site to harmonize how new Phare features are documented. All previous entries were migrated to [this page](/changelog/platform/2024). This new format should allow faster and more frequent updates.
 
 ---
 
 ## New monitoring regions
 _May 28th, 2024_
 
-Following our recent monitoring infrastructure migration, three new regions are released for uptime monitoring:
+Following a recent monitoring infrastructure migration, three new regions are released for uptime monitoring:
 
 Say hello to Japan, the United Kingdom and Mexico.
 
@@ -339,9 +339,9 @@ Say hello to Japan, the United Kingdom and Mexico.
 ## New monitoring infrastructure
 _May 26th, 2024_
 
-Our monitoring infrastructure is the biggest operating cost and most important piece of the Phare Uptime product. As we perform millions of monitoring checks from many regions around the world, this infrastructure should be scalable, efficient and more importantly reliable. As we grew over the past few months, our previous solution based on [AWS Lambda](https://aws.amazon.com/lambda/) started to show its limit in terms of performance and cost, forcing us to look for an alternative solution.
+Phare's monitoring infrastructure is the biggest operating cost and most important piece of the Phare Uptime product. As Phare performs millions of monitoring checks from many regions around the world, this infrastructure should be scalable, efficient, and most importantly reliable. As the platform grew over the past few months, the previous solution based on [AWS Lambda](https://aws.amazon.com/lambda/) started to show its limits in terms of performance and cost, forcing a search for an alternative solution.
 
-Today we migrated all monitoring checks to a newly written infrastructure based on [Cloudflare workers](https://workers.cloudflare.com/). This solution allows us to maintain our generous free plan and a competitive price for our paid customers.
+Phare has migrated all monitoring checks to a newly written infrastructure based on [Cloudflare workers](https://workers.cloudflare.com/). This solution helps maintain a generous free plan and competitive pricing for paid customers.
 
 ---
 
@@ -359,11 +359,11 @@ API endpoints to [manage alert policies](/api-reference/alert-policies/list-aler
 ## REST API
 _May 20th, 2024_
 
-The Phare REST API has been released with associated [documentation](/api-reference/introduction). All endpoints required to manage monitors are already available, other endpoints will be added in the next few weeks until all the action you can perform in your dashboard can also be done programmatically.
+The Phare REST API has been released with associated [documentation](/api-reference/introduction). All endpoints required to manage monitors are already available. Other endpoints will be added in the next few weeks until all the actions you can perform in your dashboard can also be done programmatically.
 
-You will need to generate an API key to authenticate your organization, you are able to choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform.
+You will need to generate an API key to authenticate your organization. You can choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform.
 
-More informations are available on the [API documentation](/api-reference/introduction) page.
+More information is available on the [API documentation](/api-reference/introduction) page.
 
 <Frame>
     <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
@@ -392,7 +392,7 @@ Documentation has been moved to [docs.phare.io](/introduction) and offers an imp
 ## Incident comment and update alert
 _May 7th, 2024_
 
-Two new alert rules have been created to let you know when your team is working on resolving an incident. The first one will alert you everytime a new comment is published on an incident timeline, and the second when a team member publishes a status update for the incident.
+Two new alert rules have been created to let you know when your team is working on resolving an incident. The first one will alert you every time a new comment is published on an incident timeline, and the second when a team member publishes a status update for the incident.
 
 <Frame>
   <img src="/images/changelog/38-new-alert-rules.webp" alt="Incident comment and update alert" />
@@ -407,4 +407,4 @@ Phare migrated to a new datacenter managed by [Hetzner](https://www.hetzner.com/
 
 A lot of work has also been put into disaster recovery, with four times more backup point every day and multi-region (all in Europe) replication.
 
-This ensures that the service can be put back up with the smallest possible downtime in case our current datacenter has a major outage.
+This ensures that the service can be put back up with the smallest possible downtime in case the current datacenter has a major outage.
