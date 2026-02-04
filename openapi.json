@@ -1558,7 +1558,7 @@
                     "name": {
                         "description": "Monitor name",
                         "type": "string",
-                        "maximum": 30,
+                        "maximum": 40,
                         "minimum": 2,
                         "example": "Website"
                     },
