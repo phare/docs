@@ -275,7 +275,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, alert rule deleted"
+                        "description": "Success, alert rule deleted",
+                        "content": {}
                     },
                     "409": {
                         "description": "Error, alert rule cannot be deleted",
@@ -353,6 +354,46 @@
                         "$ref": "#/components/parameters/per_page"
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Create an incident",
+                "description": "Create an incident",
+                "operationId": "createUptimeIncident",
+                "requestBody": {
+                    "description": "Incident request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.Incident.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, incident created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Incident.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
             }
         },
         "/uptime/incidents/{incidentId}": {
@@ -396,6 +437,60 @@
                     }
                 }
             },
+            "post": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Update an incident",
+                "description": "Update an incident by ID",
+                "operationId": "updateUptimeIncident",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Incident request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.Incident.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, incident updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.Incident.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "Incidents"
@@ -416,7 +511,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, incident deleted"
+                        "description": "Success, incident deleted",
+                        "content": {}
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -426,6 +522,42 @@
                     },
                     "404": {
                         "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/uptime/incidents/{incidentId}/recover": {
+            "post": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Recover a incident",
+                "description": "Recover a incident by ID",
+                "operationId": "recoverUptimeIncident",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident to recover",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, incident recovered",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
                     }
                 }
             }
@@ -634,7 +766,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, monitor deleted"
+                        "description": "Success, monitor deleted",
+                        "content": {}
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -669,7 +802,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, monitor paused"
+                        "description": "Success, monitor paused",
+                        "content": {}
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -704,7 +838,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, monitor resumed"
+                        "description": "Success, monitor resumed",
+                        "content": {}
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -922,7 +1057,8 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Success, status page deleted"
+                        "description": "Success, status page deleted",
+                        "content": {}
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -1046,6 +1182,13 @@
                     }
                 ]
             },
+            "Uptime.Incident.Request": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uptime.Incident"
+                    }
+                ]
+            },
             "Uptime.Monitor.Request": {
                 "allOf": [
                     {
@@ -1151,60 +1294,30 @@
                                 "type": "number",
                                 "example": 1
                             },
-                            "organization_id": {
-                                "description": "Parent organization ID",
-                                "type": "number",
-                                "example": 1
-                            },
                             "project_id": {
                                 "description": "Parent project ID",
                                 "type": "number",
                                 "example": 1
                             },
-                            "title": {
-                                "description": "Incident title",
-                                "type": "string",
-                                "maximum": 30,
-                                "example": "Service is not working as expected"
+                            "type": {
+                                "$ref": "#/components/schemas/Uptime.Incident.TypeEnum"
                             },
                             "slug": {
                                 "description": "Incident unique slug name",
                                 "type": "string",
                                 "example": "APP-123"
                             },
-                            "impact": {
-                                "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                            },
                             "state": {
                                 "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                             },
                             "status": {
                                 "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                            },
-                            "description": {
-                                "description": "Description of the error that caused the incident",
-                                "type": "string",
-                                "example": "The server answered with an unexpected status code: 503."
-                            },
-                            "exclude_from_downtime": {
-                                "description": "Flag to exclude the incident from downtime calculations",
-                                "type": "boolean",
-                                "example": false
-                            },
-                            "incident_at": {
-                                "description": "Date of incident confirmation",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
-                            },
-                            "recovery_at": {
-                                "description": "Date of incident recovery",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
                             }
                         },
                         "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Uptime.Incident"
                     },
                     {
                         "properties": {
@@ -1539,6 +1652,64 @@
                         "description": "Date when the certificate is valid until",
                         "type": "string",
                         "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.Incident": {
+                "required": [
+                    "impact",
+                    "title",
+                    "incident_at"
+                ],
+                "properties": {
+                    "impact": {
+                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                    },
+                    "title": {
+                        "description": "Incident title",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 1,
+                        "example": "Service is not working as expected"
+                    },
+                    "description": {
+                        "description": "Description of the error that caused the incident",
+                        "type": "string",
+                        "maximum": 2000,
+                        "minimum": 1,
+                        "example": "The server answered with an unexpected status code: 503."
+                    },
+                    "exclude_from_downtime": {
+                        "description": "Flag to exclude the incident from downtime calculations",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "incident_at": {
+                        "description": "Date of incident confirmation",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "recovery_at": {
+                        "description": "Date of incident recovery",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "monitors": {
+                        "description": "List of monitors linked to the incident",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "example": [
+                            1,
+                            2,
+                            3
+                        ]
                     }
                 },
                 "type": "object"
@@ -2041,6 +2212,13 @@
                     "ongoing",
                     "recovering",
                     "recovered"
+                ]
+            },
+            "Uptime.Incident.TypeEnum": {
+                "type": "string",
+                "enum": [
+                    "monitor",
+                    "manual"
                 ]
             },
             "Uptime.Monitor.ConnectionEnum": {

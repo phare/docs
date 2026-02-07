@@ -96,6 +96,9 @@
                 "pages": [
                   "api-reference/uptime/incidents/list-incidents",
                   "api-reference/uptime/incidents/get-an-incident",
+                  "api-reference/uptime/incidents/create-an-incident",
+                  "api-reference/uptime/incidents/update-an-incident",
+                  "api-reference/uptime/incidents/recover-an-incident",
                   "api-reference/uptime/incidents/delete-an-incident"
                 ]
               },
