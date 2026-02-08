@@ -64,6 +64,23 @@
             "group": "Platform",
             "pages": [
               "api-reference/platform/get-api-info",
+               {
+                "group": "Projects",
+                "pages": [
+                  "api-reference/platform/projects/list-projects",
+                  "api-reference/platform/projects/create-a-project",
+                  "api-reference/platform/projects/get-a-project",
+                  "api-reference/platform/projects/update-a-project",
+                  "api-reference/platform/projects/delete-a-project"
+                ]
+              },
+              {
+                "group": "Project",
+                "pages": [
+                  "api-reference/platform/project/get-a-project",
+                  "api-reference/platform/project/update-a-project"
+                ]
+              },
               {
                 "group": "Alert Rules",
                 "pages": [
