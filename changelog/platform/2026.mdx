@@ -5,7 +5,21 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
-<Update label="January 2026">
+<Update label="February 2026">
+    <Frame>
+        <img src="/images/changelog/114-organization-scoped-api-key.avif" alt="Organization scoped API key" />
+    </Frame>
+
+    ## Organization-scoped API keys
+
+    You can now create organization-scoped API keys. These keys provide access to all projects within your organization and allow full project management, including the ability to create and manage projects.
+
+    **Project-scoped API keys** remain available and are still best for setups where projects must stay clearly separated, such as agencies or larger organizations.
+
+    **Organization-scoped API keys** are ideal for small teams, startups, and infrastructure provisioning. Most API requests with these keys require a [project selection header](/api-reference/introduction#project-selection).
+
+    <br/>
+
     <Frame>
         <img src="/images/changelog/112-incidents-write-api.avif" alt="Create update and recover incidents using the Phare API" />
     </Frame>
@@ -37,7 +51,9 @@ rss: true
     <Frame>
         <img src="/images/changelog/113-monitor-smtp-ports.avif" alt="Monitor SMTP ports" />
     </Frame>
+</Update>
 
+<Update label="January 2026">
     ## SMTP ports now available for monitoring
 
     SMTP ports can now be monitored like other services over TCP. The usual ports are supported: **25**, **465**, **587**, and **2525**, making it easier to keep an eye on your in-house mail servers.
