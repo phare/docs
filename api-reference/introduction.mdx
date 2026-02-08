@@ -3,54 +3,103 @@ title: 'API Introduction'
 description: 'Create programmatic interactions with the Phare API.'
 ---
 
-<Warning>Please be aware that **the Phare API is currently in beta** and is subject to change.</Warning>
+<Warning>
+    Please be aware that **the Phare API is currently in beta** and is subject to change.
+</Warning>
 
 This API lets you interact programmatically with the Phare platform, enabling integration and automation for most tasks available in the control panel.
 
 ## Create an API key
 
-<Info>Only team members with the **Owner** or **Admin** role can create an API key in your organization.</Info>
+<Info>
+    Only team members with the **Owner** or **Admin** role can create an API key in your organization.
+</Info>
 
-To access the Phare API, create an API key with the right access. This can be done in the <a href="https://app.phare.io/organization/api-keys" rel="nofollow">control panel</a>.
+To access the Phare API, create an API key with the right access. This can be done in the
+<a href="https://app.phare.io/organization/api-keys" rel="nofollow">control panel</a>.
 
-When creating an API key, choose an access scope (Read / Write) for each Phare product as well as access to the resources of the Phare platform. The list of available endpoints is in the left navigation of this documentation.
-
-You can create as many keys as necessary to fit your use case.
+## Choosing the right scope
 
 <Frame>
-    <div style={{position: 'relative', width: '100%', 'padding-top': '56.25%'}}>
+    <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
         <iframe
             src="https://iframe.mediadelivery.net/embed/238508/0ec7b14b-4512-4fc5-b74e-b42f8152c596?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
             loading="lazy"
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
-            style={{border: 0, position: 'absolute', top: 0, height: '100%', width: '100%'}}
+            style={{ border: 0, position: 'absolute', top: 0, height: '100%', width: '100%' }}
         ></iframe>
     </div>
 </Frame>
 
+### Project-scoped API keys
+
+Project-scoped API keys are limited to a single project and are designed for setups where projects must remain clearly separated. They work best for agencies and larger organizations, where each project is owned by a different team.
+
+- Access is restricted to one specific project
+- Cannot create or manage other projects
+- No additional project headers are required when making API requests
+
+### Organization-scoped API keys
+
+Organization-scoped API keys provide access across all projects in an organization and allow full project management. They are well suited for small teams, startups, and infrastructure provisioning.
+
+- Access to all projects in the organization
+- Can create and manage projects
+- Requires a [project selection header](#project-selection) on most requests
+
+### Product scopes
+
+Product scopes lets you restrict which parts of the Phare platform an API key can access. This helps apply the principle of least privilege and limits what a key can do if it is misused.
+
+Each API key can be configured per product with one of the following access levels:
+- **No access**
+- **Read-only**
+- **Read-write**
+
+<Info>You can create as many keys as necessary to fit your use case.</Info>
+
 ## Authentication
 
-The Phare API uses Bearer Token Authentication to secure access to its endpoints. To authenticate your requests, include the API key in the Authorization header of your HTTP requests. The format for this header is as follows:
+The Phare API uses Bearer Token Authentication to secure access to its endpoints. To authenticate your requests, include the API key in the Authorization header of your HTTP requests:
 
-```bash Request Authorization header
+```bash
 Authorization: Bearer YOUR_API_KEY
 ```
 
-Here’s an example of a cURL command to list the monitors in your project using your API key:
+## Project selection
 
-```sh
+If you're using an organization-scoped API key, every endpoint except `/projects` most endpoints will require you to add an HTTP header to specify which project to operate on. You can specify the project by its `ID` or `Slug`:
+
+- **X-Phare-Project-Id**: The project's numeric ID
+- **X-Phare-Project-Slug**: The project's slug
+
+Example using the project slug:
+
+```bash
 curl \
--X GET "https://api.phare.io/uptime/monitors" \
--H "Authorization: Bearer YOUR_API_KEY"
+  -X GET "https://api.phare.io/uptime/monitors" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Phare-Project-Slug: my-project"
 ```
 
-<Warning>Keep your API key confidential at all times. Do not share it publicly or expose it in client-side code.</Warning>
+Example using the project ID:
 
-If you suspect that your API key has been compromised, revoke it immediately through your control panel and generate a new one.
+```bash
+curl \
+  -X GET "https://api.phare.io/uptime/monitors" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Phare-Project-Id: 123"
+```
+
+Project-scoped API keys always act on their scoped project and do not require a project selection header.
 
 ## Rate limiting
 
 Access to the API is currently rate limited to **100 calls per minute** across the organization. All API keys share the same limit.
+
+## Security
+
+Never share your API key publicly. If you suspect that your API key has been compromised, revoke it immediately through your control panel and generate a new one.
 
 ---
 
