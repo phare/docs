@@ -75,13 +75,6 @@
                 ]
               },
               {
-                "group": "Project",
-                "pages": [
-                  "api-reference/platform/project/get-a-project",
-                  "api-reference/platform/project/update-a-project"
-                ]
-              },
-              {
                 "group": "Alert Rules",
                 "pages": [
                   "api-reference/platform/alert-rules/list-alert-rules",
