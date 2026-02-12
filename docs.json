@@ -75,6 +75,13 @@
                 ]
               },
               {
+                "group": "Users",
+                "pages": [
+                  "api-reference/platform/users/list-users",
+                  "api-reference/platform/users/get-a-user"
+                ]
+              },
+              {
                 "group": "Alert Rules",
                 "pages": [
                   "api-reference/platform/alert-rules/list-alert-rules",

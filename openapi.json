@@ -339,96 +339,6 @@
                 }
             }
         },
-        "/project": {
-            "get": {
-                "tags": [
-                    "Projects"
-                ],
-                "summary": "Get current project",
-                "description": "Get the current project based on the API key project scope.",
-                "operationId": "getCurrentProject",
-                "responses": {
-                    "200": {
-                        "description": "Success, current project retrieved",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Platform.Project.Resource"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    }
-                },
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_slug"
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Projects"
-                ],
-                "summary": "Update current project",
-                "description": "Update the current project based on the API key project scope.",
-                "operationId": "updateCurrentProject",
-                "requestBody": {
-                    "description": "Project request",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Platform.Project.Request"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success, current project updated",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Platform.Project.Resource"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/components/responses/403"
-                    },
-                    "422": {
-                        "$ref": "#/components/responses/422"
-                    }
-                },
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/header_project_id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_slug"
-                    }
-                ]
-            }
-        },
         "/projects": {
             "get": {
                 "tags": [
@@ -635,6 +545,118 @@
                     "204": {
                         "description": "Success, project deleted",
                         "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List users",
+                "description": "Get a paginated list of users.",
+                "operationId": "getUsers",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Filter users by email. Use a comma-separated list to specify multiple email addresses.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, users retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Platform.User.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get a user",
+                "description": "Get a user by ID",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, user retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platform.User.Resource"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -2544,6 +2566,34 @@
                     }
                 }
             },
+            "Platform.User.Resource": {
+                "properties": {
+                    "id": {
+                        "description": "User ID",
+                        "type": "number",
+                        "example": 1
+                    },
+                    "role": {
+                        "$ref": "#/components/schemas/Phare.User.UserRoleEnum"
+                    },
+                    "email": {
+                        "description": "User email",
+                        "type": "string",
+                        "example": "nicolas@phare.io"
+                    },
+                    "created_at": {
+                        "description": "Date of creation for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Date of last update for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
             "Platform.AlertRule": {
                 "required": [
                     "event",
@@ -3176,6 +3226,13 @@
                     "uptime.incident_update.published"
                 ]
             },
+            "Phare.User.UserRoleEnum": {
+                "type": "string",
+                "enum": [
+                    "member",
+                    "admin"
+                ]
+            },
             "Uptime.Incident.ImpactEnum": {
                 "type": "string",
                 "enum": [
@@ -3403,6 +3460,10 @@
     ],
     "tags": [
         {
+            "name": "Users",
+            "description": "Users"
+        },
+        {
             "name": "Projects",
             "description": "Projects"
         },
@@ -3431,6 +3492,7 @@
         {
             "name": "Phare platform",
             "tags": [
+                "Users",
                 "Projects",
                 "Alert Rules"
             ]
