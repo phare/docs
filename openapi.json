@@ -339,6 +339,138 @@
                 }
             }
         },
+        "/apps/{app}/integrations": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "List integrations",
+                "description": "Get a paginated list of integrations for a specific app.",
+                "operationId": "getIntegrations",
+                "parameters": [
+                    {
+                        "name": "app",
+                        "in": "path",
+                        "description": "The app key to filter integrations",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Filter integrations by name. Can be specified multiple times to filter by multiple names.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, integrations retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/Platform.Integration.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            }
+        },
+        "/apps/{app}/integrations/{integrationId}": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Get an integration",
+                "description": "Get an integration by ID",
+                "operationId": "getIntegration",
+                "parameters": [
+                    {
+                        "name": "app",
+                        "in": "path",
+                        "description": "The app key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "integrationId",
+                        "in": "path",
+                        "description": "ID of the integration to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, integration retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Platform.Integration.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
         "/projects": {
             "get": {
                 "tags": [
@@ -570,8 +702,10 @@
                     {
                         "name": "email",
                         "in": "query",
-                        "description": "Filter users by email. Use a comma-separated list to specify multiple email addresses.",
+                        "description": "Filter users by email. Can be specified multiple times to filter by multiple email addresses.",
                         "required": false,
+                        "style": "form",
+                        "explode": true,
                         "schema": {
                             "type": "string"
                         }
@@ -1790,6 +1924,36 @@
                         "format": "date-time"
                     }
                 }
+            },
+            "Platform.Integration.Resource": {
+                "properties": {
+                    "id": {
+                        "description": "Integration ID",
+                        "type": "number",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Integration name",
+                        "type": "string",
+                        "example": "DevOps Team"
+                    },
+                    "paused": {
+                        "description": "Integration paused status",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "created_at": {
+                        "description": "Date of creation for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Date of last update for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
             },
             "Platform.Project.Resource": {
                 "type": "object",
@@ -3486,6 +3650,10 @@
         {
             "name": "Platform",
             "description": "Platform"
+        },
+        {
+            "name": "Integrations",
+            "description": "Integrations"
         }
     ],
     "x-tagGroups": [
