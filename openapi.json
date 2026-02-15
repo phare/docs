@@ -3318,6 +3318,7 @@
             "Uptime.StatusPage": {
                 "required": [
                     "name",
+                    "subdomain",
                     "title",
                     "description",
                     "search_engine_indexed",
