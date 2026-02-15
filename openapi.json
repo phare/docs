@@ -354,7 +354,7 @@
                         "description": "The app key to filter integrations",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/Platform.App.AppEnum"
                         }
                     },
                     {
@@ -1795,6 +1795,20 @@
             "Platform.AlertRule.Request": {
                 "allOf": [
                     {
+                        "properties": {
+                            "scope": {
+                                "description": "Scoped of the alert rule",
+                                "type": "string",
+                                "enum": [
+                                    "organization",
+                                    "project"
+                                ],
+                                "example": "organization"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
                         "$ref": "#/components/schemas/Platform.AlertRule"
                     }
                 ]
@@ -1879,6 +1893,12 @@
                         "type": "number",
                         "example": 1
                     },
+                    "project_id": {
+                        "description": "The ID of a project to use as a scope",
+                        "type": "number",
+                        "example": 1,
+                        "nullable": true
+                    },
                     "event": {
                         "description": "Name of the event that will trigger the execution of the alert rule",
                         "oneOf": [
@@ -1886,12 +1906,6 @@
                                 "$ref": "#/components/schemas/Uptime.ProductEvents"
                             }
                         ]
-                    },
-                    "project_id": {
-                        "description": "The ID of a project to use as a scope",
-                        "type": "number",
-                        "example": 1,
-                        "nullable": true
                     },
                     "integration_id": {
                         "description": "The ID of the integration used to send a notification when the alert rule is executed",
@@ -1912,6 +1926,41 @@
                             1440
                         ],
                         "example": 5
+                    },
+                    "event_settings": {
+                        "description": "Additional settings for the event",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
+                            }
+                        ]
+                    },
+                    "integration_settings": {
+                        "description": "Additional settings for the integration",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
+                            }
+                        ]
                     },
                     "created_at": {
                         "description": "Date of creation for the entity",
@@ -2773,12 +2822,6 @@
                             }
                         ]
                     },
-                    "project_id": {
-                        "description": "The ID of a project to use as a scope",
-                        "type": "number",
-                        "example": 1,
-                        "nullable": true
-                    },
                     "integration_id": {
                         "description": "The ID of the integration used to send a notification when the alert rule is executed",
                         "type": "number",
@@ -2798,6 +2841,41 @@
                             1440
                         ],
                         "example": 5
+                    },
+                    "event_settings": {
+                        "description": "Additional settings for the event",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
+                            }
+                        ]
+                    },
+                    "integration_settings": {
+                        "description": "Additional settings for the integration",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
+                            }
+                        ]
                     }
                 },
                 "type": "object"
@@ -3375,6 +3453,112 @@
                 },
                 "type": "object"
             },
+            "Platform.App.Ntfy.AlertRuleSettings": {
+                "title": "Ntfy",
+                "required": [
+                    "priority"
+                ],
+                "properties": {
+                    "priority": {
+                        "description": "Notification priority level",
+                        "type": "string",
+                        "enum": [
+                            "min",
+                            "low",
+                            "default",
+                            "high",
+                            "max"
+                        ],
+                        "example": "default"
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.OutgoingWebhook.AlertRuleSettings": {
+                "title": "Outgoing Webhooks",
+                "required": [
+                    "schema"
+                ],
+                "properties": {
+                    "schema": {
+                        "description": "JSON schema defining the webhook payload structure",
+                        "type": "string",
+                        "format": "json",
+                        "maxLength": 5000,
+                        "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}"
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.Pushover.AlertRuleSettings": {
+                "title": "Pushover",
+                "properties": {
+                    "priority": {
+                        "description": "Notification priority level",
+                        "type": "string",
+                        "enum": [
+                            "lowest",
+                            "low",
+                            "normal",
+                            "high",
+                            "emergency"
+                        ],
+                        "example": "normal"
+                    },
+                    "retry": {
+                        "description": "Retry interval in seconds (required for emergency priority)",
+                        "type": "integer",
+                        "maximum": 86400,
+                        "minimum": 30,
+                        "example": 300,
+                        "nullable": true
+                    },
+                    "expire": {
+                        "description": "Expiration time in seconds (required for emergency priority)",
+                        "type": "integer",
+                        "maximum": 10800,
+                        "minimum": 30,
+                        "example": 3600,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.Event.UptimeIncident.AlertRuleSettings": {
+                "title": "Uptime incident",
+                "required": [
+                    "type"
+                ],
+                "properties": {
+                    "type": {
+                        "description": "Type of incident to notify about",
+                        "type": "string",
+                        "enum": [
+                            "all",
+                            "monitor",
+                            "manual"
+                        ],
+                        "example": "all"
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings": {
+                "title": "Uptime certificate expiring",
+                "required": [
+                    "days_before_expiry"
+                ],
+                "properties": {
+                    "days_before_expiry": {
+                        "description": "Days to notify before the certificate expires",
+                        "type": "integer",
+                        "maximum": 60,
+                        "minimum": 1,
+                        "example": 25
+                    }
+                },
+                "type": "object"
+            },
             "Uptime.ProductEvents": {
                 "type": "string",
                 "enum": [
@@ -3479,6 +3663,20 @@
                 "enum": [
                     "rss",
                     "atom"
+                ]
+            },
+            "Platform.App.AppEnum": {
+                "type": "string",
+                "enum": [
+                    "sms",
+                    "discord",
+                    "email",
+                    "ilert",
+                    "ntfy",
+                    "outgoing_webhook",
+                    "pushover",
+                    "slack",
+                    "telegram"
                 ]
             }
         },
