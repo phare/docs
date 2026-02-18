@@ -87,6 +87,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Platform.AlertRule.Resource"
                                             }
@@ -389,6 +390,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Platform.Integration.Resource"
                                             }
@@ -487,6 +489,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Platform.Project.Resource"
                                             }
@@ -731,6 +734,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Platform.User.Resource"
                                             }
@@ -820,6 +824,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Uptime.Incident.Resource"
                                             }
@@ -1113,6 +1118,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Uptime.Monitor.Resource"
                                             }
@@ -1448,6 +1454,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
+                                            "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/Uptime.StatusPage.Resource"
                                             }
@@ -1741,19 +1748,19 @@
                 "description": "Meta data for pagination",
                 "properties": {
                     "current_page": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 2
                     },
                     "from": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 11
                     },
                     "to": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 20
                     },
                     "per_page": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 100
                     },
                     "path": {
@@ -1793,128 +1800,689 @@
                 "type": "object"
             },
             "Platform.AlertRule.Request": {
-                "allOf": [
-                    {
-                        "properties": {
-                            "scope": {
-                                "description": "Scoped of the alert rule",
-                                "type": "string",
-                                "enum": [
-                                    "organization",
-                                    "project"
-                                ],
-                                "example": "organization"
-                            }
-                        },
-                        "type": "object"
+                "type": "object",
+                "properties": {
+                    "scope": {
+                        "description": "Scoped of the alert rule",
+                        "type": "string",
+                        "enum": [
+                            "organization",
+                            "project"
+                        ],
+                        "example": "organization"
                     },
-                    {
-                        "$ref": "#/components/schemas/Platform.AlertRule"
+                    "event": {
+                        "$ref": "#/components/schemas/Uptime.ProductEvents"
+                    },
+                    "integration_id": {
+                        "description": "The ID of the integration used to send a notification when the alert rule is executed",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "rate_limit": {
+                        "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            5,
+                            10,
+                            30,
+                            60,
+                            180,
+                            720,
+                            1440
+                        ],
+                        "example": 5
+                    },
+                    "event_settings": {
+                        "description": "Additional settings for the event",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
+                            }
+                        ]
+                    },
+                    "integration_settings": {
+                        "description": "Additional settings for the integration",
+                        "anyOf": [
+                            {
+                                "title": "Empty",
+                                "type": "object",
+                                "nullable": true
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
+                            }
+                        ]
                     }
-                ]
+                }
             },
             "Platform.Project.Request": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Platform.Project"
-                    }
-                ]
-            },
-            "Uptime.Incident.Request": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Uptime.Incident"
-                    }
-                ]
-            },
-            "Uptime.Monitor.Request": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Uptime.Monitor"
-                    }
-                ]
-            },
-            "Uptime.StatusPage.Request": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/Uptime.StatusPage"
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Project name",
+                        "type": "string",
+                        "maximum": 25,
+                        "minimum": 1,
+                        "example": "Luminous Guiding Tower"
                     },
-                    {
+                    "members": {
+                        "description": "List of team members that are part of this project",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "example": [
+                            1,
+                            2,
+                            3
+                        ]
+                    },
+                    "settings": {
+                        "description": "Project settings",
                         "properties": {
-                            "logo": {
-                                "description": "Manage the logo of the status page (accepted formats: jpeg / png / svg)",
-                                "oneOf": [
-                                    {
-                                        "description": "Any image file with the following format: jpeg / png / svg.",
-                                        "type": "string",
-                                        "format": "file",
-                                        "nullable": true
-                                    },
-                                    {
-                                        "description": "If \"false\" is passed to the request the logo will be removed",
-                                        "type": "string",
-                                        "enum": [
-                                            "false"
-                                        ],
-                                        "example": "false",
-                                        "nullable": true
-                                    }
-                                ]
+                            "use_incident_ai": {
+                                "description": "Whether to generate AI summaries for incidents",
+                                "type": "boolean",
+                                "default": true,
+                                "nullable": true
                             },
-                            "favicon": {
-                                "description": "Manage the favicon of the status page (accepted formats: ico / png / svg)",
-                                "oneOf": [
-                                    {
-                                        "description": "Any image file with the following format: ico / png / svg.",
-                                        "type": "string",
-                                        "format": "file",
-                                        "nullable": true
-                                    },
-                                    {
-                                        "description": "If \"false\" is passed to the request the favicon will be removed",
-                                        "type": "string",
-                                        "enum": [
-                                            "false"
-                                        ],
-                                        "example": "false",
-                                        "nullable": true
-                                    }
-                                ]
+                            "use_incident_merging": {
+                                "description": "Whether to use incident merging",
+                                "type": "boolean",
+                                "default": true,
+                                "nullable": true
+                            },
+                            "incident_merging_time_window": {
+                                "description": "Time window for incident merging in minutes",
+                                "type": "integer",
+                                "default": 60,
+                                "enum": [
+                                    5,
+                                    10,
+                                    30,
+                                    60,
+                                    120,
+                                    180
+                                ],
+                                "nullable": true
                             }
                         },
                         "type": "object"
                     }
-                ]
+                }
+            },
+            "Uptime.Incident.Request": {
+                "type": "object",
+                "properties": {
+                    "impact": {
+                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                    },
+                    "title": {
+                        "description": "Incident title",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 1,
+                        "example": "Service is not working as expected"
+                    },
+                    "description": {
+                        "description": "Description of the error that caused the incident",
+                        "type": "string",
+                        "maximum": 2000,
+                        "minimum": 1,
+                        "example": "The server answered with an unexpected status code: 503."
+                    },
+                    "exclude_from_downtime": {
+                        "description": "Flag to exclude the incident from downtime calculations",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "incident_at": {
+                        "description": "Date of incident confirmation",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "recovery_at": {
+                        "description": "Date of incident recovery",
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "monitors": {
+                        "description": "List of monitors linked to the incident",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "example": [
+                            1,
+                            2,
+                            3
+                        ]
+                    }
+                }
+            },
+            "Uptime.Monitor.Request": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Monitor name",
+                        "type": "string",
+                        "maximum": 40,
+                        "minimum": 2,
+                        "example": "Website"
+                    },
+                    "protocol": {
+                        "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
+                    },
+                    "request": {
+                        "description": "Monitoring request, depends of the chosen protocol",
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "title": "HTTP protocol",
+                                "required": [
+                                    "method",
+                                    "url"
+                                ],
+                                "properties": {
+                                    "method": {
+                                        "description": "HTTP request method",
+                                        "type": "string",
+                                        "enum": [
+                                            "HEAD",
+                                            "GET",
+                                            "POST",
+                                            "PUT",
+                                            "PATCH",
+                                            "OPTIONS"
+                                        ]
+                                    },
+                                    "url": {
+                                        "description": "HTTP request url",
+                                        "type": "string",
+                                        "maximum": 255,
+                                        "example": "https://docs.phare.io/introduction"
+                                    },
+                                    "tls_skip_verify": {
+                                        "description": "Skip SSL verification",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "example": false,
+                                        "nullable": true
+                                    },
+                                    "body": {
+                                        "description": "HTTP request body for POST, PUT and PATCH requests",
+                                        "type": "string",
+                                        "maximum": 500,
+                                        "example": "Hello, World!",
+                                        "nullable": true
+                                    },
+                                    "follow_redirects": {
+                                        "description": "Follow redirects",
+                                        "type": "boolean",
+                                        "default": true,
+                                        "example": true,
+                                        "nullable": true
+                                    },
+                                    "user_agent_secret": {
+                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                        "type": "string",
+                                        "example": "definitely-not-a-bot",
+                                        "nullable": true
+                                    },
+                                    "headers": {
+                                        "description": "Additional HTTP headers to add to the request",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Header name",
+                                                    "type": "string",
+                                                    "example": "X-Phare-Says"
+                                                },
+                                                "value": {
+                                                    "description": "Header value",
+                                                    "type": "string",
+                                                    "example": "Hello world!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "maxItems": 10,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "title": "TCP protocol",
+                                "required": [
+                                    "host",
+                                    "port",
+                                    "connection"
+                                ],
+                                "properties": {
+                                    "host": {
+                                        "description": "TCP request hostname or IP address",
+                                        "type": "string",
+                                        "example": "8.8.8.8"
+                                    },
+                                    "port": {
+                                        "description": "TCP request port",
+                                        "type": "string",
+                                        "example": "80"
+                                    },
+                                    "connection": {
+                                        "$ref": "#/components/schemas/Uptime.Monitor.ConnectionEnum"
+                                    },
+                                    "tls_skip_verify": {
+                                        "description": "Skip TLS verification",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "example": false,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "interval": {
+                        "description": "Monitoring interval in seconds",
+                        "type": "integer",
+                        "enum": [
+                            30,
+                            60,
+                            120,
+                            180,
+                            300,
+                            600,
+                            900,
+                            1800,
+                            3600
+                        ],
+                        "example": 60
+                    },
+                    "timeout": {
+                        "description": "Monitoring timeout in milliseconds",
+                        "type": "integer",
+                        "enum": [
+                            1000,
+                            2000,
+                            3000,
+                            4000,
+                            5000,
+                            6000,
+                            7000,
+                            8000,
+                            9000,
+                            10000,
+                            15000,
+                            20000,
+                            25000,
+                            30000
+                        ],
+                        "example": 7000
+                    },
+                    "success_assertions": {
+                        "description": "List of assertions that must be true for the check to be considered successful",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "title": "Status code assertion",
+                                    "required": [
+                                        "type",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "status_code"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "in",
+                                                "not_in"
+                                            ],
+                                            "example": "in"
+                                        },
+                                        "value": {
+                                            "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
+                                            "type": "string",
+                                            "example": "2xx,30x,418"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "title": "Response header assertion",
+                                    "required": [
+                                        "type",
+                                        "selector",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "response_header"
+                                            ]
+                                        },
+                                        "selector": {
+                                            "description": "The name of the header to assert",
+                                            "type": "string",
+                                            "example": "Content-Type"
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "equals",
+                                                "not_equals"
+                                            ],
+                                            "example": "equals"
+                                        },
+                                        "value": {
+                                            "description": "The value of the header to assert",
+                                            "type": "string",
+                                            "example": "application/json"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "title": "Response body assertion",
+                                    "required": [
+                                        "type",
+                                        "operator",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "Type of assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "response_body"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "description": "Operator to use for the assertion",
+                                            "type": "string",
+                                            "enum": [
+                                                "contains",
+                                                "not_contains"
+                                            ],
+                                            "example": "contains"
+                                        },
+                                        "value": {
+                                            "description": "A word or sentence to check in the response body",
+                                            "type": "string",
+                                            "example": "Hello, World!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "incident_confirmations": {
+                        "description": "Number of uninterrupted failed checks required to create an incident",
+                        "type": "integer",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "example": 1
+                    },
+                    "recovery_confirmations": {
+                        "description": "Number of uninterrupted successful checks required to resolve an incident",
+                        "type": "integer",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "example": 1
+                    },
+                    "regions": {
+                        "description": "List of regions where monitoring checks are performed",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Uptime.Monitor.RegionEnum"
+                        },
+                        "maxItems": 6,
+                        "minItems": 1
+                    }
+                }
+            },
+            "Uptime.StatusPage.Request": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Status page name",
+                        "type": "string",
+                        "maximum": 30,
+                        "minimum": 2,
+                        "example": "Phare status"
+                    },
+                    "subdomain": {
+                        "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
+                        "type": "string",
+                        "maximum": 30,
+                        "minimum": 2,
+                        "example": "example"
+                    },
+                    "domain": {
+                        "description": "Custom domain name for the status page",
+                        "type": "string",
+                        "maximum": 253,
+                        "minimum": 4,
+                        "example": "status.example.com",
+                        "nullable": true
+                    },
+                    "title": {
+                        "description": "Status page HTML title",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 2,
+                        "example": "Phare status"
+                    },
+                    "description": {
+                        "description": "Status page HTML description",
+                        "type": "string",
+                        "maximum": 250,
+                        "minimum": 2,
+                        "example": "Status page of phare.io"
+                    },
+                    "search_engine_indexed": {
+                        "description": "Whether search engines are allowed to index the page",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "website_url": {
+                        "description": "URL to redirect users clicking the status page logo",
+                        "type": "string",
+                        "maximum": 250,
+                        "example": "https://phare.io"
+                    },
+                    "colors": {
+                        "description": "Colors to customize the status page",
+                        "properties": {
+                            "operational": {
+                                "type": "string",
+                                "example": "#16a34a"
+                            },
+                            "degradedPerformance": {
+                                "type": "string",
+                                "example": "#fbbf24"
+                            },
+                            "partialOutage": {
+                                "type": "string",
+                                "example": "#f59e0b"
+                            },
+                            "majorOutage": {
+                                "type": "string",
+                                "example": "#ef4444"
+                            },
+                            "maintenance": {
+                                "type": "string",
+                                "example": "#6366f1"
+                            },
+                            "empty": {
+                                "type": "string",
+                                "example": "#d3d3d3"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "components": {
+                        "description": "List of components to show on the status page",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "title": "Monitor component",
+                                    "required": [
+                                        "componentable_type",
+                                        "componentable_id"
+                                    ],
+                                    "properties": {
+                                        "componentable_type": {
+                                            "type": "string",
+                                            "enum": [
+                                                "uptime/monitor"
+                                            ]
+                                        },
+                                        "componentable_id": {
+                                            "description": "ID of the monitor to show",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        }
+                    },
+                    "timeframe": {
+                        "description": "Number of days of status and incident history to display.",
+                        "type": "integer",
+                        "enum": [
+                            30,
+                            60,
+                            90
+                        ],
+                        "example": 90
+                    },
+                    "subscription_channels": {
+                        "description": "List of active subscription channels",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Uptime.StatusPage.SubscriptionChannelEnum"
+                        },
+                        "maxItems": 2,
+                        "minItems": 0
+                    },
+                    "logo": {
+                        "description": "Manage the logo of the status page (accepted formats: jpeg / png / svg)",
+                        "oneOf": [
+                            {
+                                "description": "Any image file with the following format: jpeg / png / svg.",
+                                "type": "string",
+                                "format": "file",
+                                "nullable": true
+                            },
+                            {
+                                "description": "If \"false\" is passed to the request the logo will be removed",
+                                "type": "string",
+                                "enum": [
+                                    "false"
+                                ],
+                                "example": "false",
+                                "nullable": true
+                            }
+                        ]
+                    },
+                    "favicon": {
+                        "description": "Manage the favicon of the status page (accepted formats: ico / png / svg)",
+                        "oneOf": [
+                            {
+                                "description": "Any image file with the following format: ico / png / svg.",
+                                "type": "string",
+                                "format": "file",
+                                "nullable": true
+                            },
+                            {
+                                "description": "If \"false\" is passed to the request the favicon will be removed",
+                                "type": "string",
+                                "enum": [
+                                    "false"
+                                ],
+                                "example": "false",
+                                "nullable": true
+                            }
+                        ]
+                    }
+                }
             },
             "Platform.AlertRule.Resource": {
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "project_id": {
                         "description": "The ID of a project to use as a scope",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1,
                         "nullable": true
                     },
                     "event": {
-                        "description": "Name of the event that will trigger the execution of the alert rule",
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/Uptime.ProductEvents"
-                            }
-                        ]
+                        "$ref": "#/components/schemas/Uptime.ProductEvents"
                     },
                     "integration_id": {
                         "description": "The ID of the integration used to send a notification when the alert rule is executed",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "rate_limit": {
                         "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             0,
                             5,
@@ -1978,7 +2546,7 @@
                 "properties": {
                     "id": {
                         "description": "Integration ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "name": {
@@ -2009,7 +2577,7 @@
                 "properties": {
                     "id": {
                         "description": "Project ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "slug": {
@@ -2044,16 +2612,19 @@
                             "use_incident_ai": {
                                 "description": "Whether to generate AI summaries for incidents",
                                 "type": "boolean",
+                                "default": true,
                                 "nullable": true
                             },
                             "use_incident_merging": {
                                 "description": "Whether to use incident merging",
                                 "type": "boolean",
+                                "default": true,
                                 "nullable": true
                             },
                             "incident_merging_time_window": {
                                 "description": "Time window for incident merging in minutes",
                                 "type": "integer",
+                                "default": 60,
                                 "enum": [
                                     5,
                                     10,
@@ -2083,12 +2654,12 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "project_id": {
                         "description": "Parent project ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "type": {
@@ -2170,12 +2741,12 @@
                 "properties": {
                     "id": {
                         "description": "Monitor ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "project_id": {
                         "description": "Parent project ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "status": {
@@ -2188,7 +2759,7 @@
                     },
                     "response_time": {
                         "description": "Rolling average response time of the last 10 requests, in milliseconds",
-                        "type": "number",
+                        "type": "integer",
                         "example": 123,
                         "nullable": true
                     },
@@ -2331,7 +2902,7 @@
                     },
                     "interval": {
                         "description": "Monitoring interval in seconds",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             30,
                             60,
@@ -2347,7 +2918,7 @@
                     },
                     "timeout": {
                         "description": "Monitoring timeout in milliseconds",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             1000,
                             2000,
@@ -2478,7 +3049,7 @@
                     },
                     "incident_confirmations": {
                         "description": "Number of uninterrupted failed checks required to create an incident",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             1,
                             2,
@@ -2490,7 +3061,7 @@
                     },
                     "recovery_confirmations": {
                         "description": "Number of uninterrupted successful checks required to resolve an incident",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             1,
                             2,
@@ -2530,6 +3101,7 @@
                     "availability": {
                         "description": "Average availability of all associated monitors in the last 90 days, in percents",
                         "type": "number",
+                        "format": "float",
                         "example": 99.9999
                     },
                     "updated_at": {
@@ -2560,13 +3132,14 @@
                                         },
                                         "response_time": {
                                             "description": "Rolling average response time of the last 10 requests, in milliseconds",
-                                            "type": "number",
+                                            "type": "integer",
                                             "example": 123,
                                             "nullable": true
                                         },
                                         "availability": {
                                             "description": "Availability in the last 90 days, in percents",
                                             "type": "number",
+                                            "format": "float",
                                             "example": 99.9999
                                         },
                                         "current_incident_impact": {
@@ -2587,7 +3160,7 @@
                                     "title": "Monitor component",
                                     "properties": {
                                         "id": {
-                                            "type": "number",
+                                            "type": "integer",
                                             "example": 1
                                         },
                                         "title": {
@@ -2635,12 +3208,12 @@
                 "properties": {
                     "id": {
                         "description": "Status page ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "project_id": {
                         "description": "Parent project ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "name": {
@@ -2750,7 +3323,7 @@
                     },
                     "timeframe": {
                         "description": "Number of days of status and incident history to display.",
-                        "type": "number",
+                        "type": "integer",
                         "enum": [
                             30,
                             60,
@@ -2783,7 +3356,7 @@
                 "properties": {
                     "id": {
                         "description": "User ID",
-                        "type": "number",
+                        "type": "integer",
                         "example": 1
                     },
                     "role": {
@@ -2803,653 +3376,6 @@
                         "description": "Date of last update for the entity",
                         "type": "string",
                         "format": "date-time"
-                    }
-                },
-                "type": "object"
-            },
-            "Platform.AlertRule": {
-                "required": [
-                    "event",
-                    "integration_id",
-                    "rate_limit"
-                ],
-                "properties": {
-                    "event": {
-                        "description": "Name of the event that will trigger the execution of the alert rule",
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/Uptime.ProductEvents"
-                            }
-                        ]
-                    },
-                    "integration_id": {
-                        "description": "The ID of the integration used to send a notification when the alert rule is executed",
-                        "type": "number",
-                        "example": 1
-                    },
-                    "rate_limit": {
-                        "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
-                        "type": "number",
-                        "enum": [
-                            0,
-                            5,
-                            10,
-                            30,
-                            60,
-                            180,
-                            720,
-                            1440
-                        ],
-                        "example": 5
-                    },
-                    "event_settings": {
-                        "description": "Additional settings for the event",
-                        "anyOf": [
-                            {
-                                "title": "Empty",
-                                "type": "object",
-                                "nullable": true
-                            },
-                            {
-                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
-                            },
-                            {
-                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
-                            }
-                        ]
-                    },
-                    "integration_settings": {
-                        "description": "Additional settings for the integration",
-                        "anyOf": [
-                            {
-                                "title": "Empty",
-                                "type": "object",
-                                "nullable": true
-                            },
-                            {
-                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
-                            },
-                            {
-                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
-                            },
-                            {
-                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
-                            }
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "Platform.Project": {
-                "required": [
-                    "name",
-                    "members"
-                ],
-                "properties": {
-                    "name": {
-                        "description": "Project name",
-                        "type": "string",
-                        "maximum": 25,
-                        "minimum": 1,
-                        "example": "Luminous Guiding Tower"
-                    },
-                    "members": {
-                        "description": "List of team members that are part of this project",
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "maxItems": 100,
-                        "minItems": 1,
-                        "example": [
-                            1,
-                            2,
-                            3
-                        ]
-                    },
-                    "settings": {
-                        "description": "Project settings",
-                        "properties": {
-                            "use_incident_ai": {
-                                "description": "Whether to generate AI summaries for incidents",
-                                "type": "boolean",
-                                "nullable": true
-                            },
-                            "use_incident_merging": {
-                                "description": "Whether to use incident merging",
-                                "type": "boolean",
-                                "nullable": true
-                            },
-                            "incident_merging_time_window": {
-                                "description": "Time window for incident merging in minutes",
-                                "type": "integer",
-                                "enum": [
-                                    5,
-                                    10,
-                                    30,
-                                    60,
-                                    120,
-                                    180
-                                ],
-                                "nullable": true
-                            }
-                        },
-                        "type": "object"
-                    }
-                },
-                "type": "object"
-            },
-            "Uptime.Incident": {
-                "required": [
-                    "impact",
-                    "title",
-                    "incident_at"
-                ],
-                "properties": {
-                    "impact": {
-                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                    },
-                    "title": {
-                        "description": "Incident title",
-                        "type": "string",
-                        "maximum": 250,
-                        "minimum": 1,
-                        "example": "Service is not working as expected"
-                    },
-                    "description": {
-                        "description": "Description of the error that caused the incident",
-                        "type": "string",
-                        "maximum": 2000,
-                        "minimum": 1,
-                        "example": "The server answered with an unexpected status code: 503."
-                    },
-                    "exclude_from_downtime": {
-                        "description": "Flag to exclude the incident from downtime calculations",
-                        "type": "boolean",
-                        "example": false
-                    },
-                    "incident_at": {
-                        "description": "Date of incident confirmation",
-                        "type": "string",
-                        "format": "date-time",
-                        "nullable": true
-                    },
-                    "recovery_at": {
-                        "description": "Date of incident recovery",
-                        "type": "string",
-                        "format": "date-time",
-                        "nullable": true
-                    },
-                    "monitors": {
-                        "description": "List of monitors linked to the incident",
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "maxItems": 100,
-                        "minItems": 1,
-                        "example": [
-                            1,
-                            2,
-                            3
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "Uptime.Monitor": {
-                "required": [
-                    "name",
-                    "protocol",
-                    "request",
-                    "interval",
-                    "timeout",
-                    "incident_confirmations",
-                    "recovery_confirmations",
-                    "regions"
-                ],
-                "properties": {
-                    "name": {
-                        "description": "Monitor name",
-                        "type": "string",
-                        "maximum": 40,
-                        "minimum": 2,
-                        "example": "Website"
-                    },
-                    "protocol": {
-                        "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
-                    },
-                    "request": {
-                        "description": "Monitoring request, depends of the chosen protocol",
-                        "type": "object",
-                        "oneOf": [
-                            {
-                                "title": "HTTP protocol",
-                                "required": [
-                                    "method",
-                                    "url"
-                                ],
-                                "properties": {
-                                    "method": {
-                                        "description": "HTTP request method",
-                                        "type": "string",
-                                        "enum": [
-                                            "HEAD",
-                                            "GET",
-                                            "POST",
-                                            "PUT",
-                                            "PATCH",
-                                            "OPTIONS"
-                                        ]
-                                    },
-                                    "url": {
-                                        "description": "HTTP request url",
-                                        "type": "string",
-                                        "maximum": 255,
-                                        "example": "https://docs.phare.io/introduction"
-                                    },
-                                    "tls_skip_verify": {
-                                        "description": "Skip SSL verification",
-                                        "type": "boolean",
-                                        "default": false,
-                                        "example": false,
-                                        "nullable": true
-                                    },
-                                    "body": {
-                                        "description": "HTTP request body for POST, PUT and PATCH requests",
-                                        "type": "string",
-                                        "maximum": 500,
-                                        "example": "Hello, World!",
-                                        "nullable": true
-                                    },
-                                    "follow_redirects": {
-                                        "description": "Follow redirects",
-                                        "type": "boolean",
-                                        "default": true,
-                                        "example": true,
-                                        "nullable": true
-                                    },
-                                    "user_agent_secret": {
-                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
-                                        "type": "string",
-                                        "example": "definitely-not-a-bot",
-                                        "nullable": true
-                                    },
-                                    "headers": {
-                                        "description": "Additional HTTP headers to add to the request",
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "name": {
-                                                    "description": "Header name",
-                                                    "type": "string",
-                                                    "example": "X-Phare-Says"
-                                                },
-                                                "value": {
-                                                    "description": "Header value",
-                                                    "type": "string",
-                                                    "example": "Hello world!"
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        "maxItems": 10,
-                                        "nullable": true
-                                    }
-                                },
-                                "type": "object"
-                            },
-                            {
-                                "title": "TCP protocol",
-                                "required": [
-                                    "host",
-                                    "port",
-                                    "connection"
-                                ],
-                                "properties": {
-                                    "host": {
-                                        "description": "TCP request hostname or IP address",
-                                        "type": "string",
-                                        "example": "8.8.8.8"
-                                    },
-                                    "port": {
-                                        "description": "TCP request port",
-                                        "type": "string",
-                                        "example": "80"
-                                    },
-                                    "connection": {
-                                        "$ref": "#/components/schemas/Uptime.Monitor.ConnectionEnum"
-                                    },
-                                    "tls_skip_verify": {
-                                        "description": "Skip TLS verification",
-                                        "type": "boolean",
-                                        "default": false,
-                                        "example": false,
-                                        "nullable": true
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        ]
-                    },
-                    "interval": {
-                        "description": "Monitoring interval in seconds",
-                        "type": "number",
-                        "enum": [
-                            30,
-                            60,
-                            120,
-                            180,
-                            300,
-                            600,
-                            900,
-                            1800,
-                            3600
-                        ],
-                        "example": 60
-                    },
-                    "timeout": {
-                        "description": "Monitoring timeout in milliseconds",
-                        "type": "number",
-                        "enum": [
-                            1000,
-                            2000,
-                            3000,
-                            4000,
-                            5000,
-                            6000,
-                            7000,
-                            8000,
-                            9000,
-                            10000,
-                            15000,
-                            20000,
-                            25000,
-                            30000
-                        ],
-                        "example": 7000
-                    },
-                    "success_assertions": {
-                        "description": "List of assertions that must be true for the check to be considered successful",
-                        "type": "array",
-                        "items": {
-                            "oneOf": [
-                                {
-                                    "title": "Status code assertion",
-                                    "required": [
-                                        "type",
-                                        "operator",
-                                        "value"
-                                    ],
-                                    "properties": {
-                                        "type": {
-                                            "description": "Type of assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "status_code"
-                                            ]
-                                        },
-                                        "operator": {
-                                            "description": "Operator to use for the assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "in",
-                                                "not_in"
-                                            ],
-                                            "example": "in"
-                                        },
-                                        "value": {
-                                            "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
-                                            "type": "string",
-                                            "example": "2xx,30x,418"
-                                        }
-                                    },
-                                    "type": "object"
-                                },
-                                {
-                                    "title": "Response header assertion",
-                                    "required": [
-                                        "type",
-                                        "selector",
-                                        "operator",
-                                        "value"
-                                    ],
-                                    "properties": {
-                                        "type": {
-                                            "description": "Type of assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "response_header"
-                                            ]
-                                        },
-                                        "selector": {
-                                            "description": "The name of the header to assert",
-                                            "type": "string",
-                                            "example": "Content-Type"
-                                        },
-                                        "operator": {
-                                            "description": "Operator to use for the assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "equals",
-                                                "not_equals"
-                                            ],
-                                            "example": "equals"
-                                        },
-                                        "value": {
-                                            "description": "The value of the header to assert",
-                                            "type": "string",
-                                            "example": "application/json"
-                                        }
-                                    },
-                                    "type": "object"
-                                },
-                                {
-                                    "title": "Response body assertion",
-                                    "required": [
-                                        "type",
-                                        "operator",
-                                        "value"
-                                    ],
-                                    "properties": {
-                                        "type": {
-                                            "description": "Type of assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "response_body"
-                                            ]
-                                        },
-                                        "operator": {
-                                            "description": "Operator to use for the assertion",
-                                            "type": "string",
-                                            "enum": [
-                                                "contains",
-                                                "not_contains"
-                                            ],
-                                            "example": "contains"
-                                        },
-                                        "value": {
-                                            "description": "A word or sentence to check in the response body",
-                                            "type": "string",
-                                            "example": "Hello, World!"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "incident_confirmations": {
-                        "description": "Number of uninterrupted failed checks required to create an incident",
-                        "type": "number",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                        ],
-                        "example": 1
-                    },
-                    "recovery_confirmations": {
-                        "description": "Number of uninterrupted successful checks required to resolve an incident",
-                        "type": "number",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                        ],
-                        "example": 1
-                    },
-                    "regions": {
-                        "description": "List of regions where monitoring checks are performed",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Uptime.Monitor.RegionEnum"
-                        },
-                        "maxItems": 6,
-                        "minItems": 1
-                    }
-                },
-                "type": "object"
-            },
-            "Uptime.StatusPage": {
-                "required": [
-                    "name",
-                    "subdomain",
-                    "title",
-                    "description",
-                    "search_engine_indexed",
-                    "website_url",
-                    "colors",
-                    "components"
-                ],
-                "properties": {
-                    "name": {
-                        "description": "Status page name",
-                        "type": "string",
-                        "maximum": 30,
-                        "minimum": 2,
-                        "example": "Phare status"
-                    },
-                    "subdomain": {
-                        "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
-                        "type": "string",
-                        "maximum": 30,
-                        "minimum": 2,
-                        "example": "example"
-                    },
-                    "domain": {
-                        "description": "Custom domain name for the status page",
-                        "type": "string",
-                        "maximum": 253,
-                        "minimum": 4,
-                        "example": "status.example.com",
-                        "nullable": true
-                    },
-                    "title": {
-                        "description": "Status page HTML title",
-                        "type": "string",
-                        "maximum": 250,
-                        "minimum": 2,
-                        "example": "Phare status"
-                    },
-                    "description": {
-                        "description": "Status page HTML description",
-                        "type": "string",
-                        "maximum": 250,
-                        "minimum": 2,
-                        "example": "Status page of phare.io"
-                    },
-                    "search_engine_indexed": {
-                        "description": "Whether search engines are allowed to index the page",
-                        "type": "boolean",
-                        "example": true
-                    },
-                    "website_url": {
-                        "description": "URL to redirect users clicking the status page logo",
-                        "type": "string",
-                        "maximum": 250,
-                        "example": "https://phare.io"
-                    },
-                    "colors": {
-                        "description": "Colors to customize the status page",
-                        "properties": {
-                            "operational": {
-                                "type": "string",
-                                "example": "#16a34a"
-                            },
-                            "degradedPerformance": {
-                                "type": "string",
-                                "example": "#fbbf24"
-                            },
-                            "partialOutage": {
-                                "type": "string",
-                                "example": "#f59e0b"
-                            },
-                            "majorOutage": {
-                                "type": "string",
-                                "example": "#ef4444"
-                            },
-                            "maintenance": {
-                                "type": "string",
-                                "example": "#6366f1"
-                            },
-                            "empty": {
-                                "type": "string",
-                                "example": "#d3d3d3"
-                            }
-                        },
-                        "type": "object"
-                    },
-                    "components": {
-                        "description": "List of components to show on the status page",
-                        "type": "array",
-                        "items": {
-                            "oneOf": [
-                                {
-                                    "title": "Monitor component",
-                                    "required": [
-                                        "componentable_type",
-                                        "componentable_id"
-                                    ],
-                                    "properties": {
-                                        "componentable_type": {
-                                            "type": "string",
-                                            "enum": [
-                                                "uptime/monitor"
-                                            ]
-                                        },
-                                        "componentable_id": {
-                                            "description": "ID of the monitor to show",
-                                            "type": "integer"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            ]
-                        }
-                    },
-                    "timeframe": {
-                        "description": "Number of days of status and incident history to display.",
-                        "type": "number",
-                        "enum": [
-                            30,
-                            60,
-                            90
-                        ],
-                        "example": 90
-                    },
-                    "subscription_channels": {
-                        "description": "List of active subscription channels",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Uptime.StatusPage.SubscriptionChannelEnum"
-                        },
-                        "maxItems": 2,
-                        "minItems": 0
                     }
                 },
                 "type": "object"
