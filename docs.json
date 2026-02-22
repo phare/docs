@@ -38,16 +38,22 @@
           {
             "group": "Integrations",
             "pages": [
-              "integrations/overview",
-              "integrations/discord",
-              "integrations/email",
-              "integrations/ilert",
-              "integrations/ntfy",
-              "integrations/outgoing-webhook",
-              "integrations/pushover",
-              "integrations/sms",
-              "integrations/slack",
-              "integrations/telegram"
+              {
+                "group": "Alert rules",
+                "pages": [
+                  "integrations/overview",
+                  "integrations/discord",
+                  "integrations/email",
+                  "integrations/ilert",
+                  "integrations/ntfy",
+                  "integrations/outgoing-webhook",
+                  "integrations/pushover",
+                  "integrations/sms",
+                  "integrations/slack",
+                  "integrations/telegram"
+                ]
+              },
+              "integrations/terraform"
             ]
           }
         ]
