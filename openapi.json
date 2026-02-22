@@ -1102,6 +1102,303 @@
                 }
             }
         },
+        "/uptime/incidents/{incidentId}/updates": {
+            "get": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "List incident updates",
+                "description": "Get a paginated list of incident updates",
+                "operationId": "getUptimeIncidentUpdates",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, incident updates retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.IncidentUpdate.Resource"
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Create an incident update",
+                "description": "Create an incident update",
+                "operationId": "createUptimeIncidentUpdate",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Incident update request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.IncidentUpdate.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, incident update created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.IncidentUpdate.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/uptime/incidents/{incidentId}/updates/{incidentUpdateId}": {
+            "get": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Get an incident update",
+                "description": "Get an incident update by ID",
+                "operationId": "getUptimeIncidentUpdate",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "incidentUpdateId",
+                        "in": "path",
+                        "description": "ID of the incident update to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, incident update retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.IncidentUpdate.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Update an incident update",
+                "description": "Update an incident update by ID",
+                "operationId": "updateUptimeIncidentUpdate",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "incidentUpdateId",
+                        "in": "path",
+                        "description": "ID of the incident update to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Incident update request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Uptime.IncidentUpdate.Request"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, incident update updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Uptime.IncidentUpdate.Resource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Delete an incident update",
+                "description": "Delete an incident update by ID",
+                "operationId": "deleteUptimeIncidentUpdate",
+                "parameters": [
+                    {
+                        "name": "incidentId",
+                        "in": "path",
+                        "description": "ID of the incident",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "incidentUpdateId",
+                        "in": "path",
+                        "description": "ID of the incident update to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, incident update deleted",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
         "/uptime/monitors": {
             "get": {
                 "tags": [
@@ -1982,6 +2279,21 @@
                     }
                 }
             },
+            "Uptime.IncidentUpdate.Request": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                    },
+                    "content": {
+                        "description": "Content of the incident update",
+                        "type": "string",
+                        "maximum": 10000,
+                        "minimum": 1,
+                        "example": "We are investigating the issue."
+                    }
+                }
+            },
             "Uptime.Monitor.Request": {
                 "type": "object",
                 "properties": {
@@ -2723,6 +3035,61 @@
                             2,
                             3
                         ]
+                    },
+                    "created_at": {
+                        "description": "Date of creation for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Date of last update for the entity",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Uptime.IncidentUpdate.Resource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Incident update ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "state": {
+                        "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                    },
+                    "content": {
+                        "description": "Content of the incident update",
+                        "type": "string",
+                        "maximum": 10000,
+                        "minimum": 1,
+                        "example": "We are investigating the issue."
+                    },
+                    "creator": {
+                        "description": "Project settings",
+                        "properties": {
+                            "id": {
+                                "description": "Creator ID",
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "type": {
+                                "description": "Creator type",
+                                "type": "string",
+                                "enum": [
+                                    "user",
+                                    "api_key"
+                                ],
+                                "example": "user"
+                            },
+                            "label": {
+                                "description": "Creator label",
+                                "type": "string",
+                                "example": "nicolas@phare.io"
+                            }
+                        },
+                        "type": "object"
                     },
                     "created_at": {
                         "description": "Date of creation for the entity",

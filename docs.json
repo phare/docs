@@ -116,7 +116,17 @@
                   "api-reference/uptime/incidents/create-an-incident",
                   "api-reference/uptime/incidents/update-an-incident",
                   "api-reference/uptime/incidents/recover-an-incident",
-                  "api-reference/uptime/incidents/delete-an-incident"
+                  "api-reference/uptime/incidents/delete-an-incident",
+                  {
+                    "group": "Incident Updates",
+                    "pages": [
+                      "api-reference/uptime/incidents/updates/list-incident-updates",
+                      "api-reference/uptime/incidents/updates/get-an-incident-update",
+                      "api-reference/uptime/incidents/updates/create-an-incident-update",
+                      "api-reference/uptime/incidents/updates/update-an-incident-update",
+                      "api-reference/uptime/incidents/updates/delete-an-incident-update"
+                    ]
+                  }
                 ]
               },
               {
