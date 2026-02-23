@@ -70,7 +70,24 @@
             "group": "Platform",
             "pages": [
               "api-reference/platform/get-api-info",
-               {
+              {
+                "group": "Alert Rules",
+                "pages": [
+                  "api-reference/platform/alert-rules/list-alert-rules",
+                  "api-reference/platform/alert-rules/create-an-alert-rule",
+                  "api-reference/platform/alert-rules/get-an-alert-rule",
+                  "api-reference/platform/alert-rules/update-an-alert-rule",
+                  "api-reference/platform/alert-rules/delete-an-alert-rule"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "api-reference/platform/integrations/list-integrations",
+                  "api-reference/platform/integrations/get-an-integration"
+                ]
+              },
+              {
                 "group": "Projects",
                 "pages": [
                   "api-reference/platform/projects/list-projects",
@@ -85,16 +102,6 @@
                 "pages": [
                   "api-reference/platform/users/list-users",
                   "api-reference/platform/users/get-a-user"
-                ]
-              },
-              {
-                "group": "Alert Rules",
-                "pages": [
-                  "api-reference/platform/alert-rules/list-alert-rules",
-                  "api-reference/platform/alert-rules/create-an-alert-rule",
-                  "api-reference/platform/alert-rules/get-an-alert-rule",
-                  "api-reference/platform/alert-rules/update-an-alert-rule",
-                  "api-reference/platform/alert-rules/delete-an-alert-rule"
                 ]
               }
             ]
