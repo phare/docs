@@ -2291,6 +2291,11 @@
                         "maximum": 10000,
                         "minimum": 1,
                         "example": "We are investigating the issue."
+                    },
+                    "published_at": {
+                        "description": "Date of publication of the incident update",
+                        "type": "string",
+                        "format": "date-time"
                     }
                 }
             },
@@ -2652,32 +2657,120 @@
                         "maximum": 250,
                         "example": "https://phare.io"
                     },
-                    "colors": {
-                        "description": "Colors to customize the status page",
+                    "color_scheme": {
+                        "description": "Choose the available color schemes for the status page",
+                        "type": "string",
+                        "enum": [
+                            "all",
+                            "dark",
+                            "light"
+                        ],
+                        "example": "all"
+                    },
+                    "theme": {
+                        "description": "Theme settings to customize the status page",
                         "properties": {
-                            "operational": {
-                                "type": "string",
-                                "example": "#16a34a"
+                            "light": {
+                                "description": "Light theme colors",
+                                "properties": {
+                                    "operational": {
+                                        "type": "string",
+                                        "example": "#16a34a"
+                                    },
+                                    "degradedPerformance": {
+                                        "type": "string",
+                                        "example": "#fbbf24"
+                                    },
+                                    "partialOutage": {
+                                        "type": "string",
+                                        "example": "#f59e0b"
+                                    },
+                                    "majorOutage": {
+                                        "type": "string",
+                                        "example": "#ef4444"
+                                    },
+                                    "maintenance": {
+                                        "type": "string",
+                                        "example": "#6366f1"
+                                    },
+                                    "empty": {
+                                        "type": "string",
+                                        "example": "#d3d3d3"
+                                    },
+                                    "background": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "foreground": {
+                                        "type": "string",
+                                        "example": "#000000"
+                                    },
+                                    "foregroundMuted": {
+                                        "type": "string",
+                                        "example": "#737373"
+                                    },
+                                    "backgroundCard": {
+                                        "type": "string",
+                                        "example": "#fafafa"
+                                    }
+                                },
+                                "type": "object"
                             },
-                            "degradedPerformance": {
-                                "type": "string",
-                                "example": "#fbbf24"
+                            "dark": {
+                                "description": "Dark theme colors",
+                                "properties": {
+                                    "operational": {
+                                        "type": "string",
+                                        "example": "#16a34a"
+                                    },
+                                    "degradedPerformance": {
+                                        "type": "string",
+                                        "example": "#fbbf24"
+                                    },
+                                    "partialOutage": {
+                                        "type": "string",
+                                        "example": "#f59e0b"
+                                    },
+                                    "majorOutage": {
+                                        "type": "string",
+                                        "example": "#ef4444"
+                                    },
+                                    "maintenance": {
+                                        "type": "string",
+                                        "example": "#6366f1"
+                                    },
+                                    "empty": {
+                                        "type": "string",
+                                        "example": "#d3d3d3"
+                                    },
+                                    "background": {
+                                        "type": "string",
+                                        "example": "#111111"
+                                    },
+                                    "foreground": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "foregroundMuted": {
+                                        "type": "string",
+                                        "example": "#959595"
+                                    },
+                                    "backgroundCard": {
+                                        "type": "string",
+                                        "example": "#1a1a1a"
+                                    }
+                                },
+                                "type": "object"
                             },
-                            "partialOutage": {
-                                "type": "string",
-                                "example": "#f59e0b"
+                            "rounded": {
+                                "type": "boolean",
+                                "example": true
                             },
-                            "majorOutage": {
-                                "type": "string",
-                                "example": "#ef4444"
-                            },
-                            "maintenance": {
-                                "type": "string",
-                                "example": "#6366f1"
-                            },
-                            "empty": {
-                                "type": "string",
-                                "example": "#d3d3d3"
+                            "borderWidth": {
+                                "type": "integer",
+                                "maximum": 3,
+                                "minimum": 0,
+                                "example": 2
                             }
                         },
                         "type": "object"
@@ -2726,7 +2819,7 @@
                         "items": {
                             "$ref": "#/components/schemas/Uptime.StatusPage.SubscriptionChannelEnum"
                         },
-                        "maxItems": 2,
+                        "maxItems": 3,
                         "minItems": 0
                     },
                     "logo": {
@@ -3065,6 +3158,11 @@
                         "maximum": 10000,
                         "minimum": 1,
                         "example": "We are investigating the issue."
+                    },
+                    "published_at": {
+                        "description": "Date of publication of the incident update",
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "creator": {
                         "description": "Project settings",
@@ -3630,32 +3728,120 @@
                         "maximum": 250,
                         "example": "https://phare.io"
                     },
-                    "colors": {
-                        "description": "Colors to customize the status page",
+                    "color_scheme": {
+                        "description": "Choose the available color schemes for the status page",
+                        "type": "string",
+                        "enum": [
+                            "all",
+                            "dark",
+                            "light"
+                        ],
+                        "example": "all"
+                    },
+                    "theme": {
+                        "description": "Theme settings to customize the status page",
                         "properties": {
-                            "operational": {
-                                "type": "string",
-                                "example": "#16a34a"
+                            "light": {
+                                "description": "Light theme colors",
+                                "properties": {
+                                    "operational": {
+                                        "type": "string",
+                                        "example": "#16a34a"
+                                    },
+                                    "degradedPerformance": {
+                                        "type": "string",
+                                        "example": "#fbbf24"
+                                    },
+                                    "partialOutage": {
+                                        "type": "string",
+                                        "example": "#f59e0b"
+                                    },
+                                    "majorOutage": {
+                                        "type": "string",
+                                        "example": "#ef4444"
+                                    },
+                                    "maintenance": {
+                                        "type": "string",
+                                        "example": "#6366f1"
+                                    },
+                                    "empty": {
+                                        "type": "string",
+                                        "example": "#d3d3d3"
+                                    },
+                                    "background": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "foreground": {
+                                        "type": "string",
+                                        "example": "#000000"
+                                    },
+                                    "foregroundMuted": {
+                                        "type": "string",
+                                        "example": "#737373"
+                                    },
+                                    "backgroundCard": {
+                                        "type": "string",
+                                        "example": "#fafafa"
+                                    }
+                                },
+                                "type": "object"
                             },
-                            "degradedPerformance": {
-                                "type": "string",
-                                "example": "#fbbf24"
+                            "dark": {
+                                "description": "Dark theme colors",
+                                "properties": {
+                                    "operational": {
+                                        "type": "string",
+                                        "example": "#16a34a"
+                                    },
+                                    "degradedPerformance": {
+                                        "type": "string",
+                                        "example": "#fbbf24"
+                                    },
+                                    "partialOutage": {
+                                        "type": "string",
+                                        "example": "#f59e0b"
+                                    },
+                                    "majorOutage": {
+                                        "type": "string",
+                                        "example": "#ef4444"
+                                    },
+                                    "maintenance": {
+                                        "type": "string",
+                                        "example": "#6366f1"
+                                    },
+                                    "empty": {
+                                        "type": "string",
+                                        "example": "#d3d3d3"
+                                    },
+                                    "background": {
+                                        "type": "string",
+                                        "example": "#111111"
+                                    },
+                                    "foreground": {
+                                        "type": "string",
+                                        "example": "#ffffff"
+                                    },
+                                    "foregroundMuted": {
+                                        "type": "string",
+                                        "example": "#959595"
+                                    },
+                                    "backgroundCard": {
+                                        "type": "string",
+                                        "example": "#1a1a1a"
+                                    }
+                                },
+                                "type": "object"
                             },
-                            "partialOutage": {
-                                "type": "string",
-                                "example": "#f59e0b"
+                            "rounded": {
+                                "type": "boolean",
+                                "example": true
                             },
-                            "majorOutage": {
-                                "type": "string",
-                                "example": "#ef4444"
-                            },
-                            "maintenance": {
-                                "type": "string",
-                                "example": "#6366f1"
-                            },
-                            "empty": {
-                                "type": "string",
-                                "example": "#d3d3d3"
+                            "borderWidth": {
+                                "type": "integer",
+                                "maximum": 3,
+                                "minimum": 0,
+                                "example": 2
                             }
                         },
                         "type": "object"
@@ -3704,7 +3890,7 @@
                         "items": {
                             "$ref": "#/components/schemas/Uptime.StatusPage.SubscriptionChannelEnum"
                         },
-                        "maxItems": 2,
+                        "maxItems": 3,
                         "minItems": 0
                     },
                     "created_at": {
@@ -3956,7 +4142,8 @@
                 "type": "string",
                 "enum": [
                     "rss",
-                    "atom"
+                    "atom",
+                    "slack"
                 ]
             },
             "Platform.App.AppEnum": {
