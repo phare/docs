@@ -19,7 +19,7 @@ Stay in the loop with Phare's real-time notification system. Whether it's a sudd
     ></iframe>
 </Frame>
 
-### Alert Rules
+## Alert Rules
 
 Think of alert rules as your notification command center. Each rule defines four key elements:
 
@@ -30,51 +30,36 @@ Think of alert rules as your notification command center. Each rule defines four
 
 Additional settings can be configured depending on the event type and integration you choose.
 
-### Events
+## Events
 
 Phare can alert you of various events, each with its own configuration options and use cases. You choose which events matter most to your organization and can set up multiple alert rules for a single event type.
 
-#### > Monitor created
+### Monitor Events
 
-Sent when a new monitor is created, great for logging or auditing purposes.
+| Event | API format | Description |
+| :--- | :--- | :--- |
+| Monitor created | `uptime.monitor.created` | Sent when a new monitor is created, great for logging or auditing purposes. |
+| Monitor deleted | `uptime.monitor.deleted` | Sent when a monitor is deleted, great for logging or auditing purposes. |
 
-#### > Monitor deleted
+### Certificate Events
 
-Sent when a monitor is deleted, great for logging or auditing purposes.
+| Event | API format | Description |
+| :--- | :--- | :--- |
+| Monitor certificate updated | `uptime.monitor_certificate.discovered` | Sent when a monitor's SSL certificate is updated, useful for tracking changes and certificate renewal confirmation. |
+| Monitor certificate expiring | `uptime.monitor_certificate.expiring` | Sent when a monitor's SSL certificate is nearing expiration, based on a configurable threshold. |
 
-#### > Monitor certificate updated
+### Incident Events
 
-Sent when a monitor's SSL certificate is updated, useful for tracking changes and certificate renewal confirmation.
+| Event | API format | Description |
+| :--- | :--- | :--- |
+| Incident created | `uptime.incident.created` | Sent when a new incident is created, this is the main alert for incident management. |
+| Incident propagated | `uptime.incident.propagated` | Sent when an incident propagates to an additional monitor. Requires smart incident merging to be enabled. |
+| Incident partially recovered | `uptime.incident.partially_recovered` | Sent when a monitor recovers but the incident is still ongoing due to other affected monitors. Requires smart incident merging to be enabled. |
+| Incident recovered | `uptime.incident.recovered` | Sent when an incident has fully recovered, indicating that all affected monitors are back to normal. |
+| Incident comment created | `uptime.incident_comment.created` | Sent when a new comment is added to an incident, useful for keeping team members informed of updates and discussions. |
+| Incident update published | `uptime.incident_update.published` | Sent when a new public incident update is published on a status page, useful for notifying stakeholders and users about the incident status. |
 
-#### > Monitor certificate expiring
-
-Sent when a monitor's SSL certificate is nearing expiration, based on a configurable threshold.
-
-#### > Incident created
-
-Sent when a new incident is created, this is the main alert for incident management.
-
-#### > Incident propagated
-
-Sent when an incident propagates to an additional monitor. Requires smart incident merging to be enabled.
-
-#### > Incident partially recovered
-
-Sent when a monitor recovers but the incident is still ongoing due to other affected monitors. Requires smart incident merging to be enabled.
-
-#### > Incident recovered
-
-Sent when an incident has fully recovered, indicating that all affected monitors are back to normal.
-
-#### > Incident comment created
-
-Sent when a new comment is added to an incident, useful for keeping team members informed of updates and discussions.
-
-#### > Incident update published
-
-Sent when a new public incident update is published on a status page, useful for notifying stakeholders and users about the incident status.
-
-### Scope
+## Scope
 
 Keep your alerts relevant by setting the right scope:
 
@@ -83,10 +68,10 @@ Keep your alerts relevant by setting the right scope:
 
 This targeted approach ensures nobody gets alerts they don't need to act on.
 
-### Rate limiting
+## Rate limiting
 
 Too many notifications can lead to alert fatigue. That's why Phare lets you set limits on how frequently a notification can be sent. Even if an event triggers multiple times, you'll only be notified based on your preferred cadence, like at most once every 10 minutes.
 
-### Notification channels
+## Notification channels
 
 Connect any [integration](/integrations/overview) to your alert rules to receive notifications through your preferred channels. Create as many alert rules as you need, customizing each one to get the right balance of information without overwhelming recipients.
