@@ -133,15 +133,26 @@ Every status page automatically includes feed endpoints that users can subscribe
 - **RSS feed**: Available at `https://status.example.com/history.rss` or `https://example.status.phare.io/history.rss`
 - **ATOM feed**: Available at `https://status.example.com/history.atom` or `https://example.status.phare.io/history.atom`
 
+### Slack feed
+
+Phare provides a dedicated Slack-compatible RSS feed for easy integration with Slack workspaces:
+
+- **Slack RSS feed**: Available at `https://status.example.com/history.slack.rss` or `https://example.status.phare.io/history.slack.rss`
+
+To subscribe in Slack, use the command:
+```
+/feed subscribe https://status.phare.io/history.slack.rss
+```
+
 ### Subscribing to feeds
 
-Your users can subscribe to these feeds using:
+Your users can subscribe to the standard RSS/ATOM feeds using:
 
 1. **Feed readers**: Apps like Feedly, Inoreader, or NewsBlur
 2. **Email notifications**: Services that convert feeds to email alerts
-3. **Slack/Discord integrations**: Many workspaces can connect to RSS feeds for team notifications
+3. **Other integrations**: Many platforms like Microsoft teams or Discord can connect to standard RSS/ATOM feeds for notifications
 
-The number of subscribers is unlimited on any Phare plan at no extra cost.
+The number of subscribers is currently unlimited on any Phare plan at no extra cost.
 
 ## Status badges
 
