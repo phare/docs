@@ -2677,15 +2677,15 @@
                                         "type": "string",
                                         "example": "#16a34a"
                                     },
-                                    "degradedPerformance": {
+                                    "degraded_performance": {
                                         "type": "string",
                                         "example": "#fbbf24"
                                     },
-                                    "partialOutage": {
+                                    "partial_outage": {
                                         "type": "string",
                                         "example": "#f59e0b"
                                     },
-                                    "majorOutage": {
+                                    "major_outage": {
                                         "type": "string",
                                         "example": "#ef4444"
                                     },
@@ -2705,11 +2705,11 @@
                                         "type": "string",
                                         "example": "#000000"
                                     },
-                                    "foregroundMuted": {
+                                    "foreground_muted": {
                                         "type": "string",
                                         "example": "#737373"
                                     },
-                                    "backgroundCard": {
+                                    "background_card": {
                                         "type": "string",
                                         "example": "#fafafa"
                                     }
@@ -2723,15 +2723,15 @@
                                         "type": "string",
                                         "example": "#16a34a"
                                     },
-                                    "degradedPerformance": {
+                                    "degraded_performance": {
                                         "type": "string",
                                         "example": "#fbbf24"
                                     },
-                                    "partialOutage": {
+                                    "partial_outage": {
                                         "type": "string",
                                         "example": "#f59e0b"
                                     },
-                                    "majorOutage": {
+                                    "major_outage": {
                                         "type": "string",
                                         "example": "#ef4444"
                                     },
@@ -2751,11 +2751,11 @@
                                         "type": "string",
                                         "example": "#ffffff"
                                     },
-                                    "foregroundMuted": {
+                                    "foreground_muted": {
                                         "type": "string",
                                         "example": "#959595"
                                     },
-                                    "backgroundCard": {
+                                    "background_card": {
                                         "type": "string",
                                         "example": "#1a1a1a"
                                     }
@@ -3748,15 +3748,15 @@
                                         "type": "string",
                                         "example": "#16a34a"
                                     },
-                                    "degradedPerformance": {
+                                    "degraded_performance": {
                                         "type": "string",
                                         "example": "#fbbf24"
                                     },
-                                    "partialOutage": {
+                                    "partial_outage": {
                                         "type": "string",
                                         "example": "#f59e0b"
                                     },
-                                    "majorOutage": {
+                                    "major_outage": {
                                         "type": "string",
                                         "example": "#ef4444"
                                     },
@@ -3776,11 +3776,11 @@
                                         "type": "string",
                                         "example": "#000000"
                                     },
-                                    "foregroundMuted": {
+                                    "foreground_muted": {
                                         "type": "string",
                                         "example": "#737373"
                                     },
-                                    "backgroundCard": {
+                                    "background_card": {
                                         "type": "string",
                                         "example": "#fafafa"
                                     }
@@ -3794,15 +3794,15 @@
                                         "type": "string",
                                         "example": "#16a34a"
                                     },
-                                    "degradedPerformance": {
+                                    "degraded_performance": {
                                         "type": "string",
                                         "example": "#fbbf24"
                                     },
-                                    "partialOutage": {
+                                    "partial_outage": {
                                         "type": "string",
                                         "example": "#f59e0b"
                                     },
-                                    "majorOutage": {
+                                    "major_outage": {
                                         "type": "string",
                                         "example": "#ef4444"
                                     },
@@ -3822,11 +3822,11 @@
                                         "type": "string",
                                         "example": "#ffffff"
                                     },
-                                    "foregroundMuted": {
+                                    "foreground_muted": {
                                         "type": "string",
                                         "example": "#959595"
                                     },
-                                    "backgroundCard": {
+                                    "background_card": {
                                         "type": "string",
                                         "example": "#1a1a1a"
                                     }
@@ -4066,9 +4066,9 @@
                 "enum": [
                     "unknown",
                     "operational",
-                    "degradedPerformance",
-                    "partialOutage",
-                    "majorOutage",
+                    "degraded_performance",
+                    "partial_outage",
+                    "major_outage",
                     "maintenance"
                 ]
             },
