@@ -5,7 +5,19 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
-<Update label="February 2026">
+<Update label="March 2026">
+    <Frame>
+        <img src="/images/changelog/121-single-region-failure.avif" alt="Single region failure" />
+    </Frame>
+
+    ## Single region failure detection
+
+    When monitoring from multiple regions, incidents were only triggered if at least two regions reported a failure, meaning a real regional outage could go completely undetected. Incidents are now flagged as soon as any single region goes down, regardless of how many regions you're monitoring from.
+
+    This change ensures your monitoring coverage actually reflects reality, with zero silent failures.
+
+    <br/>
+
     <Frame>
         <img src="/images/changelog/120-2fa-recovery-codes.avif" alt="2fa recovery codes" />
     </Frame>
