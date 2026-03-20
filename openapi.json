@@ -3199,20 +3199,6 @@
                                                         "example": 123,
                                                         "nullable": true
                                                     },
-                                                    "one_day_availability": {
-                                                        "description": "Availability percentage for the last 24 hours",
-                                                        "type": "number",
-                                                        "format": "float",
-                                                        "example": 99.9999,
-                                                        "nullable": true
-                                                    },
-                                                    "seven_days_availability": {
-                                                        "description": "Availability percentage for the last 7 days",
-                                                        "type": "number",
-                                                        "format": "float",
-                                                        "example": 99.9999,
-                                                        "nullable": true
-                                                    },
                                                     "name": {
                                                         "description": "Monitor name",
                                                         "type": "string",
@@ -3938,20 +3924,6 @@
                                             "example": 123,
                                             "nullable": true
                                         },
-                                        "one_day_availability": {
-                                            "description": "Availability percentage for the last 24 hours",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
-                                            "nullable": true
-                                        },
-                                        "seven_days_availability": {
-                                            "description": "Availability percentage for the last 7 days",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
-                                            "nullable": true
-                                        },
                                         "name": {
                                             "description": "Monitor name",
                                             "type": "string",
@@ -4355,20 +4327,6 @@
                                             "description": "Rolling average response time of the last 10 requests, in milliseconds",
                                             "type": "integer",
                                             "example": 123,
-                                            "nullable": true
-                                        },
-                                        "one_day_availability": {
-                                            "description": "Availability percentage for the last 24 hours",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
-                                            "nullable": true
-                                        },
-                                        "seven_days_availability": {
-                                            "description": "Availability percentage for the last 7 days",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
                                             "nullable": true
                                         },
                                         "name": {
@@ -5080,20 +5038,6 @@
                                             "description": "Rolling average response time of the last 10 requests, in milliseconds",
                                             "type": "integer",
                                             "example": 123,
-                                            "nullable": true
-                                        },
-                                        "one_day_availability": {
-                                            "description": "Availability percentage for the last 24 hours",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
-                                            "nullable": true
-                                        },
-                                        "seven_days_availability": {
-                                            "description": "Availability percentage for the last 7 days",
-                                            "type": "number",
-                                            "format": "float",
-                                            "example": 99.9999,
                                             "nullable": true
                                         },
                                         "name": {
@@ -6088,8 +6032,8 @@
                                         "maxItems": 3,
                                         "minItems": 0
                                     },
-                                    "logo": {
-                                        "description": "Manage the logo of the status page (accepted formats: jpeg / png / svg)",
+                                    "logo_light": {
+                                        "description": "Manage the light theme logo of the status page (accepted formats: jpeg / png / svg)",
                                         "oneOf": [
                                             {
                                                 "description": "Any image file with the following format: jpeg / png / svg.",
@@ -6108,11 +6052,51 @@
                                             }
                                         ]
                                     },
-                                    "favicon": {
-                                        "description": "Manage the favicon of the status page (accepted formats: ico / png / svg)",
+                                    "logo_dark": {
+                                        "description": "Manage the dark theme logo of the status page (accepted formats: jpeg / png / svg)",
                                         "oneOf": [
                                             {
-                                                "description": "Any image file with the following format: ico / png / svg.",
+                                                "description": "Any image file with the following format: jpeg / png / svg.",
+                                                "type": "string",
+                                                "format": "file",
+                                                "nullable": true
+                                            },
+                                            {
+                                                "description": "If \"false\" is passed to the request the logo will be removed",
+                                                "type": "string",
+                                                "enum": [
+                                                    "false"
+                                                ],
+                                                "example": "false",
+                                                "nullable": true
+                                            }
+                                        ]
+                                    },
+                                    "favicon_light": {
+                                        "description": "Manage the light theme favicon of the status page (accepted formats: png / svg)",
+                                        "oneOf": [
+                                            {
+                                                "description": "Any image file with the following format: png / svg.",
+                                                "type": "string",
+                                                "format": "file",
+                                                "nullable": true
+                                            },
+                                            {
+                                                "description": "If \"false\" is passed to the request the favicon will be removed",
+                                                "type": "string",
+                                                "enum": [
+                                                    "false"
+                                                ],
+                                                "example": "false",
+                                                "nullable": true
+                                            }
+                                        ]
+                                    },
+                                    "favicon_dark": {
+                                        "description": "Manage the dark theme favicon of the status page (accepted formats: png / svg)",
+                                        "oneOf": [
+                                            {
+                                                "description": "Any image file with the following format: png / svg.",
                                                 "type": "string",
                                                 "format": "file",
                                                 "nullable": true
@@ -6950,8 +6934,8 @@
                                         "maxItems": 3,
                                         "minItems": 0
                                     },
-                                    "logo": {
-                                        "description": "Manage the logo of the status page (accepted formats: jpeg / png / svg)",
+                                    "logo_light": {
+                                        "description": "Manage the light theme logo of the status page (accepted formats: jpeg / png / svg)",
                                         "oneOf": [
                                             {
                                                 "description": "Any image file with the following format: jpeg / png / svg.",
@@ -6970,11 +6954,51 @@
                                             }
                                         ]
                                     },
-                                    "favicon": {
-                                        "description": "Manage the favicon of the status page (accepted formats: ico / png / svg)",
+                                    "logo_dark": {
+                                        "description": "Manage the dark theme logo of the status page (accepted formats: jpeg / png / svg)",
                                         "oneOf": [
                                             {
-                                                "description": "Any image file with the following format: ico / png / svg.",
+                                                "description": "Any image file with the following format: jpeg / png / svg.",
+                                                "type": "string",
+                                                "format": "file",
+                                                "nullable": true
+                                            },
+                                            {
+                                                "description": "If \"false\" is passed to the request the logo will be removed",
+                                                "type": "string",
+                                                "enum": [
+                                                    "false"
+                                                ],
+                                                "example": "false",
+                                                "nullable": true
+                                            }
+                                        ]
+                                    },
+                                    "favicon_light": {
+                                        "description": "Manage the light theme favicon of the status page (accepted formats: png / svg)",
+                                        "oneOf": [
+                                            {
+                                                "description": "Any image file with the following format: png / svg.",
+                                                "type": "string",
+                                                "format": "file",
+                                                "nullable": true
+                                            },
+                                            {
+                                                "description": "If \"false\" is passed to the request the favicon will be removed",
+                                                "type": "string",
+                                                "enum": [
+                                                    "false"
+                                                ],
+                                                "example": "false",
+                                                "nullable": true
+                                            }
+                                        ]
+                                    },
+                                    "favicon_dark": {
+                                        "description": "Manage the dark theme favicon of the status page (accepted formats: png / svg)",
+                                        "oneOf": [
+                                            {
+                                                "description": "Any image file with the following format: png / svg.",
                                                 "type": "string",
                                                 "format": "file",
                                                 "nullable": true
