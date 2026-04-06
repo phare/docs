@@ -7,14 +7,24 @@ rss: true
 
 <Update label="April 2026">
     <Frame>
+        <img src="/images/changelog/125-partial-api-update.avif" alt="Partial API updates" />
+    </Frame>
+
+    ## Partial API updates
+
+    The [update monitor](/api-reference/uptime/monitors/update-a-monitor) and [update incident](/api-reference/uptime/incidents/update-an-incident) endpoints now accepts partial update. This means you can update only the fields you want to change, leaving the rest unchanged and making the API more practical to use.
+
+    Support for more entities will be added in the near future, until all update endpoints support partial payloads.
+
+    <br/>
+
+    <Frame>
         <img src="/images/changelog/124-region-threshold.avif" alt="Custom region threshold" />
     </Frame>
 
     ## Monitor region threshold
 
     Monitor can now individually configure in how many regions they must be detected as down to trigger an incident. This allow you to fine tune your incident detection strategy to your specific needs.
-
-    <br/>
 </Update>
 
 <Update label="March 2026">
