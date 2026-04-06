@@ -112,6 +112,7 @@
                                                     "rate_limit": {
                                                         "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                                         "type": "integer",
+                                                        "example": 5,
                                                         "enum": [
                                                             0,
                                                             5,
@@ -121,8 +122,7 @@
                                                             180,
                                                             720,
                                                             1440
-                                                        ],
-                                                        "example": 5
+                                                        ]
                                                     },
                                                     "event_settings": {
                                                         "description": "Additional settings for the event",
@@ -229,11 +229,11 @@
                                     "scope": {
                                         "description": "Scoped of the alert rule",
                                         "type": "string",
+                                        "example": "organization",
                                         "enum": [
                                             "organization",
                                             "project"
-                                        ],
-                                        "example": "organization"
+                                        ]
                                     },
                                     "event": {
                                         "$ref": "#/components/schemas/Uptime.ProductEvents"
@@ -246,6 +246,7 @@
                                     "rate_limit": {
                                         "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                         "type": "integer",
+                                        "example": 5,
                                         "enum": [
                                             0,
                                             5,
@@ -255,8 +256,7 @@
                                             180,
                                             720,
                                             1440
-                                        ],
-                                        "example": 5
+                                        ]
                                     },
                                     "event_settings": {
                                         "description": "Additional settings for the event",
@@ -332,6 +332,7 @@
                                         "rate_limit": {
                                             "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                             "type": "integer",
+                                            "example": 5,
                                             "enum": [
                                                 0,
                                                 5,
@@ -341,8 +342,7 @@
                                                 180,
                                                 720,
                                                 1440
-                                            ],
-                                            "example": 5
+                                            ]
                                         },
                                         "event_settings": {
                                             "description": "Additional settings for the event",
@@ -473,6 +473,7 @@
                                         "rate_limit": {
                                             "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                             "type": "integer",
+                                            "example": 5,
                                             "enum": [
                                                 0,
                                                 5,
@@ -482,8 +483,7 @@
                                                 180,
                                                 720,
                                                 1440
-                                            ],
-                                            "example": 5
+                                            ]
                                         },
                                         "event_settings": {
                                             "description": "Additional settings for the event",
@@ -586,11 +586,11 @@
                                     "scope": {
                                         "description": "Scoped of the alert rule",
                                         "type": "string",
+                                        "example": "organization",
                                         "enum": [
                                             "organization",
                                             "project"
-                                        ],
-                                        "example": "organization"
+                                        ]
                                     },
                                     "event": {
                                         "$ref": "#/components/schemas/Uptime.ProductEvents"
@@ -603,6 +603,7 @@
                                     "rate_limit": {
                                         "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                         "type": "integer",
+                                        "example": 5,
                                         "enum": [
                                             0,
                                             5,
@@ -612,8 +613,7 @@
                                             180,
                                             720,
                                             1440
-                                        ],
-                                        "example": 5
+                                        ]
                                     },
                                     "event_settings": {
                                         "description": "Additional settings for the event",
@@ -684,6 +684,7 @@
                                         "rate_limit": {
                                             "description": "Minimum time in minutes between two executions of the alert rule, used to minimized the number of alert received.",
                                             "type": "integer",
+                                            "example": 5,
                                             "enum": [
                                                 0,
                                                 5,
@@ -693,8 +694,7 @@
                                                 180,
                                                 720,
                                                 1440
-                                            ],
-                                            "example": 5
+                                            ]
                                         },
                                         "event_settings": {
                                             "description": "Additional settings for the event",
@@ -1043,9 +1043,9 @@
                                                     "name": {
                                                         "description": "Project name",
                                                         "type": "string",
+                                                        "example": "Luminous Guiding Tower",
                                                         "maximum": 25,
-                                                        "minimum": 1,
-                                                        "example": "Luminous Guiding Tower"
+                                                        "minimum": 1
                                                     },
                                                     "members": {
                                                         "description": "List of team members that are part of this project",
@@ -1053,13 +1053,13 @@
                                                         "items": {
                                                             "type": "integer"
                                                         },
-                                                        "maxItems": 100,
-                                                        "minItems": 1,
                                                         "example": [
                                                             1,
                                                             2,
                                                             3
-                                                        ]
+                                                        ],
+                                                        "maxItems": 100,
+                                                        "minItems": 1
                                                     },
                                                     "settings": {
                                                         "description": "Project settings",
@@ -1067,18 +1067,19 @@
                                                             "use_incident_ai": {
                                                                 "description": "Whether to generate AI summaries for incidents",
                                                                 "type": "boolean",
-                                                                "default": true,
-                                                                "nullable": true
+                                                                "nullable": true,
+                                                                "default": true
                                                             },
                                                             "use_incident_merging": {
                                                                 "description": "Whether to use incident merging",
                                                                 "type": "boolean",
-                                                                "default": true,
-                                                                "nullable": true
+                                                                "nullable": true,
+                                                                "default": true
                                                             },
                                                             "incident_merging_time_window": {
                                                                 "description": "Time window for incident merging in minutes",
                                                                 "type": "integer",
+                                                                "nullable": true,
                                                                 "default": 60,
                                                                 "enum": [
                                                                     5,
@@ -1087,8 +1088,7 @@
                                                                     60,
                                                                     120,
                                                                     180
-                                                                ],
-                                                                "nullable": true
+                                                                ]
                                                             }
                                                         },
                                                         "type": "object"
@@ -1156,9 +1156,9 @@
                                     "name": {
                                         "description": "Project name",
                                         "type": "string",
+                                        "example": "Luminous Guiding Tower",
                                         "maximum": 25,
-                                        "minimum": 1,
-                                        "example": "Luminous Guiding Tower"
+                                        "minimum": 1
                                     },
                                     "members": {
                                         "description": "List of team members that are part of this project",
@@ -1166,13 +1166,13 @@
                                         "items": {
                                             "type": "integer"
                                         },
-                                        "maxItems": 100,
-                                        "minItems": 1,
                                         "example": [
                                             1,
                                             2,
                                             3
-                                        ]
+                                        ],
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     },
                                     "settings": {
                                         "description": "Project settings",
@@ -1180,18 +1180,19 @@
                                             "use_incident_ai": {
                                                 "description": "Whether to generate AI summaries for incidents",
                                                 "type": "boolean",
-                                                "default": true,
-                                                "nullable": true
+                                                "nullable": true,
+                                                "default": true
                                             },
                                             "use_incident_merging": {
                                                 "description": "Whether to use incident merging",
                                                 "type": "boolean",
-                                                "default": true,
-                                                "nullable": true
+                                                "nullable": true,
+                                                "default": true
                                             },
                                             "incident_merging_time_window": {
                                                 "description": "Time window for incident merging in minutes",
                                                 "type": "integer",
+                                                "nullable": true,
                                                 "default": 60,
                                                 "enum": [
                                                     5,
@@ -1200,8 +1201,7 @@
                                                     60,
                                                     120,
                                                     180
-                                                ],
-                                                "nullable": true
+                                                ]
                                             }
                                         },
                                         "type": "object"
@@ -1236,9 +1236,9 @@
                                         "name": {
                                             "description": "Project name",
                                             "type": "string",
+                                            "example": "Luminous Guiding Tower",
                                             "maximum": 25,
-                                            "minimum": 1,
-                                            "example": "Luminous Guiding Tower"
+                                            "minimum": 1
                                         },
                                         "members": {
                                             "description": "List of team members that are part of this project",
@@ -1246,13 +1246,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "settings": {
                                             "description": "Project settings",
@@ -1260,18 +1260,19 @@
                                                 "use_incident_ai": {
                                                     "description": "Whether to generate AI summaries for incidents",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "use_incident_merging": {
                                                     "description": "Whether to use incident merging",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "incident_merging_time_window": {
                                                     "description": "Time window for incident merging in minutes",
                                                     "type": "integer",
+                                                    "nullable": true,
                                                     "default": 60,
                                                     "enum": [
                                                         5,
@@ -1280,8 +1281,7 @@
                                                         60,
                                                         120,
                                                         180
-                                                    ],
-                                                    "nullable": true
+                                                    ]
                                                 }
                                             },
                                             "type": "object"
@@ -1357,9 +1357,9 @@
                                         "name": {
                                             "description": "Project name",
                                             "type": "string",
+                                            "example": "Luminous Guiding Tower",
                                             "maximum": 25,
-                                            "minimum": 1,
-                                            "example": "Luminous Guiding Tower"
+                                            "minimum": 1
                                         },
                                         "members": {
                                             "description": "List of team members that are part of this project",
@@ -1367,13 +1367,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "settings": {
                                             "description": "Project settings",
@@ -1381,18 +1381,19 @@
                                                 "use_incident_ai": {
                                                     "description": "Whether to generate AI summaries for incidents",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "use_incident_merging": {
                                                     "description": "Whether to use incident merging",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "incident_merging_time_window": {
                                                     "description": "Time window for incident merging in minutes",
                                                     "type": "integer",
+                                                    "nullable": true,
                                                     "default": 60,
                                                     "enum": [
                                                         5,
@@ -1401,8 +1402,7 @@
                                                         60,
                                                         120,
                                                         180
-                                                    ],
-                                                    "nullable": true
+                                                    ]
                                                 }
                                             },
                                             "type": "object"
@@ -1466,9 +1466,9 @@
                                     "name": {
                                         "description": "Project name",
                                         "type": "string",
+                                        "example": "Luminous Guiding Tower",
                                         "maximum": 25,
-                                        "minimum": 1,
-                                        "example": "Luminous Guiding Tower"
+                                        "minimum": 1
                                     },
                                     "members": {
                                         "description": "List of team members that are part of this project",
@@ -1476,13 +1476,13 @@
                                         "items": {
                                             "type": "integer"
                                         },
-                                        "maxItems": 100,
-                                        "minItems": 1,
                                         "example": [
                                             1,
                                             2,
                                             3
-                                        ]
+                                        ],
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     },
                                     "settings": {
                                         "description": "Project settings",
@@ -1490,18 +1490,19 @@
                                             "use_incident_ai": {
                                                 "description": "Whether to generate AI summaries for incidents",
                                                 "type": "boolean",
-                                                "default": true,
-                                                "nullable": true
+                                                "nullable": true,
+                                                "default": true
                                             },
                                             "use_incident_merging": {
                                                 "description": "Whether to use incident merging",
                                                 "type": "boolean",
-                                                "default": true,
-                                                "nullable": true
+                                                "nullable": true,
+                                                "default": true
                                             },
                                             "incident_merging_time_window": {
                                                 "description": "Time window for incident merging in minutes",
                                                 "type": "integer",
+                                                "nullable": true,
                                                 "default": 60,
                                                 "enum": [
                                                     5,
@@ -1510,8 +1511,7 @@
                                                     60,
                                                     120,
                                                     180
-                                                ],
-                                                "nullable": true
+                                                ]
                                             }
                                         },
                                         "type": "object"
@@ -1542,9 +1542,9 @@
                                         "name": {
                                             "description": "Project name",
                                             "type": "string",
+                                            "example": "Luminous Guiding Tower",
                                             "maximum": 25,
-                                            "minimum": 1,
-                                            "example": "Luminous Guiding Tower"
+                                            "minimum": 1
                                         },
                                         "members": {
                                             "description": "List of team members that are part of this project",
@@ -1552,13 +1552,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "settings": {
                                             "description": "Project settings",
@@ -1566,18 +1566,19 @@
                                                 "use_incident_ai": {
                                                     "description": "Whether to generate AI summaries for incidents",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "use_incident_merging": {
                                                     "description": "Whether to use incident merging",
                                                     "type": "boolean",
-                                                    "default": true,
-                                                    "nullable": true
+                                                    "nullable": true,
+                                                    "default": true
                                                 },
                                                 "incident_merging_time_window": {
                                                     "description": "Time window for incident merging in minutes",
                                                     "type": "integer",
+                                                    "nullable": true,
                                                     "default": 60,
                                                     "enum": [
                                                         5,
@@ -1586,8 +1587,7 @@
                                                         60,
                                                         120,
                                                         180
-                                                    ],
-                                                    "nullable": true
+                                                    ]
                                                 }
                                             },
                                             "type": "object"
@@ -1874,16 +1874,16 @@
                                                     "title": {
                                                         "description": "Incident title",
                                                         "type": "string",
+                                                        "example": "Service is not working as expected",
                                                         "maximum": 250,
-                                                        "minimum": 1,
-                                                        "example": "Service is not working as expected"
+                                                        "minimum": 1
                                                     },
                                                     "description": {
                                                         "description": "Description of the error that caused the incident",
                                                         "type": "string",
+                                                        "example": "The server answered with an unexpected status code: 503.",
                                                         "maximum": 2000,
-                                                        "minimum": 1,
-                                                        "example": "The server answered with an unexpected status code: 503."
+                                                        "minimum": 1
                                                     },
                                                     "exclude_from_downtime": {
                                                         "description": "Flag to exclude the incident from downtime calculations",
@@ -1908,13 +1908,13 @@
                                                         "items": {
                                                             "type": "integer"
                                                         },
-                                                        "maxItems": 100,
-                                                        "minItems": 1,
                                                         "example": [
                                                             1,
                                                             2,
                                                             3
-                                                        ]
+                                                        ],
+                                                        "maxItems": 100,
+                                                        "minItems": 1
                                                     },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
@@ -1989,16 +1989,16 @@
                                     "title": {
                                         "description": "Incident title",
                                         "type": "string",
+                                        "example": "Service is not working as expected",
                                         "maximum": 250,
-                                        "minimum": 1,
-                                        "example": "Service is not working as expected"
+                                        "minimum": 1
                                     },
                                     "description": {
                                         "description": "Description of the error that caused the incident",
                                         "type": "string",
+                                        "example": "The server answered with an unexpected status code: 503.",
                                         "maximum": 2000,
-                                        "minimum": 1,
-                                        "example": "The server answered with an unexpected status code: 503."
+                                        "minimum": 1
                                     },
                                     "exclude_from_downtime": {
                                         "description": "Flag to exclude the incident from downtime calculations",
@@ -2023,13 +2023,13 @@
                                         "items": {
                                             "type": "integer"
                                         },
-                                        "maxItems": 100,
-                                        "minItems": 1,
                                         "example": [
                                             1,
                                             2,
                                             3
-                                        ]
+                                        ],
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     }
                                 },
                                 "required": [
@@ -2078,16 +2078,16 @@
                                         "title": {
                                             "description": "Incident title",
                                             "type": "string",
+                                            "example": "Service is not working as expected",
                                             "maximum": 250,
-                                            "minimum": 1,
-                                            "example": "Service is not working as expected"
+                                            "minimum": 1
                                         },
                                         "description": {
                                             "description": "Description of the error that caused the incident",
                                             "type": "string",
+                                            "example": "The server answered with an unexpected status code: 503.",
                                             "maximum": 2000,
-                                            "minimum": 1,
-                                            "example": "The server answered with an unexpected status code: 503."
+                                            "minimum": 1
                                         },
                                         "exclude_from_downtime": {
                                             "description": "Flag to exclude the incident from downtime calculations",
@@ -2112,13 +2112,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -2222,16 +2222,16 @@
                                         "title": {
                                             "description": "Incident title",
                                             "type": "string",
+                                            "example": "Service is not working as expected",
                                             "maximum": 250,
-                                            "minimum": 1,
-                                            "example": "Service is not working as expected"
+                                            "minimum": 1
                                         },
                                         "description": {
                                             "description": "Description of the error that caused the incident",
                                             "type": "string",
+                                            "example": "The server answered with an unexpected status code: 503.",
                                             "maximum": 2000,
-                                            "minimum": 1,
-                                            "example": "The server answered with an unexpected status code: 503."
+                                            "minimum": 1
                                         },
                                         "exclude_from_downtime": {
                                             "description": "Flag to exclude the incident from downtime calculations",
@@ -2256,13 +2256,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -2333,16 +2333,16 @@
                                     "title": {
                                         "description": "Incident title",
                                         "type": "string",
+                                        "example": "Service is not working as expected",
                                         "maximum": 250,
-                                        "minimum": 1,
-                                        "example": "Service is not working as expected"
+                                        "minimum": 1
                                     },
                                     "description": {
                                         "description": "Description of the error that caused the incident",
                                         "type": "string",
+                                        "example": "The server answered with an unexpected status code: 503.",
                                         "maximum": 2000,
-                                        "minimum": 1,
-                                        "example": "The server answered with an unexpected status code: 503."
+                                        "minimum": 1
                                     },
                                     "exclude_from_downtime": {
                                         "description": "Flag to exclude the incident from downtime calculations",
@@ -2367,13 +2367,13 @@
                                         "items": {
                                             "type": "integer"
                                         },
-                                        "maxItems": 100,
-                                        "minItems": 1,
                                         "example": [
                                             1,
                                             2,
                                             3
-                                        ]
+                                        ],
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     }
                                 }
                             }
@@ -2417,16 +2417,16 @@
                                         "title": {
                                             "description": "Incident title",
                                             "type": "string",
+                                            "example": "Service is not working as expected",
                                             "maximum": 250,
-                                            "minimum": 1,
-                                            "example": "Service is not working as expected"
+                                            "minimum": 1
                                         },
                                         "description": {
                                             "description": "Description of the error that caused the incident",
                                             "type": "string",
+                                            "example": "The server answered with an unexpected status code: 503.",
                                             "maximum": 2000,
-                                            "minimum": 1,
-                                            "example": "The server answered with an unexpected status code: 503."
+                                            "minimum": 1
                                         },
                                         "exclude_from_downtime": {
                                             "description": "Flag to exclude the incident from downtime calculations",
@@ -2451,13 +2451,13 @@
                                             "items": {
                                                 "type": "integer"
                                             },
-                                            "maxItems": 100,
-                                            "minItems": 1,
                                             "example": [
                                                 1,
                                                 2,
                                                 3
-                                            ]
+                                            ],
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -2630,9 +2630,9 @@
                                                     "content": {
                                                         "description": "Content of the incident update",
                                                         "type": "string",
+                                                        "example": "We are investigating the issue.",
                                                         "maximum": 10000,
-                                                        "minimum": 1,
-                                                        "example": "We are investigating the issue."
+                                                        "minimum": 1
                                                     },
                                                     "published_at": {
                                                         "description": "Date of publication of the incident update",
@@ -2640,7 +2640,7 @@
                                                         "format": "date-time"
                                                     },
                                                     "creator": {
-                                                        "description": "Project settings",
+                                                        "description": "Creator of the incident update",
                                                         "properties": {
                                                             "id": {
                                                                 "description": "Creator ID",
@@ -2650,11 +2650,11 @@
                                                             "type": {
                                                                 "description": "Creator type",
                                                                 "type": "string",
+                                                                "example": "user",
                                                                 "enum": [
                                                                     "user",
                                                                     "api_key"
-                                                                ],
-                                                                "example": "user"
+                                                                ]
                                                             },
                                                             "label": {
                                                                 "description": "Creator label",
@@ -2739,9 +2739,9 @@
                                     "content": {
                                         "description": "Content of the incident update",
                                         "type": "string",
+                                        "example": "We are investigating the issue.",
                                         "maximum": 10000,
-                                        "minimum": 1,
-                                        "example": "We are investigating the issue."
+                                        "minimum": 1
                                     },
                                     "published_at": {
                                         "description": "Date of publication of the incident update",
@@ -2776,9 +2776,9 @@
                                         "content": {
                                             "description": "Content of the incident update",
                                             "type": "string",
+                                            "example": "We are investigating the issue.",
                                             "maximum": 10000,
-                                            "minimum": 1,
-                                            "example": "We are investigating the issue."
+                                            "minimum": 1
                                         },
                                         "published_at": {
                                             "description": "Date of publication of the incident update",
@@ -2786,7 +2786,7 @@
                                             "format": "date-time"
                                         },
                                         "creator": {
-                                            "description": "Project settings",
+                                            "description": "Creator of the incident update",
                                             "properties": {
                                                 "id": {
                                                     "description": "Creator ID",
@@ -2796,11 +2796,11 @@
                                                 "type": {
                                                     "description": "Creator type",
                                                     "type": "string",
+                                                    "example": "user",
                                                     "enum": [
                                                         "user",
                                                         "api_key"
-                                                    ],
-                                                    "example": "user"
+                                                    ]
                                                 },
                                                 "label": {
                                                     "description": "Creator label",
@@ -2894,9 +2894,9 @@
                                         "content": {
                                             "description": "Content of the incident update",
                                             "type": "string",
+                                            "example": "We are investigating the issue.",
                                             "maximum": 10000,
-                                            "minimum": 1,
-                                            "example": "We are investigating the issue."
+                                            "minimum": 1
                                         },
                                         "published_at": {
                                             "description": "Date of publication of the incident update",
@@ -2904,7 +2904,7 @@
                                             "format": "date-time"
                                         },
                                         "creator": {
-                                            "description": "Project settings",
+                                            "description": "Creator of the incident update",
                                             "properties": {
                                                 "id": {
                                                     "description": "Creator ID",
@@ -2914,11 +2914,11 @@
                                                 "type": {
                                                     "description": "Creator type",
                                                     "type": "string",
+                                                    "example": "user",
                                                     "enum": [
                                                         "user",
                                                         "api_key"
-                                                    ],
-                                                    "example": "user"
+                                                    ]
                                                 },
                                                 "label": {
                                                     "description": "Creator label",
@@ -3005,9 +3005,9 @@
                                     "content": {
                                         "description": "Content of the incident update",
                                         "type": "string",
+                                        "example": "We are investigating the issue.",
                                         "maximum": 10000,
-                                        "minimum": 1,
-                                        "example": "We are investigating the issue."
+                                        "minimum": 1
                                     },
                                     "published_at": {
                                         "description": "Date of publication of the incident update",
@@ -3038,9 +3038,9 @@
                                         "content": {
                                             "description": "Content of the incident update",
                                             "type": "string",
+                                            "example": "We are investigating the issue.",
                                             "maximum": 10000,
-                                            "minimum": 1,
-                                            "example": "We are investigating the issue."
+                                            "minimum": 1
                                         },
                                         "published_at": {
                                             "description": "Date of publication of the incident update",
@@ -3048,7 +3048,7 @@
                                             "format": "date-time"
                                         },
                                         "creator": {
-                                            "description": "Project settings",
+                                            "description": "Creator of the incident update",
                                             "properties": {
                                                 "id": {
                                                     "description": "Creator ID",
@@ -3058,11 +3058,11 @@
                                                 "type": {
                                                     "description": "Creator type",
                                                     "type": "string",
+                                                    "example": "user",
                                                     "enum": [
                                                         "user",
                                                         "api_key"
-                                                    ],
-                                                    "example": "user"
+                                                    ]
                                                 },
                                                 "label": {
                                                     "description": "Creator label",
@@ -3202,9 +3202,9 @@
                                                     "name": {
                                                         "description": "Monitor name",
                                                         "type": "string",
+                                                        "example": "Website",
                                                         "maximum": 40,
-                                                        "minimum": 2,
-                                                        "example": "Website"
+                                                        "minimum": 2
                                                     },
                                                     "protocol": {
                                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -3235,29 +3235,29 @@
                                                                     "url": {
                                                                         "description": "HTTP request url",
                                                                         "type": "string",
-                                                                        "maximum": 255,
-                                                                        "example": "https://docs.phare.io/introduction"
+                                                                        "example": "https://docs.phare.io/introduction",
+                                                                        "maximum": 255
                                                                     },
                                                                     "tls_skip_verify": {
                                                                         "description": "Skip SSL verification",
                                                                         "type": "boolean",
-                                                                        "default": false,
                                                                         "example": false,
-                                                                        "nullable": true
+                                                                        "nullable": true,
+                                                                        "default": false
                                                                     },
                                                                     "body": {
                                                                         "description": "HTTP request body for POST, PUT and PATCH requests",
                                                                         "type": "string",
-                                                                        "maximum": 500,
                                                                         "example": "Hello, World!",
-                                                                        "nullable": true
+                                                                        "nullable": true,
+                                                                        "maximum": 500
                                                                     },
                                                                     "follow_redirects": {
                                                                         "description": "Follow redirects",
                                                                         "type": "boolean",
-                                                                        "default": true,
                                                                         "example": true,
-                                                                        "nullable": true
+                                                                        "nullable": true,
+                                                                        "default": true
                                                                     },
                                                                     "user_agent_secret": {
                                                                         "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -3283,8 +3283,8 @@
                                                                             },
                                                                             "type": "object"
                                                                         },
-                                                                        "maxItems": 10,
-                                                                        "nullable": true
+                                                                        "nullable": true,
+                                                                        "maxItems": 10
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -3313,9 +3313,9 @@
                                                                     "tls_skip_verify": {
                                                                         "description": "Skip TLS verification",
                                                                         "type": "boolean",
-                                                                        "default": false,
                                                                         "example": false,
-                                                                        "nullable": true
+                                                                        "nullable": true,
+                                                                        "default": false
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -3325,6 +3325,8 @@
                                                     "interval": {
                                                         "description": "Monitoring interval in seconds",
                                                         "type": "integer",
+                                                        "example": 60,
+                                                        "default": 60,
                                                         "enum": [
                                                             30,
                                                             60,
@@ -3335,12 +3337,13 @@
                                                             900,
                                                             1800,
                                                             3600
-                                                        ],
-                                                        "example": 60
+                                                        ]
                                                     },
                                                     "timeout": {
                                                         "description": "Monitoring timeout in milliseconds",
                                                         "type": "integer",
+                                                        "example": 20000,
+                                                        "default": 20000,
                                                         "enum": [
                                                             1000,
                                                             2000,
@@ -3356,8 +3359,7 @@
                                                             20000,
                                                             25000,
                                                             30000
-                                                        ],
-                                                        "example": 7000
+                                                        ]
                                                     },
                                                     "success_assertions": {
                                                         "description": "List of assertions that must be true for the check to be considered successful",
@@ -3382,11 +3384,11 @@
                                                                         "operator": {
                                                                             "description": "Operator to use for the assertion",
                                                                             "type": "string",
+                                                                            "example": "in",
                                                                             "enum": [
                                                                                 "in",
                                                                                 "not_in"
-                                                                            ],
-                                                                            "example": "in"
+                                                                            ]
                                                                         },
                                                                         "value": {
                                                                             "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -3420,11 +3422,11 @@
                                                                         "operator": {
                                                                             "description": "Operator to use for the assertion",
                                                                             "type": "string",
+                                                                            "example": "equals",
                                                                             "enum": [
                                                                                 "equals",
                                                                                 "not_equals"
-                                                                            ],
-                                                                            "example": "equals"
+                                                                            ]
                                                                         },
                                                                         "value": {
                                                                             "description": "The value of the header to assert",
@@ -3452,11 +3454,11 @@
                                                                         "operator": {
                                                                             "description": "Operator to use for the assertion",
                                                                             "type": "string",
+                                                                            "example": "contains",
                                                                             "enum": [
                                                                                 "contains",
                                                                                 "not_contains"
-                                                                            ],
-                                                                            "example": "contains"
+                                                                            ]
                                                                         },
                                                                         "value": {
                                                                             "description": "A word or sentence to check in the response body",
@@ -3472,26 +3474,36 @@
                                                     "incident_confirmations": {
                                                         "description": "Number of uninterrupted failed checks required to create an incident",
                                                         "type": "integer",
+                                                        "example": 1,
+                                                        "default": 3,
                                                         "enum": [
                                                             1,
                                                             2,
                                                             3,
                                                             4,
                                                             5
-                                                        ],
-                                                        "example": 1
+                                                        ]
                                                     },
                                                     "recovery_confirmations": {
                                                         "description": "Number of uninterrupted successful checks required to resolve an incident",
                                                         "type": "integer",
+                                                        "example": 1,
+                                                        "default": 3,
                                                         "enum": [
                                                             1,
                                                             2,
                                                             3,
                                                             4,
                                                             5
-                                                        ],
-                                                        "example": 1
+                                                        ]
+                                                    },
+                                                    "region_threshold": {
+                                                        "description": "Number of regions that must fail before an incident is confirmed",
+                                                        "type": "integer",
+                                                        "example": 1,
+                                                        "default": 1,
+                                                        "maximum": 10,
+                                                        "minimum": 1
                                                     },
                                                     "regions": {
                                                         "description": "List of regions where monitoring checks are performed",
@@ -3517,10 +3529,6 @@
                                                     "name",
                                                     "protocol",
                                                     "request",
-                                                    "interval",
-                                                    "timeout",
-                                                    "incident_confirmations",
-                                                    "recovery_confirmations",
                                                     "regions"
                                                 ]
                                             }
@@ -3577,9 +3585,9 @@
                                     "name": {
                                         "description": "Monitor name",
                                         "type": "string",
+                                        "example": "Website",
                                         "maximum": 40,
-                                        "minimum": 2,
-                                        "example": "Website"
+                                        "minimum": 2
                                     },
                                     "protocol": {
                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -3610,29 +3618,29 @@
                                                     "url": {
                                                         "description": "HTTP request url",
                                                         "type": "string",
-                                                        "maximum": 255,
-                                                        "example": "https://docs.phare.io/introduction"
+                                                        "example": "https://docs.phare.io/introduction",
+                                                        "maximum": 255
                                                     },
                                                     "tls_skip_verify": {
                                                         "description": "Skip SSL verification",
                                                         "type": "boolean",
-                                                        "default": false,
                                                         "example": false,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": false
                                                     },
                                                     "body": {
                                                         "description": "HTTP request body for POST, PUT and PATCH requests",
                                                         "type": "string",
-                                                        "maximum": 500,
                                                         "example": "Hello, World!",
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "maximum": 500
                                                     },
                                                     "follow_redirects": {
                                                         "description": "Follow redirects",
                                                         "type": "boolean",
-                                                        "default": true,
                                                         "example": true,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": true
                                                     },
                                                     "user_agent_secret": {
                                                         "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -3658,8 +3666,8 @@
                                                             },
                                                             "type": "object"
                                                         },
-                                                        "maxItems": 10,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "maxItems": 10
                                                     }
                                                 },
                                                 "type": "object"
@@ -3688,9 +3696,9 @@
                                                     "tls_skip_verify": {
                                                         "description": "Skip TLS verification",
                                                         "type": "boolean",
-                                                        "default": false,
                                                         "example": false,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": false
                                                     }
                                                 },
                                                 "type": "object"
@@ -3700,6 +3708,8 @@
                                     "interval": {
                                         "description": "Monitoring interval in seconds",
                                         "type": "integer",
+                                        "example": 60,
+                                        "default": 60,
                                         "enum": [
                                             30,
                                             60,
@@ -3710,12 +3720,13 @@
                                             900,
                                             1800,
                                             3600
-                                        ],
-                                        "example": 60
+                                        ]
                                     },
                                     "timeout": {
                                         "description": "Monitoring timeout in milliseconds",
                                         "type": "integer",
+                                        "example": 20000,
+                                        "default": 20000,
                                         "enum": [
                                             1000,
                                             2000,
@@ -3731,8 +3742,7 @@
                                             20000,
                                             25000,
                                             30000
-                                        ],
-                                        "example": 7000
+                                        ]
                                     },
                                     "success_assertions": {
                                         "description": "List of assertions that must be true for the check to be considered successful",
@@ -3757,11 +3767,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "in",
                                                             "enum": [
                                                                 "in",
                                                                 "not_in"
-                                                            ],
-                                                            "example": "in"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -3795,11 +3805,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "equals",
                                                             "enum": [
                                                                 "equals",
                                                                 "not_equals"
-                                                            ],
-                                                            "example": "equals"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "The value of the header to assert",
@@ -3827,11 +3837,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "contains",
                                                             "enum": [
                                                                 "contains",
                                                                 "not_contains"
-                                                            ],
-                                                            "example": "contains"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "A word or sentence to check in the response body",
@@ -3847,26 +3857,36 @@
                                     "incident_confirmations": {
                                         "description": "Number of uninterrupted failed checks required to create an incident",
                                         "type": "integer",
+                                        "example": 1,
+                                        "default": 3,
                                         "enum": [
                                             1,
                                             2,
                                             3,
                                             4,
                                             5
-                                        ],
-                                        "example": 1
+                                        ]
                                     },
                                     "recovery_confirmations": {
                                         "description": "Number of uninterrupted successful checks required to resolve an incident",
                                         "type": "integer",
+                                        "example": 1,
+                                        "default": 3,
                                         "enum": [
                                             1,
                                             2,
                                             3,
                                             4,
                                             5
-                                        ],
-                                        "example": 1
+                                        ]
+                                    },
+                                    "region_threshold": {
+                                        "description": "Number of regions that must fail before an incident is confirmed",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "default": 1,
+                                        "maximum": 10,
+                                        "minimum": 1
                                     },
                                     "regions": {
                                         "description": "List of regions where monitoring checks are performed",
@@ -3882,10 +3902,6 @@
                                     "name",
                                     "protocol",
                                     "request",
-                                    "interval",
-                                    "timeout",
-                                    "incident_confirmations",
-                                    "recovery_confirmations",
                                     "regions"
                                 ]
                             }
@@ -3927,9 +3943,9 @@
                                         "name": {
                                             "description": "Monitor name",
                                             "type": "string",
+                                            "example": "Website",
                                             "maximum": 40,
-                                            "minimum": 2,
-                                            "example": "Website"
+                                            "minimum": 2
                                         },
                                         "protocol": {
                                             "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -3960,29 +3976,29 @@
                                                         "url": {
                                                             "description": "HTTP request url",
                                                             "type": "string",
-                                                            "maximum": 255,
-                                                            "example": "https://docs.phare.io/introduction"
+                                                            "example": "https://docs.phare.io/introduction",
+                                                            "maximum": 255
                                                         },
                                                         "tls_skip_verify": {
                                                             "description": "Skip SSL verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         },
                                                         "body": {
                                                             "description": "HTTP request body for POST, PUT and PATCH requests",
                                                             "type": "string",
-                                                            "maximum": 500,
                                                             "example": "Hello, World!",
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maximum": 500
                                                         },
                                                         "follow_redirects": {
                                                             "description": "Follow redirects",
                                                             "type": "boolean",
-                                                            "default": true,
                                                             "example": true,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": true
                                                         },
                                                         "user_agent_secret": {
                                                             "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -4008,8 +4024,8 @@
                                                                 },
                                                                 "type": "object"
                                                             },
-                                                            "maxItems": 10,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maxItems": 10
                                                         }
                                                     },
                                                     "type": "object"
@@ -4038,9 +4054,9 @@
                                                         "tls_skip_verify": {
                                                             "description": "Skip TLS verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         }
                                                     },
                                                     "type": "object"
@@ -4050,6 +4066,8 @@
                                         "interval": {
                                             "description": "Monitoring interval in seconds",
                                             "type": "integer",
+                                            "example": 60,
+                                            "default": 60,
                                             "enum": [
                                                 30,
                                                 60,
@@ -4060,12 +4078,13 @@
                                                 900,
                                                 1800,
                                                 3600
-                                            ],
-                                            "example": 60
+                                            ]
                                         },
                                         "timeout": {
                                             "description": "Monitoring timeout in milliseconds",
                                             "type": "integer",
+                                            "example": 20000,
+                                            "default": 20000,
                                             "enum": [
                                                 1000,
                                                 2000,
@@ -4081,8 +4100,7 @@
                                                 20000,
                                                 25000,
                                                 30000
-                                            ],
-                                            "example": 7000
+                                            ]
                                         },
                                         "success_assertions": {
                                             "description": "List of assertions that must be true for the check to be considered successful",
@@ -4107,11 +4125,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "in",
                                                                 "enum": [
                                                                     "in",
                                                                     "not_in"
-                                                                ],
-                                                                "example": "in"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -4145,11 +4163,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "equals",
                                                                 "enum": [
                                                                     "equals",
                                                                     "not_equals"
-                                                                ],
-                                                                "example": "equals"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "The value of the header to assert",
@@ -4177,11 +4195,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "contains",
                                                                 "enum": [
                                                                     "contains",
                                                                     "not_contains"
-                                                                ],
-                                                                "example": "contains"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A word or sentence to check in the response body",
@@ -4197,26 +4215,36 @@
                                         "incident_confirmations": {
                                             "description": "Number of uninterrupted failed checks required to create an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
                                         },
                                         "recovery_confirmations": {
                                             "description": "Number of uninterrupted successful checks required to resolve an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
+                                        },
+                                        "region_threshold": {
+                                            "description": "Number of regions that must fail before an incident is confirmed",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "default": 1,
+                                            "maximum": 10,
+                                            "minimum": 1
                                         },
                                         "regions": {
                                             "description": "List of regions where monitoring checks are performed",
@@ -4242,10 +4270,6 @@
                                         "name",
                                         "protocol",
                                         "request",
-                                        "interval",
-                                        "timeout",
-                                        "incident_confirmations",
-                                        "recovery_confirmations",
                                         "regions"
                                     ]
                                 }
@@ -4332,9 +4356,9 @@
                                         "name": {
                                             "description": "Monitor name",
                                             "type": "string",
+                                            "example": "Website",
                                             "maximum": 40,
-                                            "minimum": 2,
-                                            "example": "Website"
+                                            "minimum": 2
                                         },
                                         "protocol": {
                                             "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -4365,29 +4389,29 @@
                                                         "url": {
                                                             "description": "HTTP request url",
                                                             "type": "string",
-                                                            "maximum": 255,
-                                                            "example": "https://docs.phare.io/introduction"
+                                                            "example": "https://docs.phare.io/introduction",
+                                                            "maximum": 255
                                                         },
                                                         "tls_skip_verify": {
                                                             "description": "Skip SSL verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         },
                                                         "body": {
                                                             "description": "HTTP request body for POST, PUT and PATCH requests",
                                                             "type": "string",
-                                                            "maximum": 500,
                                                             "example": "Hello, World!",
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maximum": 500
                                                         },
                                                         "follow_redirects": {
                                                             "description": "Follow redirects",
                                                             "type": "boolean",
-                                                            "default": true,
                                                             "example": true,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": true
                                                         },
                                                         "user_agent_secret": {
                                                             "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -4413,8 +4437,8 @@
                                                                 },
                                                                 "type": "object"
                                                             },
-                                                            "maxItems": 10,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maxItems": 10
                                                         }
                                                     },
                                                     "type": "object"
@@ -4443,9 +4467,9 @@
                                                         "tls_skip_verify": {
                                                             "description": "Skip TLS verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         }
                                                     },
                                                     "type": "object"
@@ -4455,6 +4479,8 @@
                                         "interval": {
                                             "description": "Monitoring interval in seconds",
                                             "type": "integer",
+                                            "example": 60,
+                                            "default": 60,
                                             "enum": [
                                                 30,
                                                 60,
@@ -4465,12 +4491,13 @@
                                                 900,
                                                 1800,
                                                 3600
-                                            ],
-                                            "example": 60
+                                            ]
                                         },
                                         "timeout": {
                                             "description": "Monitoring timeout in milliseconds",
                                             "type": "integer",
+                                            "example": 20000,
+                                            "default": 20000,
                                             "enum": [
                                                 1000,
                                                 2000,
@@ -4486,8 +4513,7 @@
                                                 20000,
                                                 25000,
                                                 30000
-                                            ],
-                                            "example": 7000
+                                            ]
                                         },
                                         "success_assertions": {
                                             "description": "List of assertions that must be true for the check to be considered successful",
@@ -4512,11 +4538,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "in",
                                                                 "enum": [
                                                                     "in",
                                                                     "not_in"
-                                                                ],
-                                                                "example": "in"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -4550,11 +4576,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "equals",
                                                                 "enum": [
                                                                     "equals",
                                                                     "not_equals"
-                                                                ],
-                                                                "example": "equals"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "The value of the header to assert",
@@ -4582,11 +4608,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "contains",
                                                                 "enum": [
                                                                     "contains",
                                                                     "not_contains"
-                                                                ],
-                                                                "example": "contains"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A word or sentence to check in the response body",
@@ -4602,26 +4628,36 @@
                                         "incident_confirmations": {
                                             "description": "Number of uninterrupted failed checks required to create an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
                                         },
                                         "recovery_confirmations": {
                                             "description": "Number of uninterrupted successful checks required to resolve an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
+                                        },
+                                        "region_threshold": {
+                                            "description": "Number of regions that must fail before an incident is confirmed",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "default": 1,
+                                            "maximum": 10,
+                                            "minimum": 1
                                         },
                                         "regions": {
                                             "description": "List of regions where monitoring checks are performed",
@@ -4647,10 +4683,6 @@
                                         "name",
                                         "protocol",
                                         "request",
-                                        "interval",
-                                        "timeout",
-                                        "incident_confirmations",
-                                        "recovery_confirmations",
                                         "regions"
                                     ]
                                 }
@@ -4703,9 +4735,9 @@
                                     "name": {
                                         "description": "Monitor name",
                                         "type": "string",
+                                        "example": "Website",
                                         "maximum": 40,
-                                        "minimum": 2,
-                                        "example": "Website"
+                                        "minimum": 2
                                     },
                                     "protocol": {
                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -4736,29 +4768,29 @@
                                                     "url": {
                                                         "description": "HTTP request url",
                                                         "type": "string",
-                                                        "maximum": 255,
-                                                        "example": "https://docs.phare.io/introduction"
+                                                        "example": "https://docs.phare.io/introduction",
+                                                        "maximum": 255
                                                     },
                                                     "tls_skip_verify": {
                                                         "description": "Skip SSL verification",
                                                         "type": "boolean",
-                                                        "default": false,
                                                         "example": false,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": false
                                                     },
                                                     "body": {
                                                         "description": "HTTP request body for POST, PUT and PATCH requests",
                                                         "type": "string",
-                                                        "maximum": 500,
                                                         "example": "Hello, World!",
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "maximum": 500
                                                     },
                                                     "follow_redirects": {
                                                         "description": "Follow redirects",
                                                         "type": "boolean",
-                                                        "default": true,
                                                         "example": true,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": true
                                                     },
                                                     "user_agent_secret": {
                                                         "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -4784,8 +4816,8 @@
                                                             },
                                                             "type": "object"
                                                         },
-                                                        "maxItems": 10,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "maxItems": 10
                                                     }
                                                 },
                                                 "type": "object"
@@ -4814,9 +4846,9 @@
                                                     "tls_skip_verify": {
                                                         "description": "Skip TLS verification",
                                                         "type": "boolean",
-                                                        "default": false,
                                                         "example": false,
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "default": false
                                                     }
                                                 },
                                                 "type": "object"
@@ -4826,6 +4858,8 @@
                                     "interval": {
                                         "description": "Monitoring interval in seconds",
                                         "type": "integer",
+                                        "example": 60,
+                                        "default": 60,
                                         "enum": [
                                             30,
                                             60,
@@ -4836,12 +4870,13 @@
                                             900,
                                             1800,
                                             3600
-                                        ],
-                                        "example": 60
+                                        ]
                                     },
                                     "timeout": {
                                         "description": "Monitoring timeout in milliseconds",
                                         "type": "integer",
+                                        "example": 20000,
+                                        "default": 20000,
                                         "enum": [
                                             1000,
                                             2000,
@@ -4857,8 +4892,7 @@
                                             20000,
                                             25000,
                                             30000
-                                        ],
-                                        "example": 7000
+                                        ]
                                     },
                                     "success_assertions": {
                                         "description": "List of assertions that must be true for the check to be considered successful",
@@ -4883,11 +4917,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "in",
                                                             "enum": [
                                                                 "in",
                                                                 "not_in"
-                                                            ],
-                                                            "example": "in"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -4921,11 +4955,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "equals",
                                                             "enum": [
                                                                 "equals",
                                                                 "not_equals"
-                                                            ],
-                                                            "example": "equals"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "The value of the header to assert",
@@ -4953,11 +4987,11 @@
                                                         "operator": {
                                                             "description": "Operator to use for the assertion",
                                                             "type": "string",
+                                                            "example": "contains",
                                                             "enum": [
                                                                 "contains",
                                                                 "not_contains"
-                                                            ],
-                                                            "example": "contains"
+                                                            ]
                                                         },
                                                         "value": {
                                                             "description": "A word or sentence to check in the response body",
@@ -4973,26 +5007,36 @@
                                     "incident_confirmations": {
                                         "description": "Number of uninterrupted failed checks required to create an incident",
                                         "type": "integer",
+                                        "example": 1,
+                                        "default": 3,
                                         "enum": [
                                             1,
                                             2,
                                             3,
                                             4,
                                             5
-                                        ],
-                                        "example": 1
+                                        ]
                                     },
                                     "recovery_confirmations": {
                                         "description": "Number of uninterrupted successful checks required to resolve an incident",
                                         "type": "integer",
+                                        "example": 1,
+                                        "default": 3,
                                         "enum": [
                                             1,
                                             2,
                                             3,
                                             4,
                                             5
-                                        ],
-                                        "example": 1
+                                        ]
+                                    },
+                                    "region_threshold": {
+                                        "description": "Number of regions that must fail before an incident is confirmed",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "default": 1,
+                                        "maximum": 10,
+                                        "minimum": 1
                                     },
                                     "regions": {
                                         "description": "List of regions where monitoring checks are performed",
@@ -5043,9 +5087,9 @@
                                         "name": {
                                             "description": "Monitor name",
                                             "type": "string",
+                                            "example": "Website",
                                             "maximum": 40,
-                                            "minimum": 2,
-                                            "example": "Website"
+                                            "minimum": 2
                                         },
                                         "protocol": {
                                             "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum"
@@ -5076,29 +5120,29 @@
                                                         "url": {
                                                             "description": "HTTP request url",
                                                             "type": "string",
-                                                            "maximum": 255,
-                                                            "example": "https://docs.phare.io/introduction"
+                                                            "example": "https://docs.phare.io/introduction",
+                                                            "maximum": 255
                                                         },
                                                         "tls_skip_verify": {
                                                             "description": "Skip SSL verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         },
                                                         "body": {
                                                             "description": "HTTP request body for POST, PUT and PATCH requests",
                                                             "type": "string",
-                                                            "maximum": 500,
                                                             "example": "Hello, World!",
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maximum": 500
                                                         },
                                                         "follow_redirects": {
                                                             "description": "Follow redirects",
                                                             "type": "boolean",
-                                                            "default": true,
                                                             "example": true,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": true
                                                         },
                                                         "user_agent_secret": {
                                                             "description": "A secret value to be used in the User-Agent header for authenticating the request",
@@ -5124,8 +5168,8 @@
                                                                 },
                                                                 "type": "object"
                                                             },
-                                                            "maxItems": 10,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "maxItems": 10
                                                         }
                                                     },
                                                     "type": "object"
@@ -5154,9 +5198,9 @@
                                                         "tls_skip_verify": {
                                                             "description": "Skip TLS verification",
                                                             "type": "boolean",
-                                                            "default": false,
                                                             "example": false,
-                                                            "nullable": true
+                                                            "nullable": true,
+                                                            "default": false
                                                         }
                                                     },
                                                     "type": "object"
@@ -5166,6 +5210,8 @@
                                         "interval": {
                                             "description": "Monitoring interval in seconds",
                                             "type": "integer",
+                                            "example": 60,
+                                            "default": 60,
                                             "enum": [
                                                 30,
                                                 60,
@@ -5176,12 +5222,13 @@
                                                 900,
                                                 1800,
                                                 3600
-                                            ],
-                                            "example": 60
+                                            ]
                                         },
                                         "timeout": {
                                             "description": "Monitoring timeout in milliseconds",
                                             "type": "integer",
+                                            "example": 20000,
+                                            "default": 20000,
                                             "enum": [
                                                 1000,
                                                 2000,
@@ -5197,8 +5244,7 @@
                                                 20000,
                                                 25000,
                                                 30000
-                                            ],
-                                            "example": 7000
+                                            ]
                                         },
                                         "success_assertions": {
                                             "description": "List of assertions that must be true for the check to be considered successful",
@@ -5223,11 +5269,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "in",
                                                                 "enum": [
                                                                     "in",
                                                                     "not_in"
-                                                                ],
-                                                                "example": "in"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A comma-separated list of status code values, you can use x as a wildcard for any digit.",
@@ -5261,11 +5307,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "equals",
                                                                 "enum": [
                                                                     "equals",
                                                                     "not_equals"
-                                                                ],
-                                                                "example": "equals"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "The value of the header to assert",
@@ -5293,11 +5339,11 @@
                                                             "operator": {
                                                                 "description": "Operator to use for the assertion",
                                                                 "type": "string",
+                                                                "example": "contains",
                                                                 "enum": [
                                                                     "contains",
                                                                     "not_contains"
-                                                                ],
-                                                                "example": "contains"
+                                                                ]
                                                             },
                                                             "value": {
                                                                 "description": "A word or sentence to check in the response body",
@@ -5313,26 +5359,36 @@
                                         "incident_confirmations": {
                                             "description": "Number of uninterrupted failed checks required to create an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
                                         },
                                         "recovery_confirmations": {
                                             "description": "Number of uninterrupted successful checks required to resolve an incident",
                                             "type": "integer",
+                                            "example": 1,
+                                            "default": 3,
                                             "enum": [
                                                 1,
                                                 2,
                                                 3,
                                                 4,
                                                 5
-                                            ],
-                                            "example": 1
+                                            ]
+                                        },
+                                        "region_threshold": {
+                                            "description": "Number of regions that must fail before an incident is confirmed",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "default": 1,
+                                            "maximum": 10,
+                                            "minimum": 1
                                         },
                                         "regions": {
                                             "description": "List of regions where monitoring checks are performed",
@@ -5358,10 +5414,6 @@
                                         "name",
                                         "protocol",
                                         "request",
-                                        "interval",
-                                        "timeout",
-                                        "incident_confirmations",
-                                        "recovery_confirmations",
                                         "regions"
                                     ]
                                 }
@@ -5540,38 +5592,38 @@
                                                     "name": {
                                                         "description": "Status page name",
                                                         "type": "string",
+                                                        "example": "Phare status",
                                                         "maximum": 30,
-                                                        "minimum": 2,
-                                                        "example": "Phare status"
+                                                        "minimum": 2
                                                     },
                                                     "subdomain": {
                                                         "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                                         "type": "string",
+                                                        "example": "example",
                                                         "maximum": 30,
-                                                        "minimum": 2,
-                                                        "example": "example"
+                                                        "minimum": 2
                                                     },
                                                     "domain": {
                                                         "description": "Custom domain name for the status page",
                                                         "type": "string",
-                                                        "maximum": 253,
-                                                        "minimum": 4,
                                                         "example": "status.example.com",
-                                                        "nullable": true
+                                                        "nullable": true,
+                                                        "maximum": 253,
+                                                        "minimum": 4
                                                     },
                                                     "title": {
                                                         "description": "Status page HTML title",
                                                         "type": "string",
+                                                        "example": "Phare status",
                                                         "maximum": 250,
-                                                        "minimum": 2,
-                                                        "example": "Phare status"
+                                                        "minimum": 2
                                                     },
                                                     "description": {
                                                         "description": "Status page HTML description",
                                                         "type": "string",
+                                                        "example": "Status page of phare.io",
                                                         "maximum": 250,
-                                                        "minimum": 2,
-                                                        "example": "Status page of phare.io"
+                                                        "minimum": 2
                                                     },
                                                     "search_engine_indexed": {
                                                         "description": "Whether search engines are allowed to index the page",
@@ -5581,18 +5633,18 @@
                                                     "website_url": {
                                                         "description": "URL to redirect users clicking the status page logo",
                                                         "type": "string",
-                                                        "maximum": 250,
-                                                        "example": "https://phare.io"
+                                                        "example": "https://phare.io",
+                                                        "maximum": 250
                                                     },
                                                     "color_scheme": {
                                                         "description": "Choose the available color schemes for the status page",
                                                         "type": "string",
+                                                        "example": "all",
                                                         "enum": [
                                                             "all",
                                                             "dark",
                                                             "light"
-                                                        ],
-                                                        "example": "all"
+                                                        ]
                                                     },
                                                     "theme": {
                                                         "description": "Theme settings to customize the status page",
@@ -5695,9 +5747,9 @@
                                                             },
                                                             "border_width": {
                                                                 "type": "integer",
+                                                                "example": 2,
                                                                 "maximum": 3,
-                                                                "minimum": 0,
-                                                                "example": 2
+                                                                "minimum": 0
                                                             }
                                                         },
                                                         "type": "object"
@@ -5733,12 +5785,12 @@
                                                     "timeframe": {
                                                         "description": "Number of days of status and incident history to display.",
                                                         "type": "integer",
+                                                        "example": 90,
                                                         "enum": [
                                                             30,
                                                             60,
                                                             90
-                                                        ],
-                                                        "example": 90
+                                                        ]
                                                     },
                                                     "subscription_channels": {
                                                         "description": "List of active subscription channels",
@@ -5823,38 +5875,38 @@
                                     "name": {
                                         "description": "Status page name",
                                         "type": "string",
+                                        "example": "Phare status",
                                         "maximum": 30,
-                                        "minimum": 2,
-                                        "example": "Phare status"
+                                        "minimum": 2
                                     },
                                     "subdomain": {
                                         "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                         "type": "string",
+                                        "example": "example",
                                         "maximum": 30,
-                                        "minimum": 2,
-                                        "example": "example"
+                                        "minimum": 2
                                     },
                                     "domain": {
                                         "description": "Custom domain name for the status page",
                                         "type": "string",
-                                        "maximum": 253,
-                                        "minimum": 4,
                                         "example": "status.example.com",
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maximum": 253,
+                                        "minimum": 4
                                     },
                                     "title": {
                                         "description": "Status page HTML title",
                                         "type": "string",
+                                        "example": "Phare status",
                                         "maximum": 250,
-                                        "minimum": 2,
-                                        "example": "Phare status"
+                                        "minimum": 2
                                     },
                                     "description": {
                                         "description": "Status page HTML description",
                                         "type": "string",
+                                        "example": "Status page of phare.io",
                                         "maximum": 250,
-                                        "minimum": 2,
-                                        "example": "Status page of phare.io"
+                                        "minimum": 2
                                     },
                                     "search_engine_indexed": {
                                         "description": "Whether search engines are allowed to index the page",
@@ -5864,18 +5916,18 @@
                                     "website_url": {
                                         "description": "URL to redirect users clicking the status page logo",
                                         "type": "string",
-                                        "maximum": 250,
-                                        "example": "https://phare.io"
+                                        "example": "https://phare.io",
+                                        "maximum": 250
                                     },
                                     "color_scheme": {
                                         "description": "Choose the available color schemes for the status page",
                                         "type": "string",
+                                        "example": "all",
                                         "enum": [
                                             "all",
                                             "dark",
                                             "light"
-                                        ],
-                                        "example": "all"
+                                        ]
                                     },
                                     "theme": {
                                         "description": "Theme settings to customize the status page",
@@ -5978,9 +6030,9 @@
                                             },
                                             "border_width": {
                                                 "type": "integer",
+                                                "example": 2,
                                                 "maximum": 3,
-                                                "minimum": 0,
-                                                "example": 2
+                                                "minimum": 0
                                             }
                                         },
                                         "type": "object"
@@ -6016,12 +6068,12 @@
                                     "timeframe": {
                                         "description": "Number of days of status and incident history to display.",
                                         "type": "integer",
+                                        "example": 90,
                                         "enum": [
                                             30,
                                             60,
                                             90
-                                        ],
-                                        "example": 90
+                                        ]
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -6044,11 +6096,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the logo will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -6064,11 +6116,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the logo will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -6084,11 +6136,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the favicon will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -6104,11 +6156,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the favicon will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     }
@@ -6147,38 +6199,38 @@
                                         "name": {
                                             "description": "Status page name",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "subdomain": {
                                             "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                             "type": "string",
+                                            "example": "example",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "example"
+                                            "minimum": 2
                                         },
                                         "domain": {
                                             "description": "Custom domain name for the status page",
                                             "type": "string",
-                                            "maximum": 253,
-                                            "minimum": 4,
                                             "example": "status.example.com",
-                                            "nullable": true
+                                            "nullable": true,
+                                            "maximum": 253,
+                                            "minimum": 4
                                         },
                                         "title": {
                                             "description": "Status page HTML title",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "description": {
                                             "description": "Status page HTML description",
                                             "type": "string",
+                                            "example": "Status page of phare.io",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Status page of phare.io"
+                                            "minimum": 2
                                         },
                                         "search_engine_indexed": {
                                             "description": "Whether search engines are allowed to index the page",
@@ -6188,18 +6240,18 @@
                                         "website_url": {
                                             "description": "URL to redirect users clicking the status page logo",
                                             "type": "string",
-                                            "maximum": 250,
-                                            "example": "https://phare.io"
+                                            "example": "https://phare.io",
+                                            "maximum": 250
                                         },
                                         "color_scheme": {
                                             "description": "Choose the available color schemes for the status page",
                                             "type": "string",
+                                            "example": "all",
                                             "enum": [
                                                 "all",
                                                 "dark",
                                                 "light"
-                                            ],
-                                            "example": "all"
+                                            ]
                                         },
                                         "theme": {
                                             "description": "Theme settings to customize the status page",
@@ -6302,9 +6354,9 @@
                                                 },
                                                 "border_width": {
                                                     "type": "integer",
+                                                    "example": 2,
                                                     "maximum": 3,
-                                                    "minimum": 0,
-                                                    "example": 2
+                                                    "minimum": 0
                                                 }
                                             },
                                             "type": "object"
@@ -6340,12 +6392,12 @@
                                         "timeframe": {
                                             "description": "Number of days of status and incident history to display.",
                                             "type": "integer",
+                                            "example": 90,
                                             "enum": [
                                                 30,
                                                 60,
                                                 90
-                                            ],
-                                            "example": 90
+                                            ]
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
@@ -6446,38 +6498,38 @@
                                         "name": {
                                             "description": "Status page name",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "subdomain": {
                                             "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                             "type": "string",
+                                            "example": "example",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "example"
+                                            "minimum": 2
                                         },
                                         "domain": {
                                             "description": "Custom domain name for the status page",
                                             "type": "string",
-                                            "maximum": 253,
-                                            "minimum": 4,
                                             "example": "status.example.com",
-                                            "nullable": true
+                                            "nullable": true,
+                                            "maximum": 253,
+                                            "minimum": 4
                                         },
                                         "title": {
                                             "description": "Status page HTML title",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "description": {
                                             "description": "Status page HTML description",
                                             "type": "string",
+                                            "example": "Status page of phare.io",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Status page of phare.io"
+                                            "minimum": 2
                                         },
                                         "search_engine_indexed": {
                                             "description": "Whether search engines are allowed to index the page",
@@ -6487,18 +6539,18 @@
                                         "website_url": {
                                             "description": "URL to redirect users clicking the status page logo",
                                             "type": "string",
-                                            "maximum": 250,
-                                            "example": "https://phare.io"
+                                            "example": "https://phare.io",
+                                            "maximum": 250
                                         },
                                         "color_scheme": {
                                             "description": "Choose the available color schemes for the status page",
                                             "type": "string",
+                                            "example": "all",
                                             "enum": [
                                                 "all",
                                                 "dark",
                                                 "light"
-                                            ],
-                                            "example": "all"
+                                            ]
                                         },
                                         "theme": {
                                             "description": "Theme settings to customize the status page",
@@ -6601,9 +6653,9 @@
                                                 },
                                                 "border_width": {
                                                     "type": "integer",
+                                                    "example": 2,
                                                     "maximum": 3,
-                                                    "minimum": 0,
-                                                    "example": 2
+                                                    "minimum": 0
                                                 }
                                             },
                                             "type": "object"
@@ -6639,12 +6691,12 @@
                                         "timeframe": {
                                             "description": "Number of days of status and incident history to display.",
                                             "type": "integer",
+                                            "example": 90,
                                             "enum": [
                                                 30,
                                                 60,
                                                 90
-                                            ],
-                                            "example": 90
+                                            ]
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
@@ -6725,38 +6777,38 @@
                                     "name": {
                                         "description": "Status page name",
                                         "type": "string",
+                                        "example": "Phare status",
                                         "maximum": 30,
-                                        "minimum": 2,
-                                        "example": "Phare status"
+                                        "minimum": 2
                                     },
                                     "subdomain": {
                                         "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                         "type": "string",
+                                        "example": "example",
                                         "maximum": 30,
-                                        "minimum": 2,
-                                        "example": "example"
+                                        "minimum": 2
                                     },
                                     "domain": {
                                         "description": "Custom domain name for the status page",
                                         "type": "string",
-                                        "maximum": 253,
-                                        "minimum": 4,
                                         "example": "status.example.com",
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maximum": 253,
+                                        "minimum": 4
                                     },
                                     "title": {
                                         "description": "Status page HTML title",
                                         "type": "string",
+                                        "example": "Phare status",
                                         "maximum": 250,
-                                        "minimum": 2,
-                                        "example": "Phare status"
+                                        "minimum": 2
                                     },
                                     "description": {
                                         "description": "Status page HTML description",
                                         "type": "string",
+                                        "example": "Status page of phare.io",
                                         "maximum": 250,
-                                        "minimum": 2,
-                                        "example": "Status page of phare.io"
+                                        "minimum": 2
                                     },
                                     "search_engine_indexed": {
                                         "description": "Whether search engines are allowed to index the page",
@@ -6766,18 +6818,18 @@
                                     "website_url": {
                                         "description": "URL to redirect users clicking the status page logo",
                                         "type": "string",
-                                        "maximum": 250,
-                                        "example": "https://phare.io"
+                                        "example": "https://phare.io",
+                                        "maximum": 250
                                     },
                                     "color_scheme": {
                                         "description": "Choose the available color schemes for the status page",
                                         "type": "string",
+                                        "example": "all",
                                         "enum": [
                                             "all",
                                             "dark",
                                             "light"
-                                        ],
-                                        "example": "all"
+                                        ]
                                     },
                                     "theme": {
                                         "description": "Theme settings to customize the status page",
@@ -6880,9 +6932,9 @@
                                             },
                                             "border_width": {
                                                 "type": "integer",
+                                                "example": 2,
                                                 "maximum": 3,
-                                                "minimum": 0,
-                                                "example": 2
+                                                "minimum": 0
                                             }
                                         },
                                         "type": "object"
@@ -6918,12 +6970,12 @@
                                     "timeframe": {
                                         "description": "Number of days of status and incident history to display.",
                                         "type": "integer",
+                                        "example": 90,
                                         "enum": [
                                             30,
                                             60,
                                             90
-                                        ],
-                                        "example": 90
+                                        ]
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -6946,11 +6998,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the logo will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -6966,11 +7018,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the logo will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -6986,11 +7038,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the favicon will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     },
@@ -7006,11 +7058,11 @@
                                             {
                                                 "description": "If \"false\" is passed to the request the favicon will be removed",
                                                 "type": "string",
+                                                "example": "false",
+                                                "nullable": true,
                                                 "enum": [
                                                     "false"
-                                                ],
-                                                "example": "false",
-                                                "nullable": true
+                                                ]
                                             }
                                         ]
                                     }
@@ -7040,38 +7092,38 @@
                                         "name": {
                                             "description": "Status page name",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "subdomain": {
                                             "description": "Subdomain name for the status page, hosted on a phare.io domain: {subdomain}.status.phare.io",
                                             "type": "string",
+                                            "example": "example",
                                             "maximum": 30,
-                                            "minimum": 2,
-                                            "example": "example"
+                                            "minimum": 2
                                         },
                                         "domain": {
                                             "description": "Custom domain name for the status page",
                                             "type": "string",
-                                            "maximum": 253,
-                                            "minimum": 4,
                                             "example": "status.example.com",
-                                            "nullable": true
+                                            "nullable": true,
+                                            "maximum": 253,
+                                            "minimum": 4
                                         },
                                         "title": {
                                             "description": "Status page HTML title",
                                             "type": "string",
+                                            "example": "Phare status",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Phare status"
+                                            "minimum": 2
                                         },
                                         "description": {
                                             "description": "Status page HTML description",
                                             "type": "string",
+                                            "example": "Status page of phare.io",
                                             "maximum": 250,
-                                            "minimum": 2,
-                                            "example": "Status page of phare.io"
+                                            "minimum": 2
                                         },
                                         "search_engine_indexed": {
                                             "description": "Whether search engines are allowed to index the page",
@@ -7081,18 +7133,18 @@
                                         "website_url": {
                                             "description": "URL to redirect users clicking the status page logo",
                                             "type": "string",
-                                            "maximum": 250,
-                                            "example": "https://phare.io"
+                                            "example": "https://phare.io",
+                                            "maximum": 250
                                         },
                                         "color_scheme": {
                                             "description": "Choose the available color schemes for the status page",
                                             "type": "string",
+                                            "example": "all",
                                             "enum": [
                                                 "all",
                                                 "dark",
                                                 "light"
-                                            ],
-                                            "example": "all"
+                                            ]
                                         },
                                         "theme": {
                                             "description": "Theme settings to customize the status page",
@@ -7195,9 +7247,9 @@
                                                 },
                                                 "border_width": {
                                                     "type": "integer",
+                                                    "example": 2,
                                                     "maximum": 3,
-                                                    "minimum": 0,
-                                                    "example": 2
+                                                    "minimum": 0
                                                 }
                                             },
                                             "type": "object"
@@ -7233,12 +7285,12 @@
                                         "timeframe": {
                                             "description": "Number of days of status and incident history to display.",
                                             "type": "integer",
+                                            "example": 90,
                                             "enum": [
                                                 30,
                                                 60,
                                                 90
-                                            ],
-                                            "example": 90
+                                            ]
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
@@ -7398,9 +7450,9 @@
                                                             "name": {
                                                                 "description": "Monitor name",
                                                                 "type": "string",
+                                                                "example": "Website",
                                                                 "maximum": 30,
-                                                                "minimum": 2,
-                                                                "example": "Website"
+                                                                "minimum": 2
                                                             },
                                                             "response_time": {
                                                                 "description": "Rolling average response time of the last 10 requests, in milliseconds",
@@ -7438,8 +7490,8 @@
                                                             "title": {
                                                                 "description": "Incident title",
                                                                 "type": "string",
-                                                                "maximum": 30,
-                                                                "example": "Service is not working as expected"
+                                                                "example": "Service is not working as expected",
+                                                                "maximum": 30
                                                             },
                                                             "impact": {
                                                                 "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
@@ -7554,14 +7606,14 @@
                     "priority": {
                         "description": "Notification priority level",
                         "type": "string",
+                        "example": "default",
                         "enum": [
                             "min",
                             "low",
                             "default",
                             "high",
                             "max"
-                        ],
-                        "example": "default"
+                        ]
                     }
                 },
                 "type": "object"
@@ -7576,8 +7628,8 @@
                         "description": "JSON schema defining the webhook payload structure",
                         "type": "string",
                         "format": "json",
-                        "maxLength": 5000,
-                        "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}"
+                        "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}",
+                        "maxLength": 5000
                     }
                 },
                 "type": "object"
@@ -7588,30 +7640,30 @@
                     "priority": {
                         "description": "Notification priority level",
                         "type": "string",
+                        "example": "normal",
                         "enum": [
                             "lowest",
                             "low",
                             "normal",
                             "high",
                             "emergency"
-                        ],
-                        "example": "normal"
+                        ]
                     },
                     "retry": {
                         "description": "Retry interval in seconds (required for emergency priority)",
                         "type": "integer",
-                        "maximum": 86400,
-                        "minimum": 30,
                         "example": 300,
-                        "nullable": true
+                        "nullable": true,
+                        "maximum": 86400,
+                        "minimum": 30
                     },
                     "expire": {
                         "description": "Expiration time in seconds (required for emergency priority)",
                         "type": "integer",
-                        "maximum": 10800,
-                        "minimum": 30,
                         "example": 3600,
-                        "nullable": true
+                        "nullable": true,
+                        "maximum": 10800,
+                        "minimum": 30
                     }
                 },
                 "type": "object"
@@ -7625,12 +7677,12 @@
                     "type": {
                         "description": "Type of incident to notify about",
                         "type": "string",
+                        "example": "all",
                         "enum": [
                             "all",
                             "monitor",
                             "manual"
-                        ],
-                        "example": "all"
+                        ]
                     }
                 },
                 "type": "object"
@@ -7644,9 +7696,9 @@
                     "days_before_expiry": {
                         "description": "Days to notify before the certificate expires",
                         "type": "integer",
+                        "example": 25,
                         "maximum": 60,
-                        "minimum": 1,
-                        "example": 25
+                        "minimum": 1
                     }
                 },
                 "type": "object"
@@ -7882,8 +7934,8 @@
                 "required": false,
                 "schema": {
                     "type": "integer",
-                    "default": 1,
-                    "example": 1
+                    "example": 1,
+                    "default": 1
                 }
             },
             "per_page": {
@@ -7893,10 +7945,10 @@
                 "required": false,
                 "schema": {
                     "type": "integer",
+                    "example": 20,
                     "default": 20,
                     "maximum": 100,
-                    "minimum": 1,
-                    "example": 20
+                    "minimum": 1
                 }
             }
         },
