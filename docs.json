@@ -230,5 +230,8 @@
       "source": "/uptime/incident-management",
       "destination": "/uptime/incidents"
     }
-  ]
+  ],
+  "metadata": {
+    "timestamp": true
+  }
 }
