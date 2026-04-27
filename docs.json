@@ -118,7 +118,8 @@
                   "api-reference/uptime/monitors/update-a-monitor",
                   "api-reference/uptime/monitors/pause-a-monitor",
                   "api-reference/uptime/monitors/resume-a-monitor",
-                  "api-reference/uptime/monitors/delete-a-monitor"
+                  "api-reference/uptime/monitors/delete-a-monitor",
+                  "api-reference/uptime/monitors/get-a-monitor-report"
                 ]
               },
               {
@@ -151,6 +152,12 @@
                   "api-reference/uptime/status-pages/update-a-status-page",
                   "api-reference/uptime/status-pages/delete-a-status-page",
                   "api-reference/uptime/status-pages/get-a-status-page-current-status"
+                ]
+              },
+              {
+                "group": "Reports",
+                "pages": [
+                  "api-reference/uptime/reports/get-a-report"
                 ]
               }
             ]
