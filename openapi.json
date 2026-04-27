@@ -5559,6 +5559,253 @@
                 }
             }
         },
+        "/uptime/monitors/{monitorId}/report": {
+            "get": {
+                "tags": [
+                    "Monitors"
+                ],
+                "summary": "Get a monitor report",
+                "description": "Get uptime statistics for a single monitor by ID in the selected time window",
+                "operationId": "getUptimeMonitorReport",
+                "parameters": [
+                    {
+                        "name": "monitorId",
+                        "in": "path",
+                        "description": "ID of the monitor to report on",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start of the reporting window",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-04-01T00:00:00Z"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End of the reporting window",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-04-30T23:59:59Z"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, monitor report retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Monitor ID",
+                                            "type": "integer",
+                                            "example": 12
+                                        },
+                                        "name": {
+                                            "description": "Monitor name",
+                                            "type": "string",
+                                            "example": "Website"
+                                        },
+                                        "incident_count": {
+                                            "description": "Number of incidents affecting this monitor in the selected range",
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "downtime": {
+                                            "description": "Total downtime for this monitor in seconds",
+                                            "type": "integer",
+                                            "example": 1500
+                                        },
+                                        "availability": {
+                                            "description": "Availability for this monitor in the selected range, as a percentage",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 99.944
+                                        },
+                                        "mttr": {
+                                            "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
+                                            "type": "integer",
+                                            "example": 750,
+                                            "nullable": true
+                                        },
+                                        "mtbf": {
+                                            "description": "Mean time between failures (MTBF) for this monitor, in seconds",
+                                            "type": "integer",
+                                            "example": 43200,
+                                            "nullable": true
+                                        },
+                                        "highest_incident_impact": {
+                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            }
+        },
+        "/uptime/reports": {
+            "get": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Get report",
+                "description": "Get aggregated uptime statistics for the selected time window",
+                "operationId": "getUptimeReport",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start of the reporting window",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-04-01T00:00:00Z"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End of the reporting window",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-04-30T23:59:59Z"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, report retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "downtime": {
+                                            "description": "Total downtime across all monitors in seconds",
+                                            "type": "integer",
+                                            "example": 2940
+                                        },
+                                        "availability": {
+                                            "description": "Mean monitor availability across the selected range, as a percentage",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 99.9634
+                                        },
+                                        "min_availability": {
+                                            "description": "Lowest monitor availability in the selected range, as a percentage",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 99.9125
+                                        },
+                                        "max_availability": {
+                                            "description": "Highest monitor availability in the selected range, as a percentage",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 100
+                                        },
+                                        "mttr": {
+                                            "description": "Mean time to recovery (MTTR) average for all monitors, in seconds",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 735,
+                                            "nullable": true
+                                        },
+                                        "mtbf": {
+                                            "description": "Mean time between failures (MTBF) average for all monitors, in seconds",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 43200,
+                                            "nullable": true
+                                        },
+                                        "highest_incident_impact": {
+                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        },
+                                        "report_start_at": {
+                                            "description": "Effective start of the generated report window",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2026-04-01T00:00:00Z"
+                                        },
+                                        "report_end_at": {
+                                            "description": "Effective end of the generated report window",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2026-04-30T23:59:59Z"
+                                        },
+                                        "monitors": {
+                                            "description": "Per-monitor statistics for all monitors included in the report",
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Uptime.Monitor.Report.DataResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            }
+        },
         "/uptime/status-pages": {
             "get": {
                 "tags": [
@@ -7597,6 +7844,116 @@
                 },
                 "type": "object"
             },
+            "Uptime.Monitor.Report.DataResource": {
+                "properties": {
+                    "id": {
+                        "description": "Monitor ID",
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "name": {
+                        "description": "Monitor name",
+                        "type": "string",
+                        "example": "Website"
+                    },
+                    "incident_count": {
+                        "description": "Number of incidents affecting this monitor in the selected range",
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "downtime": {
+                        "description": "Total downtime for this monitor in seconds",
+                        "type": "integer",
+                        "example": 1500
+                    },
+                    "availability": {
+                        "description": "Availability for this monitor in the selected range, as a percentage",
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.944
+                    },
+                    "mttr": {
+                        "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
+                        "type": "integer",
+                        "example": 750,
+                        "nullable": true
+                    },
+                    "mtbf": {
+                        "description": "Mean time between failures (MTBF) for this monitor, in seconds",
+                        "type": "integer",
+                        "example": 43200,
+                        "nullable": true
+                    },
+                    "highest_incident_impact": {
+                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                    }
+                },
+                "type": "object"
+            },
+            "Uptime.Report.DataResource": {
+                "properties": {
+                    "downtime": {
+                        "description": "Total downtime across all monitors in seconds",
+                        "type": "integer",
+                        "example": 2940
+                    },
+                    "availability": {
+                        "description": "Mean monitor availability across the selected range, as a percentage",
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.9634
+                    },
+                    "min_availability": {
+                        "description": "Lowest monitor availability in the selected range, as a percentage",
+                        "type": "number",
+                        "format": "float",
+                        "example": 99.9125
+                    },
+                    "max_availability": {
+                        "description": "Highest monitor availability in the selected range, as a percentage",
+                        "type": "number",
+                        "format": "float",
+                        "example": 100
+                    },
+                    "mttr": {
+                        "description": "Mean time to recovery (MTTR) average for all monitors, in seconds",
+                        "type": "number",
+                        "format": "float",
+                        "example": 735,
+                        "nullable": true
+                    },
+                    "mtbf": {
+                        "description": "Mean time between failures (MTBF) average for all monitors, in seconds",
+                        "type": "number",
+                        "format": "float",
+                        "example": 43200,
+                        "nullable": true
+                    },
+                    "highest_incident_impact": {
+                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                    },
+                    "report_start_at": {
+                        "description": "Effective start of the generated report window",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-04-01T00:00:00Z"
+                    },
+                    "report_end_at": {
+                        "description": "Effective end of the generated report window",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-04-30T23:59:59Z"
+                    },
+                    "monitors": {
+                        "description": "Per-monitor statistics for all monitors included in the report",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Uptime.Monitor.Report.DataResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "Platform.App.Ntfy.AlertRuleSettings": {
                 "title": "Ntfy",
                 "required": [
@@ -7991,6 +8348,10 @@
             "description": "Status Pages"
         },
         {
+            "name": "Reports",
+            "description": "Reports"
+        },
+        {
             "name": "Platform",
             "description": "Platform"
         },
@@ -8013,7 +8374,8 @@
             "tags": [
                 "Monitors",
                 "Incidents",
-                "Status Pages"
+                "Status Pages",
+                "Reports"
             ]
         }
     ]
