@@ -166,7 +166,32 @@ Multiple access controls can be activated to fit your needs, they are evaluated 
 2. If the URL includes a valid token query parameter → access is granted
 3. If a password is configured → the visitor is redirected to a login page
 
+### IP allowlist
+
+<Frame>
+    <img
+        src="/images/uptime/status-pages/access-control-ip.avif"
+        alt="Access control ips"
+    />
+</Frame>
+
+<Tip>IP restrictions are the most seamless option when everyone accesses the page from a shared network or VPN.</Tip>
+
+Define individual IPv4 addresses or CIDR ranges that are granted access automatically, with no token or password required. Requests from listed addresses bypass all other checks.
+
+Common use cases:
+- Office or campus networks
+- VPN exit nodes
+- CI/CD infrastructure polling badges or feeds
+
 ### Access token
+
+<Frame>
+    <img
+        src="/images/uptime/status-pages/access-control-token.avif"
+        alt="Access control token"
+    />
+</Frame>
 
 <Tip>Tokens are ideal for programmatic access like RSS/Atom feeds, or showing embedded badges on internal resources.</Tip>
 
@@ -182,20 +207,16 @@ When a browser visits a URL with a valid token, a session cookie is set automati
 
 ### Access password
 
+<Frame>
+    <img
+        src="/images/uptime/status-pages/access-control-password.avif"
+        alt="Access control password"
+    />
+</Frame>
+
 <Tip>Passwords are the simplest option for human visitors who access the page through a regular browser.</Tip>
 
 When a password is configured, visitors are prompted with a login screen before they can view the status page. This works well for internal pages shared with team members or customers.
-
-### IP allowlist
-
-<Tip>IP restrictions are the most seamless option when everyone accesses the page from a shared network or VPN.</Tip>
-
-Define individual IPv4 addresses or CIDR ranges that are granted access automatically, with no token or password required. Requests from listed addresses bypass all other checks.
-
-Common use cases:
-- Office or campus networks
-- VPN exit nodes
-- CI/CD infrastructure polling badges or feeds
 
 ## Status badges
 
