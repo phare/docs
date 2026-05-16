@@ -154,6 +154,49 @@ Your users can subscribe to the standard RSS/ATOM feeds using:
 
 The number of subscribers is currently unlimited on any Phare plan at no extra cost.
 
+## Access control
+
+<Warning>Access control are only available with a Scale plan subscription</Warning>
+
+By default, status pages are publicly accessible. You can restrict access using three complementary control mechanisms.
+
+Multiple access controls can be activated to fit your needs, they are evaluated in order:
+
+1. If the visitor's IP is in the allowlist → access is granted
+2. If the URL includes a valid token query parameter → access is granted
+3. If a password is configured → the visitor is redirected to a login page
+
+### Access token
+
+<Tip>Tokens are ideal for programmatic access like RSS/Atom feeds, or showing embedded badges on internal resources.</Tip>
+
+Append a secret `token` query parameter to any status page URL to grant access. The token works on the main page, feeds, and badge endpoints:
+
+```
+https://example.status.phare.io?token=<your-token>
+https://status.example.com/history.rss?token=<your-token>
+https://status.example.com/embed-badges/static-status?token=<your-token>
+```
+
+When a browser visits a URL with a valid token, a session cookie is set automatically, subsequent visits from that browser won't need the token for 1h.
+
+### Access password
+
+<Tip>Passwords are the simplest option for human visitors who access the page through a regular browser.</Tip>
+
+When a password is configured, visitors are prompted with a login screen before they can view the status page. This works well for internal pages shared with team members or customers.
+
+### IP allowlist
+
+<Tip>IP restrictions are the most seamless option when everyone accesses the page from a shared network or VPN.</Tip>
+
+Define individual IPv4 addresses or CIDR ranges that are granted access automatically, with no token or password required. Requests from listed addresses bypass all other checks.
+
+Common use cases:
+- Office or campus networks
+- VPN exit nodes
+- CI/CD infrastructure polling badges or feeds
+
 ## Status badges
 
 Once your status page is live, you get access to status badges you can proudly display on your website or repository. They're a great way to show transparency and confidence in your service reliability. Access them through your status page's action menu.
