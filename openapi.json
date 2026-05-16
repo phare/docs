@@ -6100,7 +6100,7 @@
                                                         "minItems": 0
                                                     },
                                                     "access_ips": {
-                                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                                         "type": "array",
                                                         "items": {
                                                             "type": "string",
@@ -6393,7 +6393,7 @@
                                         "minItems": 0
                                     },
                                     "access_ips": {
-                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                         "type": "array",
                                         "items": {
                                             "type": "string",
@@ -6483,7 +6483,7 @@
                                         ]
                                     },
                                     "access_token": {
-                                        "description": "Token to restrict access to the status page.",
+                                        "description": "Token to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
                                         "example": null,
                                         "nullable": true,
@@ -6491,7 +6491,7 @@
                                         "minLength": 8
                                     },
                                     "access_password": {
-                                        "description": "Password to restrict access to the status page.",
+                                        "description": "Password to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
                                         "example": null,
                                         "nullable": true,
@@ -6758,7 +6758,7 @@
                                             "minItems": 0
                                         },
                                         "access_ips": {
-                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
@@ -7082,7 +7082,7 @@
                                             "minItems": 0
                                         },
                                         "access_ips": {
-                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
@@ -7371,7 +7371,7 @@
                                         "minItems": 0
                                     },
                                     "access_ips": {
-                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                        "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                         "type": "array",
                                         "items": {
                                             "type": "string",
@@ -7461,7 +7461,7 @@
                                         ]
                                     },
                                     "access_token": {
-                                        "description": "Token to restrict access to the status page.",
+                                        "description": "Token to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
                                         "example": null,
                                         "nullable": true,
@@ -7469,7 +7469,7 @@
                                         "minLength": 8
                                     },
                                     "access_password": {
-                                        "description": "Password to restrict access to the status page.",
+                                        "description": "Password to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
                                         "example": null,
                                         "nullable": true,
@@ -7727,7 +7727,7 @@
                                             "minItems": 0
                                         },
                                         "access_ips": {
-                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. When null, IP restriction is disabled.",
+                                            "description": "List of IP addresses or CIDR ranges allowed to access the status page. Requires an active Scale plan subscription.",
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
