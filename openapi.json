@@ -3269,16 +3269,22 @@
                                                                         "description": "Additional HTTP headers to add to the request",
                                                                         "type": "array",
                                                                         "items": {
+                                                                            "required": [
+                                                                                "name",
+                                                                                "value"
+                                                                            ],
                                                                             "properties": {
                                                                                 "name": {
                                                                                     "description": "Header name",
                                                                                     "type": "string",
-                                                                                    "example": "X-Phare-Says"
+                                                                                    "example": "X-Phare-Says",
+                                                                                    "maximum": 50
                                                                                 },
                                                                                 "value": {
                                                                                     "description": "Header value",
                                                                                     "type": "string",
-                                                                                    "example": "Hello world!"
+                                                                                    "example": "Hello world!",
+                                                                                    "maximum": 1024
                                                                                 }
                                                                             },
                                                                             "type": "object"
@@ -3652,16 +3658,22 @@
                                                         "description": "Additional HTTP headers to add to the request",
                                                         "type": "array",
                                                         "items": {
+                                                            "required": [
+                                                                "name",
+                                                                "value"
+                                                            ],
                                                             "properties": {
                                                                 "name": {
                                                                     "description": "Header name",
                                                                     "type": "string",
-                                                                    "example": "X-Phare-Says"
+                                                                    "example": "X-Phare-Says",
+                                                                    "maximum": 50
                                                                 },
                                                                 "value": {
                                                                     "description": "Header value",
                                                                     "type": "string",
-                                                                    "example": "Hello world!"
+                                                                    "example": "Hello world!",
+                                                                    "maximum": 1024
                                                                 }
                                                             },
                                                             "type": "object"
@@ -4010,16 +4022,22 @@
                                                             "description": "Additional HTTP headers to add to the request",
                                                             "type": "array",
                                                             "items": {
+                                                                "required": [
+                                                                    "name",
+                                                                    "value"
+                                                                ],
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "Header name",
                                                                         "type": "string",
-                                                                        "example": "X-Phare-Says"
+                                                                        "example": "X-Phare-Says",
+                                                                        "maximum": 50
                                                                     },
                                                                     "value": {
                                                                         "description": "Header value",
                                                                         "type": "string",
-                                                                        "example": "Hello world!"
+                                                                        "example": "Hello world!",
+                                                                        "maximum": 1024
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -4423,16 +4441,22 @@
                                                             "description": "Additional HTTP headers to add to the request",
                                                             "type": "array",
                                                             "items": {
+                                                                "required": [
+                                                                    "name",
+                                                                    "value"
+                                                                ],
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "Header name",
                                                                         "type": "string",
-                                                                        "example": "X-Phare-Says"
+                                                                        "example": "X-Phare-Says",
+                                                                        "maximum": 50
                                                                     },
                                                                     "value": {
                                                                         "description": "Header value",
                                                                         "type": "string",
-                                                                        "example": "Hello world!"
+                                                                        "example": "Hello world!",
+                                                                        "maximum": 1024
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -4802,16 +4826,22 @@
                                                         "description": "Additional HTTP headers to add to the request",
                                                         "type": "array",
                                                         "items": {
+                                                            "required": [
+                                                                "name",
+                                                                "value"
+                                                            ],
                                                             "properties": {
                                                                 "name": {
                                                                     "description": "Header name",
                                                                     "type": "string",
-                                                                    "example": "X-Phare-Says"
+                                                                    "example": "X-Phare-Says",
+                                                                    "maximum": 50
                                                                 },
                                                                 "value": {
                                                                     "description": "Header value",
                                                                     "type": "string",
-                                                                    "example": "Hello world!"
+                                                                    "example": "Hello world!",
+                                                                    "maximum": 1024
                                                                 }
                                                             },
                                                             "type": "object"
@@ -5154,16 +5184,22 @@
                                                             "description": "Additional HTTP headers to add to the request",
                                                             "type": "array",
                                                             "items": {
+                                                                "required": [
+                                                                    "name",
+                                                                    "value"
+                                                                ],
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "Header name",
                                                                         "type": "string",
-                                                                        "example": "X-Phare-Says"
+                                                                        "example": "X-Phare-Says",
+                                                                        "maximum": 50
                                                                     },
                                                                     "value": {
                                                                         "description": "Header value",
                                                                         "type": "string",
-                                                                        "example": "Hello world!"
+                                                                        "example": "Hello world!",
+                                                                        "maximum": 1024
                                                                     }
                                                                 },
                                                                 "type": "object"
