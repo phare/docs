@@ -6107,6 +6107,7 @@
                                                             "example": "45.129.56.0/24"
                                                         },
                                                         "nullable": true,
+                                                        "maxItems": 50,
                                                         "minItems": 1
                                                     },
                                                     "created_at": {
@@ -6400,6 +6401,7 @@
                                             "example": "45.129.56.0/24"
                                         },
                                         "nullable": true,
+                                        "maxItems": 50,
                                         "minItems": 1
                                     },
                                     "logo_light": {
@@ -6765,6 +6767,7 @@
                                                 "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
+                                            "maxItems": 50,
                                             "minItems": 1
                                         },
                                         "created_at": {
@@ -7089,6 +7092,7 @@
                                                 "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
+                                            "maxItems": 50,
                                             "minItems": 1
                                         },
                                         "created_at": {
@@ -7378,6 +7382,7 @@
                                             "example": "45.129.56.0/24"
                                         },
                                         "nullable": true,
+                                        "maxItems": 50,
                                         "minItems": 1
                                     },
                                     "logo_light": {
@@ -7734,6 +7739,7 @@
                                                 "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
+                                            "maxItems": 50,
                                             "minItems": 1
                                         },
                                         "created_at": {
