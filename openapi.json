@@ -6104,7 +6104,7 @@
                                                         "type": "array",
                                                         "items": {
                                                             "type": "string",
-                                                            "example": "51.159.0.0/16"
+                                                            "example": "45.129.56.0/24"
                                                         },
                                                         "nullable": true,
                                                         "minItems": 1
@@ -6397,7 +6397,7 @@
                                         "type": "array",
                                         "items": {
                                             "type": "string",
-                                            "example": "51.159.0.0/16"
+                                            "example": "45.129.56.0/24"
                                         },
                                         "nullable": true,
                                         "minItems": 1
@@ -6762,7 +6762,7 @@
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
-                                                "example": "51.159.0.0/16"
+                                                "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
                                             "minItems": 1
@@ -7086,7 +7086,7 @@
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
-                                                "example": "51.159.0.0/16"
+                                                "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
                                             "minItems": 1
@@ -7375,7 +7375,7 @@
                                         "type": "array",
                                         "items": {
                                             "type": "string",
-                                            "example": "51.159.0.0/16"
+                                            "example": "45.129.56.0/24"
                                         },
                                         "nullable": true,
                                         "minItems": 1
@@ -7731,7 +7731,7 @@
                                             "type": "array",
                                             "items": {
                                                 "type": "string",
-                                                "example": "51.159.0.0/16"
+                                                "example": "45.129.56.0/24"
                                             },
                                             "nullable": true,
                                             "minItems": 1
