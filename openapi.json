@@ -8350,7 +8350,8 @@
                     "fetching",
                     "online",
                     "offline",
-                    "partial"
+                    "partial",
+                    "paused"
                 ]
             },
             "Uptime.StatusPage.SubscriptionChannelEnum": {
