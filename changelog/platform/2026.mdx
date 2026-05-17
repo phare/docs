@@ -6,6 +6,30 @@ description: "Follow the updates and improvements made to the Phare platform in 
 
 <Update label="May 2026">
     <Frame>
+        <img src="/images/changelog/128-private-status-pages.avif" alt="Private status pages" />
+    </Frame>
+
+    ## Private status pages
+
+    You can now restrict access to your status pages using three complementary control mechanisms, available on the Scale plan.
+
+    ### IP allowlist
+
+    Grant automatic access to specific IPv4 addresses or CIDR ranges. Requests from listed addresses bypass all other checks, making it the most seamless option for office networks or VPN exit nodes.
+
+    ### Access token
+
+    Append a secret `token` query parameter to any status page URL to grant access, great for programmatic access. Works on the main page, feeds, and badge endpoints. When a browser visits with a valid token, a session cookie is set for 1 hour so subsequent visits don't need the token.
+
+    ### Access password
+
+    Visitors are prompted with a login screen before they can view the page. Simple and effective for internal pages shared with team members or customers.
+
+    Read the [status pages access controls documentation](/uptime/status-pages#access-control) to learn more.
+
+    <br/>
+
+    <Frame>
         <img src="/images/changelog/127-ordering.avif" alt="Ordering datatables" />
     </Frame>
 
