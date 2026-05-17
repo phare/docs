@@ -5878,12 +5878,12 @@
                                                         "example": false
                                                     },
                                                     "access_password_enabled": {
-                                                        "description": "Whether the status page is protected by a password",
+                                                        "description": "Whether the status page is protected by a password. Requires an active Scale plan subscription.",
                                                         "type": "boolean",
                                                         "example": false
                                                     },
                                                     "access_token_enabled": {
-                                                        "description": "Whether the status page is protected by a secret token.",
+                                                        "description": "Whether the status page is protected by a secret token. Requires an active Scale plan subscription.",
                                                         "type": "boolean",
                                                         "example": false
                                                     },
@@ -6487,7 +6487,7 @@
                                     "access_token": {
                                         "description": "Token to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
-                                        "example": null,
+                                        "example": "secret",
                                         "nullable": true,
                                         "maxLength": 500,
                                         "minLength": 8
@@ -6495,7 +6495,7 @@
                                     "access_password": {
                                         "description": "Password to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
-                                        "example": null,
+                                        "example": "secret",
                                         "nullable": true,
                                         "maxLength": 500,
                                         "minLength": 8
@@ -6538,12 +6538,12 @@
                                             "example": false
                                         },
                                         "access_password_enabled": {
-                                            "description": "Whether the status page is protected by a password",
+                                            "description": "Whether the status page is protected by a password. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
                                         "access_token_enabled": {
-                                            "description": "Whether the status page is protected by a secret token.",
+                                            "description": "Whether the status page is protected by a secret token. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -6863,12 +6863,12 @@
                                             "example": false
                                         },
                                         "access_password_enabled": {
-                                            "description": "Whether the status page is protected by a password",
+                                            "description": "Whether the status page is protected by a password. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
                                         "access_token_enabled": {
-                                            "description": "Whether the status page is protected by a secret token.",
+                                            "description": "Whether the status page is protected by a secret token. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -7468,7 +7468,7 @@
                                     "access_token": {
                                         "description": "Token to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
-                                        "example": null,
+                                        "example": "secret",
                                         "nullable": true,
                                         "maxLength": 500,
                                         "minLength": 8
@@ -7476,7 +7476,7 @@
                                     "access_password": {
                                         "description": "Password to restrict access to the status page. Requires an active Scale plan subscription.",
                                         "type": "string",
-                                        "example": null,
+                                        "example": "secret",
                                         "nullable": true,
                                         "maxLength": 500,
                                         "minLength": 8
@@ -7510,12 +7510,12 @@
                                             "example": false
                                         },
                                         "access_password_enabled": {
-                                            "description": "Whether the status page is protected by a password",
+                                            "description": "Whether the status page is protected by a password. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
                                         "access_token_enabled": {
-                                            "description": "Whether the status page is protected by a secret token.",
+                                            "description": "Whether the status page is protected by a secret token. Requires an active Scale plan subscription.",
                                             "type": "boolean",
                                             "example": false
                                         },
