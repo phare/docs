@@ -5695,6 +5695,101 @@
                                         },
                                         "highest_incident_impact": {
                                             "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        },
+                                        "incidents": {
+                                            "description": "Incidents that affected this monitor in the selected range",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "project_id": {
+                                                        "description": "Parent project ID",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "type": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.TypeEnum"
+                                                    },
+                                                    "slug": {
+                                                        "description": "Incident unique slug name",
+                                                        "type": "string",
+                                                        "example": "APP-123"
+                                                    },
+                                                    "state": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                                                    },
+                                                    "status": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
+                                                    },
+                                                    "impact": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                    },
+                                                    "title": {
+                                                        "description": "Incident title",
+                                                        "type": "string",
+                                                        "example": "Service is not working as expected",
+                                                        "maximum": 250,
+                                                        "minimum": 1
+                                                    },
+                                                    "description": {
+                                                        "description": "Description of the error that caused the incident",
+                                                        "type": "string",
+                                                        "example": "The server answered with an unexpected status code: 503.",
+                                                        "maximum": 2000,
+                                                        "minimum": 1
+                                                    },
+                                                    "exclude_from_downtime": {
+                                                        "description": "Flag to exclude the incident from downtime calculations",
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "incident_at": {
+                                                        "description": "Date of incident confirmation",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "nullable": true
+                                                    },
+                                                    "recovery_at": {
+                                                        "description": "Date of incident recovery",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "nullable": true
+                                                    },
+                                                    "monitors": {
+                                                        "description": "List of monitors linked to the incident",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            1,
+                                                            2,
+                                                            3
+                                                        ],
+                                                        "maxItems": 100,
+                                                        "minItems": 1
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Date of creation for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Date of last update for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "impact",
+                                                    "title",
+                                                    "exclude_from_downtime"
+                                                ]
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -5821,7 +5916,145 @@
                                             "description": "Per-monitor statistics for all monitors included in the report",
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Uptime.Monitor.Report.DataResource"
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Monitor ID",
+                                                        "type": "integer",
+                                                        "example": 12
+                                                    },
+                                                    "name": {
+                                                        "description": "Monitor name",
+                                                        "type": "string",
+                                                        "example": "Website"
+                                                    },
+                                                    "incident_count": {
+                                                        "description": "Number of incidents affecting this monitor in the selected range",
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "downtime": {
+                                                        "description": "Total downtime for this monitor in seconds",
+                                                        "type": "integer",
+                                                        "example": 1500
+                                                    },
+                                                    "availability": {
+                                                        "description": "Availability for this monitor in the selected range, as a percentage",
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 99.944
+                                                    },
+                                                    "mttr": {
+                                                        "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
+                                                        "type": "integer",
+                                                        "example": 750,
+                                                        "nullable": true
+                                                    },
+                                                    "mtbf": {
+                                                        "description": "Mean time between failures (MTBF) for this monitor, in seconds",
+                                                        "type": "integer",
+                                                        "example": 43200,
+                                                        "nullable": true
+                                                    },
+                                                    "highest_incident_impact": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                    },
+                                                    "incidents": {
+                                                        "description": "Incidents that affected this monitor in the selected range",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "project_id": {
+                                                                    "description": "Parent project ID",
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "type": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.TypeEnum"
+                                                                },
+                                                                "slug": {
+                                                                    "description": "Incident unique slug name",
+                                                                    "type": "string",
+                                                                    "example": "APP-123"
+                                                                },
+                                                                "state": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
+                                                                },
+                                                                "status": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
+                                                                },
+                                                                "impact": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                                },
+                                                                "title": {
+                                                                    "description": "Incident title",
+                                                                    "type": "string",
+                                                                    "example": "Service is not working as expected",
+                                                                    "maximum": 250,
+                                                                    "minimum": 1
+                                                                },
+                                                                "description": {
+                                                                    "description": "Description of the error that caused the incident",
+                                                                    "type": "string",
+                                                                    "example": "The server answered with an unexpected status code: 503.",
+                                                                    "maximum": 2000,
+                                                                    "minimum": 1
+                                                                },
+                                                                "exclude_from_downtime": {
+                                                                    "description": "Flag to exclude the incident from downtime calculations",
+                                                                    "type": "boolean",
+                                                                    "example": false
+                                                                },
+                                                                "incident_at": {
+                                                                    "description": "Date of incident confirmation",
+                                                                    "type": "string",
+                                                                    "format": "date-time",
+                                                                    "nullable": true
+                                                                },
+                                                                "recovery_at": {
+                                                                    "description": "Date of incident recovery",
+                                                                    "type": "string",
+                                                                    "format": "date-time",
+                                                                    "nullable": true
+                                                                },
+                                                                "monitors": {
+                                                                    "description": "List of monitors linked to the incident",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "example": [
+                                                                        1,
+                                                                        2,
+                                                                        3
+                                                                    ],
+                                                                    "maxItems": 100,
+                                                                    "minItems": 1
+                                                                },
+                                                                "created_at": {
+                                                                    "description": "Date of creation for the entity",
+                                                                    "type": "string",
+                                                                    "format": "date-time"
+                                                                },
+                                                                "updated_at": {
+                                                                    "description": "Date of last update for the entity",
+                                                                    "type": "string",
+                                                                    "format": "date-time"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "impact",
+                                                                "title",
+                                                                "exclude_from_downtime"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         }
                                     },
@@ -8034,116 +8267,6 @@
                         "format": "url",
                         "example": "https://api.phare.io/{resource}?page=1",
                         "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "Uptime.Monitor.Report.DataResource": {
-                "properties": {
-                    "id": {
-                        "description": "Monitor ID",
-                        "type": "integer",
-                        "example": 12
-                    },
-                    "name": {
-                        "description": "Monitor name",
-                        "type": "string",
-                        "example": "Website"
-                    },
-                    "incident_count": {
-                        "description": "Number of incidents affecting this monitor in the selected range",
-                        "type": "integer",
-                        "example": 2
-                    },
-                    "downtime": {
-                        "description": "Total downtime for this monitor in seconds",
-                        "type": "integer",
-                        "example": 1500
-                    },
-                    "availability": {
-                        "description": "Availability for this monitor in the selected range, as a percentage",
-                        "type": "number",
-                        "format": "float",
-                        "example": 99.944
-                    },
-                    "mttr": {
-                        "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
-                        "type": "integer",
-                        "example": 750,
-                        "nullable": true
-                    },
-                    "mtbf": {
-                        "description": "Mean time between failures (MTBF) for this monitor, in seconds",
-                        "type": "integer",
-                        "example": 43200,
-                        "nullable": true
-                    },
-                    "highest_incident_impact": {
-                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                    }
-                },
-                "type": "object"
-            },
-            "Uptime.Report.DataResource": {
-                "properties": {
-                    "downtime": {
-                        "description": "Total downtime across all monitors in seconds",
-                        "type": "integer",
-                        "example": 2940
-                    },
-                    "availability": {
-                        "description": "Mean monitor availability across the selected range, as a percentage",
-                        "type": "number",
-                        "format": "float",
-                        "example": 99.9634
-                    },
-                    "min_availability": {
-                        "description": "Lowest monitor availability in the selected range, as a percentage",
-                        "type": "number",
-                        "format": "float",
-                        "example": 99.9125
-                    },
-                    "max_availability": {
-                        "description": "Highest monitor availability in the selected range, as a percentage",
-                        "type": "number",
-                        "format": "float",
-                        "example": 100
-                    },
-                    "mttr": {
-                        "description": "Mean time to recovery (MTTR) average for all monitors, in seconds",
-                        "type": "number",
-                        "format": "float",
-                        "example": 735,
-                        "nullable": true
-                    },
-                    "mtbf": {
-                        "description": "Mean time between failures (MTBF) average for all monitors, in seconds",
-                        "type": "number",
-                        "format": "float",
-                        "example": 43200,
-                        "nullable": true
-                    },
-                    "highest_incident_impact": {
-                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                    },
-                    "report_start_at": {
-                        "description": "Effective start of the generated report window",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2026-04-01T00:00:00Z"
-                    },
-                    "report_end_at": {
-                        "description": "Effective end of the generated report window",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2026-04-30T23:59:59Z"
-                    },
-                    "monitors": {
-                        "description": "Per-monitor statistics for all monitors included in the report",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Uptime.Monitor.Report.DataResource"
-                        }
                     }
                 },
                 "type": "object"
