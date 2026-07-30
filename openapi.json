@@ -6328,6 +6328,11 @@
                                                                             "description": "Name of the group shown on the status page",
                                                                             "type": "string"
                                                                         },
+                                                                        "is_expanded": {
+                                                                            "description": "Whether the group components are expanded by default",
+                                                                            "type": "boolean",
+                                                                            "example": false
+                                                                        },
                                                                         "components": {
                                                                             "description": "List of monitor components shown inside the group",
                                                                             "type": "array",
@@ -6665,6 +6670,11 @@
                                                         "name": {
                                                             "description": "Name of the group shown on the status page",
                                                             "type": "string"
+                                                        },
+                                                        "is_expanded": {
+                                                            "description": "Whether the group components are expanded by default",
+                                                            "type": "boolean",
+                                                            "example": false
                                                         },
                                                         "components": {
                                                             "description": "List of monitor components shown inside the group",
@@ -7076,6 +7086,11 @@
                                                                 "description": "Name of the group shown on the status page",
                                                                 "type": "string"
                                                             },
+                                                            "is_expanded": {
+                                                                "description": "Whether the group components are expanded by default",
+                                                                "type": "boolean",
+                                                                "example": false
+                                                            },
                                                             "components": {
                                                                 "description": "List of monitor components shown inside the group",
                                                                 "type": "array",
@@ -7445,6 +7460,11 @@
                                                                 "description": "Name of the group shown on the status page",
                                                                 "type": "string"
                                                             },
+                                                            "is_expanded": {
+                                                                "description": "Whether the group components are expanded by default",
+                                                                "type": "boolean",
+                                                                "example": false
+                                                            },
                                                             "components": {
                                                                 "description": "List of monitor components shown inside the group",
                                                                 "type": "array",
@@ -7778,6 +7798,11 @@
                                                         "name": {
                                                             "description": "Name of the group shown on the status page",
                                                             "type": "string"
+                                                        },
+                                                        "is_expanded": {
+                                                            "description": "Whether the group components are expanded by default",
+                                                            "type": "boolean",
+                                                            "example": false
                                                         },
                                                         "components": {
                                                             "description": "List of monitor components shown inside the group",
@@ -8179,6 +8204,11 @@
                                                             "name": {
                                                                 "description": "Name of the group shown on the status page",
                                                                 "type": "string"
+                                                            },
+                                                            "is_expanded": {
+                                                                "description": "Whether the group components are expanded by default",
+                                                                "type": "boolean",
+                                                                "example": false
                                                             },
                                                             "components": {
                                                                 "description": "List of monitor components shown inside the group",
