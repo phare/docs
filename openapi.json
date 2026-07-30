@@ -6309,6 +6309,50 @@
                                                                         }
                                                                     },
                                                                     "type": "object"
+                                                                },
+                                                                {
+                                                                    "title": "Group component",
+                                                                    "required": [
+                                                                        "componentable_type",
+                                                                        "name",
+                                                                        "components"
+                                                                    ],
+                                                                    "properties": {
+                                                                        "componentable_type": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/group"
+                                                                            ]
+                                                                        },
+                                                                        "name": {
+                                                                            "description": "Name of the group shown on the status page",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "components": {
+                                                                            "description": "List of monitor components shown inside the group",
+                                                                            "type": "array",
+                                                                            "items": {
+                                                                                "required": [
+                                                                                    "componentable_type",
+                                                                                    "componentable_id"
+                                                                                ],
+                                                                                "properties": {
+                                                                                    "componentable_type": {
+                                                                                        "type": "string",
+                                                                                        "enum": [
+                                                                                            "uptime/monitor"
+                                                                                        ]
+                                                                                    },
+                                                                                    "componentable_id": {
+                                                                                        "description": "ID of the monitor to show",
+                                                                                        "type": "integer"
+                                                                                    }
+                                                                                },
+                                                                                "type": "object"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
                                                                 }
                                                             ]
                                                         }
@@ -6600,6 +6644,50 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "title": "Group component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "name",
+                                                        "components"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/group"
+                                                            ]
+                                                        },
+                                                        "name": {
+                                                            "description": "Name of the group shown on the status page",
+                                                            "type": "string"
+                                                        },
+                                                        "components": {
+                                                            "description": "List of monitor components shown inside the group",
+                                                            "type": "array",
+                                                            "items": {
+                                                                "required": [
+                                                                    "componentable_type",
+                                                                    "componentable_id"
+                                                                ],
+                                                                "properties": {
+                                                                    "componentable_type": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "uptime/monitor"
+                                                                        ]
+                                                                    },
+                                                                    "componentable_id": {
+                                                                        "description": "ID of the monitor to show",
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
                                                         }
                                                     },
                                                     "type": "object"
@@ -6969,6 +7057,50 @@
                                                             }
                                                         },
                                                         "type": "object"
+                                                    },
+                                                    {
+                                                        "title": "Group component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "name",
+                                                            "components"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/group"
+                                                                ]
+                                                            },
+                                                            "name": {
+                                                                "description": "Name of the group shown on the status page",
+                                                                "type": "string"
+                                                            },
+                                                            "components": {
+                                                                "description": "List of monitor components shown inside the group",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "required": [
+                                                                        "componentable_type",
+                                                                        "componentable_id"
+                                                                    ],
+                                                                    "properties": {
+                                                                        "componentable_type": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/monitor"
+                                                                            ]
+                                                                        },
+                                                                        "componentable_id": {
+                                                                            "description": "ID of the monitor to show",
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
                                                     }
                                                 ]
                                             }
@@ -7294,6 +7426,50 @@
                                                             }
                                                         },
                                                         "type": "object"
+                                                    },
+                                                    {
+                                                        "title": "Group component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "name",
+                                                            "components"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/group"
+                                                                ]
+                                                            },
+                                                            "name": {
+                                                                "description": "Name of the group shown on the status page",
+                                                                "type": "string"
+                                                            },
+                                                            "components": {
+                                                                "description": "List of monitor components shown inside the group",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "required": [
+                                                                        "componentable_type",
+                                                                        "componentable_id"
+                                                                    ],
+                                                                    "properties": {
+                                                                        "componentable_type": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/monitor"
+                                                                            ]
+                                                                        },
+                                                                        "componentable_id": {
+                                                                            "description": "ID of the monitor to show",
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
                                                     }
                                                 ]
                                             }
@@ -7581,6 +7757,50 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "title": "Group component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "name",
+                                                        "components"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/group"
+                                                            ]
+                                                        },
+                                                        "name": {
+                                                            "description": "Name of the group shown on the status page",
+                                                            "type": "string"
+                                                        },
+                                                        "components": {
+                                                            "description": "List of monitor components shown inside the group",
+                                                            "type": "array",
+                                                            "items": {
+                                                                "required": [
+                                                                    "componentable_type",
+                                                                    "componentable_id"
+                                                                ],
+                                                                "properties": {
+                                                                    "componentable_type": {
+                                                                        "type": "string",
+                                                                        "enum": [
+                                                                            "uptime/monitor"
+                                                                        ]
+                                                                    },
+                                                                    "componentable_id": {
+                                                                        "description": "ID of the monitor to show",
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
                                                         }
                                                     },
                                                     "type": "object"
@@ -7941,6 +8161,50 @@
                                                             }
                                                         },
                                                         "type": "object"
+                                                    },
+                                                    {
+                                                        "title": "Group component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "name",
+                                                            "components"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/group"
+                                                                ]
+                                                            },
+                                                            "name": {
+                                                                "description": "Name of the group shown on the status page",
+                                                                "type": "string"
+                                                            },
+                                                            "components": {
+                                                                "description": "List of monitor components shown inside the group",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "required": [
+                                                                        "componentable_type",
+                                                                        "componentable_id"
+                                                                    ],
+                                                                    "properties": {
+                                                                        "componentable_type": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/monitor"
+                                                                            ]
+                                                                        },
+                                                                        "componentable_id": {
+                                                                            "description": "ID of the monitor to show",
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
                                                     }
                                                 ]
                                             }
@@ -8142,6 +8406,77 @@
                                                             },
                                                             "current_incident_impact": {
                                                                 "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "title": "Group component",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/group"
+                                                                ]
+                                                            },
+                                                            "name": {
+                                                                "description": "Group name",
+                                                                "type": "string",
+                                                                "example": "Websites",
+                                                                "maximum": 100,
+                                                                "minimum": 1
+                                                            },
+                                                            "response_time": {
+                                                                "description": "Rolling average response time of the last 10 requests, in milliseconds",
+                                                                "type": "integer",
+                                                                "example": 123,
+                                                                "nullable": true
+                                                            },
+                                                            "availability": {
+                                                                "description": "Availability in the last 90 days, in percents",
+                                                                "type": "number",
+                                                                "format": "float",
+                                                                "example": 99.9999
+                                                            },
+                                                            "current_incident_impact": {
+                                                                "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                            },
+                                                            "components": {
+                                                                "description": "Components of the group",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "type": {
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/monitor"
+                                                                            ]
+                                                                        },
+                                                                        "name": {
+                                                                            "description": "Monitor name",
+                                                                            "type": "string",
+                                                                            "example": "Website",
+                                                                            "maximum": 30,
+                                                                            "minimum": 2
+                                                                        },
+                                                                        "response_time": {
+                                                                            "description": "Rolling average response time of the last 10 requests, in milliseconds",
+                                                                            "type": "integer",
+                                                                            "example": 123,
+                                                                            "nullable": true
+                                                                        },
+                                                                        "availability": {
+                                                                            "description": "Availability in the last 90 days, in percents",
+                                                                            "type": "number",
+                                                                            "format": "float",
+                                                                            "example": 99.9999
+                                                                        },
+                                                                        "current_incident_impact": {
+                                                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
                                                             }
                                                         },
                                                         "type": "object"
