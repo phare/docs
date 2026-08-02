@@ -1833,6 +1833,31 @@
                 "summary": "List incidents",
                 "description": "Get a paginated list of incidents",
                 "operationId": "getUptimeIncidents",
+                "parameters": [
+                    {
+                        "name": "monitor_id",
+                        "in": "query",
+                        "description": "Filter incidents by monitor ID. Can be specified multiple times to filter by multiple monitor IDs.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success, incidents retrieved",
@@ -1952,21 +1977,7 @@
                     "403": {
                         "$ref": "#/components/responses/403"
                     }
-                },
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_slug"
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -8409,11 +8420,15 @@
                                                     {
                                                         "title": "Monitor component",
                                                         "properties": {
-                                                            "type": {
+                                                            "component_type": {
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/monitor"
                                                                 ]
+                                                            },
+                                                            "component_id": {
+                                                                "type": "integer",
+                                                                "example": 1
                                                             },
                                                             "name": {
                                                                 "description": "Monitor name",
@@ -8443,7 +8458,7 @@
                                                     {
                                                         "title": "Group component",
                                                         "properties": {
-                                                            "type": {
+                                                            "component_type": {
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -8476,11 +8491,15 @@
                                                                 "type": "array",
                                                                 "items": {
                                                                     "properties": {
-                                                                        "type": {
+                                                                        "component_type": {
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/monitor"
                                                                             ]
+                                                                        },
+                                                                        "component_id": {
+                                                                            "type": "integer",
+                                                                            "example": 1
                                                                         },
                                                                         "name": {
                                                                             "description": "Monitor name",
@@ -8520,7 +8539,7 @@
                                             "items": {
                                                 "oneOf": [
                                                     {
-                                                        "title": "Monitor component",
+                                                        "title": "Incident",
                                                         "properties": {
                                                             "id": {
                                                                 "type": "integer",
