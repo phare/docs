@@ -3531,6 +3531,12 @@
                                                         "maxItems": 6,
                                                         "minItems": 1
                                                     },
+                                                    "last_checked_at": {
+                                                        "description": "Date of the last performed check with a 30s accuracy",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "nullable": true
+                                                    },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
                                                         "type": "string",
@@ -4284,6 +4290,12 @@
                                             "maxItems": 6,
                                             "minItems": 1
                                         },
+                                        "last_checked_at": {
+                                            "description": "Date of the last performed check with a 30s accuracy",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -4702,6 +4714,12 @@
                                             },
                                             "maxItems": 6,
                                             "minItems": 1
+                                        },
+                                        "last_checked_at": {
+                                            "description": "Date of the last performed check with a 30s accuracy",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -5445,6 +5463,12 @@
                                             },
                                             "maxItems": 6,
                                             "minItems": 1
+                                        },
+                                        "last_checked_at": {
+                                            "description": "Date of the last performed check with a 30s accuracy",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
