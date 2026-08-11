@@ -218,12 +218,6 @@
       "linkedin": "https://www.linkedin.com/company/usephare"
     }
   },
-  "integrations": {
-    "posthog": {
-      "apiKey": "phc_OWMKYUoVSX0YxsL5KHnEjjIzlJmxUhMurqQ9xxXpMZY",
-      "apiHost": "https://hog.phare.io"
-    }
-  },
   "redirects": [
     {
       "source": "/articles",
