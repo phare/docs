@@ -144,6 +144,18 @@
                 ]
               },
               {
+                "group": "Maintenance Windows",
+                "pages": [
+                  "api-reference/uptime/maintenance-windows/list-maintenance-windows",
+                  "api-reference/uptime/maintenance-windows/get-a-maintenance-window",
+                  "api-reference/uptime/maintenance-windows/create-a-maintenance-window",
+                  "api-reference/uptime/maintenance-windows/update-a-maintenance-window",
+                  "api-reference/uptime/maintenance-windows/complete-a-maintenance-window",
+                  "api-reference/uptime/maintenance-windows/cancel-a-maintenance-window",
+                  "api-reference/uptime/maintenance-windows/delete-a-maintenance-window"
+                ]
+              },
+              {
                 "group": "Status Pages",
                 "pages": [
                   "api-reference/uptime/status-pages/list-status-pages",

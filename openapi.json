@@ -3166,6 +3166,887 @@
                 }
             }
         },
+        "/uptime/maintenance-windows": {
+            "get": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "List maintenance windows",
+                "description": "Get a paginated list of maintenance windows",
+                "operationId": "getUptimeMaintenanceWindows",
+                "parameters": [
+                    {
+                        "name": "monitor_id",
+                        "in": "query",
+                        "description": "Filter maintenance windows by monitor ID. Can be specified multiple times to filter by multiple monitor IDs.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status_page_id",
+                        "in": "query",
+                        "description": "Filter maintenance windows by status page ID. Can be specified multiple times to filter by multiple status page IDs.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "state",
+                        "in": "query",
+                        "description": "Filter maintenance windows by state.",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, maintenance windows retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Maintenance window ID",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "project_id": {
+                                                        "description": "Parent project ID",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "state": {
+                                                        "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                                                    },
+                                                    "monitoring_mode": {
+                                                        "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                                    },
+                                                    "title": {
+                                                        "description": "Maintenance window title",
+                                                        "type": "string",
+                                                        "example": "Database upgrade",
+                                                        "maximum": 250,
+                                                        "minimum": 1
+                                                    },
+                                                    "description": {
+                                                        "description": "Description of the maintenance window",
+                                                        "type": "string",
+                                                        "example": "Planned database upgrade and maintenance",
+                                                        "nullable": true
+                                                    },
+                                                    "starts_at": {
+                                                        "description": "Date and time when the maintenance window starts",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "ends_at": {
+                                                        "description": "Date and time when the maintenance window ends",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "monitors": {
+                                                        "description": "List of monitor IDs linked to the maintenance window",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            1,
+                                                            2,
+                                                            3
+                                                        ]
+                                                    },
+                                                    "status_pages": {
+                                                        "description": "List of status page IDs linked to the maintenance window",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            1,
+                                                            2
+                                                        ]
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Date of creation for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Date of last update for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "title",
+                                                    "monitoring_mode",
+                                                    "starts_at",
+                                                    "ends_at"
+                                                ]
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Create a maintenance window",
+                "description": "Create a maintenance window",
+                "operationId": "createUptimeMaintenanceWindow",
+                "requestBody": {
+                    "description": "Maintenance window request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "description": "Maintenance window title",
+                                        "type": "string",
+                                        "example": "Database upgrade",
+                                        "maximum": 250,
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "description": "Description of the maintenance window",
+                                        "type": "string",
+                                        "example": "Planned database upgrade and maintenance",
+                                        "nullable": true
+                                    },
+                                    "monitoring_mode": {
+                                        "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                    },
+                                    "starts_at": {
+                                        "description": "Date and time when the maintenance window starts",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "ends_at": {
+                                        "description": "Date and time when the maintenance window ends",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "monitors": {
+                                        "description": "List of monitor IDs linked to the maintenance window",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2,
+                                            3
+                                        ]
+                                    },
+                                    "status_pages": {
+                                        "description": "List of status page IDs linked to the maintenance window",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "title",
+                                    "monitoring_mode",
+                                    "starts_at",
+                                    "ends_at"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, maintenance window created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Maintenance window ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "state": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                                        },
+                                        "monitoring_mode": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                        },
+                                        "title": {
+                                            "description": "Maintenance window title",
+                                            "type": "string",
+                                            "example": "Database upgrade",
+                                            "maximum": 250,
+                                            "minimum": 1
+                                        },
+                                        "description": {
+                                            "description": "Description of the maintenance window",
+                                            "type": "string",
+                                            "example": "Planned database upgrade and maintenance",
+                                            "nullable": true
+                                        },
+                                        "starts_at": {
+                                            "description": "Date and time when the maintenance window starts",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "ends_at": {
+                                            "description": "Date and time when the maintenance window ends",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "monitors": {
+                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3
+                                            ]
+                                        },
+                                        "status_pages": {
+                                            "description": "List of status page IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "title",
+                                        "monitoring_mode",
+                                        "starts_at",
+                                        "ends_at"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ]
+            }
+        },
+        "/uptime/maintenance-windows/{maintenanceWindowId}": {
+            "get": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Get a maintenance window",
+                "description": "Get a maintenance window by ID",
+                "operationId": "getUptimeMaintenanceWindow",
+                "parameters": [
+                    {
+                        "name": "maintenanceWindowId",
+                        "in": "path",
+                        "description": "ID of the maintenance window to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, maintenance window retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Maintenance window ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "state": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                                        },
+                                        "monitoring_mode": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                        },
+                                        "title": {
+                                            "description": "Maintenance window title",
+                                            "type": "string",
+                                            "example": "Database upgrade",
+                                            "maximum": 250,
+                                            "minimum": 1
+                                        },
+                                        "description": {
+                                            "description": "Description of the maintenance window",
+                                            "type": "string",
+                                            "example": "Planned database upgrade and maintenance",
+                                            "nullable": true
+                                        },
+                                        "starts_at": {
+                                            "description": "Date and time when the maintenance window starts",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "ends_at": {
+                                            "description": "Date and time when the maintenance window ends",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "monitors": {
+                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3
+                                            ]
+                                        },
+                                        "status_pages": {
+                                            "description": "List of status page IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "title",
+                                        "monitoring_mode",
+                                        "starts_at",
+                                        "ends_at"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Update a maintenance window",
+                "description": "Update a maintenance window by ID",
+                "operationId": "updateUptimeMaintenanceWindow",
+                "parameters": [
+                    {
+                        "name": "maintenanceWindowId",
+                        "in": "path",
+                        "description": "ID of the maintenance window to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Maintenance window request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "description": "Maintenance window title",
+                                        "type": "string",
+                                        "example": "Database upgrade",
+                                        "maximum": 250,
+                                        "minimum": 1
+                                    },
+                                    "description": {
+                                        "description": "Description of the maintenance window",
+                                        "type": "string",
+                                        "example": "Planned database upgrade and maintenance",
+                                        "nullable": true
+                                    },
+                                    "monitoring_mode": {
+                                        "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                    },
+                                    "starts_at": {
+                                        "description": "Date and time when the maintenance window starts",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "ends_at": {
+                                        "description": "Date and time when the maintenance window ends",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "monitors": {
+                                        "description": "List of monitor IDs linked to the maintenance window",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2,
+                                            3
+                                        ]
+                                    },
+                                    "status_pages": {
+                                        "description": "List of status page IDs linked to the maintenance window",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            1,
+                                            2
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, maintenance window updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Maintenance window ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "state": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                                        },
+                                        "monitoring_mode": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                        },
+                                        "title": {
+                                            "description": "Maintenance window title",
+                                            "type": "string",
+                                            "example": "Database upgrade",
+                                            "maximum": 250,
+                                            "minimum": 1
+                                        },
+                                        "description": {
+                                            "description": "Description of the maintenance window",
+                                            "type": "string",
+                                            "example": "Planned database upgrade and maintenance",
+                                            "nullable": true
+                                        },
+                                        "starts_at": {
+                                            "description": "Date and time when the maintenance window starts",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "ends_at": {
+                                            "description": "Date and time when the maintenance window ends",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "monitors": {
+                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3
+                                            ]
+                                        },
+                                        "status_pages": {
+                                            "description": "List of status page IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "title",
+                                        "monitoring_mode",
+                                        "starts_at",
+                                        "ends_at"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Delete a maintenance window",
+                "description": "Delete a maintenance window by ID",
+                "operationId": "deleteUptimeMaintenanceWindow",
+                "parameters": [
+                    {
+                        "name": "maintenanceWindowId",
+                        "in": "path",
+                        "description": "ID of the maintenance window to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, maintenance window deleted",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/uptime/maintenance-windows/{maintenanceWindowId}/cancel": {
+            "post": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Cancel a maintenance window",
+                "description": "Cancel a maintenance window by ID",
+                "operationId": "cancelUptimeMaintenanceWindow",
+                "parameters": [
+                    {
+                        "name": "maintenanceWindowId",
+                        "in": "path",
+                        "description": "ID of the maintenance window to cancel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, maintenance window cancelled",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
+        "/uptime/maintenance-windows/{maintenanceWindowId}/complete": {
+            "post": {
+                "tags": [
+                    "Maintenance Windows"
+                ],
+                "summary": "Complete a maintenance window",
+                "description": "Complete a maintenance window by ID",
+                "operationId": "completeUptimeMaintenanceWindow",
+                "parameters": [
+                    {
+                        "name": "maintenanceWindowId",
+                        "in": "path",
+                        "description": "ID of the maintenance window to complete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, maintenance window completed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Maintenance window ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "state": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.StateEnum"
+                                        },
+                                        "monitoring_mode": {
+                                            "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum"
+                                        },
+                                        "title": {
+                                            "description": "Maintenance window title",
+                                            "type": "string",
+                                            "example": "Database upgrade",
+                                            "maximum": 250,
+                                            "minimum": 1
+                                        },
+                                        "description": {
+                                            "description": "Description of the maintenance window",
+                                            "type": "string",
+                                            "example": "Planned database upgrade and maintenance",
+                                            "nullable": true
+                                        },
+                                        "starts_at": {
+                                            "description": "Date and time when the maintenance window starts",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "ends_at": {
+                                            "description": "Date and time when the maintenance window ends",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "monitors": {
+                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2,
+                                                3
+                                            ]
+                                        },
+                                        "status_pages": {
+                                            "description": "List of status page IDs linked to the maintenance window",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                1,
+                                                2
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "title",
+                                        "monitoring_mode",
+                                        "starts_at",
+                                        "ends_at"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
         "/uptime/monitors": {
             "get": {
                 "tags": [
@@ -8797,7 +9678,10 @@
                     "uptime.incident.partially_recovered",
                     "uptime.incident.recovered",
                     "uptime.incident_comment.created",
-                    "uptime.incident_update.published"
+                    "uptime.incident_update.published",
+                    "uptime.maintenance_window.in_progress",
+                    "uptime.maintenance_window.completed",
+                    "uptime.maintenance_window.cancelled"
                 ]
             },
             "Phare.User.UserRoleEnum": {
@@ -8841,6 +9725,23 @@
                 "enum": [
                     "monitor",
                     "manual"
+                ]
+            },
+            "Uptime.MaintenanceWindow.MonitoringModeEnum": {
+                "type": "string",
+                "enum": [
+                    "pause",
+                    "mute",
+                    "normal"
+                ]
+            },
+            "Uptime.MaintenanceWindow.StateEnum": {
+                "type": "string",
+                "enum": [
+                    "scheduled",
+                    "in_progress",
+                    "completed",
+                    "cancelled"
                 ]
             },
             "Uptime.Monitor.ConnectionEnum": {
@@ -9084,6 +9985,10 @@
         {
             "name": "Integrations",
             "description": "Integrations"
+        },
+        {
+            "name": "Maintenance Windows",
+            "description": "Maintenance Windows"
         }
     ],
     "x-tagGroups": [
