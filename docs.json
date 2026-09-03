@@ -30,6 +30,7 @@
               "uptime/overview",
               "uptime/monitors",
               "uptime/incidents",
+              "uptime/maintenance-windows",
               "uptime/status-pages",
               "uptime/certificates",
               "uptime/alerting"

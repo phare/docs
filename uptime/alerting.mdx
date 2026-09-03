@@ -59,6 +59,14 @@ Phare can alert you of various events, each with its own configuration options a
 | Incident comment created | `uptime.incident_comment.created` | Sent when a new comment is added to an incident, useful for keeping team members informed of updates and discussions. |
 | Incident update published | `uptime.incident_update.published` | Sent when a new public incident update is published on a status page, useful for notifying stakeholders and users about the incident status. |
 
+### Maintenance Window Events
+
+| Event | API format | Description |
+| :--- | :--- | :--- |
+| Maintenance window in progress | `uptime.maintenance_window.in_progress` | Sent when a maintenance window starts, notifying teams that planned downtime has begun. |
+| Maintenance window completed | `uptime.maintenance_window.completed` | Sent when a maintenance window is finished, confirming normal operations have resumed. |
+| Maintenance window cancelled | `uptime.maintenance_window.cancelled` | Sent when a scheduled or in-progress maintenance window is cancelled. |
+
 ## Scope
 
 Keep your alerts relevant by setting the right scope:

@@ -1,0 +1,86 @@
+---
+title: "Maintenance Windows"
+description: "Plan scheduled downtime, control monitoring behavior, and keep users informed during maintenance."
+sidebarTitle: "Maintenance Windows"
+---
+
+Whether you're upgrading databases, shipping breaking API changes, or rebooting a server, it's best to let your users know in advance.
+
+Phare's maintenance windows let you plan ahead, choose exactly how monitoring should behave, and keep your status page subscribers in the loop throughout the process.
+
+## Scheduling a maintenance window
+
+Every maintenance window requires a start and end date. Once created, it's immediately shown on linked status pages and communicated to your users. You can modify the start date right up until the window begins; once it's in progress, you can cancel it or mark it as completed early. If you don't make any manual changes, Phare will automatically mark it as completed when the end date arrives.
+
+<Tip>
+    Dates and times automatically use your account's local timezone, so there's no need to do mental UTC math when scheduling.
+</Tip>
+
+## Monitoring modes
+
+Depending on your SLA and the type of maintenance being performed, you might want monitoring completely turned off, or just watch requests flow in without blowing up your notification channels.
+
+Phare gives you three modes to handle checks and alerts:
+
+### Pause monitoring
+
+When a maintenance window starts in **Pause** monitoring mode, Phare stops all attached monitors, effectively pausing checks for the duration of the window.
+
+- **Zero false alarms**: No checks are performed, so no incidents are triggered and your uptime and SLA percentages remain untouched.
+- **Smart resume**: If a monitor was *already* paused before the maintenance window started (for instance, a staging server you took down earlier), Phare remembers that state. When the maintenance window finishes, only monitors that were active beforehand are resumed. Overlapping pause windows are also handled automatically.
+
+<Tip>
+    Use Pause monitoring for heavy-duty infrastructure work, database migrations, or server reboots where services will be completely unavailable.
+</Tip>
+
+### Mute alerts
+
+In **Mute** mode, Phare keeps checking your endpoints as usual in the background, but silences all alert notifications.
+
+- **Live telemetry**: Response times, status codes, and latency charts keep updating in real time.
+- **Quiet incidents**: If an endpoint fails or throws errors during maintenance, an incident is tracked internally, but no alert rules fire (no Slack pings, Discord alerts, SMS, or emails).
+- **Instant verification**: You can see immediately when services come back up and start returning 200 OK (or whatever HTTP code you configured on your monitor).
+
+<Tip>
+    Mute mode is perfect for rolling deployments, configuration tweaks, or verifying that a hotfix worked in production before wrapping up.
+</Tip>
+
+### Normal
+
+In **Normal** mode, checks run and alerts fire exactly as usual.
+
+Use this mode for non-disruptive maintenance, like warming up background worker queues or upgrading secondary systems, where you still want full alerting if something unexpected goes wrong, but want the maintenance window officially announced on your status pages.
+
+## Lifecycle & Status
+
+Maintenance windows manage themselves so you don't have to keep an eye on the clock:
+
+- **Scheduled**: Planned for the future. Upcoming notices appear on connected status pages.
+- **In progress**: The window has started. Monitors are paused or muted, status pages show an active maintenance banner, and your team gets notified if configured.
+- **Completed**: Everything's back to normal. Paused monitors resume automatically and status pages return to operational.
+- **Cancelled**: Called off before or during maintenance. Any paused monitors are immediately restored.
+
+Phare automatically transitions windows to **In progress** when the start time arrives, and marks them **Completed** when the end time passes.
+
+### Early completion & Cancellation
+
+Finished early? You can hit **Complete** from the dashboard at any time to wrap up the window, resume your monitors, and update your status pages immediately. If the maintenance isn't needed anymore, **Cancel** will stop the process and let your users know.
+
+## Status page communication
+
+When you link a maintenance window to a status page, Phare handles external communication automatically:
+
+- **Upcoming announcements**: Visitors can see scheduled maintenance in advance, giving them time to prepare.
+- **Active maintenance status**: While maintenance is underway, the status page displays a prominent banner and sets the overall component status to **Maintenance** (unless a real outage takes precedence).
+- **Timeline markers**: Maintenance periods are highlighted on component uptime bars so visitors know downtime was planned.
+- **Subscriber feeds**: Maintenance announcements are automatically broadcast across RSS, ATOM, and Slack feeds.
+
+## Alert rules
+
+You can hook maintenance windows into Phare's [alert rules](/uptime/alerting) to keep internal teams aligned when work begins and ends:
+
+| Event | API format | Description |
+| :--- | :--- | :--- |
+| Maintenance window in progress | `uptime.maintenance_window.in_progress` | Sent when planned maintenance starts. |
+| Maintenance window completed | `uptime.maintenance_window.completed` | Sent when maintenance finishes and normal checks resume. |
+| Maintenance window cancelled | `uptime.maintenance_window.cancelled` | Sent when a scheduled or active window is cancelled. |
