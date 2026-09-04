@@ -1,3 +1,16 @@
 ---
 openapi: post /uptime/maintenance-windows
 ---
+
+### Monitoring modes
+
+Choose how monitoring checks and alert notifications should behave during maintenance:
+
+- **`pause`**: Pauses all checks on attached monitors. No incidents are created, keeping your SLA and uptime metrics intact. Paused monitors are automatically resumed when the window ends.
+- **`mute`**: Keeps running checks in the background to record telemetry and latency data, but silences all alert notifications (e.g. Slack, email, SMS).
+- **`normal`**: Checks and alerts operate as usual, but the maintenance window is announced on connected status pages.
+
+### Timings & Format
+
+- **`starts_at`**: Must be formatted in ISO 8601 with minute precision (e.g. `2026-09-05T14:30:00Z`). Seconds must be set to `:00`. Must be greater than or equal to the current time and within 1 year.
+- **`ends_at`**: Must be after `starts_at` and within 1 year.

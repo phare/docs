@@ -1,3 +1,16 @@
 ---
 openapi: post /uptime/maintenance-windows/{maintenanceWindowId}/complete
 ---
+
+### Lifecycle & State Requirements
+
+Only maintenance windows in the `in_progress` state can be marked as completed. Trying to complete a maintenance window in a different state will return a `403 Forbidden` response.
+
+### What happens on completion?
+
+When a maintenance window is marked as completed:
+
+1. The window state changes to `completed`.
+2. Any monitors attached to the window that were paused (when using the `pause` monitoring mode) are automatically resumed. Unless they were already paused before the start of the maintenance window, or an overlapping maintenance window with `pause` monitoring mode is still ongoing.
+3. Connected status pages are updated immediately to remove upcoming or active maintenance announcements.
+4. The `uptime.maintenance_window.completed` alert event is dispatched to any configured alert rules.

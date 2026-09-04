@@ -1,3 +1,11 @@
 ---
 openapi: post /uptime/maintenance-windows/{maintenanceWindowId}
 ---
+
+### State-specific mutability rules
+
+Depending on the current state of the maintenance window, certain fields cannot be modified:
+
+- **`scheduled`**: All fields can be updated.
+- **`in_progress`**: You can update `title`, `description`, and extend `ends_at` (must be greater than or equal to the current `ends_at`). The `starts_at` date, `monitoring_mode`, `monitors`, and `status_pages` cannot be changed while maintenance is ongoing.
+- **`completed` / `cancelled`**: Only `title` and `description` can be modified (for example, to add post-maintenance notes). Timings, monitoring mode, and attached monitors/status pages cannot be changed.
