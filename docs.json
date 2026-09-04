@@ -54,7 +54,8 @@
                   "integrations/telegram"
                 ]
               },
-              "integrations/terraform"
+              "integrations/terraform",
+              "integrations/ansible"
             ]
           }
         ]

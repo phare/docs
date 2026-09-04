@@ -1,0 +1,33 @@
+---
+title: "Phare Ansible Collection"
+description: "Setup and manage Phare with infrastructure as code using the community-built Ansible collection."
+sidebarTitle: "Ansible"
+icon: "/images/integrations/ansible/ansible.svg"
+---
+
+## Overview
+
+The `tealk.phare_uptime` collection allows you to manage Phare resources using Ansible as infrastructure as code. With this collection, you can automate the creation and management of projects, monitors, status pages, alert rules, maintenance windows, and more.
+
+<Note>
+    The Ansible collection is an open-source community project developed and maintained by [Daniel Buck](https://git.rollenspiel.monster/tealk) and is not officially maintained by Phare.
+</Note>
+
+## Getting started
+
+To install the collection using the Ansible Galaxy CLI:
+
+```bash
+ansible-galaxy collection install tealk.phare_uptime
+```
+
+You can also include it in your `requirements.yml`:
+
+```yaml
+collections:
+  - name: tealk.phare_uptime
+```
+
+Follow the instructions and documentation available on [Ansible Galaxy](https://galaxy.ansible.com/ui/repo/published/tealk/phare_uptime/).
+
+The source code and documentation for the collection are available on a [Forgejo](https://git.rollenspiel.monster/ansible-collections/phare_uptime) instance under the AGPL-3.0 licence.
