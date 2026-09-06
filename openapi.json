@@ -4095,7 +4095,7 @@
                                                         "description": "Monitor name",
                                                         "type": "string",
                                                         "example": "Website",
-                                                        "maximum": 40,
+                                                        "maximum": 45,
                                                         "minimum": 2
                                                     },
                                                     "protocol": {
@@ -4490,7 +4490,7 @@
                                         "description": "Monitor name",
                                         "type": "string",
                                         "example": "Website",
-                                        "maximum": 40,
+                                        "maximum": 45,
                                         "minimum": 2
                                     },
                                     "protocol": {
@@ -4854,7 +4854,7 @@
                                             "description": "Monitor name",
                                             "type": "string",
                                             "example": "Website",
-                                            "maximum": 40,
+                                            "maximum": 45,
                                             "minimum": 2
                                         },
                                         "protocol": {
@@ -5279,7 +5279,7 @@
                                             "description": "Monitor name",
                                             "type": "string",
                                             "example": "Website",
-                                            "maximum": 40,
+                                            "maximum": 45,
                                             "minimum": 2
                                         },
                                         "protocol": {
@@ -5670,7 +5670,7 @@
                                         "description": "Monitor name",
                                         "type": "string",
                                         "example": "Website",
-                                        "maximum": 40,
+                                        "maximum": 45,
                                         "minimum": 2
                                     },
                                     "protocol": {
@@ -6028,7 +6028,7 @@
                                             "description": "Monitor name",
                                             "type": "string",
                                             "example": "Website",
-                                            "maximum": 40,
+                                            "maximum": 45,
                                             "minimum": 2
                                         },
                                         "protocol": {
@@ -9696,10 +9696,10 @@
                 "enum": [
                     "unknown",
                     "operational",
+                    "maintenance",
                     "degraded_performance",
                     "partial_outage",
-                    "major_outage",
-                    "maintenance"
+                    "major_outage"
                 ]
             },
             "Uptime.Incident.StateEnum": {
