@@ -1887,14 +1887,14 @@
                                                         "type": "string",
                                                         "example": "APP-123"
                                                     },
+                                                    "impact": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                    },
                                                     "state": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                                     },
                                                     "status": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                                    },
-                                                    "impact": {
-                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                                     },
                                                     "title": {
                                                         "description": "Incident title",
@@ -1994,9 +1994,6 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "impact": {
-                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                                    },
                                     "title": {
                                         "description": "Incident title",
                                         "type": "string",
@@ -2041,6 +2038,16 @@
                                         ],
                                         "maxItems": 100,
                                         "minItems": 1
+                                    },
+                                    "impact": {
+                                        "description": "Incident impact",
+                                        "type": "string",
+                                        "enum": [
+                                            "unknown",
+                                            "degraded_performance",
+                                            "partial_outage",
+                                            "major_outage"
+                                        ]
                                     }
                                 },
                                 "required": [
@@ -2077,14 +2084,14 @@
                                             "type": "string",
                                             "example": "APP-123"
                                         },
+                                        "impact": {
+                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        },
                                         "state": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                         },
                                         "status": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                        },
-                                        "impact": {
-                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                         },
                                         "title": {
                                             "description": "Incident title",
@@ -2221,14 +2228,14 @@
                                             "type": "string",
                                             "example": "APP-123"
                                         },
+                                        "impact": {
+                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        },
                                         "state": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                         },
                                         "status": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                        },
-                                        "impact": {
-                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                         },
                                         "title": {
                                             "description": "Incident title",
@@ -2338,9 +2345,6 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "impact": {
-                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
-                                    },
                                     "title": {
                                         "description": "Incident title",
                                         "type": "string",
@@ -2385,6 +2389,16 @@
                                         ],
                                         "maxItems": 100,
                                         "minItems": 1
+                                    },
+                                    "impact": {
+                                        "description": "Incident impact",
+                                        "type": "string",
+                                        "enum": [
+                                            "unknown",
+                                            "degraded_performance",
+                                            "partial_outage",
+                                            "major_outage"
+                                        ]
                                     }
                                 }
                             }
@@ -2416,14 +2430,14 @@
                                             "type": "string",
                                             "example": "APP-123"
                                         },
+                                        "impact": {
+                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                        },
                                         "state": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                         },
                                         "status": {
                                             "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                        },
-                                        "impact": {
-                                            "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                         },
                                         "title": {
                                             "description": "Incident title",
@@ -6635,14 +6649,14 @@
                                                         "type": "string",
                                                         "example": "APP-123"
                                                     },
+                                                    "impact": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                    },
                                                     "state": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                                     },
                                                     "status": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                                    },
-                                                    "impact": {
-                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                                     },
                                                     "title": {
                                                         "description": "Incident title",
@@ -6897,14 +6911,14 @@
                                                                     "type": "string",
                                                                     "example": "APP-123"
                                                                 },
+                                                                "impact": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
+                                                                },
                                                                 "state": {
                                                                     "$ref": "#/components/schemas/Uptime.Incident.StateEnum"
                                                                 },
                                                                 "status": {
                                                                     "$ref": "#/components/schemas/Uptime.Incident.StatusEnum"
-                                                                },
-                                                                "impact": {
-                                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum"
                                                                 },
                                                                 "title": {
                                                                     "description": "Incident title",
