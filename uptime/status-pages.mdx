@@ -63,11 +63,11 @@ Since Phare also uses Bunny.net as a DNS and certificate provider, there's an ex
 
 <Steps>
     <Step title="Create a TXT record">
-        Add this TXT record to your DNS settings to help Bunny.net verify your request:
+        Add this TXT record to your root domain (`@`) in your DNS settings to help Bunny.net verify your request:
 
 | Type | Name               | Target                |
 | :--- | :----------------- | :-------------------- |
-| TXT  | status.example.com | Bunny Support - Phare |
+| TXT  | @ (or example.com) | Bunny Support - Phare |
 
     </Step>
     <Step title="Open a support ticket">
@@ -81,7 +81,7 @@ Since Phare also uses Bunny.net as a DNS and certificate provider, there's an ex
 
         I created a CNAME entry for my subdomain status.example.com that points to cname.status.phare.io.
 
-        Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please whitelist my domain for multi-use across the bunny platform? I've created a TXT record called `Bunny Support - Phare` as proof of ownership.
+        Phare.io is also using Bunny, and they need your authorization to add my subdomain on their PullZone and generate an SSL certificate for my subdomain. Could you please whitelist my domain for multi-use across the bunny platform? I've created a TXT record on my root domain called `Bunny Support - Phare` as proof of ownership.
 
         Thank you for being awesome!
         ```
