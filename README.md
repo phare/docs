@@ -1,15 +1,18 @@
-# Phare documentation & API Reference
+# Phare Documentation & API Reference
+
+Public documentation for [Phare.io](https://phare.io)
 
 ### Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview documentation changes locally:
 
 ```
 pnpm i -g mintlify
 ```
 
-Run the following command at the root of the documentation
+Run the development server:
 
+```bash
+make dev
 ```
-mintlify dev
-```
+
