@@ -7236,6 +7236,13 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
+                                                                        },
+                                                                        "display_name": {
+                                                                            "description": "Custom display name of the monitor on the status page",
+                                                                            "type": "string",
+                                                                            "example": "Main Website",
+                                                                            "nullable": true,
+                                                                            "default": null
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -7281,6 +7288,13 @@
                                                                                     "componentable_id": {
                                                                                         "description": "ID of the monitor to show",
                                                                                         "type": "integer"
+                                                                                    },
+                                                                                    "display_name": {
+                                                                                        "description": "Custom display name of the monitor on the status page",
+                                                                                        "type": "string",
+                                                                                        "example": "Main Website",
+                                                                                        "nullable": true,
+                                                                                        "default": null
                                                                                     }
                                                                                 },
                                                                                 "type": "object"
@@ -7301,6 +7315,12 @@
                                                             60,
                                                             90
                                                         ]
+                                                    },
+                                                    "show_response_times": {
+                                                        "description": "Whether to display response times for monitors on the status page",
+                                                        "type": "boolean",
+                                                        "example": true,
+                                                        "default": true
                                                     },
                                                     "subscription_channels": {
                                                         "description": "List of active subscription channels",
@@ -7579,6 +7599,13 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
+                                                        },
+                                                        "display_name": {
+                                                            "description": "Custom display name of the monitor on the status page",
+                                                            "type": "string",
+                                                            "example": "Main Website",
+                                                            "nullable": true,
+                                                            "default": null
                                                         }
                                                     },
                                                     "type": "object"
@@ -7624,6 +7651,13 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
+                                                                    },
+                                                                    "display_name": {
+                                                                        "description": "Custom display name of the monitor on the status page",
+                                                                        "type": "string",
+                                                                        "example": "Main Website",
+                                                                        "nullable": true,
+                                                                        "default": null
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -7644,6 +7678,12 @@
                                             60,
                                             90
                                         ]
+                                    },
+                                    "show_response_times": {
+                                        "description": "Whether to display response times for monitors on the status page",
+                                        "type": "boolean",
+                                        "example": true,
+                                        "default": true
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -7994,6 +8034,13 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
+                                                            },
+                                                            "display_name": {
+                                                                "description": "Custom display name of the monitor on the status page",
+                                                                "type": "string",
+                                                                "example": "Main Website",
+                                                                "nullable": true,
+                                                                "default": null
                                                             }
                                                         },
                                                         "type": "object"
@@ -8039,6 +8086,13 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
+                                                                        },
+                                                                        "display_name": {
+                                                                            "description": "Custom display name of the monitor on the status page",
+                                                                            "type": "string",
+                                                                            "example": "Main Website",
+                                                                            "nullable": true,
+                                                                            "default": null
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -8059,6 +8113,12 @@
                                                 60,
                                                 90
                                             ]
+                                        },
+                                        "show_response_times": {
+                                            "description": "Whether to display response times for monitors on the status page",
+                                            "type": "boolean",
+                                            "example": true,
+                                            "default": true
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
@@ -8368,6 +8428,13 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
+                                                            },
+                                                            "display_name": {
+                                                                "description": "Custom display name of the monitor on the status page",
+                                                                "type": "string",
+                                                                "example": "Main Website",
+                                                                "nullable": true,
+                                                                "default": null
                                                             }
                                                         },
                                                         "type": "object"
@@ -8413,6 +8480,13 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
+                                                                        },
+                                                                        "display_name": {
+                                                                            "description": "Custom display name of the monitor on the status page",
+                                                                            "type": "string",
+                                                                            "example": "Main Website",
+                                                                            "nullable": true,
+                                                                            "default": null
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -8433,6 +8507,12 @@
                                                 60,
                                                 90
                                             ]
+                                        },
+                                        "show_response_times": {
+                                            "description": "Whether to display response times for monitors on the status page",
+                                            "type": "boolean",
+                                            "example": true,
+                                            "default": true
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
@@ -8707,6 +8787,13 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
+                                                        },
+                                                        "display_name": {
+                                                            "description": "Custom display name of the monitor on the status page",
+                                                            "type": "string",
+                                                            "example": "Main Website",
+                                                            "nullable": true,
+                                                            "default": null
                                                         }
                                                     },
                                                     "type": "object"
@@ -8752,6 +8839,13 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
+                                                                    },
+                                                                    "display_name": {
+                                                                        "description": "Custom display name of the monitor on the status page",
+                                                                        "type": "string",
+                                                                        "example": "Main Website",
+                                                                        "nullable": true,
+                                                                        "default": null
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -8772,6 +8866,12 @@
                                             60,
                                             90
                                         ]
+                                    },
+                                    "show_response_times": {
+                                        "description": "Whether to display response times for monitors on the status page",
+                                        "type": "boolean",
+                                        "example": true,
+                                        "default": true
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -9113,6 +9213,13 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
+                                                            },
+                                                            "display_name": {
+                                                                "description": "Custom display name of the monitor on the status page",
+                                                                "type": "string",
+                                                                "example": "Main Website",
+                                                                "nullable": true,
+                                                                "default": null
                                                             }
                                                         },
                                                         "type": "object"
@@ -9158,6 +9265,13 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
+                                                                        },
+                                                                        "display_name": {
+                                                                            "description": "Custom display name of the monitor on the status page",
+                                                                            "type": "string",
+                                                                            "example": "Main Website",
+                                                                            "nullable": true,
+                                                                            "default": null
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -9178,6 +9292,12 @@
                                                 60,
                                                 90
                                             ]
+                                        },
+                                        "show_response_times": {
+                                            "description": "Whether to display response times for monitors on the status page",
+                                            "type": "boolean",
+                                            "example": true,
+                                            "default": true
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
