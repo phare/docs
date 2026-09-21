@@ -189,13 +189,25 @@ Each monitor will show detailed statistics to help you understand your service p
 
 Be aware that charts are rendered leveraging [downsampling techniques](https://phare.io/blog/downsampling-time-series-data/) to present meaningful visualizations without overwhelming your browser. This is why you won't see every single data point on the chart.
 
-## Firewall protection
+## Firewall & Bot protection
 
-IP filtering is not reliable because the Phare Uptime monitoring agent is deployed on [Bunny.net's global network](https://bunnycdn.com/api/system/edgeserverlist), which means IPs could be shared with other Bunny.net customers.
+Because Phare monitoring agents run on global edge networks, IP addresses are dynamic. Rather than maintaining brittle IP allowlists, Phare supports modern cryptographic bot authentication and header-based filtering.
 
-The easiest way to filter the Phare Uptime monitoring agent is to use the `User-Agent` header. You can also add a secret value to the user agent to make it unique to your organization.
+### Web Bot Auth (Verified Bot)
 
-Need something more robust? [Contact support](https://phare.io/contact).
+Phare monitoring agents implement the IETF standard **Web Bot Auth** ([RFC 9421](https://datatracker.ietf.org/doc/html/rfc9421) HTTP Message Signatures).
+
+Every HTTP check executed by Phare includes cryptographic Ed25519 signatures in the request headers (`Signature`, `Signature-Input`, and `Signature-Agent`).
+
+Phare's signature directory is available at:
+
+```
+https://phare.io/.well-known/http-message-signatures-directory
+```
+
+### User-Agent & Secret token
+
+If your web server or firewall does not support web-auth-bot yet, the next best thing is to filter Phare's traffic with an [User-Agent secret](/uptime/monitors#headers).
 
 ## Private monitoring agent
 
