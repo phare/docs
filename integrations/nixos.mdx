@@ -1,0 +1,40 @@
+---
+title: "Phare NixOS Module (Community)"
+description: "Declare and manage Phare resources with infrastructure as code using the community-built NixOS module."
+sidebarTitle: "NixOS"
+icon: "/images/integrations/nixos/nixos.svg"
+---
+
+## Overview
+
+The `phare-nix` module allows you to manage Phare resources using NixOS as infrastructure as code. With this module, you can automate the creation, update, and management of monitors and maintenance windows declaratively in your NixOS configuration.
+
+<Note>
+    The NixOS module is an open-source community project developed and maintained by [Pascal Wittmann](https://codeberg.org/pSub) and is not officially maintained by Phare.
+</Note>
+
+## Getting started
+
+The module is distributed as a [Nix Flake](https://wiki.nixos.org/wiki/Flakes). To include it, add `phare-nix` to your flake inputs and import the module into your system configuration:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    phare-nix.url = "git+https://codeberg.org/pSub/phare-nix";
+  };
+
+  outputs = { self, nixpkgs, phare-nix }: {
+    nixosConfigurations.some-server = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./configuration.nix
+        phare-nix.nixosModules.phare
+      ];
+    };
+  };
+}
+```
+
+Follow the configuration instructions and documentation available in the [phare-nix repository on Codeberg](https://codeberg.org/pSub/phare-nix).
+
+The source code for the module is open source under the MIT license.

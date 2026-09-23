@@ -55,7 +55,8 @@
                 ]
               },
               "integrations/terraform",
-              "integrations/ansible"
+              "integrations/ansible",
+              "integrations/nixos"
             ]
           }
         ]
