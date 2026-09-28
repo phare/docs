@@ -181,10 +181,10 @@ As you set up your monitors, Phare's suggestion system analyzes your configurati
 
 Each monitor will show detailed statistics to help you understand your service performance at a glance:
 
-- **Performance charts** appear shortly after creating a monitor, showing response time trends
+- **Performance charts** appear shortly after creating a monitor, displaying quantile-based response time trends (**P75**, **P90**, and **P99**)
 - View the performance data by region to spot geographical performance variations
 - Zoom in on specific timeframes by clicking and dragging to select portions of the chart
-- Track key metrics including average response time, total downtime, and SLA percentages
+- Track key metrics including response time quantiles, total downtime, and SLA percentages
 - Historical data from 24 hours up to 90 days lets you spot both immediate issues and long-term trends
 
 Be aware that charts are rendered leveraging [downsampling techniques](https://phare.io/blog/downsampling-time-series-data/) to present meaningful visualizations without overwhelming your browser. This is why you won't see every single data point on the chart.
