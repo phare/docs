@@ -1,10 +1,10 @@
 ---
 title: "Monitors"
-description: "Monitor the availability of your websites, APIs and servers."
+description: "Monitor the availability of your websites, APIs and servers with HTTP, TCP and ICMP ping monitoring."
 sidebarTitle: "Monitors"
 ---
 
-Monitors are the backbone of Phare Uptime. They are tireless digital assistants checking if your website or server is alive and kicking. Set them up once, and they'll dutifully perform HTTP(S) and TCP checks according to your schedule.
+Monitors are the backbone of Phare Uptime. They are tireless digital assistants checking if your website or server is alive and kicking. Set them up once, and they'll dutifully perform HTTP(S), TCP, and ICMP ping checks according to your schedule.
 
 <Frame>
     <iframe
@@ -95,6 +95,16 @@ For services beyond websites, TCP monitoring establishes a direct connection to 
 ### Connection
 
 Phare supports plain and TLS connections for TCP monitoring. You can choose the appropriate option based on your service requirements.
+
+## ICMP
+
+For servers, network appliances, and infrastructure, ICMP ping monitoring sends standard Internet Control Message Protocol (ICMP) echo requests (ping) to verify host reachability and measure network latency.
+
+Unlike HTTP(S) or TCP monitors, ICMP monitoring does not require any open ports or running web servers. This makes it ideal for monitoring routers, switches, firewalls, and bare-metal hosts where you only need to verify host availability and network responsiveness.
+
+### Host
+
+When setting up an ICMP monitor, specify the target hostname or IP address to ping.
 
 ## Interval
 

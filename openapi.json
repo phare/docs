@@ -4231,6 +4231,20 @@
                                                                     }
                                                                 },
                                                                 "type": "object"
+                                                            },
+                                                            {
+                                                                "title": "ICMP protocol",
+                                                                "required": [
+                                                                    "host"
+                                                                ],
+                                                                "properties": {
+                                                                    "host": {
+                                                                        "description": "ICMP request hostname or IP address",
+                                                                        "type": "string",
+                                                                        "example": "8.8.8.8"
+                                                                    }
+                                                                },
+                                                                "type": "object"
                                                             }
                                                         ]
                                                     },
@@ -4626,6 +4640,20 @@
                                                     }
                                                 },
                                                 "type": "object"
+                                            },
+                                            {
+                                                "title": "ICMP protocol",
+                                                "required": [
+                                                    "host"
+                                                ],
+                                                "properties": {
+                                                    "host": {
+                                                        "description": "ICMP request hostname or IP address",
+                                                        "type": "string",
+                                                        "example": "8.8.8.8"
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         ]
                                     },
@@ -4987,6 +5015,20 @@
                                                             "example": false,
                                                             "nullable": true,
                                                             "default": false
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "title": "ICMP protocol",
+                                                    "required": [
+                                                        "host"
+                                                    ],
+                                                    "properties": {
+                                                        "host": {
+                                                            "description": "ICMP request hostname or IP address",
+                                                            "type": "string",
+                                                            "example": "8.8.8.8"
                                                         }
                                                     },
                                                     "type": "object"
@@ -5415,6 +5457,20 @@
                                                         }
                                                     },
                                                     "type": "object"
+                                                },
+                                                {
+                                                    "title": "ICMP protocol",
+                                                    "required": [
+                                                        "host"
+                                                    ],
+                                                    "properties": {
+                                                        "host": {
+                                                            "description": "ICMP request hostname or IP address",
+                                                            "type": "string",
+                                                            "example": "8.8.8.8"
+                                                        }
+                                                    },
+                                                    "type": "object"
                                                 }
                                             ]
                                         },
@@ -5806,6 +5862,20 @@
                                                     }
                                                 },
                                                 "type": "object"
+                                            },
+                                            {
+                                                "title": "ICMP protocol",
+                                                "required": [
+                                                    "host"
+                                                ],
+                                                "properties": {
+                                                    "host": {
+                                                        "description": "ICMP request hostname or IP address",
+                                                        "type": "string",
+                                                        "example": "8.8.8.8"
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         ]
                                     },
@@ -6161,6 +6231,20 @@
                                                             "example": false,
                                                             "nullable": true,
                                                             "default": false
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "title": "ICMP protocol",
+                                                    "required": [
+                                                        "host"
+                                                    ],
+                                                    "properties": {
+                                                        "host": {
+                                                            "description": "ICMP request hostname or IP address",
+                                                            "type": "string",
+                                                            "example": "8.8.8.8"
                                                         }
                                                     },
                                                     "type": "object"
@@ -9889,7 +9973,8 @@
                 "type": "string",
                 "enum": [
                     "http",
-                    "tcp"
+                    "tcp",
+                    "icmp"
                 ]
             },
             "Uptime.Monitor.RegionEnum": {
