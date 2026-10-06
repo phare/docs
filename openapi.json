@@ -1846,6 +1846,17 @@
                         }
                     },
                     {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter incidents by tag. Can be specified multiple times to filter by multiple tags.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "$ref": "#/components/parameters/page"
                     },
                     {
@@ -1940,6 +1951,19 @@
                                                         ],
                                                         "maxItems": 100,
                                                         "minItems": 1
+                                                    },
+                                                    "tags": {
+                                                        "description": "Resource tags",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "default": 100,
+                                                            "maximum": 100,
+                                                            "minimum": 1
+                                                        },
+                                                        "nullable": true,
+                                                        "maxItems": 20
                                                     },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
@@ -2039,6 +2063,19 @@
                                         "maxItems": 100,
                                         "minItems": 1
                                     },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
+                                    },
                                     "impact": {
                                         "description": "Incident impact",
                                         "type": "string",
@@ -2137,6 +2174,19 @@
                                             ],
                                             "maxItems": 100,
                                             "minItems": 1
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -2282,6 +2332,19 @@
                                             "maxItems": 100,
                                             "minItems": 1
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -2390,6 +2453,19 @@
                                         "maxItems": 100,
                                         "minItems": 1
                                     },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
+                                    },
                                     "impact": {
                                         "description": "Incident impact",
                                         "type": "string",
@@ -2483,6 +2559,19 @@
                                             ],
                                             "maxItems": 100,
                                             "minItems": 1
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -3221,6 +3310,17 @@
                         }
                     },
                     {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter maintenance windows by tag. Can be specified multiple times to filter by multiple tags.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "$ref": "#/components/parameters/page"
                     },
                     {
@@ -3306,6 +3406,19 @@
                                                             1,
                                                             2
                                                         ]
+                                                    },
+                                                    "tags": {
+                                                        "description": "Resource tags",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "default": 100,
+                                                            "maximum": 100,
+                                                            "minimum": 1
+                                                        },
+                                                        "nullable": true,
+                                                        "maxItems": 20
                                                     },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
@@ -3409,6 +3522,19 @@
                                             1,
                                             2
                                         ]
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     }
                                 },
                                 "required": [
@@ -3490,6 +3616,19 @@
                                                 1,
                                                 2
                                             ]
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -3627,6 +3766,19 @@
                                                 2
                                             ]
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -3739,6 +3891,19 @@
                                             1,
                                             2
                                         ]
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     }
                                 }
                             }
@@ -3814,6 +3979,19 @@
                                                 1,
                                                 2
                                             ]
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
@@ -4028,6 +4206,19 @@
                                                 2
                                             ]
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -4069,6 +4260,31 @@
                 "summary": "List monitors",
                 "description": "Get a paginated list of monitors",
                 "operationId": "getUptimeMonitors",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter monitors by tag. Can be specified multiple times to filter by multiple tags.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success, monitors retrieved",
@@ -4440,6 +4656,19 @@
                                                         "maxItems": 6,
                                                         "minItems": 1
                                                     },
+                                                    "tags": {
+                                                        "description": "Resource tags",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "default": 100,
+                                                            "maximum": 100,
+                                                            "minimum": 1
+                                                        },
+                                                        "nullable": true,
+                                                        "maxItems": 20
+                                                    },
                                                     "last_checked_at": {
                                                         "description": "Date of the last performed check with a 30s accuracy",
                                                         "type": "string",
@@ -4483,21 +4712,7 @@
                     "403": {
                         "$ref": "#/components/responses/403"
                     }
-                },
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_slug"
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -4848,6 +5063,19 @@
                                         },
                                         "maxItems": 6,
                                         "minItems": 1
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     }
                                 },
                                 "required": [
@@ -5226,6 +5454,19 @@
                                             },
                                             "maxItems": 6,
                                             "minItems": 1
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "last_checked_at": {
                                             "description": "Date of the last performed check with a 30s accuracy",
@@ -5666,6 +5907,19 @@
                                             "maxItems": 6,
                                             "minItems": 1
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "last_checked_at": {
                                             "description": "Date of the last performed check with a 30s accuracy",
                                             "type": "string",
@@ -6070,6 +6324,19 @@
                                         },
                                         "maxItems": 6,
                                         "minItems": 1
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     }
                                 }
                             }
@@ -6443,6 +6710,19 @@
                                             "maxItems": 6,
                                             "minItems": 1
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "last_checked_at": {
                                             "description": "Date of the last performed check with a 30s accuracy",
                                             "type": "string",
@@ -6787,6 +7067,19 @@
                                                         "maxItems": 100,
                                                         "minItems": 1
                                                     },
+                                                    "tags": {
+                                                        "description": "Resource tags",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "default": 100,
+                                                            "maximum": 100,
+                                                            "minimum": 1
+                                                        },
+                                                        "nullable": true,
+                                                        "maxItems": 20
+                                                    },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
                                                         "type": "string",
@@ -7049,6 +7342,19 @@
                                                                     "maxItems": 100,
                                                                     "minItems": 1
                                                                 },
+                                                                "tags": {
+                                                                    "description": "Resource tags",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "environment:production",
+                                                                        "default": 100,
+                                                                        "maximum": 100,
+                                                                        "minimum": 1
+                                                                    },
+                                                                    "nullable": true,
+                                                                    "maxItems": 20
+                                                                },
                                                                 "created_at": {
                                                                     "description": "Date of creation for the entity",
                                                                     "type": "string",
@@ -7097,6 +7403,31 @@
                 "summary": "List status pages",
                 "description": "Get a paginated list of status pages",
                 "operationId": "getUptimeStatusPages",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter status pages by tag. Can be specified multiple times to filter by multiple tags.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success, status pages retrieved",
@@ -7426,6 +7757,19 @@
                                                         "maxItems": 50,
                                                         "minItems": 1
                                                     },
+                                                    "tags": {
+                                                        "description": "Resource tags",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "default": 100,
+                                                            "maximum": 100,
+                                                            "minimum": 1
+                                                        },
+                                                        "nullable": true,
+                                                        "maxItems": 20
+                                                    },
                                                     "created_at": {
                                                         "description": "Date of creation for the entity",
                                                         "type": "string",
@@ -7466,21 +7810,7 @@
                     "403": {
                         "$ref": "#/components/responses/403"
                     }
-                },
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/per_page"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/header_project_slug"
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -7788,6 +8118,19 @@
                                         "nullable": true,
                                         "maxItems": 50,
                                         "minItems": 1
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     },
                                     "logo_light": {
                                         "description": "Manage the light theme logo of the status page (accepted formats: jpeg / png / svg)",
@@ -8224,6 +8567,19 @@
                                             "maxItems": 50,
                                             "minItems": 1
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -8618,6 +8974,19 @@
                                             "maxItems": 50,
                                             "minItems": 1
                                         },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
+                                        },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
                                             "type": "string",
@@ -8976,6 +9345,19 @@
                                         "nullable": true,
                                         "maxItems": 50,
                                         "minItems": 1
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "default": 100,
+                                            "maximum": 100,
+                                            "minimum": 1
+                                        },
+                                        "nullable": true,
+                                        "maxItems": 20
                                     },
                                     "logo_light": {
                                         "description": "Manage the light theme logo of the status page (accepted formats: jpeg / png / svg)",
@@ -9402,6 +9784,19 @@
                                             "nullable": true,
                                             "maxItems": 50,
                                             "minItems": 1
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "default": 100,
+                                                "maximum": 100,
+                                                "minimum": 1
+                                            },
+                                            "nullable": true,
+                                            "maxItems": 20
                                         },
                                         "created_at": {
                                             "description": "Date of creation for the entity",
