@@ -75,6 +75,10 @@ When you link a maintenance window to a status page, Phare handles external comm
 - **Timeline markers**: Maintenance periods are highlighted on component uptime bars so visitors know downtime was planned.
 - **Subscriber feeds**: Maintenance announcements are automatically broadcast across RSS, ATOM, and Slack feeds.
 
+## Tags
+
+Maintenance windows can be organized with [tags](/uptime/monitors#tags), such as `environment:production` or `server:main`, shared across your whole organization. Use the **Tags** filter on the maintenance windows data-table, or the `tag` parameter of the [list maintenance windows](/api-reference/uptime/maintenance-windows/list-maintenance-windows) API endpoint, to find related maintenance windows.
+
 ## Alert rules
 
 You can hook maintenance windows into Phare's [alert rules](/uptime/alerting) to keep internal teams aligned when work begins and ends:
