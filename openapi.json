@@ -7737,6 +7737,12 @@
                                                         "example": true,
                                                         "default": true
                                                     },
+                                                    "timezone": {
+                                                        "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                                        "type": "string",
+                                                        "example": "Europe/Paris",
+                                                        "default": "UTC"
+                                                    },
                                                     "subscription_channels": {
                                                         "description": "List of active subscription channels",
                                                         "type": "array",
@@ -8098,6 +8104,12 @@
                                         "type": "boolean",
                                         "example": true,
                                         "default": true
+                                    },
+                                    "timezone": {
+                                        "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                        "type": "string",
+                                        "example": "Europe/Paris",
+                                        "default": "UTC"
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -8547,6 +8559,12 @@
                                             "example": true,
                                             "default": true
                                         },
+                                        "timezone": {
+                                            "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                            "type": "string",
+                                            "example": "Europe/Paris",
+                                            "default": "UTC"
+                                        },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
                                             "type": "array",
@@ -8954,6 +8972,12 @@
                                             "example": true,
                                             "default": true
                                         },
+                                        "timezone": {
+                                            "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                            "type": "string",
+                                            "example": "Europe/Paris",
+                                            "default": "UTC"
+                                        },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
                                             "type": "array",
@@ -9325,6 +9349,12 @@
                                         "type": "boolean",
                                         "example": true,
                                         "default": true
+                                    },
+                                    "timezone": {
+                                        "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                        "type": "string",
+                                        "example": "Europe/Paris",
+                                        "default": "UTC"
                                     },
                                     "subscription_channels": {
                                         "description": "List of active subscription channels",
@@ -9764,6 +9794,12 @@
                                             "type": "boolean",
                                             "example": true,
                                             "default": true
+                                        },
+                                        "timezone": {
+                                            "description": "Timezone used to split the status page timeline into days and to display all dates on the status page and in feeds. Must be a canonical IANA timezone identifier (case-sensitive, e.g. `Europe/Paris`, `America/New_York` or `UTC`).",
+                                            "type": "string",
+                                            "example": "Europe/Paris",
+                                            "default": "UTC"
                                         },
                                         "subscription_channels": {
                                             "description": "List of active subscription channels",
