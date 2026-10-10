@@ -133,6 +133,10 @@ Having trouble? [Contact support](https://phare.io/contact).
 
 Each monitor on a status page displays an availability history with one bar per day, along with its overall availability percentage. The history window can be set to 30, 60, or 90 days in the status page settings. Days with incidents are highlighted by a marker colored according to the incident [impact level](/uptime/incidents#impact), so a short degraded performance episode is not mistaken for a full day of outage. Visitors can browse previous periods using the navigation arrows.
 
+## Timezone
+
+Each status page has a timezone, `UTC` by default, that can be changed in the status page settings. The timezone is used to split the availability history into days and to display all dates on the status page, including incidents, maintenance windows, and the RSS, Atom and Slack [feeds](#subscription). Choosing the timezone of your main audience ensures an incident happening late in the evening is shown on the day your users experienced it.
+
 ## Monitor groups
 
 <Frame>
