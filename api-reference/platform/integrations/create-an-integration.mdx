@@ -1,0 +1,27 @@
+---
+openapi: post /apps/{app}/integrations
+---
+
+### Supported apps
+
+Only the following apps can be created through the API, each with its own `settings`:
+
+| App | `app` key | Settings |
+| --- | --- | --- |
+| [Email](/integrations/email) | `email` | `members` |
+| [ilert](/integrations/ilert) | `ilert` | `integration_key` |
+| [ntfy](/integrations/ntfy) | `ntfy` | `hostname`, `topic`, `access_token` |
+| [Outgoing webhook](/integrations/outgoing-webhook) | `outgoing_webhook` | `url`, `secret` |
+| [Pushover](/integrations/pushover) | `pushover` | `user_key`, `api_key` |
+| [SMS](/integrations/sms) | `sms` | `members` |
+
+<Info>The SMS integration requires a Scale plan subscription.</Info>
+
+### Why some apps are not supported
+
+Some integrations need a step that can't be done with an API request, so they can only be created from the <a href="https://app.phare.io/organization/apps" rel="nofollow">control panel</a>:
+
+- **Slack** and **Discord**: You need to sign in to Slack or Discord and approve the Phare app in your browser.
+- **Telegram**: The Phare bot is connected to your chat by opening a link or scanning a QR code on your device.
+
+Requests for these apps return a `403` error. Once created in the control panel, they can still be [listed](/api-reference/platform/integrations/list-integrations), [fetched](/api-reference/platform/integrations/get-an-integration), [deleted](/api-reference/platform/integrations/delete-an-integration), and used in [alert rules](/api-reference/platform/alert-rules/create-an-alert-rule) through the API.

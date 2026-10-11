@@ -87,7 +87,10 @@
                 "group": "Integrations",
                 "pages": [
                   "api-reference/platform/integrations/list-integrations",
-                  "api-reference/platform/integrations/get-an-integration"
+                  "api-reference/platform/integrations/create-an-integration",
+                  "api-reference/platform/integrations/get-an-integration",
+                  "api-reference/platform/integrations/update-an-integration",
+                  "api-reference/platform/integrations/delete-an-integration"
                 ]
               },
               {

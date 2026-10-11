@@ -624,10 +624,33 @@
                                                 "nullable": true
                                             },
                                             {
-                                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
+                                                "title": "Uptime incident",
+                                                "properties": {
+                                                    "type": {
+                                                        "description": "Type of incident to notify about",
+                                                        "type": "string",
+                                                        "example": "all",
+                                                        "enum": [
+                                                            "all",
+                                                            "monitor",
+                                                            "manual"
+                                                        ]
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
                                             {
-                                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
+                                                "title": "Uptime certificate expiring",
+                                                "properties": {
+                                                    "days_before_expiry": {
+                                                        "description": "Days to notify before the certificate expires",
+                                                        "type": "integer",
+                                                        "example": 25,
+                                                        "maximum": 60,
+                                                        "minimum": 1
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         ]
                                     },
@@ -640,13 +663,69 @@
                                                 "nullable": true
                                             },
                                             {
-                                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
+                                                "title": "Ntfy",
+                                                "properties": {
+                                                    "priority": {
+                                                        "description": "Notification priority level",
+                                                        "type": "string",
+                                                        "example": "default",
+                                                        "enum": [
+                                                            "min",
+                                                            "low",
+                                                            "default",
+                                                            "high",
+                                                            "max"
+                                                        ]
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
                                             {
-                                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
+                                                "title": "Outgoing Webhooks",
+                                                "properties": {
+                                                    "schema": {
+                                                        "description": "JSON schema defining the webhook payload structure",
+                                                        "type": "string",
+                                                        "format": "json",
+                                                        "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}",
+                                                        "maxLength": 5000
+                                                    }
+                                                },
+                                                "type": "object"
                                             },
                                             {
-                                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
+                                                "title": "Pushover",
+                                                "properties": {
+                                                    "priority": {
+                                                        "description": "Notification priority level",
+                                                        "type": "string",
+                                                        "example": "normal",
+                                                        "enum": [
+                                                            "lowest",
+                                                            "low",
+                                                            "normal",
+                                                            "high",
+                                                            "emergency"
+                                                        ]
+                                                    },
+                                                    "retry": {
+                                                        "description": "Retry interval in seconds (required for emergency priority)",
+                                                        "type": "integer",
+                                                        "example": 300,
+                                                        "nullable": true,
+                                                        "maximum": 86400,
+                                                        "minimum": 30
+                                                    },
+                                                    "expire": {
+                                                        "description": "Expiration time in seconds (required for emergency priority)",
+                                                        "type": "integer",
+                                                        "example": 3600,
+                                                        "nullable": true,
+                                                        "maximum": 10800,
+                                                        "minimum": 30
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
                                         ]
                                     }
@@ -794,23 +873,6 @@
                         "description": "Success, alert rule deleted",
                         "content": {}
                     },
-                    "409": {
-                        "description": "Error, alert rule cannot be deleted",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "description": "Conflict error schema",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "This alert rule is used by at least one entity and cannot be deleted."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -875,16 +937,50 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
+                                                "type": "object",
                                                 "properties": {
                                                     "id": {
                                                         "description": "Integration ID",
                                                         "type": "integer",
                                                         "example": 1
                                                     },
+                                                    "app": {
+                                                        "$ref": "#/components/schemas/Platform.App.AppEnum"
+                                                    },
                                                     "name": {
                                                         "description": "Integration name",
                                                         "type": "string",
-                                                        "example": "DevOps Team"
+                                                        "example": "DevOps Team",
+                                                        "maxLength": 50,
+                                                        "minLength": 2
+                                                    },
+                                                    "settings": {
+                                                        "description": "Settings specific to the integration app",
+                                                        "anyOf": [
+                                                            {
+                                                                "title": "Empty",
+                                                                "maxProperties": 0,
+                                                                "type": "object"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.Email.IntegrationSettings"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.Ilert.IntegrationSettings"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.Ntfy.IntegrationSettings"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.IntegrationSettings"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.Pushover.IntegrationSettings"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/Platform.App.Sms.IntegrationSettings"
+                                                            }
+                                                        ]
                                                     },
                                                     "paused": {
                                                         "description": "Integration paused status",
@@ -902,7 +998,9 @@
                                                         "format": "date-time"
                                                     }
                                                 },
-                                                "type": "object"
+                                                "required": [
+                                                    "name"
+                                                ]
                                             }
                                         },
                                         "meta": {
@@ -922,6 +1020,166 @@
                     },
                     "403": {
                         "$ref": "#/components/responses/403"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Create an integration",
+                "description": "Create an integration for a specific app.",
+                "operationId": "createIntegration",
+                "parameters": [
+                    {
+                        "name": "app",
+                        "in": "path",
+                        "description": "The app key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Platform.App.ManageableAppEnum"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Integration request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "Integration name",
+                                        "type": "string",
+                                        "example": "DevOps Team",
+                                        "maxLength": 50,
+                                        "minLength": 2
+                                    },
+                                    "settings": {
+                                        "description": "Settings specific to the integration app",
+                                        "anyOf": [
+                                            {
+                                                "title": "Empty",
+                                                "maxProperties": 0,
+                                                "type": "object"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.Email.IntegrationSettings"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.Ilert.IntegrationSettings"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.Ntfy.IntegrationSettings"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.IntegrationSettings"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.Pushover.IntegrationSettings"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Platform.App.Sms.IntegrationSettings"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, integration created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Integration ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "app": {
+                                            "$ref": "#/components/schemas/Platform.App.AppEnum"
+                                        },
+                                        "name": {
+                                            "description": "Integration name",
+                                            "type": "string",
+                                            "example": "DevOps Team",
+                                            "maxLength": 50,
+                                            "minLength": 2
+                                        },
+                                        "settings": {
+                                            "description": "Settings specific to the integration app",
+                                            "anyOf": [
+                                                {
+                                                    "title": "Empty",
+                                                    "maxProperties": 0,
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Email.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ilert.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ntfy.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Pushover.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Sms.IntegrationSettings"
+                                                }
+                                            ]
+                                        },
+                                        "paused": {
+                                            "description": "Integration paused status",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
                     }
                 }
             }
@@ -966,16 +1224,50 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "type": "object",
                                     "properties": {
                                         "id": {
                                             "description": "Integration ID",
                                             "type": "integer",
                                             "example": 1
                                         },
+                                        "app": {
+                                            "$ref": "#/components/schemas/Platform.App.AppEnum"
+                                        },
                                         "name": {
                                             "description": "Integration name",
                                             "type": "string",
-                                            "example": "DevOps Team"
+                                            "example": "DevOps Team",
+                                            "maxLength": 50,
+                                            "minLength": 2
+                                        },
+                                        "settings": {
+                                            "description": "Settings specific to the integration app",
+                                            "anyOf": [
+                                                {
+                                                    "title": "Empty",
+                                                    "maxProperties": 0,
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Email.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ilert.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ntfy.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Pushover.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Sms.IntegrationSettings"
+                                                }
+                                            ]
                                         },
                                         "paused": {
                                             "description": "Integration paused status",
@@ -991,6 +1283,349 @@
                                             "description": "Date of last update for the entity",
                                             "type": "string",
                                             "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Update an integration",
+                "description": "Update an integration by ID. Slack, Discord and Telegram integrations can not be updated through the API.",
+                "operationId": "updateIntegration",
+                "parameters": [
+                    {
+                        "name": "app",
+                        "in": "path",
+                        "description": "The app key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Platform.App.ManageableAppEnum"
+                        }
+                    },
+                    {
+                        "name": "integrationId",
+                        "in": "path",
+                        "description": "ID of the integration to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Integration request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "Integration name",
+                                        "type": "string",
+                                        "example": "DevOps Team",
+                                        "maxLength": 50,
+                                        "minLength": 2
+                                    },
+                                    "settings": {
+                                        "description": "Settings specific to the integration app",
+                                        "anyOf": [
+                                            {
+                                                "title": "Empty",
+                                                "maxProperties": 0,
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "Email",
+                                                "properties": {
+                                                    "members": {
+                                                        "description": "IDs of the organization members receiving the alerts",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            1,
+                                                            2
+                                                        ],
+                                                        "maxItems": 100,
+                                                        "minItems": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "ilert",
+                                                "properties": {
+                                                    "integration_key": {
+                                                        "description": "ilert alert source integration key",
+                                                        "type": "string",
+                                                        "writeOnly": true,
+                                                        "example": "il1api00000000000000000000000000000000000000",
+                                                        "maxLength": 70,
+                                                        "minLength": 40
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "Ntfy",
+                                                "properties": {
+                                                    "hostname": {
+                                                        "description": "Hostname of the Ntfy server",
+                                                        "type": "string",
+                                                        "example": "ntfy.sh",
+                                                        "maxLength": 100,
+                                                        "minLength": 4
+                                                    },
+                                                    "topic": {
+                                                        "description": "Ntfy topic receiving the alerts",
+                                                        "type": "string",
+                                                        "example": "phare-alerts",
+                                                        "maxLength": 255,
+                                                        "minLength": 1
+                                                    },
+                                                    "access_token": {
+                                                        "description": "Ntfy access token used for authenticated topics",
+                                                        "type": "string",
+                                                        "writeOnly": true,
+                                                        "example": "tk_00000000000000000000000000000",
+                                                        "nullable": true,
+                                                        "maxLength": 32,
+                                                        "minLength": 32
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "Outgoing Webhooks",
+                                                "properties": {
+                                                    "url": {
+                                                        "description": "URL receiving the webhook requests",
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "example": "https://example.com/webhooks/phare",
+                                                        "maxLength": 250
+                                                    },
+                                                    "secret": {
+                                                        "description": "Secret used to sign the webhook requests",
+                                                        "type": "string",
+                                                        "writeOnly": true,
+                                                        "example": "a-very-secure-secret",
+                                                        "maxLength": 250,
+                                                        "minLength": 10
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "Pushover",
+                                                "properties": {
+                                                    "user_key": {
+                                                        "description": "Pushover user or group key",
+                                                        "type": "string",
+                                                        "writeOnly": true,
+                                                        "example": "u00000000000000000000000000000",
+                                                        "maxLength": 30,
+                                                        "minLength": 30
+                                                    },
+                                                    "api_key": {
+                                                        "description": "Pushover application API token",
+                                                        "type": "string",
+                                                        "writeOnly": true,
+                                                        "example": "a00000000000000000000000000000",
+                                                        "maxLength": 30,
+                                                        "minLength": 30
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "title": "SMS",
+                                                "properties": {
+                                                    "members": {
+                                                        "description": "IDs of the organization members receiving the alerts",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            1,
+                                                            2
+                                                        ],
+                                                        "maxItems": 100,
+                                                        "minItems": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, integration updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Integration ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "app": {
+                                            "$ref": "#/components/schemas/Platform.App.AppEnum"
+                                        },
+                                        "name": {
+                                            "description": "Integration name",
+                                            "type": "string",
+                                            "example": "DevOps Team",
+                                            "maxLength": 50,
+                                            "minLength": 2
+                                        },
+                                        "settings": {
+                                            "description": "Settings specific to the integration app",
+                                            "anyOf": [
+                                                {
+                                                    "title": "Empty",
+                                                    "maxProperties": 0,
+                                                    "type": "object"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Email.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ilert.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Ntfy.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Pushover.IntegrationSettings"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/Platform.App.Sms.IntegrationSettings"
+                                                }
+                                            ]
+                                        },
+                                        "paused": {
+                                            "description": "Integration paused status",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Delete an integration",
+                "description": "Delete an integration by ID. Integrations used by alert rules can not be deleted.",
+                "operationId": "deleteIntegration",
+                "parameters": [
+                    {
+                        "name": "app",
+                        "in": "path",
+                        "description": "The app key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Platform.App.AppEnum"
+                        }
+                    },
+                    {
+                        "name": "integrationId",
+                        "in": "path",
+                        "description": "ID of the integration to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, integration deleted",
+                        "content": {}
+                    },
+                    "409": {
+                        "description": "Error, integration cannot be deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Conflict error schema",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "This integration is used by at least one alert rule and cannot be deleted."
                                         }
                                     },
                                     "type": "object"
@@ -10209,6 +10844,45 @@
                 },
                 "type": "object"
             },
+            "Platform.App.Email.IntegrationSettings": {
+                "title": "Email",
+                "required": [
+                    "members"
+                ],
+                "properties": {
+                    "members": {
+                        "description": "IDs of the organization members receiving the alerts",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "example": [
+                            1,
+                            2
+                        ],
+                        "maxItems": 100,
+                        "minItems": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.Ilert.IntegrationSettings": {
+                "title": "ilert",
+                "required": [
+                    "integration_key"
+                ],
+                "properties": {
+                    "integration_key": {
+                        "description": "ilert alert source integration key",
+                        "type": "string",
+                        "writeOnly": true,
+                        "example": "il1api00000000000000000000000000000000000000",
+                        "maxLength": 70,
+                        "minLength": 40
+                    }
+                },
+                "type": "object"
+            },
             "Platform.App.Ntfy.AlertRuleSettings": {
                 "title": "Ntfy",
                 "required": [
@@ -10230,6 +10904,39 @@
                 },
                 "type": "object"
             },
+            "Platform.App.Ntfy.IntegrationSettings": {
+                "title": "Ntfy",
+                "required": [
+                    "hostname",
+                    "topic"
+                ],
+                "properties": {
+                    "hostname": {
+                        "description": "Hostname of the Ntfy server",
+                        "type": "string",
+                        "example": "ntfy.sh",
+                        "maxLength": 100,
+                        "minLength": 4
+                    },
+                    "topic": {
+                        "description": "Ntfy topic receiving the alerts",
+                        "type": "string",
+                        "example": "phare-alerts",
+                        "maxLength": 255,
+                        "minLength": 1
+                    },
+                    "access_token": {
+                        "description": "Ntfy access token used for authenticated topics",
+                        "type": "string",
+                        "writeOnly": true,
+                        "example": "tk_00000000000000000000000000000",
+                        "nullable": true,
+                        "maxLength": 32,
+                        "minLength": 32
+                    }
+                },
+                "type": "object"
+            },
             "Platform.App.OutgoingWebhook.AlertRuleSettings": {
                 "title": "Outgoing Webhooks",
                 "required": [
@@ -10242,6 +10949,31 @@
                         "format": "json",
                         "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}",
                         "maxLength": 5000
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.OutgoingWebhook.IntegrationSettings": {
+                "title": "Outgoing Webhooks",
+                "required": [
+                    "url",
+                    "secret"
+                ],
+                "properties": {
+                    "url": {
+                        "description": "URL receiving the webhook requests",
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://example.com/webhooks/phare",
+                        "maxLength": 250
+                    },
+                    "secret": {
+                        "description": "Secret used to sign the webhook requests",
+                        "type": "string",
+                        "writeOnly": true,
+                        "example": "a-very-secure-secret",
+                        "maxLength": 250,
+                        "minLength": 10
                     }
                 },
                 "type": "object"
@@ -10276,6 +11008,54 @@
                         "nullable": true,
                         "maximum": 10800,
                         "minimum": 30
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.Pushover.IntegrationSettings": {
+                "title": "Pushover",
+                "required": [
+                    "user_key",
+                    "api_key"
+                ],
+                "properties": {
+                    "user_key": {
+                        "description": "Pushover user or group key",
+                        "type": "string",
+                        "writeOnly": true,
+                        "example": "u00000000000000000000000000000",
+                        "maxLength": 30,
+                        "minLength": 30
+                    },
+                    "api_key": {
+                        "description": "Pushover application API token",
+                        "type": "string",
+                        "writeOnly": true,
+                        "example": "a00000000000000000000000000000",
+                        "maxLength": 30,
+                        "minLength": 30
+                    }
+                },
+                "type": "object"
+            },
+            "Platform.App.Sms.IntegrationSettings": {
+                "title": "SMS",
+                "required": [
+                    "members"
+                ],
+                "properties": {
+                    "members": {
+                        "description": "IDs of the organization members receiving the alerts",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "example": [
+                            1,
+                            2
+                        ],
+                        "maxItems": 100,
+                        "minItems": 1
                     }
                 },
                 "type": "object"
@@ -10456,6 +11236,17 @@
                     "pushover",
                     "slack",
                     "telegram"
+                ]
+            },
+            "Platform.App.ManageableAppEnum": {
+                "type": "string",
+                "enum": [
+                    "sms",
+                    "email",
+                    "ilert",
+                    "ntfy",
+                    "outgoing_webhook",
+                    "pushover"
                 ]
             }
         },
