@@ -657,33 +657,10 @@
                                                 ]
                                             },
                                             {
-                                                "title": "Uptime incident",
-                                                "properties": {
-                                                    "type": {
-                                                        "description": "Type of incident to notify about",
-                                                        "type": "string",
-                                                        "example": "all",
-                                                        "enum": [
-                                                            "all",
-                                                            "monitor",
-                                                            "manual"
-                                                        ]
-                                                    }
-                                                },
-                                                "type": "object"
+                                                "$ref": "#/components/schemas/Platform.Event.UptimeIncident.AlertRuleSettings"
                                             },
                                             {
-                                                "title": "Uptime certificate expiring",
-                                                "properties": {
-                                                    "days_before_expiry": {
-                                                        "description": "Days to notify before the certificate expires",
-                                                        "type": "integer",
-                                                        "example": 25,
-                                                        "maximum": 60,
-                                                        "minimum": 1
-                                                    }
-                                                },
-                                                "type": "object"
+                                                "$ref": "#/components/schemas/Platform.Event.UptimeMonitorCertificateExpiring.AlertRuleSettings"
                                             }
                                         ]
                                     },
@@ -698,73 +675,13 @@
                                                 ]
                                             },
                                             {
-                                                "title": "Ntfy",
-                                                "properties": {
-                                                    "priority": {
-                                                        "description": "Notification priority level",
-                                                        "type": "string",
-                                                        "example": "default",
-                                                        "enum": [
-                                                            "min",
-                                                            "low",
-                                                            "default",
-                                                            "high",
-                                                            "max"
-                                                        ]
-                                                    }
-                                                },
-                                                "type": "object"
+                                                "$ref": "#/components/schemas/Platform.App.Ntfy.AlertRuleSettings"
                                             },
                                             {
-                                                "title": "Outgoing Webhooks",
-                                                "properties": {
-                                                    "schema": {
-                                                        "description": "JSON schema defining the webhook payload structure",
-                                                        "type": "string",
-                                                        "format": "json",
-                                                        "example": "{\"id\": \"{{ alert_rule_request.id }}\", \"event\": \"{{ event.key }}\"}",
-                                                        "maxLength": 5000
-                                                    }
-                                                },
-                                                "type": "object"
+                                                "$ref": "#/components/schemas/Platform.App.OutgoingWebhook.AlertRuleSettings"
                                             },
                                             {
-                                                "title": "Pushover",
-                                                "properties": {
-                                                    "priority": {
-                                                        "description": "Notification priority level",
-                                                        "type": "string",
-                                                        "example": "normal",
-                                                        "enum": [
-                                                            "lowest",
-                                                            "low",
-                                                            "normal",
-                                                            "high",
-                                                            "emergency"
-                                                        ]
-                                                    },
-                                                    "retry": {
-                                                        "description": "Retry interval in seconds (required for emergency priority)",
-                                                        "type": [
-                                                            "integer",
-                                                            "null"
-                                                        ],
-                                                        "example": 300,
-                                                        "maximum": 86400,
-                                                        "minimum": 30
-                                                    },
-                                                    "expire": {
-                                                        "description": "Expiration time in seconds (required for emergency priority)",
-                                                        "type": [
-                                                            "integer",
-                                                            "null"
-                                                        ],
-                                                        "example": 3600,
-                                                        "maximum": 10800,
-                                                        "minimum": 30
-                                                    }
-                                                },
-                                                "type": "object"
+                                                "$ref": "#/components/schemas/Platform.App.Pushover.AlertRuleSettings"
                                             }
                                         ]
                                     }
@@ -4110,7 +4027,8 @@
                                                             "null"
                                                         ],
                                                         "example": "Planned database upgrade and maintenance",
-                                                        "maxLength": 2000
+                                                        "maxLength": 2000,
+                                                        "minLength": 1
                                                     },
                                                     "starts_at": {
                                                         "description": "Date and time when the maintenance window starts, with minute precision (seconds must be `00`). Must be within the next year.",
@@ -4133,7 +4051,8 @@
                                                             2,
                                                             3
                                                         ],
-                                                        "maxItems": 100
+                                                        "maxItems": 100,
+                                                        "minItems": 1
                                                     },
                                                     "status_pages": {
                                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4179,7 +4098,8 @@
                                                     "title",
                                                     "monitoring_mode",
                                                     "starts_at",
-                                                    "ends_at"
+                                                    "ends_at",
+                                                    "monitors"
                                                 ]
                                             }
                                         },
@@ -4235,7 +4155,8 @@
                                             "null"
                                         ],
                                         "example": "Planned database upgrade and maintenance",
-                                        "maxLength": 2000
+                                        "maxLength": 2000,
+                                        "minLength": 1
                                     },
                                     "monitoring_mode": {
                                         "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum",
@@ -4262,7 +4183,8 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     },
                                     "status_pages": {
                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4298,7 +4220,8 @@
                                     "title",
                                     "monitoring_mode",
                                     "starts_at",
-                                    "ends_at"
+                                    "ends_at",
+                                    "monitors"
                                 ]
                             }
                         }
@@ -4344,7 +4267,8 @@
                                                 "null"
                                             ],
                                             "example": "Planned database upgrade and maintenance",
-                                            "maxLength": 2000
+                                            "maxLength": 2000,
+                                            "minLength": 1
                                         },
                                         "starts_at": {
                                             "description": "Date and time when the maintenance window starts, with minute precision (seconds must be `00`). Must be within the next year.",
@@ -4367,7 +4291,8 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4413,7 +4338,8 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at"
+                                        "ends_at",
+                                        "monitors"
                                     ]
                                 }
                             }
@@ -4504,7 +4430,8 @@
                                                 "null"
                                             ],
                                             "example": "Planned database upgrade and maintenance",
-                                            "maxLength": 2000
+                                            "maxLength": 2000,
+                                            "minLength": 1
                                         },
                                         "starts_at": {
                                             "description": "Date and time when the maintenance window starts, with minute precision (seconds must be `00`). Must be within the next year.",
@@ -4527,7 +4454,8 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4573,7 +4501,8 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at"
+                                        "ends_at",
+                                        "monitors"
                                     ]
                                 }
                             }
@@ -4636,7 +4565,8 @@
                                             "null"
                                         ],
                                         "example": "Planned database upgrade and maintenance",
-                                        "maxLength": 2000
+                                        "maxLength": 2000,
+                                        "minLength": 1
                                     },
                                     "monitoring_mode": {
                                         "$ref": "#/components/schemas/Uptime.MaintenanceWindow.MonitoringModeEnum",
@@ -4663,7 +4593,8 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100
+                                        "maxItems": 100,
+                                        "minItems": 1
                                     },
                                     "status_pages": {
                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4739,7 +4670,8 @@
                                                 "null"
                                             ],
                                             "example": "Planned database upgrade and maintenance",
-                                            "maxLength": 2000
+                                            "maxLength": 2000,
+                                            "minLength": 1
                                         },
                                         "starts_at": {
                                             "description": "Date and time when the maintenance window starts, with minute precision (seconds must be `00`). Must be within the next year.",
@@ -4762,7 +4694,8 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4808,7 +4741,8 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at"
+                                        "ends_at",
+                                        "monitors"
                                     ]
                                 }
                             }
@@ -4976,7 +4910,8 @@
                                                 "null"
                                             ],
                                             "example": "Planned database upgrade and maintenance",
-                                            "maxLength": 2000
+                                            "maxLength": 2000,
+                                            "minLength": 1
                                         },
                                         "starts_at": {
                                             "description": "Date and time when the maintenance window starts, with minute precision (seconds must be `00`). Must be within the next year.",
@@ -4999,7 +4934,8 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100
+                                            "maxItems": 100,
+                                            "minItems": 1
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -5045,7 +4981,8 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at"
+                                        "ends_at",
+                                        "monitors"
                                     ]
                                 }
                             }
@@ -9337,6 +9274,28 @@
                                     "components",
                                     "timeframe"
                                 ]
+                            },
+                            "encoding": {
+                                "theme": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "components": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "subscription_channels": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "access_ips": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "tags": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                }
                             }
                         },
                         "application/json": {
@@ -11130,6 +11089,28 @@
                                         "maxLength": 500,
                                         "minLength": 8
                                     }
+                                }
+                            },
+                            "encoding": {
+                                "theme": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "components": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "subscription_channels": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "access_ips": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                },
+                                "tags": {
+                                    "style": "deepObject",
+                                    "explode": true
                                 }
                             }
                         },
