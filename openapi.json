@@ -8191,6 +8191,10 @@
                                                                         "type": "string",
                                                                         "example": "#ffffff"
                                                                     },
+                                                                    "border": {
+                                                                        "type": "string",
+                                                                        "example": "#e5e5e5"
+                                                                    },
                                                                     "foreground": {
                                                                         "type": "string",
                                                                         "example": "#000000"
@@ -8236,6 +8240,10 @@
                                                                     "background": {
                                                                         "type": "string",
                                                                         "example": "#111111"
+                                                                    },
+                                                                    "border": {
+                                                                        "type": "string",
+                                                                        "example": "#3f3f46"
                                                                     },
                                                                     "foreground": {
                                                                         "type": "string",
@@ -8559,6 +8567,10 @@
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
+                                                    "border": {
+                                                        "type": "string",
+                                                        "example": "#e5e5e5"
+                                                    },
                                                     "foreground": {
                                                         "type": "string",
                                                         "example": "#000000"
@@ -8604,6 +8616,10 @@
                                                     "background": {
                                                         "type": "string",
                                                         "example": "#111111"
+                                                    },
+                                                    "border": {
+                                                        "type": "string",
+                                                        "example": "#3f3f46"
                                                     },
                                                     "foreground": {
                                                         "type": "string",
@@ -9013,6 +9029,10 @@
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#e5e5e5"
+                                                        },
                                                         "foreground": {
                                                             "type": "string",
                                                             "example": "#000000"
@@ -9058,6 +9078,10 @@
                                                         "background": {
                                                             "type": "string",
                                                             "example": "#111111"
+                                                        },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#3f3f46"
                                                         },
                                                         "foreground": {
                                                             "type": "string",
@@ -9426,6 +9450,10 @@
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#e5e5e5"
+                                                        },
                                                         "foreground": {
                                                             "type": "string",
                                                             "example": "#000000"
@@ -9471,6 +9499,10 @@
                                                         "background": {
                                                             "type": "string",
                                                             "example": "#111111"
+                                                        },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#3f3f46"
                                                         },
                                                         "foreground": {
                                                             "type": "string",
@@ -9804,6 +9836,10 @@
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
+                                                    "border": {
+                                                        "type": "string",
+                                                        "example": "#e5e5e5"
+                                                    },
                                                     "foreground": {
                                                         "type": "string",
                                                         "example": "#000000"
@@ -9849,6 +9885,10 @@
                                                     "background": {
                                                         "type": "string",
                                                         "example": "#111111"
+                                                    },
+                                                    "border": {
+                                                        "type": "string",
+                                                        "example": "#3f3f46"
                                                     },
                                                     "foreground": {
                                                         "type": "string",
@@ -10249,6 +10289,10 @@
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#e5e5e5"
+                                                        },
                                                         "foreground": {
                                                             "type": "string",
                                                             "example": "#000000"
@@ -10294,6 +10338,10 @@
                                                         "background": {
                                                             "type": "string",
                                                             "example": "#111111"
+                                                        },
+                                                        "border": {
+                                                            "type": "string",
+                                                            "example": "#3f3f46"
                                                         },
                                                         "foreground": {
                                                             "type": "string",
