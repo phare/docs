@@ -90,6 +90,10 @@ You can customize the payload that will be sent to your webhook endpoint by defi
 }
 ```
 
+### Placeholder formats
+
+When a placeholder is the only thing in a string, the value keeps its original type: `"{{ monitor.tags }}"` becomes a real JSON array, `"{{ monitor.interval }}"` a number, and empty values `null`. Mixed with other text, the value is inserted as text instead, so `"Tags: {{ monitor.tags }}"` becomes `"Tags: [\"api\",\"production\"]"`.
+
 ### Looping over list of entities
 
 To define a schema for an entity that is part of a list, use `$each` and `$item`. The loop name should match the entity list name you want to iterate, such as `affected_monitors`. In the entity schema, use the `item` variable to access the current item properties.
@@ -169,69 +173,72 @@ Nested loops are not currently supported.
 
 ### Available fields by object
 
+Dates are ISO 8601 strings in UTC, such as `2026-10-17T15:32:48Z`.
+
 <AccordionGroup>
     <Accordion title="incident">
-        | Field | What it means |
-        | :--- | :--- |
-        | `id` | Unique incident ID |
-        | `slug` | Short incident code |
-        | `title` | Incident title |
-        | `description` | Incident description |
-        | `state` | Current state |
-        | `status` | Current status |
-        | `impact` | Impact level |
-        | `tags` | List of associated tags |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Unique incident ID |
+        | `slug` | String | Short incident code |
+        | `title` | String | Incident title |
+        | `description` | String or null | Incident description |
+        | `state` | String | Current state: `unknown`, `investigating`, `identified`, `monitoring`, or `resolved` |
+        | `status` | String | Current status: `ongoing`, `recovering`, or `recovered` |
+        | `impact` | String | Impact level: `unknown`, `operational`, `maintenance`, `degraded_performance`, `partial_outage`, or `major_outage` |
+        | `tags` | Array of strings | Names of associated tags, `[]` when there are none |
     </Accordion>
     <Accordion title="monitor">
-        | Field | What it means |
-        | :--- | :--- |
-        | `id` | Unique monitor ID |
-        | `name` | Monitor name |
-        | `status` | Current status |
-        | `protocol` | Protocol type |
-        | `request` | Request details |
-        | `regions` | Regions used for checks |
-        | `interval` | Check interval (seconds) |
-        | `incident_confirmations` | Confirmations required to open an incident |
-        | `recovery_confirmations` | Confirmations required to resolve an incident |
-        | `tags` | List of associated tags |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Unique monitor ID |
+        | `name` | String | Monitor name |
+        | `status` | String | Current status: `fetching`, `online`, `offline`, `partial`, or `paused` |
+        | `protocol` | String | Protocol type: `http`, `tcp`, or `icmp` |
+        | `request` | Object | Request configuration, which depends on the protocol (for example `method` and `url` for HTTP monitors) |
+        | `regions` | Array of strings | Regions used for checks, such as `["eu-deu-fra"]` |
+        | `interval` | Integer | Check interval (seconds) |
+        | `incident_confirmations` | Integer | Confirmations required to open an incident |
+        | `recovery_confirmations` | Integer | Confirmations required to resolve an incident |
+        | `region_threshold` | Integer | Number of regions that must fail before an incident is confirmed |
+        | `tags` | Array of strings | Names of associated tags, `[]` when there are none |
     </Accordion>
     <Accordion title="project">
-        | Field | What it means |
-        | :--- | :--- |
-        | `id` | Project ID |
-        | `name` | Project name |
-        | `slug` | Project slug |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Project ID |
+        | `name` | String | Project name |
+        | `slug` | String | Project slug |
     </Accordion>
     <Accordion title="certificate">
-        | Field | What it means |
-        | :--- | :--- |
-        | `serial_number` | Certificate serial number |
-        | `subject_common_name` | Common name |
-        | `subject_alternative_names` | Alternative names |
-        | `issuer_common_name` | Issuer name |
-        | `issuer_organization` | Issuer organization |
-        | `not_before` | Valid from |
-        | `not_after` | Valid until |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `serial_number` | String | Certificate serial number, in colon-separated hexadecimal |
+        | `subject_common_name` | String or null | Common name |
+        | `subject_alternative_names` | Array of strings | Alternative names |
+        | `issuer_common_name` | String or null | Issuer name |
+        | `issuer_organization` | String or null | Issuer organization |
+        | `not_before` | Date string | Valid from |
+        | `not_after` | Date string | Valid until |
     </Accordion>
     <Accordion title="comment">
-        | Field | What it means |
-        | :--- | :--- |
-        | `id` | Comment ID |
-        | `content` | Comment content |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Comment ID |
+        | `content` | String | Comment content |
     </Accordion>
     <Accordion title="update">
-        | Field | What it means |
-        | :--- | :--- |
-        | `id` | Update ID |
-        | `state` | Update state |
-        | `content` | Update content |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Update ID |
+        | `state` | String | Update state: `unknown`, `investigating`, `identified`, `monitoring`, or `resolved` |
+        | `content` | String | Update content |
     </Accordion>
     <Accordion title="creator">
-        | Field | What it means |
-        | :--- | :--- |
-        | `type` | Creator type |
-        | `label` | Display label |
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `type` | String | Creator type |
+        | `label` | String | Display label |
     </Accordion>
 </AccordionGroup>
 
@@ -252,19 +259,22 @@ To verify a webhook's authenticity, compute the HMAC-SHA256 of this concatenated
 The version is always `v0` (this will be bumped if the algorithm ever changes). You'll find the timestamp in the `X-Phare-Request-Timestamp` header and the signature in the `X-Phare-Request-Signature` header.
 You can also use `X-Phare-Request-Id` and `X-Phare-Request-Event` to correlate deliveries.
 
+Make sure to use the raw request body, re-serializing parsed JSON can change escaping (like `\/` in URLs) and break the signature.
+
 Here are some code examples to help you implement verification:
 
 <CodeGroup>
 ```javascript Node.js
 const crypto = require('crypto');
+const express = require('express');
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
     const secret = 'your-signing-secret';
     const version = 'v0';
     const timestamp = req.headers['x-phare-request-timestamp'];
     const signature = req.headers['x-phare-request-signature'];
 
-    const payload = version + ':' + timestamp + ':' + JSON.stringify(req.body);
+    const payload = version + ':' + timestamp + ':' + req.body.toString('utf8');
 
     const hash = crypto.createHmac('sha256', secret)
         .update(payload)
