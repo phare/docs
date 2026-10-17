@@ -7908,7 +7908,8 @@
                                         },
                                         "highest_incident_impact": {
                                             "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                            "description": "Highest impact level observed for this monitor in the selected range"
+                                            "description": "Highest impact level observed for this monitor in the selected range",
+                                            "example": "major_outage"
                                         },
                                         "incidents": {
                                             "description": "Incidents that affected this monitor in the selected range",
@@ -8140,7 +8141,8 @@
                                         },
                                         "highest_incident_impact": {
                                             "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                            "description": "Highest impact level observed among incidents in the selected range"
+                                            "description": "Highest impact level observed among incidents in the selected range",
+                                            "example": "major_outage"
                                         },
                                         "report_start_at": {
                                             "description": "Effective start of the generated report window",
@@ -8203,7 +8205,8 @@
                                                     },
                                                     "highest_incident_impact": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                                        "description": "Highest impact level observed for this monitor in the selected range"
+                                                        "description": "Highest impact level observed for this monitor in the selected range",
+                                                        "example": "major_outage"
                                                     },
                                                     "incidents": {
                                                         "description": "Incidents that affected this monitor in the selected range",
