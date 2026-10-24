@@ -1,6 +1,6 @@
 ---
 title: "User management"
-description: "Learn how to manage users and roles in Phare, invite team members, and control project access."
+description: "Learn how to manage users and roles in Phare, invite team members, control project access, and set up single sign-on with your identity provider."
 sidebarTitle: "User management"
 ---
 
@@ -46,3 +46,333 @@ When inviting **Members** to your organization, you can customize which projects
         alt="Project selector"
     />
 </Frame>
+
+## Single sign-on
+
+Single sign-on (SSO) lets your members log in to Phare with the identity provider of your organization. You manage access to Phare in one place, and your security rules, like multi-factor authentication, apply to Phare too.
+
+Phare works with any identity provider supporting [OpenID Connect](https://openid.net/developers/how-connect-works/), like Okta, Microsoft Entra ID, Google Workspace, Auth0, JumpCloud, OneLogin, Keycloak, authentik and ZITADEL.
+
+<Info>
+    Single sign-on is available on the [Scale plan](https://phare.io/pricing). Owners and admins can set it up in the single sign-on section of the <a href="https://app.phare.io/organization/settings#single-sign-on" rel="nofollow">organization settings</a>.
+</Info>
+
+### How it works
+
+Once enabled, single sign-on is required for your whole organization:
+
+- **Admins and members** log in with your identity provider, which now manages their email, password and two-factor authentication.
+- **The owner** keeps their password and two-factor authentication, so they can always log in, even if your identity provider is down.
+- **New members still need an invitation**, Phare never creates accounts automatically.
+
+Existing members are linked to their identity provider account by email on their first login. If their email later changes in your identity provider, Phare updates it on their next login. Linked members show an **SSO** badge in the members list.
+
+### Configure your identity provider
+
+Create an OpenID Connect **web application** in your identity provider (a confidential client using the authorization code flow) with the following settings:
+
+| Setting               | Value                                                                                                                     |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| Redirect URI          | Provided in the form when configuring SSO for your organization, for example `https://app.phare.io/sso/callback/a1B2c3D4` |
+| Scopes                | `openid email profile`                                                                                                    |
+| Client authentication | Client secret basic (`client_secret_basic`)                                                                               |
+
+Your identity provider then gives you the **issuer URL**, **client ID** and **client secret** needed by Phare. Select your identity provider below for step-by-step instructions.
+
+<AccordionGroup>
+    <Accordion title="Okta">
+        1. In the Okta Admin Console, go to **Applications** > **Applications** (**Applications and Resources** > **Applications** on recent Okta organizations) and click **Create App Integration**. If Okta asks you to choose an experience, choose **Classic experience**.
+        2. Choose the **OIDC - OpenID Connect** sign-in method and the **Web Application** type, then click **Next**.
+        3. Enter a name, keep **Authorization Code** as the only grant type, and paste the redirect URI in **Sign-in redirect URIs**.
+        4. Under **Assignments**, choose **Limit access to selected groups**, select the groups allowed to use Phare, then click **Save**.
+        5. In the **General** tab, keep **Client secret** as client authentication, then copy the **Client ID** and **Client secret**.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: your Okta domain, for example `https://your-organization.okta.com`. If you use a custom authorization server, enter its issuer instead, for example `https://your-organization.okta.com/oauth2/default`.
+        - **Client ID** and **Client secret**: the ones copied in step 5.
+
+        Make sure to use your Okta domain, not the `-admin` domain of the Admin Console. Users not assigned to the application can't log in, you can assign more in its **Assignments** tab.
+
+        Learn more in the [Okta documentation](https://help.okta.com/oie/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm).
+    </Accordion>
+
+    <Accordion title="Microsoft Entra ID">
+        1. In the Microsoft Entra admin center, go to **Entra ID** > **App registrations** and click **New registration**.
+        2. Enter a name and choose the single tenant account type (**Accounts in this organizational directory only** or **Single tenant only**, depending on your tenant). Under **Redirect URI**, choose the **Web** platform, paste the redirect URI and click **Register**.
+        3. In the **Overview** page, copy the **Application (client) ID** and the **Directory (tenant) ID**.
+        4. In **Certificates & secrets**, click **New client secret**, choose an expiration and click **Add**. Copy the secret **Value**, it is only shown once. The **Secret ID** doesn't work with Phare.
+        5. In **API permissions**, click **Grant admin consent for** your tenant, so members don't see a consent screen on their first login.
+        6. To restrict access, open the application in **Enterprise apps**, set **Assignment required?** to **Yes** in **Properties**, then assign the users or groups allowed to use Phare in **Users and groups**.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: `https://login.microsoftonline.com/<tenant-id>/v2.0`, with the **Directory (tenant) ID** copied in step 3.
+        - **Client ID**: the **Application (client) ID** copied in step 3.
+        - **Client secret**: the secret **Value** copied in step 4.
+
+        Make sure to use your tenant ID in the issuer URL, not your domain name. Multi-tenant endpoints (`common`, `organizations` and `consumers`) don't work with Phare.
+
+        Phare uses the **Email** property of your users, not their user principal name. Users without a mailbox may not have one, you can add it in the contact information of their profile.
+
+        Client secrets expire after 24 months at most, create a new one and update it in Phare before it expires.
+
+        Learn more in the [Microsoft documentation](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
+    </Accordion>
+
+    <Accordion title="Google Workspace">
+        1. In the Google Cloud console, select or create a project in your Google Workspace organization, and open **Google Auth Platform**.
+        2. If Google Auth Platform is not configured yet, click **Get started**. Enter an app name and a support email, choose the **Internal** audience so only accounts of your Google Workspace can log in, and complete the setup.
+        3. In **Clients**, click **Create client** and choose the **Web application** type. Paste the redirect URI in **Authorized redirect URIs**, then click **Create**.
+        4. Copy the **Client ID** and **Client secret**, the client secret is only shown once.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: `https://accounts.google.com`
+        - **Client ID** and **Client secret**: the ones copied in step 4.
+
+        Google can take up to a few hours to apply a new redirect URI, and deletes clients unused for six months.
+
+        Learn more in the [Google documentation](https://support.google.com/cloud/answer/15549257).
+    </Accordion>
+
+    <Accordion title="Auth0">
+        1. In the Auth0 Dashboard, go to **Applications** > **Applications** and click **Create Application**. Choose **Regular Web Applications** and click **Create**.
+        2. In the **Settings** tab, paste the redirect URI in **Allowed Callback URLs** and click **Save Changes**. Copy the **Domain**, **Client ID** and **Client Secret**.
+        3. In the **Credentials** tab, choose the **Client Secret (Basic)** authentication method and click **Save**. New applications use **Client Secret (Post)** by default, which doesn't work with Phare.
+        4. In the **Settings** tab, open **Advanced Settings** > **OAuth** and make sure the **JSON Web Token (JWT) Signature Algorithm** is **RS256**.
+        5. To restrict access, only enable the connections used by your members in the **Connections** tab.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: the **Domain** copied in step 2, for example `https://your-tenant.us.auth0.com/`, or your custom domain, for example `https://login.example.com/`.
+        - **Client ID** and **Client secret**: the ones copied in step 2.
+
+        Phare refuses unverified emails, make sure your Auth0 database users clicked their verification link. You can send it again from **User Management** > **Users**.
+
+        If you use the Auth0 Management API or Terraform, set the `regular_web` application type, the `RS256` signature algorithm and the `client_secret_basic` authentication method, as the default values don't work with Phare.
+
+        Learn more in the [Auth0 documentation](https://auth0.com/docs/get-started/auth0-overview/create-applications/regular-web-apps).
+    </Accordion>
+
+    <Accordion title="JumpCloud">
+        1. In the JumpCloud Admin Portal, go to **Access** > **SSO Applications** and click **Add New Application**.
+        2. Choose **Custom Application**, then select **Manage Single Sign-On (SSO)** and **Configure SSO with OIDC**. Enter a display label and click **Configure Application**.
+        3. In the **SSO** tab:
+           - Paste the redirect URI in **Redirect URIs**.
+           - Choose **Client Secret Basic** as **Client Authentication Type**.
+           - Enter `https://app.phare.io/login#sso` as **Login URL**.
+           - In **Attribute Mapping**, check the **Email** and **Profile** standard scopes.
+        4. Click **Activate**, then copy the **Client ID** and **Client Secret**, the client secret is only shown once.
+        5. In the **User Groups** tab, select the groups allowed to use Phare and click **Save**.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: `https://oauth.id.jumpcloud.com/`. If your JumpCloud organization is hosted in the EU, use `https://oauth.id.eu.jumpcloud.com/`, and in India `https://oauth.id.in.jumpcloud.com/`.
+        - **Client ID** and **Client secret**: the ones copied in step 4.
+
+        Learn more in the [JumpCloud documentation](https://jumpcloud.com/support/sso-with-oidc).
+    </Accordion>
+
+    <Accordion title="OneLogin">
+        1. In the OneLogin admin portal, go to **Applications** > **Applications** and click **Add App**.
+        2. Search for **OpenId Connect (OIDC)**, select it, enter a display name and click **Save**.
+        3. In the **Configuration** tab, paste the redirect URI in **Redirect URI's**, optionally enter `https://app.phare.io/login#sso` as **Login Url**, and click **Save**.
+        4. In the **SSO** tab, choose the **Web** application type and the **Basic** token endpoint authentication method, then click **Save**. Copy the **Client ID** and the client secret, using **Show client secret**.
+        5. In the **Access** tab, select the roles allowed to use Phare and click **Save**.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: the issuer URL shown in the **SSO** tab, for example `https://your-organization.onelogin.com/oidc/2`.
+        - **Client ID** and **Client secret**: the ones copied in step 4.
+
+        Make sure the issuer URL ends with `/oidc/2`, not `/oidc`. OneLogin can take up to 10 minutes to apply a new redirect URI.
+
+        Learn more in the [OneLogin documentation](https://developers.onelogin.com/docs/openid-connect/connect-to-onelogin/).
+    </Accordion>
+
+    <Accordion title="Keycloak">
+        1. In the Keycloak admin console, select your realm and go to **Clients** > **Create client**.
+        2. In **General settings**, keep the **OpenID Connect** client type, enter a client ID such as `phare`, and click **Next**.
+        3. In **Capability config**, turn **Client authentication** on, keep **Standard flow** checked, and click **Next**.
+        4. In **Login settings**, paste the redirect URI in **Valid redirect URIs** and click **Save**.
+        5. In the **Credentials** tab, keep the **Client Id and Secret** client authenticator and copy the **Client Secret**.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: `https://keycloak.example.com/realms/<realm>`, or `https://keycloak.example.com/auth/realms/<realm>` for Keycloak versions older than 17.
+        - **Client ID** and **Client secret**: the ones from steps 2 and 5.
+
+        Phare refuses unverified emails, and users created in the Keycloak admin console are unverified by default. Turn **Email verified** on in their profile, or enable **Verify email** in the **Login** tab of the realm settings.
+
+        Keycloak must be publicly reachable over https on port 443, with its `hostname` option set to its public URL, and proxy headers enabled behind a reverse proxy.
+
+        Keycloak can't restrict access to a client, use a dedicated realm to restrict who can log in to Phare.
+
+        Learn more in the [Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-creating-oidc-client_server_administration_guide).
+    </Accordion>
+
+    <Accordion title="authentik">
+        1. In the authentik admin interface, go to **Applications** > **Applications** and create an application with a new provider: **Create with Provider**, or **New Application** > **with New Provider** since authentik 2026.5.
+        2. Enter a name, copy the **Slug** of the application, then choose the **OAuth2/OpenID Connect** provider type.
+        3. In the provider settings:
+           - Keep the **Confidential** client type, then copy the **Client ID** and **Client Secret**.
+           - Paste the redirect URI in **Redirect URIs/Origins**, with the **Strict** matching mode.
+           - Select an RSA **Signing Key**, such as **authentik Self-signed Certificate**. Without a signing key, authentik signs ID tokens with HS256, which doesn't work with Phare.
+        4. To restrict access, bind the users or groups allowed to use Phare. Then create the application.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: `https://authentik.example.com/application/o/<slug>/`, with the slug copied in step 2.
+        - **Client ID** and **Client secret**: the ones copied in step 3.
+
+        Phare refuses unverified emails, and since authentik 2025.10 the default email mapping reports every email as unverified. If the emails of your users are verified, create a **Scope Mapping** in **Customization** > **Property Mappings**, with `email` as scope name and the following expression:
+
+        ```python
+        return {
+            "email": request.user.email,
+            "email_verified": True,
+        }
+        ```
+
+        Then, in the **Advanced protocol settings** of the provider, replace the default email mapping with your new mapping in **Scopes**.
+
+        authentik must be publicly reachable over https on port 443, with the default issuer mode. Behind a reverse proxy, forward the `Host` and `X-Forwarded-Proto` headers.
+
+        Learn more in the [authentik documentation](https://docs.goauthentik.io/add-secure-apps/providers/oauth2/create-oauth2-provider/).
+    </Accordion>
+
+    <Accordion title="ZITADEL">
+        1. In the ZITADEL console, go to **Projects** and create a project for Phare, or select an existing project.
+        2. In the **Applications** of the project, click **New**. Enter a name, choose the **Web** type and click **Continue**.
+        3. Choose the **Code** authentication method and click **Continue**.
+        4. Paste the redirect URI in **Redirect URIs**, keep **Development Mode** off, then click **Continue** and **Create**.
+        5. Copy the **Client ID** and **Client Secret**, the client secret is only shown once.
+        6. In the **Token settings** of the application, enable **Include user's profile info in the ID Token** (**User Info inside ID Token** on older versions) and click **Save**. Without it, ZITADEL doesn't share the email of your users with Phare.
+
+        Then enter in Phare:
+
+        - **Issuer URL**: the domain of your instance, for example `https://your-instance.zitadel.cloud`, or your custom domain.
+        - **Client ID** and **Client secret**: the ones copied in step 5.
+
+        To restrict access, enable **Check authorization on Authentication** (**Only authorized users can authenticate** on recent versions) in the project settings, and grant a project role to the users allowed to use Phare.
+
+        If you host ZITADEL yourself, it must be publicly reachable over https on port 443, with its external domain, port and secure settings matching its public URL.
+
+        Learn more in the [ZITADEL documentation](https://zitadel.com/docs/guides/manage/console/applications).
+    </Accordion>
+
+    <Accordion title="Other providers">
+        Any OpenID Connect identity provider publishing its configuration at `<issuer>/.well-known/openid-configuration` works with Phare. Your identity provider must:
+
+        - Be publicly reachable over https on port 443, without redirects. Identity providers only available on a private network or behind a VPN don't work with Phare.
+        - Accept the `client_secret_basic` client authentication method.
+        - Sign ID tokens with RS256, RS384, RS512, ES256 or ES384.
+        - Include the `email` claim in the ID token. Phare only reads the ID token, not the userinfo endpoint.
+        - Not report the email as unverified. Phare refuses emails with an `email_verified` claim set to `false`.
+    </Accordion>
+</AccordionGroup>
+
+### Enable single sign-on
+
+<Steps>
+    <Step title="Enter the configuration">
+        In the single sign-on section of the <a href="https://app.phare.io/organization/settings#single-sign-on" rel="nofollow">organization settings</a>, click **Set up**. Then enter the issuer URL, client ID and client secret of your application.
+    </Step>
+    <Step title="Save & test">
+        Click **Save & test**, then log in to your identity provider with the account matching your Phare email.
+    </Step>
+    <Step title="Done">
+        Single sign-on is enabled once the test login succeeds. A wrong configuration is never saved, so it can't lock out your members.
+    </Step>
+</Steps>
+
+<Warning>
+    Enabling single sign-on logs out every member except the owner and yourself.
+</Warning>
+
+### Logging in
+
+Members click **Log in with single sign-on** on the login page, or open the <a href="https://app.phare.io/login#sso" rel="nofollow">single sign-on login page</a> directly, then enter their work email to continue with your identity provider.
+
+Members trying to log in with a password or to reset it are asked to use single sign-on instead.
+
+<Tip>
+    Once their account is linked, the owner can log in with both single sign-on and their Phare password. Phare skips its two-factor authentication on single sign-on logins, as your identity provider handles it.
+</Tip>
+
+### Joining with an invitation
+
+New members accept their invitation with **Continue with single sign-on**, using the identity provider account matching their invitation email.
+
+### Changing the configuration
+
+To update the configuration, click **Edit** in the single sign-on section, then **Save & test**. Leave the client secret empty to keep the current one, it is stored encrypted and never shown again.
+
+Changing the issuer URL or the client ID, for example to move to another identity provider, logs out every member except the owner and yourself. Members are then linked again by email on their next login. Updating only the client secret doesn't log out anyone.
+
+### Removing single sign-on
+
+To remove single sign-on, click **Edit** then **Remove** in the single sign-on section. Members are logged out and log in with their password again. Members who joined with single sign-on have no password yet, they can create one with the <a href="https://app.phare.io/forgot-password" rel="nofollow">forgot password</a> page.
+
+<Note>
+    Single sign-on keeps working if your organization leaves the Scale plan. The configuration can't be updated anymore, but it can still be removed.
+</Note>
+
+### Security
+
+The organization owner receives an email when single sign-on is enabled, removed, or connected to another identity provider, with the admin who made the change, their IP address and browser. If the change is unexpected, review your single sign-on settings and contact [support@phare.io](mailto:support@phare.io).
+
+Phare uses the authorization code flow with PKCE, verifies the signature, issuer, audience, nonce and expiration of every ID token, and refuses unverified emails.
+
+### Troubleshooting
+
+<AccordionGroup>
+    <Accordion title="Single sign-on is not configured for this email">
+        This email doesn't belong to a member of an organization using single sign-on. If you are the owner, log in with your password, or link your account by running **Save & test** yourself.
+    </Accordion>
+
+    <Accordion title="No Phare account matches this email">
+        Ask an admin of your organization for an invitation. If you are already a member, make sure your identity provider email matches your Phare email.
+    </Accordion>
+
+    <Accordion title="Your identity provider signed you in as another account">
+        Log out of your identity provider, or use a private window, then log in with the account matching your Phare email.
+    </Accordion>
+
+    <Accordion title="Your identity provider did not share your email address">
+        Make sure the `email` scope is allowed for the application, and that the account has an email in your identity provider. On Microsoft Entra ID, set the **Email** property of the user. On ZITADEL, enable **Include user's profile info in the ID Token** in the token settings of the application.
+    </Accordion>
+
+    <Accordion title="Your identity provider reports this email as unverified">
+        Verify the email in your identity provider and try again. On Keycloak, turn **Email verified** on in the profile of the user. On Auth0, the user must click the verification link sent by Auth0. On authentik 2025.10 and later, replace the default email mapping as explained in the [authentik instructions](#configure-your-identity-provider).
+    </Accordion>
+
+    <Accordion title="Your identity provider refused to complete the sign-in">
+        Make sure the client ID and client secret are correct, and that the application uses the `client_secret_basic` authentication method: **Client Secret (Basic)** on Auth0, **Client Secret Basic** on JumpCloud, **Basic** on OneLogin and **Code** on ZITADEL. On Microsoft Entra ID, make sure you use the **Value** of the client secret, not its secret ID, and that it hasn't expired.
+    </Accordion>
+
+    <Accordion title="The ID token returned by your identity provider could not be verified">
+        Phare only accepts ID tokens signed with RS256, RS384, RS512, ES256 or ES384. On authentik, select an RSA **Signing Key** in the provider settings. On Auth0, make sure the signature algorithm of the application is **RS256**.
+    </Accordion>
+
+    <Accordion title="Your identity provider shows a redirect URI error">
+        Make sure the redirect URI in your identity provider exactly matches the one shown in the single sign-on section of Phare. Some identity providers, such as Google and OneLogin, can take a few minutes to apply a new redirect URI.
+    </Accordion>
+
+    <Accordion title="The issuer returned by your provider is different">
+        Use the issuer URL shown in the error message, it must exactly match the issuer published by your identity provider.
+    </Accordion>
+
+    <Accordion title="Your identity provider must be publicly reachable">
+        Phare must reach your identity provider over https on port 443, from the internet. Identity providers on a private network or behind a VPN don't work with Phare.
+    </Accordion>
+
+    <Accordion title="Your Phare account is linked to another account of your identity provider">
+        This usually happens when your identity provider account was deleted and created again. Contact [support@phare.io](mailto:support@phare.io) to reset your single sign-on link.
+    </Accordion>
+
+    <Accordion title="Your single sign-on attempt expired">
+        Logins must be completed within 10 minutes. Start again from the login page.
+    </Accordion>
+</AccordionGroup>
