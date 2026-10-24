@@ -5079,6 +5079,17 @@
                                                         "maxLength": 45,
                                                         "minLength": 2
                                                     },
+                                                    "display_name": {
+                                                        "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "example": "Website",
+                                                        "default": null,
+                                                        "maxLength": 45,
+                                                        "minLength": 2
+                                                    },
                                                     "protocol": {
                                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum",
                                                         "description": "Monitoring protocol"
@@ -5517,6 +5528,17 @@
                                         "maxLength": 45,
                                         "minLength": 2
                                     },
+                                    "display_name": {
+                                        "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "Website",
+                                        "default": null,
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
                                     "protocol": {
                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum",
                                         "description": "Monitoring protocol"
@@ -5933,6 +5955,17 @@
                                             "description": "Monitor name",
                                             "type": "string",
                                             "example": "Website",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "display_name": {
+                                            "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Website",
+                                            "default": null,
                                             "maxLength": 45,
                                             "minLength": 2
                                         },
@@ -6418,6 +6451,17 @@
                                             "maxLength": 45,
                                             "minLength": 2
                                         },
+                                        "display_name": {
+                                            "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Website",
+                                            "default": null,
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
                                         "protocol": {
                                             "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum",
                                             "description": "Monitoring protocol"
@@ -6863,6 +6907,17 @@
                                         "maxLength": 45,
                                         "minLength": 2
                                     },
+                                    "display_name": {
+                                        "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "Website",
+                                        "default": null,
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
                                     "protocol": {
                                         "$ref": "#/components/schemas/Uptime.Monitor.ProtocolEnum",
                                         "description": "Monitoring protocol"
@@ -7273,6 +7328,17 @@
                                             "description": "Monitor name",
                                             "type": "string",
                                             "example": "Website",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "display_name": {
+                                            "description": "Public name of the monitor on status pages, defaults to the monitor name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Website",
+                                            "default": null,
                                             "maxLength": 45,
                                             "minLength": 2
                                         },
@@ -8620,17 +8686,6 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
-                                                                        },
-                                                                        "display_name": {
-                                                                            "description": "Custom display name of the monitor on the status page",
-                                                                            "type": [
-                                                                                "string",
-                                                                                "null"
-                                                                            ],
-                                                                            "example": "Main Website",
-                                                                            "default": null,
-                                                                            "maxLength": 45,
-                                                                            "minLength": 1
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -8679,17 +8734,6 @@
                                                                                     "componentable_id": {
                                                                                         "description": "ID of the monitor to show",
                                                                                         "type": "integer"
-                                                                                    },
-                                                                                    "display_name": {
-                                                                                        "description": "Custom display name of the monitor on the status page",
-                                                                                        "type": [
-                                                                                            "string",
-                                                                                            "null"
-                                                                                        ],
-                                                                                        "example": "Main Website",
-                                                                                        "default": null,
-                                                                                        "maxLength": 45,
-                                                                                        "minLength": 1
                                                                                     }
                                                                                 },
                                                                                 "type": "object"
@@ -9023,17 +9067,6 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
-                                                        },
-                                                        "display_name": {
-                                                            "description": "Custom display name of the monitor on the status page",
-                                                            "type": [
-                                                                "string",
-                                                                "null"
-                                                            ],
-                                                            "example": "Main Website",
-                                                            "default": null,
-                                                            "maxLength": 45,
-                                                            "minLength": 1
                                                         }
                                                     },
                                                     "type": "object"
@@ -9082,17 +9115,6 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
-                                                                    },
-                                                                    "display_name": {
-                                                                        "description": "Custom display name of the monitor on the status page",
-                                                                        "type": [
-                                                                            "string",
-                                                                            "null"
-                                                                        ],
-                                                                        "example": "Main Website",
-                                                                        "default": null,
-                                                                        "maxLength": 45,
-                                                                        "minLength": 1
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -9504,17 +9526,6 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
-                                                        },
-                                                        "display_name": {
-                                                            "description": "Custom display name of the monitor on the status page",
-                                                            "type": [
-                                                                "string",
-                                                                "null"
-                                                            ],
-                                                            "example": "Main Website",
-                                                            "default": null,
-                                                            "maxLength": 45,
-                                                            "minLength": 1
                                                         }
                                                     },
                                                     "type": "object"
@@ -9563,17 +9574,6 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
-                                                                    },
-                                                                    "display_name": {
-                                                                        "description": "Custom display name of the monitor on the status page",
-                                                                        "type": [
-                                                                            "string",
-                                                                            "null"
-                                                                        ],
-                                                                        "example": "Main Website",
-                                                                        "default": null,
-                                                                        "maxLength": 45,
-                                                                        "minLength": 1
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -9994,17 +9994,6 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
-                                                            },
-                                                            "display_name": {
-                                                                "description": "Custom display name of the monitor on the status page",
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ],
-                                                                "example": "Main Website",
-                                                                "default": null,
-                                                                "maxLength": 45,
-                                                                "minLength": 1
                                                             }
                                                         },
                                                         "type": "object"
@@ -10053,17 +10042,6 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
-                                                                        },
-                                                                        "display_name": {
-                                                                            "description": "Custom display name of the monitor on the status page",
-                                                                            "type": [
-                                                                                "string",
-                                                                                "null"
-                                                                            ],
-                                                                            "example": "Main Website",
-                                                                            "default": null,
-                                                                            "maxLength": 45,
-                                                                            "minLength": 1
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -10439,17 +10417,6 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
-                                                            },
-                                                            "display_name": {
-                                                                "description": "Custom display name of the monitor on the status page",
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ],
-                                                                "example": "Main Website",
-                                                                "default": null,
-                                                                "maxLength": 45,
-                                                                "minLength": 1
                                                             }
                                                         },
                                                         "type": "object"
@@ -10498,17 +10465,6 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
-                                                                        },
-                                                                        "display_name": {
-                                                                            "description": "Custom display name of the monitor on the status page",
-                                                                            "type": [
-                                                                                "string",
-                                                                                "null"
-                                                                            ],
-                                                                            "example": "Main Website",
-                                                                            "default": null,
-                                                                            "maxLength": 45,
-                                                                            "minLength": 1
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -10849,17 +10805,6 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
-                                                        },
-                                                        "display_name": {
-                                                            "description": "Custom display name of the monitor on the status page",
-                                                            "type": [
-                                                                "string",
-                                                                "null"
-                                                            ],
-                                                            "example": "Main Website",
-                                                            "default": null,
-                                                            "maxLength": 45,
-                                                            "minLength": 1
                                                         }
                                                     },
                                                     "type": "object"
@@ -10908,17 +10853,6 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
-                                                                    },
-                                                                    "display_name": {
-                                                                        "description": "Custom display name of the monitor on the status page",
-                                                                        "type": [
-                                                                            "string",
-                                                                            "null"
-                                                                        ],
-                                                                        "example": "Main Website",
-                                                                        "default": null,
-                                                                        "maxLength": 45,
-                                                                        "minLength": 1
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -11320,17 +11254,6 @@
                                                         "componentable_id": {
                                                             "description": "ID of the monitor to show",
                                                             "type": "integer"
-                                                        },
-                                                        "display_name": {
-                                                            "description": "Custom display name of the monitor on the status page",
-                                                            "type": [
-                                                                "string",
-                                                                "null"
-                                                            ],
-                                                            "example": "Main Website",
-                                                            "default": null,
-                                                            "maxLength": 45,
-                                                            "minLength": 1
                                                         }
                                                     },
                                                     "type": "object"
@@ -11379,17 +11302,6 @@
                                                                     "componentable_id": {
                                                                         "description": "ID of the monitor to show",
                                                                         "type": "integer"
-                                                                    },
-                                                                    "display_name": {
-                                                                        "description": "Custom display name of the monitor on the status page",
-                                                                        "type": [
-                                                                            "string",
-                                                                            "null"
-                                                                        ],
-                                                                        "example": "Main Website",
-                                                                        "default": null,
-                                                                        "maxLength": 45,
-                                                                        "minLength": 1
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -11800,17 +11712,6 @@
                                                             "componentable_id": {
                                                                 "description": "ID of the monitor to show",
                                                                 "type": "integer"
-                                                            },
-                                                            "display_name": {
-                                                                "description": "Custom display name of the monitor on the status page",
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ],
-                                                                "example": "Main Website",
-                                                                "default": null,
-                                                                "maxLength": 45,
-                                                                "minLength": 1
                                                             }
                                                         },
                                                         "type": "object"
@@ -11859,17 +11760,6 @@
                                                                         "componentable_id": {
                                                                             "description": "ID of the monitor to show",
                                                                             "type": "integer"
-                                                                        },
-                                                                        "display_name": {
-                                                                            "description": "Custom display name of the monitor on the status page",
-                                                                            "type": [
-                                                                                "string",
-                                                                                "null"
-                                                                            ],
-                                                                            "example": "Main Website",
-                                                                            "default": null,
-                                                                            "maxLength": 45,
-                                                                            "minLength": 1
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -12090,7 +11980,7 @@
                                                                 "example": 1
                                                             },
                                                             "name": {
-                                                                "description": "Monitor name, or its custom display name on the status page",
+                                                                "description": "Monitor display name, or its name when none is set",
                                                                 "type": "string",
                                                                 "example": "Website",
                                                                 "maxLength": 45,
@@ -12167,7 +12057,7 @@
                                                                             "example": 1
                                                                         },
                                                                         "name": {
-                                                                            "description": "Monitor name, or its custom display name on the status page",
+                                                                            "description": "Monitor display name, or its name when none is set",
                                                                             "type": "string",
                                                                             "example": "Website",
                                                                             "maxLength": 45,
