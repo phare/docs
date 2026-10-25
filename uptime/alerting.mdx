@@ -30,6 +30,13 @@ Think of alert rules as your notification command center. Each rule defines four
 
 Additional settings can be configured depending on the event type and integration you choose.
 
+<Frame>
+    <img
+        src="/images/uptime/alerting/alert-rule-create.avif"
+        alt="Event, scope, rate limit and integration of an alert rule"
+    />
+</Frame>
+
 ## Events
 
 Phare can alert you of various events, each with its own configuration options and use cases. You choose which events matter most to your organization and can set up multiple alert rules for a single event type.
@@ -45,7 +52,7 @@ Phare can alert you of various events, each with its own configuration options a
 
 | Event | API format | Description |
 | :--- | :--- | :--- |
-| Monitor certificate updated | `uptime.monitor_certificate.discovered` | Sent when a monitor's SSL certificate is updated, useful for tracking changes and certificate renewal confirmation. |
+| Monitor certificate discovered | `uptime.monitor_certificate.discovered` | Sent when a new SSL certificate is discovered on a monitor, useful for tracking changes and certificate renewal confirmation. |
 | Monitor certificate expiring | `uptime.monitor_certificate.expiring` | Sent when a monitor's SSL certificate is nearing expiration, based on a configurable threshold. |
 
 ### Incident Events
@@ -83,3 +90,10 @@ Too many notifications can lead to alert fatigue. That's why Phare lets you set 
 ## Notification channels
 
 Connect any [integration](/integrations/overview) to your alert rules to receive notifications through your preferred channels. Create as many alert rules as you need, customizing each one to get the right balance of information without overwhelming recipients.
+
+<Frame>
+    <img
+        src="/images/uptime/alerting/alert-rules-list.avif"
+        alt="Alert rules data-table with their integration, scope and rate limit"
+    />
+</Frame>

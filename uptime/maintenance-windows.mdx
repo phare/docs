@@ -10,7 +10,14 @@ Phare's maintenance windows let you plan ahead, choose exactly how monitoring sh
 
 ## Scheduling a maintenance window
 
-Every maintenance window requires a start and end date. Once created, it's immediately shown on linked status pages and communicated to your users. You can modify the start date right up until the window begins; once it's in progress, you can cancel it or mark it as completed early. If you don't make any manual changes, Phare will automatically mark it as completed when the end date arrives.
+Every maintenance window requires a start and end date. Once created, it's immediately shown on linked status pages and communicated to your users. You can modify the start date right up until the window begins. Once it's in progress, you can extend its end date, cancel it or mark it as completed early. If you don't make any manual changes, Phare will automatically mark it as completed when the end date arrives.
+
+<Frame>
+    <img
+        src="/images/uptime/maintenance-windows/maintenance-window-schedule.avif"
+        alt="Title, description, start and end time of a maintenance window"
+    />
+</Frame>
 
 <Tip>
     Dates and times automatically use your account's local timezone, so there's no need to do mental UTC math when scheduling.
@@ -21,6 +28,13 @@ Every maintenance window requires a start and end date. Once created, it's immed
 Depending on your SLA and the type of maintenance being performed, you might want monitoring completely turned off, or just watch requests flow in without blowing up your notification channels.
 
 Phare gives you three modes to handle checks and alerts:
+
+<Frame>
+    <img
+        src="/images/uptime/maintenance-windows/maintenance-window-monitoring-mode.avif"
+        alt="Affected monitors and monitoring mode of a maintenance window"
+    />
+</Frame>
 
 ### Pause monitoring
 
@@ -38,7 +52,7 @@ When a maintenance window starts in **Pause** monitoring mode, Phare stops all a
 In **Mute** mode, Phare keeps checking your endpoints as usual in the background, but silences all alert notifications.
 
 - **Live telemetry**: Response times, status codes, and latency charts keep updating in real time.
-- **Quiet incidents**: If an endpoint fails or throws errors during maintenance, an incident is tracked internally, but no alert rules fire (no Slack pings, Discord alerts, SMS, or emails).
+- **Quiet incidents**: If an endpoint fails or throws errors during maintenance, an incident is tracked internally, but its alerts are not sent (no Slack pings, Discord alerts, SMS, or emails) when all the monitors of the incident are in the maintenance window. Other alerts, like certificate expiration, are still sent.
 - **Instant verification**: You can see immediately when services come back up and start returning 200 OK (or whatever HTTP code you configured on your monitor).
 
 <Tip>
@@ -56,15 +70,29 @@ Use this mode for non-disruptive maintenance, like warming up background worker 
 Maintenance windows manage themselves so you don't have to keep an eye on the clock:
 
 - **Scheduled**: Planned for the future. Upcoming notices appear on connected status pages.
-- **In progress**: The window has started. Monitors are paused or muted, status pages show an active maintenance banner, and your team gets notified if configured.
+- **In progress**: The window has started. Monitors are paused or muted depending on the monitoring mode, status pages show an active maintenance banner, and your team gets notified if configured.
 - **Completed**: Everything's back to normal. Paused monitors resume automatically and status pages return to operational.
 - **Cancelled**: Called off before or during maintenance. Any paused monitors are immediately restored.
 
 Phare automatically transitions windows to **In progress** when the start time arrives, and marks them **Completed** when the end time passes.
 
+<Frame>
+    <img
+        src="/images/uptime/maintenance-windows/maintenance-windows-list.avif"
+        alt="Maintenance windows data-table with their state"
+    />
+</Frame>
+
 ### Early completion & Cancellation
 
-Finished early? You can hit **Complete** from the dashboard at any time to wrap up the window, resume your monitors, and update your status pages immediately. If the maintenance isn't needed anymore, **Cancel** will stop the process and let your users know.
+Finished early? While the window is in progress, you can hit **Complete** from the dashboard to wrap up the window, resume your monitors, and update your status pages immediately. If the maintenance isn't needed anymore, **Cancel** will stop the process and let your users know.
+
+<Frame>
+    <img
+        src="/images/uptime/maintenance-windows/maintenance-window-details.avif"
+        alt="Maintenance window in progress with the Complete and Cancel buttons"
+    />
+</Frame>
 
 ## Status page communication
 
@@ -74,6 +102,13 @@ When you link a maintenance window to a status page, Phare handles external comm
 - **Active maintenance status**: While maintenance is underway, the status page displays a prominent banner and sets the overall component status to **Maintenance** (unless a real outage takes precedence).
 - **Timeline markers**: Maintenance periods are highlighted on component uptime bars so visitors know downtime was planned.
 - **Subscriber feeds**: Maintenance announcements are automatically broadcast across RSS, ATOM, and Slack feeds.
+
+<Frame>
+    <img
+        src="/images/uptime/maintenance-windows/status-page-maintenance.avif"
+        alt="Status page with a maintenance in progress and two scheduled maintenance windows"
+    />
+</Frame>
 
 ## Tags
 

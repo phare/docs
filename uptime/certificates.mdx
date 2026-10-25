@@ -15,15 +15,45 @@ Phare integrates certificate discovery directly into the monitoring system for a
 - Certificates are linked to all relevant monitors
 - New certificates are identified and added to your inventory as they appear
 
+<Frame>
+    <img
+        src="/images/uptime/certificates/certificates-list.avif"
+        alt="Certificates data-table with their expiration and status"
+    />
+</Frame>
+
 ## Certificate monitoring
 
 Keep track of your SSL/TLS certificates with these helpful features:
 
-- **Automatic notifications** when new certificates are discovered on your domains
+- **Notifications** when new certificates are discovered on your monitors, with an alert rule on the **Monitor certificate discovered** event
 - **Customizable expiration alerts** that can be set anywhere from 1 to 60 days before expiry
 - **Complete certificate inventory** showing both active and historical certificates
 - **Detailed certificate information** including issuer, validity period, and domain coverage
 
+Each certificate has a status:
+
+- **In use**: The certificate was seen by a monitor in the last 2 hours
+- **Expiring**: The certificate is in use and expires in less than 30 days
+- **Expired**: The certificate is in use and has expired
+- **Retired**: No monitor has seen the certificate in the last 2 hours, for example after a renewal
+
+<Frame>
+    <img
+        src="/images/uptime/certificates/certificate-details.avif"
+        alt="Issuer, subject and validity period of a certificate"
+    />
+</Frame>
+
 ## Preventing certificate expiration issues
 
 With Phare's certificate monitoring, you can avoid the security warnings and outages that occur when certificates expire unexpectedly. Set a preferred notification schedule to get reminders when it's time to renew, or when certbot fails to renew certificates.
+
+Each alert rule on the **Monitor certificate expiring** event sends one reminder, the chosen number of days before the expiration. Create several alert rules, for example 30 and 7 days before, to get several reminders.
+
+<Frame>
+    <img
+        src="/images/uptime/certificates/certificate-expiring-alert-rule.avif"
+        alt="Alert rule sent 14 days before a certificate expires"
+    />
+</Frame>

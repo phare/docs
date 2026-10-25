@@ -31,7 +31,7 @@ Phare keeps it simple with three roles: **Owner**, **Admin**, and **Member**. Ea
 - **Member**: Members have complete access to their assigned projects and can create new projects. They can also invite new members to join the organization, helping your team grow organically.
 
 <Frame>
-    <img src="/images/user-management/invite-user.webp" alt="Invite members" />
+    <img src="/images/user-management/invite-user.avif" alt="Invite members" />
 </Frame>
 
 ## Accessing projects
@@ -42,7 +42,7 @@ When inviting **Members** to your organization, you can customize which projects
 
 <Frame>
     <img
-        src="/images/user-management/project-selector.webp"
+        src="/images/user-management/project-selector.avif"
         alt="Project selector"
     />
 </Frame>
@@ -66,6 +66,13 @@ Once enabled, single sign-on is required for your whole organization:
 - **New members still need an invitation**, Phare never creates accounts automatically.
 
 Existing members are linked to their identity provider account by email on their first login. If their email later changes in your identity provider, Phare updates it on their next login. Linked members show an **SSO** badge in the members list.
+
+<Frame>
+    <img
+        src="/images/user-management/members-sso.avif"
+        alt="Members list with a member linked to the identity provider"
+    />
+</Frame>
 
 ### Configure your identity provider
 
@@ -287,6 +294,13 @@ Your identity provider then gives you the **issuer URL**, **client ID** and **cl
     </Step>
 </Steps>
 
+<Frame>
+    <img
+        src="/images/user-management/sso-configuration.avif"
+        alt="Redirect URI, issuer URL, client ID and client secret of the single sign-on configuration"
+    />
+</Frame>
+
 <Warning>
     Enabling single sign-on logs out every member except the owner and yourself.
 </Warning>
@@ -294,6 +308,13 @@ Your identity provider then gives you the **issuer URL**, **client ID** and **cl
 ### Logging in
 
 Members click **Log in with single sign-on** on the login page, or open the <a href="https://app.phare.io/login#sso" rel="nofollow">single sign-on login page</a> directly, then enter their work email to continue with your identity provider.
+
+<Frame>
+    <img
+        src="/images/user-management/sso-login.avif"
+        alt="Single sign-on login page asking for the work email"
+    />
+</Frame>
 
 Members trying to log in with a password or to reset it are asked to use single sign-on instead.
 
@@ -305,7 +326,21 @@ Members trying to log in with a password or to reset it are asked to use single 
 
 New members accept their invitation with **Continue with single sign-on**, using the identity provider account matching their invitation email.
 
+<Frame>
+    <img
+        src="/images/user-management/sso-accept-invite.avif"
+        alt="Invitation to join an organization using single sign-on"
+    />
+</Frame>
+
 ### Changing the configuration
+
+<Frame>
+    <img
+        src="/images/user-management/sso-settings.avif"
+        alt="Single sign-on section of the organization settings with the Edit button"
+    />
+</Frame>
 
 To update the configuration, click **Edit** in the single sign-on section, then **Save & test**. Leave the client secret empty to keep the current one, it is stored encrypted and never shown again.
 
