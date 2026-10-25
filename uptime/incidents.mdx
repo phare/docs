@@ -12,6 +12,13 @@ When a monitor detects trouble (respecting your confirmation settings and any ke
 
 Programmatic incidents track the entire lifecycle from detection through resolution, giving you a complete picture of what happened during the outage.
 
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-details.avif"
+        alt="Details of the failed request of an incident"
+    />
+</Frame>
+
 ## Manual incidents
 
 Sometimes you need to create an incident even when your monitors haven't detected a problem. Issues from services you're not actively monitoring, or that can't be monitored by an uptime agent.
@@ -22,6 +29,13 @@ Phare makes it easy to create incidents manually:
 2. Set the impact level
 3. Add a descriptive title
 4. Include details about the situation
+
+<Frame>
+    <img
+        src="/images/uptime/incidents/manual-incident-create.avif"
+        alt="Impact and affected monitors of a manual incident"
+    />
+</Frame>
 
 Manual incidents follow the same lifecycle as programmatic ones, but you'll need to resolve them manually when the issue is fixed. This gives you full control over the incident's duration and communication timeline.
 
@@ -34,12 +48,21 @@ When your service recovers (again, respecting your recovery confirmation setting
 Not all incidents are created equal. That's why Phare lets you classify incidents by their impact level:
 
 - **Unknown**: Still investigating, not sure how bad it is
-- **Operational**: False alarm. Everything's working as expected
+- **Maintenance**: The service is unavailable because of planned work
 - **Degraded performance**: Things are slower / working less well than usual
 - **Partial outage**: Some users are affected or certain features are down
 - **Major outage**: Everything is on fire, users can't access the service or are severely impacted
 
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-impact.avif"
+        alt="Edit the impact of an incident"
+    />
+</Frame>
+
 Impact levels help prioritize responses internally and keep users informed through status pages. If left as "unknown," status pages will simply show the monitor as "down" without additional details.
+
+An incident can also be excluded from downtime calculations, for example when the downtime is already part of your SLA. Excluded incidents are not counted in the downtime shown in your dashboard and on status pages.
 
 ## Tags
 
@@ -49,7 +72,7 @@ Incidents can be organized with [tags](/uptime/monitors#tags), such as `environm
 
 <Frame>
     <img
-        src="/images/uptime/incidents/incident-timeline.webp"
+        src="/images/uptime/incidents/incident-timeline.avif"
         alt="Incident event timeline"
     />
 </Frame>
@@ -69,11 +92,18 @@ The rich text editor supports Markdown, making it easy to include formatted text
 
 Each comment is timestamped and attributed to its author, creating a clear record of who did what during incident response.
 
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-comment.avif"
+        alt="Add a comment to an incident"
+    />
+</Frame>
+
 ## Incident updates
 
 <Frame>
     <img
-        src="/images/uptime/incidents/uptime-status-pages-publish-update.webp"
+        src="/images/uptime/incidents/incident-publish-update.avif"
         alt="Publish an incident update"
     />
 </Frame>
@@ -85,7 +115,7 @@ While comments help private collaboration, incident updates are designed for ext
 - When they can expect resolution
 - Workarounds they can use in the meantime
 
-Each update allows you to communicate progress as you mitigate the issue and is automatically published to connected status pages, helping maintain transparency with users during outages.
+Each update allows you to communicate progress as you mitigate the issue and is automatically published to connected status pages, helping maintain transparency with users during outages. Each update has a state (investigating, identified, monitoring or resolved) and a publication time.
 
 Consistent, clear communication during incidents builds trust. Users appreciate knowing the situation is under control even when things aren't working perfectly.
 
@@ -99,7 +129,7 @@ Smart incident merging can be configured per-project, allowing you to tailor the
 
 <Frame>
     <img
-        src="/images/uptime/incidents/incident-merging-configuration.webp"
+        src="/images/uptime/incidents/incident-merging-configuration.avif"
         alt="Smart Incident merging project settings"
     />
 </Frame>
@@ -111,6 +141,13 @@ Smart incident merging can be configured per-project, allowing you to tailor the
 Only incidents belonging to the same project can be merged together. When a new incident is created, even before confirmation, Phare checks for any existing open incidents in the project that share the same reported issue. If it finds one within the configured time window, it merges the new incident into the existing one.
 
 This approach, even though simple, provides fast and reliable results for most incident scenarios.
+
+<Frame>
+    <img
+        src="/images/uptime/incidents/incident-merged-timeline.avif"
+        alt="Timeline of an incident merged across two monitors"
+    />
+</Frame>
 
 ### Dedicated alert rule events
 
@@ -133,7 +170,7 @@ Incident AI can be activated per-project, allowing compliance with different dat
 
 <Frame>
     <img
-        src="/images/uptime/incidents/incident-ai-configuration.webp"
+        src="/images/uptime/incidents/incident-ai-configuration.avif"
         alt="Incident AI project settings"
     />
 </Frame>
@@ -146,8 +183,8 @@ Each AI generation consumes one credit from your plan's monthly allowance. When 
 
 <Frame>
     <img
-        src="/images/uptime/incidents/incident-ai-generations.webp"
-        alt="Incident AI project settings"
+        src="/images/uptime/incidents/incident-ai-generations.avif"
+        alt="AI post-mortem report of an incident"
     />
 </Frame>
 

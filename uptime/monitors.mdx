@@ -23,6 +23,13 @@ Monitors are the backbone of Phare Uptime. They are tireless digital assistants 
 
 When monitoring websites, Phare sends HTTP(s) requests and checks both the status code and (optionally) looks for specific text in the response. If HTTPS is used, Phare automatically keeps an eye on your SSL certificates too, making sure they're valid and well-configured.
 
+<Frame>
+    <img
+        src="/images/uptime/monitors/http-request.avif"
+        alt="HTTP(s) monitor request settings"
+    />
+</Frame>
+
 You can find more details about the [HTTP(s) monitoring settings](#configuration-options-for-https) below.
 
 ### Method
@@ -35,6 +42,13 @@ When creating HTTP monitors, you can choose which method to use for your request
 - **OPTIONS**: For checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
 
 When sending a request body with the POST, PUT or PATCH methods, a `Content-Type` header of your choice will be added automatically. You are free to change it if needed.
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/http-request-body.avif"
+        alt="POST request with a JSON body"
+    />
+</Frame>
 
 ### Skip SSL verification
 
@@ -65,6 +79,13 @@ Need to get past authentication or test an API with specific requirements? Phare
 - Setting content negotiation preferences
 - Adding custom tracking identifiers
 
+<Frame>
+    <img
+        src="/images/uptime/monitors/http-advanced-options.avif"
+        alt="Follow redirects, user agent secret and headers settings"
+    />
+</Frame>
+
 <Info>
     To prevent abuse, it is not possible to set a custom `User-Agent` header, with the exception of adding a secret value for firewall filtering.
 </Info>
@@ -73,7 +94,7 @@ Need to get past authentication or test an API with specific requirements? Phare
 
 <Frame>
     <img
-        src="/images/uptime/monitors/success-assertions.webp"
+        src="/images/uptime/monitors/success-assertions.avif"
         alt="Phare Uptime success assertions"
     />
 </Frame>
@@ -96,6 +117,15 @@ For services beyond websites, TCP monitoring establishes a direct connection to 
 
 Phare supports plain and TLS connections for TCP monitoring. You can choose the appropriate option based on your service requirements.
 
+With a TLS connection, you can skip TLS verification to accept any certificate, even if misconfigured, expired or self-signed.
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/tcp-request.avif"
+        alt="TCP monitor request settings"
+    />
+</Frame>
+
 ## ICMP
 
 For servers, network appliances, and infrastructure, ICMP ping monitoring sends standard Internet Control Message Protocol (ICMP) echo requests (ping) to verify host reachability and measure network latency.
@@ -110,13 +140,33 @@ When setting up an ICMP monitor, specify the target hostname or IP address to pi
 
 You decide how often Phare checks your endpoints. The default is every minute, but you can adjust the frequency to suit your needs, anywhere between 30 seconds and 1 hour.
 
+## Timeout
+
+A check fails when your service does not respond within the request timeout. The default is 20 seconds, but you can set it anywhere between 1 and 30 seconds. For HTTP monitors, the timeout includes any redirections.
+
 ## Confirmations & recovery
 
-Nobody likes false alarms. That's why Phare allows extra checks before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is two confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
+Nobody likes false alarms. That's why Phare allows extra checks before creating an incident. A service is only marked as down (or recovered) after a configurable number of consecutive failures (or successes). The default is three confirmations, but you can set this anywhere from one (immediate alerts) to five checks.
+
+When a monitor uses several regions, the region threshold sets how many regions must fail at the same time before an incident is confirmed. It can be set from one up to the number of selected regions.
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/confirmations.avif"
+        alt="Incident confirmations, recovery confirmations and region threshold settings"
+    />
+</Frame>
 
 ## Regions
 
 With 12 monitoring regions worldwide, Phare lets you check your services from different parts of the globe. **It is strongly recommended to use at least two regions**, this helps avoid false positives and keeps monitoring resilient even if one region experiences issues.
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/scheduling.avif"
+        alt="Monitoring interval and regions settings"
+    />
+</Frame>
 
 ### Region list
 
@@ -138,7 +188,6 @@ Region API codes follow the format `<continent>-<country>-<iata>`.
 | 🇫🇷 France | Paris | `eu-fra-cdg` |
 | 🇬🇧 United Kingdom | London | `eu-gbr-lhr` |
 | 🇸🇪 Sweden | Stockholm | `eu-swe-arn` |
-| 🇳🇱 Netherlands | Amsterdam | `ng-nld-ams` |
 
 #### North America
 
@@ -164,6 +213,13 @@ Region API codes follow the format `<continent>-<country>-<iata>`.
 
 Monitors can be organized with tags, such as `environment:production` or `server:main`, shared across your whole organization. Use the **Tags** filter on the monitors data-table, or the `tag` parameter of the [list monitors](/api-reference/uptime/monitors/list-monitors) API endpoint, to find related monitors.
 
+<Frame>
+    <img
+        src="/images/uptime/monitors/monitor-tags-filter.avif"
+        alt="Tags filter on the monitors data-table"
+    />
+</Frame>
+
 ## Alert rules
 
 Phare's alert rules system allows you to decide which events trigger notifications. There are a few alert events that can be raised by monitors. The full list is in the [alerting documentation](/uptime/alerting).
@@ -172,7 +228,7 @@ Phare's alert rules system allows you to decide which events trigger notificatio
 
 <Frame>
     <img
-        src="/images/uptime/monitors/uptime-monitor-suggestions.webp"
+        src="/images/uptime/monitors/uptime-monitor-suggestions.avif"
         alt="Phare Uptime monitoring suggestions"
     />
 </Frame>
@@ -180,15 +236,14 @@ Phare's alert rules system allows you to decide which events trigger notificatio
 As you set up your monitors, Phare's suggestion system analyzes your configuration and offers improvements to boost reliability and reduce false positives:
 
 - Adding more monitoring regions for better global coverage
-- Increasing confirmation counts to prevent false positives
+- Increasing incident and recovery confirmations to prevent false positives
 - Alerting you to redirections that might impact performance reporting
-- Recommending more frequent checks for critical services
 
 ## Statistics
 
 <Frame>
     <img
-        src="/images/uptime/monitors/uptime-monitoring-statistics.webp"
+        src="/images/uptime/monitors/uptime-monitoring-statistics.avif"
         alt="Phare Uptime monitoring statistics"
     />
 </Frame>

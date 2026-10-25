@@ -25,7 +25,7 @@ Create as many status pages as your projects need, there's no limit. Pick which 
 
 <Frame>
     <img
-        src="/images/uptime/status-pages/status-pages-creation.webp"
+        src="/images/uptime/status-pages/status-pages-creation.avif"
         alt="Status page creation"
     />
 </Frame>
@@ -43,6 +43,13 @@ Want your status page on your own domain? Simply create a CNAME record in your D
 | CNAME | status.example.com | cname.status.phare.io |
 
 Make sure your DNS is configured correctly so Phare can generate a valid SSL certificate. This usually takes a few minutes. Once verified, your Phare domain will automatically redirect to your custom domain.
+
+<Frame>
+    <img
+        src="/images/uptime/status-pages/status-page-domain.avif"
+        alt="Phare subdomain and custom domain settings"
+    />
+</Frame>
 
 ### Custom domain with Cloudflare DNS
 
@@ -97,7 +104,7 @@ Since Phare also uses Bunny.net as a DNS and certificate provider, there's an ex
 
 <Frame>
     <img
-        src="/images/uptime/status-pages/verify-failed-status-page-domain.webp"
+        src="/images/uptime/status-pages/verify-failed-status-page-domain.avif"
         alt="Verify failed status page domain"
     />
 </Frame>
@@ -137,6 +144,13 @@ Each monitor on a status page displays an availability history with one bar per 
 
 Each status page has a timezone, `UTC` by default, that can be changed in the status page settings. The timezone is used to split the availability history into days and to display all dates on the status page, including incidents, maintenance windows, and the RSS, Atom and Slack [feeds](#subscription). Choosing the timezone of your main audience ensures an incident happening late in the evening is shown on the day your users experienced it.
 
+<Frame>
+    <img
+        src="/images/uptime/status-pages/status-page-timeframe-timezone.avif"
+        alt="Status page timeframe and timezone settings"
+    />
+</Frame>
+
 ## Monitor groups
 
 <Frame>
@@ -152,6 +166,13 @@ To keep status pages organized and readable, you can group multiple monitors int
 
 You can assign a custom display name to any monitor to show a user-friendly label on your public status page without having to rename the underlying monitor in your dashboard.
 
+<Frame>
+    <img
+        src="/images/uptime/status-pages/monitor-display-name.avif"
+        alt="Monitor name and display name settings"
+    />
+</Frame>
+
 ## Tags
 
 Status pages can be organized with [tags](/uptime/monitors#tags), such as `environment:production` or `customer:acme`, shared across your whole organization. Use the **Tags** filter on the status pages data-table, or the `tag` parameter of the [list status pages](/api-reference/uptime/status-pages/list-status-pages) API endpoint, to find the status pages you need.
@@ -159,6 +180,13 @@ Status pages can be organized with [tags](/uptime/monitors#tags), such as `envir
 ## Subscription
 
 Your users can stay informed about your service's status with automatic update subscriptions. Phare status pages come with built-in RSS and ATOM feeds, allowing for easy integration with various platforms.
+
+<Frame>
+    <img
+        src="/images/uptime/status-pages/status-page-subscribe.avif"
+        alt="Status page subscription menu"
+    />
+</Frame>
 
 ### RSS and ATOM feeds
 
@@ -252,13 +280,20 @@ When a browser visits a URL with a valid token, a session cookie is set automati
 
 When a password is configured, visitors are prompted with a login screen before they can view the status page. This works well for internal pages shared with team members or customers.
 
+<Frame>
+    <img
+        src="/images/uptime/status-pages/status-page-login.avif"
+        alt="Status page login screen"
+    />
+</Frame>
+
 ## Status badges
 
 Once your status page is live, you get access to status badges you can proudly display on your website or repository. They're a great way to show transparency and confidence in your service reliability. Access them through your status page's action menu.
 
 <Frame>
     <img
-        src="/images/uptime/status-pages/status-badges-menu.webp"
+        src="/images/uptime/status-pages/status-badges-menu.avif"
         alt="Status badges menu"
     />
 </Frame>
@@ -277,7 +312,7 @@ Colors accept standard hex formats (RGB, RGBA, RRGGBB, or RRGGBBAA). Not feeling
 
 <Frame>
     <img
-        src="/images/uptime/status-pages/embed-status-badge.webp"
+        src="/images/uptime/status-pages/embed-status-badge.avif"
         alt="Embed status badges"
     />
 </Frame>
@@ -288,7 +323,7 @@ These are the classic badges you see in GitHub repositories. Perfect for your RE
 
 <Frame>
     <img
-        src="/images/uptime/status-pages/shield-status-badge.webp"
+        src="/images/uptime/status-pages/shield-status-badge.avif"
         alt="Shield status badges"
     />
 </Frame>
