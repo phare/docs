@@ -5,7 +5,7 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
-<Update label="October 2026">
+<Update label="Oct 25, 2026" id="single-sign-on" tags={["Account"]} rss={{ title: "Single sign-on", date: "2026-10-25" }}>
     ## Single sign-on
 
     <Frame>
@@ -15,9 +15,9 @@ rss: true
     You can now let your members log in to Phare with the identity provider of your organization through OpenID Connect. Single sign-on is available on the Scale plan, and works with Okta, Microsoft Entra ID, Google Workspace, Auth0, JumpCloud, OneLogin, Keycloak, authentik, ZITADEL and any other OpenID Connect identity provider.
 
     Check out the [single sign-on documentation](/user-management#single-sign-on) to set it up with your identity provider.
+</Update>
 
-    <br/>
-
+<Update label="Oct 11, 2026" id="new-api-endpoints-for-integration-management" tags={["API", "Integrations"]} rss={{ title: "New API endpoints for integration management", date: "2026-10-11" }}>
     ## New API endpoints for integration management
 
     Three new API endpoints are now available to manage your integrations directly through the API:
@@ -29,9 +29,9 @@ rss: true
     Email, ilert, ntfy, outgoing webhook, Pushover and SMS integrations are supported. Slack, Discord and Telegram integrations require an authorization step in your browser or on your device, so they can only be created from the dashboard.
 
     Check out the [Phare API documentation](/api-reference/introduction) for all available endpoints.
+</Update>
 
-    <br/>
-
+<Update label="Oct 10, 2026" id="status-page-timezone" tags={["Status pages"]} rss={{ title: "Status page timezone", date: "2026-10-10" }}>
     ## Status page timezone
 
     <Frame>
@@ -41,9 +41,9 @@ rss: true
     You can now choose the timezone of each status page in its settings. Status pages used to split the availability history into days using UTC, while some dates were displayed in the visitor's timezone, which was confusing and could make incidents appear on a different day than expected.
 
     The selected timezone is now used consistently on RSS / ATOM / Slack feed as well as the status page homepage and incident report page.
+</Update>
 
-    <br/>
-
+<Update label="Oct 9, 2026" id="granular-incidents-on-status-pages" tags={["Status pages"]} rss={{ title: "Granular incidents on status pages", date: "2026-10-09" }}>
     ## Granular incidents on status pages
 
     <Frame>
@@ -51,9 +51,9 @@ rss: true
     </Frame>
 
     The status page availability history has been improved to show incidents more accurately. Instead of coloring the entire daily bar as soon as an incident occurs, each day now displays a marker for its incidents, colored by their impact level. A short degraded performance episode no longer looks like a full day of outage, giving your users a more faithful picture of your service reliability.
+</Update>
 
-    <br/>
-
+<Update label="Oct 6, 2026" id="tags" tags={["Dashboard"]} rss={{ title: "Tags", date: "2026-10-06" }}>
     ## Tags
 
     <Frame>
@@ -65,7 +65,7 @@ rss: true
     On the dashboard, data-tables now include a **Tags** filter that lets you combine multiple tags to narrow down results. Tags can also be used to filter resources through the API, and are sent in webhooks.
 </Update>
 
-<Update label="September 2026">
+<Update label="Sep 30, 2026" id="icmp-monitoring" tags={["Monitors"]} rss={{ title: "ICMP monitoring", date: "2026-09-30" }}>
     ## ICMP monitoring
 
     <Frame>
@@ -73,9 +73,9 @@ rss: true
     </Frame>
 
     You can now create ICMP monitors to track the availability and latency of your servers, network devices, and infrastructure using ICMP echo requests (ping). Unlike HTTP(S) and TCP checks that require open ports or running services, ICMP checks allow you to monitor host reachability and network health with minimal overhead.
+</Update>
 
-    <br/>
-
+<Update label="Sep 28, 2026" id="quantile-based-monitoring-charts" tags={["Monitors"]} rss={{ title: "Quantile-based monitoring charts", date: "2026-09-28" }}>
     ## Quantile-based monitoring charts
 
     <Frame>
@@ -85,9 +85,9 @@ rss: true
     Monitor response time charts now display quantile-based data with **P75**, **P90**, and **P99** percentiles.
 
     While averages can obscure transient latency spikes, quantile distributions give you an accurate view of latency and real-world performance, making it easier to pinpoint intermittent slowdowns and performance degradation.
+</Update>
 
-    <br/>
-
+<Update label="Sep 28, 2026" id="redesigned-billing-and-monitor-quota-estimation" tags={["Account"]} rss={{ title: "Redesigned billing and monitor quota estimation", date: "2026-09-28" }}>
     ## Redesigned billing and monitor quota estimation
 
     <Frame>
@@ -101,9 +101,9 @@ rss: true
     </Frame>
 
     Additionally, the create and edit monitor pages now show a clear estimate of the monitoring events quota required by your monitor configuration. This makes it easy to understand the quota impact of your check interval and selected regions before saving changes.
+</Update>
 
-    <br/>
-
+<Update label="Sep 13, 2026" id="monitor-display-names-on-status-pages" tags={["Status pages"]} rss={{ title: "Monitor display names on status pages", date: "2026-09-13" }}>
     <Frame>
         <img src="/images/changelog/131-status-page-display-name.avif" alt="Status page monitor display name" />
     </Frame>
@@ -111,15 +111,15 @@ rss: true
     ## Monitor display names on status pages
 
     You can now define a custom **Display name** for each monitor on your status page, allowing you to have technical internal monitor name while keeping your status page user friendly.
+</Update>
 
-    <br/>
-
+<Update label="Sep 13, 2026" id="hide-response-times-on-status-pages" tags={["Status pages"]} rss={{ title: "Hide response times on status pages", date: "2026-09-13" }}>
     ## Hide response times on status pages
 
     Status pages display the 75th percentile (P75) response time over the last 7 days next to each monitor by default. You can now toggle off **Response times** in your status page settings to hide them completely.
 </Update>
 
-<Update label="August 2026">
+<Update label="Aug 30, 2026" id="scheduled-maintenance-windows" tags={["Monitors", "Status pages"]} rss={{ title: "Scheduled maintenance windows", date: "2026-08-30" }}>
     <Frame>
         <img src="/images/changelog/130-maintenance-windows.avif" alt="Status page component groups" />
     </Frame>
@@ -138,7 +138,7 @@ rss: true
     Explore the new [maintenance windows feature](/uptime/maintenance-windows) to learn more.
 </Update>
 
-<Update label="July 2026">
+<Update label="Jul 30, 2026" id="status-pages-component-groups" tags={["Status pages"]} rss={{ title: "Status pages component groups", date: "2026-07-30" }}>
     <Frame>
         <img src="/images/changelog/129-status-page-component-groups.avif" alt="Status page component groups" />
     </Frame>
@@ -152,7 +152,7 @@ rss: true
     Read the [status pages documentation](/uptime/status-pages) to learn more.
 </Update>
 
-<Update label="June 2026">
+<Update label="Jun 12, 2026" id="data-processing-agreement-dpa" tags={["Account"]} rss={{ title: "Data processing agreement (DPA)", date: "2026-06-12" }}>
     ## Data processing agreement (DPA)
 
     A formal Data Processing Agreement (DPA) is now publicly available to help customers meet GDPR compliance requirements when using Phare without having to submit a formal request.
@@ -160,7 +160,7 @@ rss: true
     Read the full [Data Processing Agreement](https://phare.io/legal/data-processing-agreement) to learn more.
 </Update>
 
-<Update label="May 2026">
+<Update label="May 17, 2026" id="private-status-pages" tags={["Status pages"]} rss={{ title: "Private status pages", date: "2026-05-17" }}>
     <Frame>
         <img src="/images/changelog/128-private-status-pages.avif" alt="Private status pages" />
     </Frame>
@@ -182,9 +182,9 @@ rss: true
     Visitors are prompted with a login screen before they can view the page. Simple and effective for internal pages shared with team members or customers.
 
     Read the [status pages access controls documentation](/uptime/status-pages#access-control) to learn more.
+</Update>
 
-    <br/>
-
+<Update label="May 3, 2026" id="ordering" tags={["Dashboard"]} rss={{ title: "Ordering", date: "2026-05-03" }}>
     <Frame>
         <img src="/images/changelog/127-ordering.avif" alt="Ordering datatables" />
     </Frame>
@@ -194,9 +194,9 @@ rss: true
     It is now possible to order all data-tables on your Phare dashboard.
 
     Order incidents by recovery date, monitors alphabetically, certificates by expiration dates, combined with filtering and text search this allows you to display the data you need for your workflow.
+</Update>
 
-    <br/>
-
+<Update label="May 3, 2026" id="updated-ai-model" tags={["Incidents"]} rss={{ title: "Updated AI model", date: "2026-05-03" }}>
     <Frame>
         <img src="/images/changelog/126-mistral-small-4.avif" alt="Mistral Small 4 model" />
     </Frame>
@@ -208,7 +208,7 @@ rss: true
     Mistral Small offers better performance, lower costs, optimized underlying architecture and a jump from 24B to 119B tokens.
 </Update>
 
-<Update label="April 2026">
+<Update label="Apr 6, 2026" id="partial-api-updates" tags={["API"]} rss={{ title: "Partial API updates", date: "2026-04-06" }}>
     <Frame>
         <img src="/images/changelog/125-partial-api-update.avif" alt="Partial API updates" />
     </Frame>
@@ -218,9 +218,9 @@ rss: true
     The [update monitor](/api-reference/uptime/monitors/update-a-monitor) and [update incident](/api-reference/uptime/incidents/update-an-incident) endpoints now accepts partial update. This means you can update only the fields you want to change, leaving the rest unchanged and making the API more practical to use.
 
     Support for more entities will be added in the near future, until all update endpoints support partial payloads.
+</Update>
 
-    <br/>
-
+<Update label="Apr 6, 2026" id="monitor-region-threshold" tags={["Monitors"]} rss={{ title: "Monitor region threshold", date: "2026-04-06" }}>
     <Frame>
         <img src="/images/changelog/124-region-threshold.avif" alt="Custom region threshold" />
     </Frame>
@@ -230,7 +230,7 @@ rss: true
     Monitor can now individually configure in how many regions they must be detected as down to trigger an incident. This allow you to fine tune your incident detection strategy to your specific needs.
 </Update>
 
-<Update label="March 2026">
+<Update label="Mar 27, 2026" id="support-for-dark-and-light-status-page-branding" tags={["Status pages"]} rss={{ title: "Support for dark & light status page branding", date: "2026-03-27" }}>
     <Frame>
         <img src="/images/changelog/123-dark-light-logo.avif" alt="Support for dark and light status page logo" />
     </Frame>
@@ -238,9 +238,9 @@ rss: true
     ## Support for dark & light status page branding
 
     It is now possible to show different logos and favicons on your status page depending on the theme shown.
+</Update>
 
-    <br/>
-
+<Update label="Mar 16, 2026" id="upgraded-ilert-integration" tags={["Integrations"]} rss={{ title: "Upgraded ilert integration", date: "2026-03-16" }}>
     <Frame>
         <img src="/images/changelog/122-upgraded-ilert.avif" alt="List of available ilert alert rules" />
     </Frame>
@@ -256,9 +256,9 @@ rss: true
     - Monitor certificate expiring
 
     Checkout the full [ilert documentation](/integrations/ilert) to get started.
+</Update>
 
-    <br/>
-
+<Update label="Mar 16, 2026" id="single-region-failure-detection" tags={["Monitors"]} rss={{ title: "Single region failure detection", date: "2026-03-16" }}>
     <Frame>
         <img src="/images/changelog/121-single-region-failure.avif" alt="Single region failure" />
     </Frame>
@@ -268,9 +268,9 @@ rss: true
     When monitoring from multiple regions, incidents were only triggered if at least two regions reported a failure, meaning a real regional outage could go completely undetected. Incidents are now flagged as soon as any single region goes down, regardless of how many regions you're monitoring from.
 
     This change ensures your monitoring coverage actually reflects reality, with zero silent failures.
+</Update>
 
-    <br/>
-
+<Update label="Mar 7, 2026" id="2fa-recovery-codes" tags={["Account"]} rss={{ title: "2FA recovery codes", date: "2026-03-07" }}>
     <Frame>
         <img src="/images/changelog/120-2fa-recovery-codes.avif" alt="2fa recovery codes" />
     </Frame>
@@ -278,10 +278,9 @@ rss: true
     ## 2FA recovery codes
 
     It's now possible to get recovery codes when you have two-factor authentication (2FA) enabled on your account. This will allow you to recover your account if you ever loose access to your 2FA device.
-
 </Update>
 
-<Update label="February 2026">
+<Update label="Feb 28, 2026" id="status-pages-got-a-massive-upgrade" tags={["Status pages"]} rss={{ title: "Status pages got a massive upgrade", date: "2026-02-28" }}>
         <Frame>
         <img src="/images/changelog/119-dark-status-pages.avif" alt="Dark theme status pages" />
     </Frame>
@@ -293,9 +292,9 @@ rss: true
     There’s now a complete uptime and incident history view, so users can clearly see what happened and when. A new RSS feed also makes it simple to stream real-time updates straight into Slack.
 
     Phare status pages remain in the [top 1% for carbon efficiency with an A+ rating](https://www.websitecarbon.com/website/status-phare-io/).
+</Update>
 
-    <br/>
-
+<Update label="Feb 25, 2026" id="monitor-incidents-datatable" tags={["Monitors", "Incidents"]} rss={{ title: "Monitor incidents datatable", date: "2026-02-25" }}>
     <Frame>
         <img src="/images/changelog/118-uptime-monitor-incidents.avif" alt="Incident data table of a monitor" />
     </Frame>
@@ -303,9 +302,9 @@ rss: true
     ## Monitor incidents datatable
 
     The monitor page now includes a datatable showing all incidents for that monitor. You can search, filter, and sort incidents directly from the table, making it easier to track and review past issues.
+</Update>
 
-    <br/>
-
+<Update label="Feb 22, 2026" id="official-terraform-provider-beta" tags={["API"]} rss={{ title: "Official Terraform provider (beta)", date: "2026-02-22" }}>
     <Frame>
         <img src="/images/changelog/117-terraform-provider-phare-beta.avif" alt="Terraform provider Phare in beta" />
     </Frame>
@@ -315,9 +314,9 @@ rss: true
     Phare now has an official Terraform provider, available in beta. You can manage your projects, monitors, alert rules and status pages directly from your Terraform configuration. This has been one of the most requested features over the last three years, and it’s finally here after a huge amount of work.
 
     Check out the [Terraform documentation](/integrations/terraform) to get started.
+</Update>
 
-    <br/>
-
+<Update label="Feb 22, 2026" id="new-api-endpoints-for-incident-updates" tags={["API", "Incidents"]} rss={{ title: "New API endpoints for incident updates", date: "2026-02-22" }}>
     <Frame>
         <img src="/images/changelog/116-incident-updates-endpoints.avif" alt="New incident updates API endpoints" />
     </Frame>
@@ -334,9 +333,9 @@ rss: true
     - [Delete an incident update](https://docs.phare.io/api-reference/uptime/incidents/updates/delete-an-incident-update)
 
     Check out the [Phare API documentation](https://docs.phare.io/api-reference/introduction) for all available endpoints.
+</Update>
 
-    <br/>
-
+<Update label="Feb 8, 2026" id="new-api-endpoints-for-project-management" tags={["API"]} rss={{ title: "New API endpoints for project management", date: "2026-02-08" }}>
     <Frame>
         <img src="/images/changelog/115-projects-api-endpoints.avif" alt="New project API endpoints" />
     </Frame>
@@ -353,9 +352,9 @@ rss: true
     - [Delete a project](https://docs.phare.io/api-reference/platform/projects/delete-a-project)
 
     Check out the [Phare API documentation](https://docs.phare.io/api-reference/introduction) for all available endpoints.
+</Update>
 
-    <br/>
-
+<Update label="Feb 8, 2026" id="organization-scoped-api-keys" tags={["API"]} rss={{ title: "Organization-scoped API keys", date: "2026-02-08" }}>
     <Frame>
         <img src="/images/changelog/114-organization-scoped-api-key.avif" alt="Organization scoped API key" />
     </Frame>
@@ -367,9 +366,9 @@ rss: true
     **Project-scoped API keys** remain available and are still best for setups where projects must stay clearly separated, such as agencies or larger organizations.
 
     **Organization-scoped API keys** are ideal for small teams, startups, and infrastructure provisioning. Most API requests with these keys require a [project selection header](/api-reference/introduction#project-selection).
+</Update>
 
-    <br/>
-
+<Update label="Feb 8, 2026" id="new-api-endpoints-for-incident-management" tags={["API", "Incidents"]} rss={{ title: "New API endpoints for incident management", date: "2026-02-08" }}>
     <Frame>
         <img src="/images/changelog/112-incidents-write-api.avif" alt="Create update and recover incidents using the Phare API" />
     </Frame>
@@ -383,9 +382,9 @@ rss: true
     - [Recover an Incident](https://docs.phare.io/api-reference/uptime/incidents/recover-an-incident)
 
     Check out the Phare [API documentation](https://docs.phare.io/api-reference/introduction) for all available endpoints.
+</Update>
 
-    <br/>
-
+<Update label="Feb 4, 2026" id="more-control-over-incident-timing-and-history" tags={["Incidents"]} rss={{ title: "More control over incident timing and history", date: "2026-02-04" }}>
     <Frame>
         <img src="/images/changelog/111-incident-timing.avif" alt="More control over incident timing" />
     </Frame>
@@ -395,21 +394,19 @@ rss: true
     Incidents can now be created with precise start and end times, and existing incidents can be adjusted if the original timing was off. This helps keep status pages accurate when something was detected late or when special circumstances change how an incident should be reported.
 
     It’s also now possible to choose what type of status page update should be published at creation time. This is just a shortcut: all update types can still be posted later if needed.
+</Update>
 
-    <br/>
-
+<Update label="Jan 26, 2026" id="smtp-ports-now-available-for-monitoring" tags={["Monitors"]} rss={{ title: "SMTP ports now available for monitoring", date: "2026-01-26" }}>
     <Frame>
         <img src="/images/changelog/113-monitor-smtp-ports.avif" alt="Monitor SMTP ports" />
     </Frame>
-</Update>
 
-<Update label="January 2026">
     ## SMTP ports now available for monitoring
 
     SMTP ports can now be monitored like other services over TCP. The usual ports are supported: **25**, **465**, **587**, and **2525**, making it easier to keep an eye on your in-house mail servers.
+</Update>
 
-    <br/>
-
+<Update label="Jan 25, 2026" id="improved-webhook-json-editor" tags={["Integrations"]} rss={{ title: "Improved webhook JSON editor", date: "2026-01-25" }}>
     <Frame>
         <div style={{position: 'relative', width: '100%', 'padding-top': '66.67%'}}>
             <iframe
@@ -428,9 +425,9 @@ rss: true
     Editing is smoother too: new lines are pre-filled, error handling is clearer, and the editor can expand for large schemas.
 
     It's like a small handcrafted IDE inside Phare 🌞
+</Update>
 
-    <br/>
-
+<Update label="Jan 25, 2026" id="outgoing-webhook-schema-upgrades" tags={["Integrations"]} rss={{ title: "Outgoing webhook schema upgrades", date: "2026-01-25" }}>
     <Frame>
         <img src="/images/changelog/110-new-webhook-schema.avif" alt="New outgoing webhook JSON schema" />
     </Frame>
@@ -438,9 +435,9 @@ rss: true
     ## Outgoing webhook schema upgrades
 
     Schemas now support loops, and the default schemas for every alert event have been revamped to expose richer data out of the box. The new placeholder syntax uses `{{ entity.property }}` and is documented in the [Outgoing Webhooks docs](/integrations/outgoing-webhook#payload-customization).
+</Update>
 
-    <br/>
-
+<Update label="Jan 13, 2026" id="improved-notification-preferences" tags={["Account"]} rss={{ title: "Improved notification preferences", date: "2026-01-13" }}>
     <Frame>
         <img src="/images/changelog/109-notification-preferences.avif" alt="Custom quota notification thresholds" />
     </Frame>
@@ -450,9 +447,9 @@ rss: true
     Important organization-level notifications are now sent to all admins, not just the organization owner. In addition, every user can opt out of individual notification types from personal settings.
 
     This removes the single-owner bottleneck while keeping you in control of what lands in your inbox.
+</Update>
 
-    <br/>
-
+<Update label="Jan 13, 2026" id="custom-quota-notification-thresholds" tags={["Account"]} rss={{ title: "Custom quota notification thresholds", date: "2026-01-13" }}>
     <Frame>
         <img src="/images/changelog/108-custom-quota-thresholds.avif" alt="Custom quota notification thresholds" />
     </Frame>
@@ -462,9 +459,9 @@ rss: true
     Notification thresholds for billable quotas are now fully configurable. Instead of fixed alerts at 80% and 100%, each quota can trigger notifications at values that actually match how you monitor usage.
 
     This is useful if you want earlier warnings for critical quotas or fewer alerts for ones you don't care about.
+</Update>
 
-    <br/>
-
+<Update label="Jan 13, 2026" id="legal-and-billing-emails-per-organization" tags={["Account"]} rss={{ title: "Legal and billing emails per organization", date: "2026-01-13" }}>
     <Frame>
         <img src="/images/changelog/107-custom-organization-emails.avif" alt="Custom legal and billing emails" />
     </Frame>
@@ -474,9 +471,9 @@ rss: true
     Organizations can now configure separate **Legal** and **Billing** email addresses. The legal email is used for privacy policy and terms of service updates, while the billing email receives invoices and other payment-related notifications.
 
     If your legal and finance departments are actually just you, feel free to send both emails to yourself and role-play.
+</Update>
 
-    <br/>
-
+<Update label="Jan 11, 2026" id="native-ilert-integration" tags={["Integrations"]} rss={{ title: "Native ilert integration", date: "2026-01-11" }}>
     <Frame>
         <img src="/images/changelog/106-ilert-integration.webp" alt="ilert integration" />
     </Frame>
