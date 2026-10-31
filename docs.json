@@ -210,8 +210,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/logo/phare.svg",
+    "dark": "/logo/phare.svg",
     "href": "https://phare.io"
   },
   "api": {
