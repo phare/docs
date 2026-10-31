@@ -189,10 +189,10 @@
           {
             "group": "Platform",
             "pages": [
-              "changelog/platform/2026",
-              "changelog/platform/2025",
-              "changelog/platform/2024",
-              "changelog/platform/2023"
+              "changelog",
+              "changelog/2025",
+              "changelog/2024",
+              "changelog/2023"
             ]
           }
         ]
@@ -248,6 +248,22 @@
     {
       "source": "/uptime/incident-management",
       "destination": "/uptime/incidents"
+    },
+    {
+      "source": "/changelog/platform/2026",
+      "destination": "/changelog"
+    },
+    {
+      "source": "/changelog/platform/2025",
+      "destination": "/changelog/2025"
+    },
+    {
+      "source": "/changelog/platform/2024",
+      "destination": "/changelog/2024"
+    },
+    {
+      "source": "/changelog/platform/2023",
+      "destination": "/changelog/2023"
     }
   ],
   "metadata": {
