@@ -1,0 +1,32 @@
+html .frame {
+    padding: 0;
+    border: 2px solid #000;
+    border-radius: 0.25rem;
+}
+
+html.dark .frame {
+    border-color: rgb(255 255 255 / 0.1);
+}
+
+html .frame > .relative.overflow-hidden {
+    border-radius: 0.125rem;
+}
+
+html .frame iframe[src*="mediadelivery.net"] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 2 !important;
+}
+
+html .frame > .pointer-events-none {
+    display: none;
+}
+
+html .card {
+    border-radius: 0.25rem;
+}
+
+html:not(.dark) .card {
+    background-color: color-mix(in oklab, oklch(97% 0.001 106.424), oklch(92.3% 0.003 48.717));
+    border: 0 !important;
+}
