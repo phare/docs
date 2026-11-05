@@ -1,6 +1,6 @@
 ---
 title: "User management"
-description: "Learn how to manage users and roles in Phare, invite team members, control project access, and set up single sign-on with your identity provider."
+description: "Learn how to manage members and roles in Phare, from read-only viewers to admins, invite team members, control project access, and set up single sign-on with your identity provider."
 sidebarTitle: "User management"
 ---
 
@@ -22,23 +22,62 @@ Phare makes collaboration easy by letting you invite as many team members as you
 
 ## Roles
 
-Phare keeps it simple with three roles: **Owner**, **Admin**, and **Member**. Each comes with its own permission set to help you build the right team structure.
+Roles are predefined sets of permissions. Phare has four of them, from read-only access to full control of the organization, and each role includes every permission of the previous one:
 
-- **Owner**: The organization's founder and primary administrator. Owners have all admin powers plus the ability to delete the organization and demote admins when necessary.
+- **Viewer**: Read-only access to every resource of their projects. Perfect for stakeholders, managers or support teams who follow the status of your services.
 
-- **Admin**: The trusted lieutenants of your organization. Admins get full access to all resources, can join any project freely, and can promote other users to admin status.
+- **Responder**: Viewer, and manage incidents, their updates and comments, and maintenance windows. Ideal for on-call engineers who communicate during an outage without touching the monitoring configuration.
 
-- **Member**: Members have complete access to their assigned projects and can create new projects. They can also invite new members to join the organization, helping your team grow organically.
+- **Member**: Responder, and manage monitors, status pages, projects and the alert rules of their projects.
+
+- **Admin**: Every permission. Admins access every project, and manage members, API keys, integrations, organization-wide alert rules, the organization settings and billing.
+
+The **Owner** is the admin who created the organization. Only the owner can delete the organization, and their role can't be changed. To transfer the ownership of your organization, contact [support@phare.io](mailto:support@phare.io).
+
+| Permission                                                   | Viewer | Responder | Member | Admin |
+| :----------------------------------------------------------- | :----: | :-------: | :----: | :---: |
+| View monitors, incidents, status pages and other resources   |   ✓    |     ✓     |   ✓    |   ✓   |
+| Manage incidents, their updates and comments                 |        |     ✓     |   ✓    |   ✓   |
+| Manage maintenance windows                                   |        |     ✓     |   ✓    |   ✓   |
+| Manage monitors and status pages                             |        |           |   ✓    |   ✓   |
+| Create and manage projects                                   |        |           |   ✓    |   ✓   |
+| Manage the alert rules of a project                          |        |           |   ✓    |   ✓   |
+| Access every project                                         |        |           |        |   ✓   |
+| Edit and delete the incident updates and comments of others  |        |           |        |   ✓   |
+| Manage integrations and organization-wide alert rules        |        |           |        |   ✓   |
+| Invite and manage members                                    |        |           |        |   ✓   |
+| Manage API keys                                              |        |           |        |   ✓   |
+| Manage the organization settings, single sign-on and billing |        |           |        |   ✓   |
+
+Viewers, responders and members only access the resources of [their projects](#accessing-projects), and responders and members can always edit and delete their own incident updates and comments.
+
+## Inviting members
+
+Admins can invite as many members as needed from the <a href="https://app.phare.io/organization/members" rel="nofollow">members page</a>, choosing the role of each person and the projects they can access. Invited persons receive an email with a link to join your organization.
 
 <Frame>
-    <img src="/images/user-management/invite-user.avif" alt="Invite members" />
+    <img
+        src="/images/user-management/invite-user.avif"
+        alt="Invitation form with the email, role and projects of each member"
+    />
+</Frame>
+
+## Editing members
+
+To change the role or the projects of a member, click the member in the <a href="https://app.phare.io/organization/members" rel="nofollow">members page</a>. Admins can change the role of every member, except the owner's and their own, which another admin can change.
+
+<Frame>
+    <img
+        src="/images/user-management/member-edit.avif"
+        alt="Member edit page with the role and the projects of the member"
+    />
 </Frame>
 
 ## Accessing projects
 
-When inviting **Members** to your organization, you can customize which projects they can access. Need to adjust their access later? No problem. You can update permissions anytime as your team's needs evolve.
+Viewers, responders and members only access the projects they are part of, chosen when inviting them. Need to adjust their access later? No problem, you can update their projects anytime from their member page as your team's needs evolve.
 
-**Admins** and **Owners** can join any project they want, but the project selector only shows the ones they've actively joined. This keep the workspace clean and focused. Other projects can still be modified or deleted from the organization's project page without cluttering the daily view.
+**Admins** and the **Owner** can join any project they want, but the project selector only shows the ones they've actively joined. This keeps the workspace clean and focused. Other projects can still be modified or deleted from the organization's project page without cluttering the daily view.
 
 <Frame>
     <img

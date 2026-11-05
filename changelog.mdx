@@ -5,6 +5,41 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
+<Update label="Nov 5, 2026" id="viewer-and-responder-roles" tags={["Account"]} rss={{ title: "Viewer and Responder roles", date: "2026-11-05" }}>
+    ## Viewer and Responder roles
+
+    <Frame>
+        <img src="/images/changelog/142-viewer-and-responder-roles.avif" alt="Member role selection with the Viewer, Responder, Member and Admin roles" />
+    </Frame>
+
+    Two new roles are available to give your team the access it needs, no more and no less:
+
+    - **Viewer**: read-only access to every resource of their projects, perfect for stakeholders and support teams following an outage.
+    - **Responder**: viewer, and manage incidents, their updates and comments, and maintenance windows. Ideal for on-call engineers who communicate during an incident without touching the monitoring configuration.
+
+    Roles are now predefined sets of permissions, and each role includes every permission of the previous one: Viewer, Responder, Member and Admin. Admins can change the role and the projects of a member from the new member page, by clicking the member in the members list.
+
+    Members keep their current access, except for integrations, organization-wide alert rules and invitations, which are now managed by admins.
+
+    Check out the [user management documentation](/user-management#roles) for the permissions of each role.
+</Update>
+
+<Update label="Nov 5, 2026" id="granular-api-key-permissions" tags={["API"]} rss={{ title: "Granular API key permissions", date: "2026-11-05" }}>
+    ## Granular API key permissions
+
+    <Frame>
+        <img src="/images/changelog/141-api-key-permissions.avif" alt="API key permissions with None, Read or Write access per resource" />
+    </Frame>
+
+    API keys can now be restricted resource by resource instead of product by product. Monitors, reports, incidents, maintenance windows, status pages, projects, alert rules, integrations and members each get their own **None**, **Read** or **Write** access. Your Terraform pipeline can write monitors and status pages without seeing your members, and the key of your internal dashboard can only read incidents.
+
+    Existing API keys were converted to the new permissions and keep the same access, except project-scoped keys, which can no longer write integrations and organization-wide alert rules as they belong to the whole organization.
+
+    API errors now name the missing permission, for example `The monitors:write permission is required to perform this action.`, so you know exactly which permission to add to your key.
+
+    Check out the [API documentation](/api-reference/introduction#permissions) to choose the right permissions for your keys.
+</Update>
+
 <Update label="Nov 1, 2026" id="new-phare-design" tags={["Phare news"]} rss={{ title: "New Phare design", date: "2026-11-01" }}>
     ## New Phare design
 
