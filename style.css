@@ -5,11 +5,12 @@ html .frame {
 }
 
 html.dark .frame {
-    border-color: rgb(255 255 255 / 0.1);
+    border-color: rgb(255 255 255 / 0.3);
 }
 
-html .frame > .relative.overflow-hidden {
-    border-radius: 0.125rem;
+/* The frame clips its content to its own corners, so nothing inside is rounded */
+html .frame :not(button) {
+    border-radius: 0;
 }
 
 html .frame iframe[src*="mediadelivery.net"] {
