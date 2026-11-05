@@ -12511,6 +12511,8 @@
             "Phare.User.UserRoleEnum": {
                 "type": "string",
                 "enum": [
+                    "viewer",
+                    "responder",
                     "member",
                     "admin"
                 ]
@@ -12672,7 +12674,7 @@
                             "properties": {
                                 "message": {
                                     "type": "string",
-                                    "example": "The platform:write permission is required to perform this action."
+                                    "example": "The monitors:write permission is required to perform this action."
                                 }
                             },
                             "type": "object"
