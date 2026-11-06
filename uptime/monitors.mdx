@@ -274,6 +274,8 @@ Phare's signature directory is available at:
 https://phare.io/.well-known/http-message-signatures-directory
 ```
 
+Phare is also listed as a [verified bot on Cloudflare](https://radar.cloudflare.com/bots/directory/phare-uptime). If your website is behind Cloudflare, Phare's monitoring requests are recognized as verified bot traffic, and Cloudflare's default bot settings exclude verified bots. If you changed these settings, make sure **Verified bots** is set to **Allow** in Super Bot Fight Mode, and that your WAF custom rules don't block verified bots.
+
 ### User-Agent & Secret token
 
 If your web server or firewall does not support web-auth-bot yet, the next best thing is to filter Phare's traffic with an [User-Agent secret](/uptime/monitors#headers).
