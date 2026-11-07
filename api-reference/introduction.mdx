@@ -73,6 +73,8 @@ Each resource can be given one of the following access levels:
 | Integrations        | None, Read, Write | The integrations installed in the organization, writing requires an organization-scoped API key            |
 | Members             | None, Read        | The members of the organization and their pending invites                                                  |
 
+Each endpoint of this reference names the permission it requires, made of the resource and the access level, like `monitors:read` or `maintenance_windows:write`.
+
 When an API key is missing a permission, the API responds with a `403` status code naming the permission required:
 
 ```json

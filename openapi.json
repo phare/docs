@@ -77,7 +77,7 @@
                     "Alert Rules"
                 ],
                 "summary": "List alert rules",
-                "description": "Get a paginated list of alert rules. Organization-scoped alert rules are listed alongside the alert rules of the current project.",
+                "description": "Get a paginated list of alert rules. Organization-scoped alert rules are listed alongside the alert rules of the current project.\n\nRequires the `alert_rules:read` permission.",
                 "operationId": "getAlertRules",
                 "responses": {
                     "200": {
@@ -219,6 +219,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "alert_rules:read"
+                        ]
+                    }
                 ]
             },
             "post": {
@@ -226,7 +233,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Create an alert rule",
-                "description": "Create an alert rule",
+                "description": "Create an alert rule.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "createUptimeAlertRule",
                 "requestBody": {
                     "description": "Alert rule request",
@@ -439,6 +446,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "alert_rules:write"
+                        ]
+                    }
                 ]
             }
         },
@@ -448,7 +462,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Get an alert rule",
-                "description": "Get an alert rule by ID",
+                "description": "Get an alert rule by ID.\n\nRequires the `alert_rules:read` permission.",
                 "operationId": "getAlertRule",
                 "parameters": [
                     {
@@ -579,14 +593,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "alert_rules:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Alert Rules"
                 ],
                 "summary": "Update an alert rule",
-                "description": "Update an alert rule by ID",
+                "description": "Update an alert rule by ID.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "updateUptimeAlertRule",
                 "parameters": [
                     {
@@ -805,14 +826,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "alert_rules:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Alert Rules"
                 ],
                 "summary": "Delete an alert rule",
-                "description": "Delete an alert rule by ID",
+                "description": "Delete an alert rule by ID.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "deleteUptimeAlertRule",
                 "parameters": [
                     {
@@ -845,7 +873,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "alert_rules:write"
+                        ]
+                    }
+                ]
             }
         },
         "/apps/{app}/integrations": {
@@ -854,7 +889,7 @@
                     "Integrations"
                 ],
                 "summary": "List integrations",
-                "description": "Get a paginated list of integrations for a specific app.",
+                "description": "Get a paginated list of integrations for a specific app.\n\nRequires the `integrations:read` permission.",
                 "operationId": "getIntegrations",
                 "parameters": [
                     {
@@ -985,14 +1020,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "integrations:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Integrations"
                 ],
                 "summary": "Create an integration",
-                "description": "Create an integration for a specific app.",
+                "description": "Create an integration for a specific app.\n\nRequires the `integrations:write` permission.",
                 "operationId": "createIntegration",
                 "parameters": [
                     {
@@ -1143,7 +1185,14 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "integrations:write"
+                        ]
+                    }
+                ]
             }
         },
         "/apps/{app}/integrations/{integrationId}": {
@@ -1152,7 +1201,7 @@
                     "Integrations"
                 ],
                 "summary": "Get an integration",
-                "description": "Get an integration by ID",
+                "description": "Get an integration by ID.\n\nRequires the `integrations:read` permission.",
                 "operationId": "getIntegration",
                 "parameters": [
                     {
@@ -1258,14 +1307,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "integrations:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Integrations"
                 ],
                 "summary": "Update an integration",
-                "description": "Update an integration by ID.",
+                "description": "Update an integration by ID.\n\nRequires the `integrations:write` permission.",
                 "operationId": "updateIntegration",
                 "parameters": [
                     {
@@ -1530,14 +1586,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "integrations:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Integrations"
                 ],
                 "summary": "Delete an integration",
-                "description": "Delete an integration by ID. Integrations used by alert rules can not be deleted.",
+                "description": "Delete an integration by ID. Integrations used by alert rules can not be deleted.\n\nRequires the `integrations:write` permission.",
                 "operationId": "deleteIntegration",
                 "parameters": [
                     {
@@ -1590,7 +1653,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "integrations:write"
+                        ]
+                    }
+                ]
             }
         },
         "/projects": {
@@ -1599,7 +1669,7 @@
                     "Projects"
                 ],
                 "summary": "List projects",
-                "description": "Get a paginated list of projects. Requires an organization-scoped API key.",
+                "description": "Get a paginated list of projects. Requires an organization-scoped API key.\n\nRequires the `projects:read` permission.",
                 "operationId": "getProjects",
                 "responses": {
                     "200": {
@@ -1719,6 +1789,13 @@
                     {
                         "$ref": "#/components/parameters/per_page"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "projects:read"
+                        ]
+                    }
                 ]
             },
             "post": {
@@ -1726,7 +1803,7 @@
                     "Projects"
                 ],
                 "summary": "Create a project",
-                "description": "Create a project. Requires an organization-scoped API key.",
+                "description": "Create a project. Requires an organization-scoped API key.\n\nRequires the `projects:write` permission.",
                 "operationId": "createProject",
                 "requestBody": {
                     "description": "Project request",
@@ -1891,7 +1968,14 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "projects:write"
+                        ]
+                    }
+                ]
             }
         },
         "/projects/{projectId}": {
@@ -1900,7 +1984,7 @@
                     "Projects"
                 ],
                 "summary": "Get a project",
-                "description": "Get a project by ID",
+                "description": "Get a project by ID.\n\nRequires the `projects:read` permission.",
                 "operationId": "getProject",
                 "parameters": [
                     {
@@ -2009,14 +2093,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "projects:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Projects"
                 ],
                 "summary": "Update a project",
-                "description": "Update a project by ID",
+                "description": "Update a project by ID.\n\nRequires the `projects:write` permission.",
                 "operationId": "updateProject",
                 "parameters": [
                     {
@@ -2191,14 +2282,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "projects:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Projects"
                 ],
                 "summary": "Delete a project",
-                "description": "Delete a project by ID. Requires an organization-scoped API key, and the last project of an organization can not be deleted.",
+                "description": "Delete a project by ID. Requires an organization-scoped API key, and the last project of an organization can not be deleted.\n\nRequires the `projects:write` permission.",
                 "operationId": "deleteProject",
                 "parameters": [
                     {
@@ -2225,7 +2323,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "projects:write"
+                        ]
+                    }
+                ]
             }
         },
         "/users": {
@@ -2234,7 +2339,7 @@
                     "Users"
                 ],
                 "summary": "List users",
-                "description": "Get a paginated list of users.",
+                "description": "Get a paginated list of users.\n\nRequires the `members:read` permission.",
                 "operationId": "getUsers",
                 "parameters": [
                     {
@@ -2315,7 +2420,14 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "members:read"
+                        ]
+                    }
+                ]
             }
         },
         "/users/{userId}": {
@@ -2324,7 +2436,7 @@
                     "Users"
                 ],
                 "summary": "Get a user",
-                "description": "Get a user by ID",
+                "description": "Get a user by ID.\n\nRequires the `members:read` permission.",
                 "operationId": "getUser",
                 "parameters": [
                     {
@@ -2383,7 +2495,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "members:read"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/incidents": {
@@ -2392,7 +2511,7 @@
                     "Incidents"
                 ],
                 "summary": "List incidents",
-                "description": "Get a paginated list of incidents",
+                "description": "Get a paginated list of incidents.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidents",
                 "parameters": [
                     {
@@ -2578,14 +2697,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Create an incident",
-                "description": "Create an incident",
+                "description": "Create an incident.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncident",
                 "requestBody": {
                     "description": "Incident request",
@@ -2825,6 +2951,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
                 ]
             }
         },
@@ -2834,7 +2967,7 @@
                     "Incidents"
                 ],
                 "summary": "Get an incident",
-                "description": "Get an incident by ID",
+                "description": "Get an incident by ID.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncident",
                 "parameters": [
                     {
@@ -2987,14 +3120,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Update an incident",
-                "description": "Update an incident by ID.",
+                "description": "Update an incident by ID.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncident",
                 "parameters": [
                     {
@@ -3240,14 +3380,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Delete an incident",
-                "description": "Delete an incident by ID",
+                "description": "Delete an incident by ID.\n\nRequires the `incidents:write` permission.",
                 "operationId": "deleteUptimeIncident",
                 "parameters": [
                     {
@@ -3280,7 +3427,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/incidents/{incidentId}/recover": {
@@ -3289,7 +3443,7 @@
                     "Incidents"
                 ],
                 "summary": "Recover an incident",
-                "description": "Recover an incident by ID, setting its recovery date to the current date.",
+                "description": "Recover an incident by ID, setting its recovery date to the current date.\n\nRequires the `incidents:write` permission.",
                 "operationId": "recoverUptimeIncident",
                 "parameters": [
                     {
@@ -3322,7 +3476,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/incidents/{incidentId}/updates": {
@@ -3331,7 +3492,7 @@
                     "Incidents"
                 ],
                 "summary": "List incident updates",
-                "description": "Get a paginated list of incident updates",
+                "description": "Get a paginated list of incident updates.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidentUpdates",
                 "parameters": [
                     {
@@ -3455,14 +3616,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Create an incident update",
-                "description": "Create an incident update. Publishing an update with the `resolved` state recovers the incident.",
+                "description": "Create an incident update. Publishing an update with the `resolved` state recovers the incident.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3599,7 +3767,14 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/incidents/{incidentId}/updates/{incidentUpdateId}": {
@@ -3608,7 +3783,7 @@
                     "Incidents"
                 ],
                 "summary": "Get an incident update",
-                "description": "Get an incident update by ID",
+                "description": "Get an incident update by ID.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3718,14 +3893,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Update an incident update",
-                "description": "Update an incident update by ID.",
+                "description": "Update an incident update by ID.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3867,14 +4049,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Incidents"
                 ],
                 "summary": "Delete an incident update",
-                "description": "Delete an incident update by ID.",
+                "description": "Delete an incident update by ID.\n\nRequires the `incidents:write` permission.",
                 "operationId": "deleteUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3916,7 +4105,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "incidents:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/maintenance-windows": {
@@ -3925,7 +4121,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "List maintenance windows",
-                "description": "Get a paginated list of maintenance windows",
+                "description": "Get a paginated list of maintenance windows.\n\nRequires the `maintenance_windows:read` permission.",
                 "operationId": "getUptimeMaintenanceWindows",
                 "parameters": [
                     {
@@ -4124,14 +4320,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Maintenance Windows"
                 ],
                 "summary": "Create a maintenance window",
-                "description": "Create a maintenance window",
+                "description": "Create a maintenance window.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "createUptimeMaintenanceWindow",
                 "requestBody": {
                     "description": "Maintenance window request",
@@ -4362,6 +4565,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:write"
+                        ]
+                    }
                 ]
             }
         },
@@ -4371,7 +4581,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Get a maintenance window",
-                "description": "Get a maintenance window by ID",
+                "description": "Get a maintenance window by ID.\n\nRequires the `maintenance_windows:read` permission.",
                 "operationId": "getUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4517,14 +4727,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Maintenance Windows"
                 ],
                 "summary": "Update a maintenance window",
-                "description": "Update a maintenance window by ID. The `monitoring_mode`, `starts_at`, `ends_at`, `monitors` and `status_pages` fields can only be modified while the maintenance window is scheduled, except for `ends_at` which can be extended while the maintenance window is in progress.",
+                "description": "Update a maintenance window by ID. The `monitoring_mode`, `starts_at`, `ends_at`, `monitors` and `status_pages` fields can only be modified while the maintenance window is scheduled, except for `ends_at` which can be extended while the maintenance window is in progress.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "updateUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4760,14 +4977,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Maintenance Windows"
                 ],
                 "summary": "Delete a maintenance window",
-                "description": "Delete a maintenance window by ID",
+                "description": "Delete a maintenance window by ID.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "deleteUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4800,7 +5024,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/maintenance-windows/{maintenanceWindowId}/cancel": {
@@ -4809,7 +5040,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Cancel a maintenance window",
-                "description": "Cancel a maintenance window by ID. Completed or already cancelled maintenance windows cannot be cancelled.",
+                "description": "Cancel a maintenance window by ID. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "cancelUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4842,7 +5073,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/maintenance-windows/{maintenanceWindowId}/complete": {
@@ -4851,7 +5089,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Complete a maintenance window",
-                "description": "Complete a maintenance window by ID. Only in-progress maintenance windows can be completed, and `ends_at` is set to the current time if it is in the future.",
+                "description": "Complete a maintenance window by ID. Only in-progress maintenance windows can be completed, and `ends_at` is set to the current time if it is in the future.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "completeUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4997,7 +5235,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "maintenance_windows:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/monitors": {
@@ -5006,7 +5251,7 @@
                     "Monitors"
                 ],
                 "summary": "List monitors",
-                "description": "Get a paginated list of monitors",
+                "description": "Get a paginated list of monitors.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitors",
                 "parameters": [
                     {
@@ -5283,7 +5528,7 @@
                                                         ]
                                                     },
                                                     "success_assertions": {
-                                                        "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                                        "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                                         "type": "array",
                                                         "items": {
                                                             "oneOf": [
@@ -5504,14 +5749,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Monitors"
                 ],
                 "summary": "Create a monitor",
-                "description": "Create a monitor",
+                "description": "Create a monitor.\n\nRequires the `monitors:write` permission.",
                 "operationId": "createUptimeMonitor",
                 "requestBody": {
                     "description": "Monitor request",
@@ -5732,7 +5984,7 @@
                                         ]
                                     },
                                     "success_assertions": {
-                                        "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                        "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -6162,7 +6414,7 @@
                                             ]
                                         },
                                         "success_assertions": {
-                                            "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                            "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -6381,6 +6633,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:write"
+                        ]
+                    }
                 ]
             }
         },
@@ -6390,7 +6649,7 @@
                     "Monitors"
                 ],
                 "summary": "Get a monitor",
-                "description": "Get a monitor by ID",
+                "description": "Get a monitor by ID.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitor",
                 "parameters": [
                     {
@@ -6655,7 +6914,7 @@
                                             ]
                                         },
                                         "success_assertions": {
-                                            "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                            "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -6866,14 +7125,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Monitors"
                 ],
                 "summary": "Update a monitor",
-                "description": "Update a monitor by ID",
+                "description": "Update a monitor by ID.\n\nRequires the `monitors:write` permission.",
                 "operationId": "updateUptimeMonitor",
                 "parameters": [
                     {
@@ -7111,7 +7377,7 @@
                                         ]
                                     },
                                     "success_assertions": {
-                                        "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                        "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -7535,7 +7801,7 @@
                                             ]
                                         },
                                         "success_assertions": {
-                                            "description": "List of assertions that must be true for the check to be considered successful. At least one assertion is required for the HTTP protocol, assertions are ignored for the TCP and ICMP protocols.",
+                                            "description": "Required for the HTTP protocol, with at least one assertion, and ignored for the TCP and ICMP protocols. A check is successful when all its assertions are true.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -7749,14 +8015,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Monitors"
                 ],
                 "summary": "Delete a monitor",
-                "description": "Delete a monitor by ID",
+                "description": "Delete a monitor by ID.\n\nRequires the `monitors:write` permission.",
                 "operationId": "deleteUptimeMonitor",
                 "parameters": [
                     {
@@ -7789,7 +8062,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/monitors/{monitorId}/pause": {
@@ -7798,7 +8078,7 @@
                     "Monitors"
                 ],
                 "summary": "Pause a monitor",
-                "description": "Pause a monitor by ID",
+                "description": "Pause a monitor by ID.\n\nRequires the `monitors:write` permission.",
                 "operationId": "pauseUptimeMonitor",
                 "parameters": [
                     {
@@ -7831,7 +8111,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/monitors/{monitorId}/resume": {
@@ -7840,7 +8127,7 @@
                     "Monitors"
                 ],
                 "summary": "Resume a monitor",
-                "description": "Resume a monitor by ID",
+                "description": "Resume a monitor by ID.\n\nRequires the `monitors:write` permission.",
                 "operationId": "resumeUptimeMonitor",
                 "parameters": [
                     {
@@ -7873,7 +8160,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/monitors/{monitorId}/report": {
@@ -7882,7 +8176,7 @@
                     "Monitors"
                 ],
                 "summary": "Get a monitor report",
-                "description": "Get uptime statistics for a single monitor by ID in the selected time window of up to 1 year",
+                "description": "Get uptime statistics for a single monitor by ID in the selected time window of up to 1 year.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitorReport",
                 "parameters": [
                     {
@@ -8116,7 +8410,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "monitors:read"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/reports": {
@@ -8125,7 +8426,7 @@
                     "Reports"
                 ],
                 "summary": "Get report",
-                "description": "Get aggregated uptime statistics for all monitors of the project in the selected time window of up to 1 year",
+                "description": "Get aggregated uptime statistics for all monitors of the project in the selected time window of up to 1 year.\n\nRequires the `reports:read` permission.",
                 "operationId": "getUptimeReport",
                 "parameters": [
                     {
@@ -8414,7 +8715,14 @@
                     "403": {
                         "$ref": "#/components/responses/403"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "reports:read"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/status-pages": {
@@ -8423,7 +8731,7 @@
                     "Status Pages"
                 ],
                 "summary": "List status pages",
-                "description": "Get a paginated list of status pages",
+                "description": "Get a paginated list of status pages.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPages",
                 "parameters": [
                     {
@@ -8851,14 +9159,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Status Pages"
                 ],
                 "summary": "Create a status page",
-                "description": "Create a status page",
+                "description": "Create a status page.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "createUptimeStatusPage",
                 "requestBody": {
                     "description": "Status page request, sent as JSON or as `multipart/form-data` to upload logos and favicons. With `multipart/form-data`, booleans must be sent as `1` or `0` and nested fields with the bracket notation, e.g. `components[0][componentable_id]`.",
@@ -10157,6 +10472,13 @@
                     {
                         "$ref": "#/components/parameters/header_project_slug"
                     }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:write"
+                        ]
+                    }
                 ]
             }
         },
@@ -10166,7 +10488,7 @@
                     "Status Pages"
                 ],
                 "summary": "Get a status page",
-                "description": "Get a status page by ID",
+                "description": "Get a status page by ID.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPage",
                 "parameters": [
                     {
@@ -10572,14 +10894,21 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:read"
+                        ]
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Status Pages"
                 ],
                 "summary": "Update a status page",
-                "description": "Update a status page by ID",
+                "description": "Update a status page by ID.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "updateUptimeStatusPage",
                 "parameters": [
                     {
@@ -11870,14 +12199,21 @@
                     "422": {
                         "$ref": "#/components/responses/422"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:write"
+                        ]
+                    }
+                ]
             },
             "delete": {
                 "tags": [
                     "Status Pages"
                 ],
                 "summary": "Delete a status page",
-                "description": "Delete a status page by ID",
+                "description": "Delete a status page by ID.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "deleteUptimeStatusPage",
                 "parameters": [
                     {
@@ -11910,7 +12246,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:write"
+                        ]
+                    }
+                ]
             }
         },
         "/uptime/status-pages/{statusPageId}/current-status": {
@@ -11919,7 +12262,7 @@
                     "Status Pages"
                 ],
                 "summary": "Get a status page current status",
-                "description": "Get a status page current status by ID",
+                "description": "Get a status page current status by ID.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPageCurrentStatus",
                 "parameters": [
                     {
@@ -12163,7 +12506,14 @@
                     "404": {
                         "$ref": "#/components/responses/404"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "status_pages:read"
+                        ]
+                    }
+                ]
             }
         }
     },
