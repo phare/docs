@@ -215,8 +215,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/phare.svg",
-    "dark": "/logo/phare.svg",
+    "light": "/images/phare.svg",
+    "dark": "/images/phare.svg",
     "href": "https://phare.io"
   },
   "api": {
