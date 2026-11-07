@@ -1,0 +1,415 @@
+---
+title: "Phare MCP Server"
+description: "Connect AI assistants like Claude, ChatGPT and Cursor to Phare, and manage your monitors, incidents and status pages from a conversation."
+sidebarTitle: "MCP server"
+icon: "/images/integrations/mcp/mcp.svg"
+---
+
+The Phare MCP server connects AI assistants like Mistral, Claude, and ChatGPT to your organization with the [Model Context Protocol](https://modelcontextprotocol.io). Check which monitors are down, open an incident during an outage, or schedule a maintenance window, directly from your conversation.
+
+Applications connected to the MCP server act as you: they have the permissions of your [role](/user-management#roles) and only access your projects. No API key is needed, you log in to Phare and approve the application the first time you connect it.
+
+Use this URL to connect an application:
+
+```
+https://mcp.phare.io/mcp
+```
+
+## Requirements
+
+- A Phare account with a verified email address.
+- Access to at least one project. Admins and the owner access every project, other members access the [projects they are part of](/user-management#accessing-projects).
+- An application supporting remote MCP servers with OAuth, like the ones below.
+
+## Connecting an application
+
+Select your application below for step-by-step instructions, with a link to its own MCP documentation.
+
+<AccordionGroup>
+    <Accordion title="Mistral Vibe">
+        <Steps>
+            <Step title="Add the MCP server">
+                In Mistral Vibe (formerly Le Chat), open **Connectors**, click **+ Add Connector** and switch to the **Custom MCP Connector** tab. Enter `phare` as the connector name and `https://mcp.phare.io/mcp` as the server URL, then click **Connect**.
+            </Step>
+            <Step title="Log in to Phare">
+                Log in to Phare when Mistral Vibe asks you to, and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Custom connectors are an administrator feature. On Free, Pro and Student plans, the account owner is the administrator.
+
+        Check out the [Mistral Vibe documentation](https://docs.mistral.ai/vibe/work/connectors/mcp-connectors) for more details.
+    </Accordion>
+
+    <Accordion title="Vibe CLI">
+        <Steps>
+            <Step title="Add the MCP server">
+                Run this command in your terminal:
+
+                ```bash
+                vibe mcp add phare --url https://mcp.phare.io/mcp
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                Vibe opens your browser after adding the MCP server. Log in to Phare and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [Vibe CLI documentation](https://docs.mistral.ai/vibe/code/cli/mcp-servers) for more details.
+    </Accordion>
+
+    <Accordion title="Claude">
+        <Steps>
+            <Step title="Add the MCP server">
+                In Claude, open **Customize** > **Connectors**, click **+ Add** and choose **Add custom connector**. Enter `Phare` as the name and `https://mcp.phare.io/mcp` as the URL, then click **Continue**, **Continue** and **Add**.
+            </Step>
+            <Step title="Log in to Phare">
+                Log in to Phare when Claude asks you to, and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        On Team and Enterprise plans, an owner adds the connector in **Organization settings** > **Connectors**, then members click **Connect** next to Phare in **Customize** > **Connectors**.
+
+        Check out the [Claude documentation](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) for more details.
+    </Accordion>
+
+    <Accordion title="Claude Code">
+        <Steps>
+            <Step title="Add the MCP server">
+                Run this command in your terminal:
+
+                ```bash
+                claude mcp add --transport http phare https://mcp.phare.io/mcp
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                In Claude Code, run `/mcp`, select **phare** and follow the steps in your browser to log in to Phare and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [Claude Code documentation](https://code.claude.com/docs/en/mcp) for more details.
+    </Accordion>
+
+    <Accordion title="ChatGPT">
+        <Steps>
+            <Step title="Add the MCP server">
+                Open the <a href="https://chatgpt.com/plugins" rel="nofollow">ChatGPT plugins</a>, click **+** and choose **Add custom MCP server**. Enter `Phare` as the name, a description, and `https://mcp.phare.io/mcp` as the URL. Choose OAuth as the authentication, accept the warning and click **Create as a plugin**.
+            </Step>
+            <Step title="Log in to Phare">
+                ChatGPT asks you to log in to Phare the first time it uses a tool. Log in and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        On business plans, your workspace policies can restrict custom MCP servers.
+
+        Check out the [ChatGPT documentation](https://developers.openai.com/plugins/deploy/connect-chatgpt) for more details.
+    </Accordion>
+
+    <Accordion title="Codex">
+        <Steps>
+            <Step title="Add the MCP server">
+                Run this command in your terminal:
+
+                ```bash
+                codex mcp add phare --url https://mcp.phare.io/mcp
+                ```
+
+                The Codex IDE extension uses the same configuration.
+            </Step>
+            <Step title="Log in to Phare">
+                Run this command, then log in to Phare in your browser and [approve the connection](#approving-the-connection):
+
+                ```bash
+                codex mcp login phare
+                ```
+            </Step>
+        </Steps>
+
+        Check out the [Codex documentation](https://learn.chatgpt.com/docs/extend/mcp) for more details.
+    </Accordion>
+
+    <Accordion title="Cursor">
+        <Steps>
+            <Step title="Add the MCP server">
+                Add the MCP server to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in your project:
+
+                ```json
+                {
+                  "mcpServers": {
+                    "phare": {
+                      "url": "https://mcp.phare.io/mcp"
+                    }
+                  }
+                }
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                Restart Cursor, then open **Customize** > **MCPs** in the sidebar to log in to Phare and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [Cursor documentation](https://cursor.com/docs/mcp) for more details.
+    </Accordion>
+
+    <Accordion title="VS Code">
+        <Steps>
+            <Step title="Add the MCP server">
+                Run **MCP: Add Server** from the Command Palette and choose **HTTP (HTTP or Server-Sent Events)**. Enter `https://mcp.phare.io/mcp` as the URL and `phare` as the server ID, then choose where to save it.
+            </Step>
+            <Step title="Log in to Phare">
+                VS Code opens your browser when it starts the MCP server. Log in to Phare and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [VS Code documentation](https://code.visualstudio.com/docs/agent-customization/mcp-servers) for more details.
+    </Accordion>
+
+    <Accordion title="Zed">
+        <Steps>
+            <Step title="Add the MCP server">
+                Open **Settings** > **AI** > **MCP Servers**, click **Add Server** and choose **Add Remote Server**. You can also add the MCP server to your settings file:
+
+                ```json
+                {
+                  "context_servers": {
+                    "phare": {
+                      "url": "https://mcp.phare.io/mcp"
+                    }
+                  }
+                }
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                Zed asks you to authenticate with the MCP server. Log in to Phare and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [Zed documentation](https://zed.dev/docs/ai/mcp) for more details.
+    </Accordion>
+
+    <Accordion title="Gemini CLI">
+        <Steps>
+            <Step title="Add the MCP server">
+                Add the MCP server to `~/.gemini/settings.json`:
+
+                ```json
+                {
+                  "mcpServers": {
+                    "phare": {
+                      "httpUrl": "https://mcp.phare.io/mcp"
+                    }
+                  }
+                }
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                In Gemini CLI, run `/mcp auth phare`, then log in to Phare in your browser and [approve the connection](#approving-the-connection).
+            </Step>
+        </Steps>
+
+        Check out the [Gemini CLI documentation](https://geminicli.com/docs/tools/mcp-server/) for more details.
+    </Accordion>
+
+    <Accordion title="OpenCode">
+        <Steps>
+            <Step title="Add the MCP server">
+                Run this command in your terminal:
+
+                ```bash
+                opencode mcp add phare --url https://mcp.phare.io/mcp
+                ```
+            </Step>
+            <Step title="Log in to Phare">
+                Run this command, then log in to Phare in your browser and [approve the connection](#approving-the-connection):
+
+                ```bash
+                opencode mcp auth phare
+                ```
+            </Step>
+        </Steps>
+
+        Check out the [OpenCode documentation](https://opencode.ai/docs/mcp-servers) for more details.
+    </Accordion>
+
+    <Accordion title="Other applications">
+        Enter `https://mcp.phare.io/mcp` as the URL of a remote MCP server (Streamable HTTP) in your application. The application registers itself with Phare and opens the Phare login page.
+
+        Applications running on your computer, like command-line tools and desktop applications, work with Phare. Web applications must be allowed by Phare first: if yours isn't, [contact support](mailto:support@phare.io).
+    </Accordion>
+</AccordionGroup>
+
+### Approving the connection
+
+After you log in, Phare shows the name of the application, the site you will be sent to after approving, and your email address, organization and role. Click **Approve** to connect the application.
+
+<Warning>
+    Only approve a connection you just started yourself. Phare shows a warning when the connection was started by an application on your computer, as any application on your computer can start one.
+</Warning>
+
+## Using the MCP server
+
+Once connected, ask your questions in plain words. For example:
+
+- "Which monitors are down in my Production project?"
+- "What was the uptime of the API monitor last month?"
+- "Open an incident on the status page for the slow checkout, and post an update saying we are investigating."
+- "Schedule a maintenance window on Sunday from 2:00 to 4:00 for the database monitors."
+- "Create an HTTP monitor for https://example.com checking every minute."
+
+The application calls [`whoami`](#account) first to find your role and projects, then the [tools](#tools) it needs to answer.
+
+<Tip>
+    If you have several projects, name the project in your request so the application uses the right one.
+</Tip>
+
+## Permissions
+
+The MCP server follows your [role](/user-management#roles) and your projects, so an application can never do more than you can in the dashboard:
+
+- **Tools**: The application only sees the tools your role can use. Viewers only see the tools reading data, responders also see the tools managing incidents and maintenance windows. Phare checks your permissions on every tool call, so a change to your role applies right away.
+- **Projects**: The application only accesses the projects you can access. Most tools act on one of them through their `project_id` argument.
+- **Credentials**: The MCP server can't manage API keys, invitations, members, roles, single sign-on, the organization settings or billing. Use the dashboard for these.
+
+Each tool tells the application whether it reads, creates, or changes and deletes data. Most applications ask for your confirmation before changing or deleting anything.
+
+## Tools
+
+The tools run the endpoints of the [Phare API](/api-reference/introduction), with the same arguments, validation and responses. Click a tool to see all its arguments in the API reference.
+
+The alert rules, monitors, reports, incidents, maintenance windows and status pages tools act inside a project and require a `project_id` argument: the ID of one of your projects, found with `whoami` or `list_projects`.
+
+List tools return 20 results per page by default, up to 100 with the `per_page` argument. The application gets the next results with the `page` argument.
+
+### Account
+
+| Tool     | Description                                                                                   | Permission |
+| :------- | :----------------------------------------------------------------------------------------------- | :--------- |
+| `whoami` | Get your account, role, organization, permissions and the projects you can access. Called first. | Any role   |
+
+### Projects
+
+| Tool                                                              | Description                                                                       | Permission       |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------------------- | :--------------- |
+| [`list_projects`](/api-reference/platform/projects/list-projects)  | List the projects you can access.                                                 | `projects:read`  |
+| [`get_project`](/api-reference/platform/projects/get-a-project)    | Get a project by ID.                                                              | `projects:read`  |
+| [`create_project`](/api-reference/platform/projects/create-a-project) | Create a project.                                                              | `projects:write` |
+| [`update_project`](/api-reference/platform/projects/update-a-project) | Update a project.                                                              | `projects:write` |
+| [`delete_project`](/api-reference/platform/projects/delete-a-project) | Delete a project with all its monitors, incidents, status pages and alert rules. | `projects:write` |
+
+### Members
+
+| Tool                                                       | Description                                  | Permission     |
+| :--------------------------------------------------------- | :------------------------------------------- | :------------- |
+| [`list_users`](/api-reference/platform/users/list-users)   | List the members of your organization.       | `members:read` |
+| [`get_user`](/api-reference/platform/users/get-a-user)     | Get a member of your organization by ID.     | `members:read` |
+
+### Integrations
+
+| Tool                                                                           | Description                                                    | Permission           |
+| :----------------------------------------------------------------------------- | :------------------------------------------------------------- | :------------------- |
+| [`list_integrations`](/api-reference/platform/integrations/list-integrations)   | List the integrations of an app, like Slack or Discord.        | `integrations:read`  |
+| [`get_integration`](/api-reference/platform/integrations/get-an-integration)    | Get an integration by ID.                                      | `integrations:read`  |
+| [`create_integration`](/api-reference/platform/integrations/create-an-integration) | Create an integration.                                     | `integrations:write` |
+| [`update_integration`](/api-reference/platform/integrations/update-an-integration) | Update an integration.                                     | `integrations:write` |
+| [`delete_integration`](/api-reference/platform/integrations/delete-an-integration) | Delete an integration not used by an alert rule.           | `integrations:write` |
+
+### Alert rules
+
+| Tool                                                                         | Description                                                                 | Permission          |
+| :--------------------------------------------------------------------------- | :-------------------------------------------------------------------------- | :------------------ |
+| [`list_alert_rules`](/api-reference/platform/alert-rules/list-alert-rules)    | List the alert rules of the project and the organization-wide alert rules. | `alert_rules:read`  |
+| [`get_alert_rule`](/api-reference/platform/alert-rules/get-an-alert-rule)     | Get an alert rule by ID.                                                   | `alert_rules:read`  |
+| [`create_alert_rule`](/api-reference/platform/alert-rules/create-an-alert-rule) | Create an alert rule.                                                    | `alert_rules:write` |
+| [`update_alert_rule`](/api-reference/platform/alert-rules/update-an-alert-rule) | Update an alert rule.                                                    | `alert_rules:write` |
+| [`delete_alert_rule`](/api-reference/platform/alert-rules/delete-an-alert-rule) | Delete an alert rule.                                                    | `alert_rules:write` |
+
+### Monitors
+
+| Tool                                                                         | Description                                                    | Permission       |
+| :--------------------------------------------------------------------------- | :------------------------------------------------------------- | :--------------- |
+| [`list_monitors`](/api-reference/uptime/monitors/list-monitors)               | List the monitors of the project.                              | `monitors:read`  |
+| [`get_monitor`](/api-reference/uptime/monitors/get-a-monitor)                 | Get a monitor by ID.                                           | `monitors:read`  |
+| [`get_monitor_report`](/api-reference/uptime/monitors/get-a-monitor-report)   | Get the uptime statistics of a monitor, over up to one year.   | `monitors:read`  |
+| [`create_monitor`](/api-reference/uptime/monitors/create-a-monitor)           | Create a monitor.                                              | `monitors:write` |
+| [`update_monitor`](/api-reference/uptime/monitors/update-a-monitor)           | Update a monitor.                                              | `monitors:write` |
+| [`pause_monitor`](/api-reference/uptime/monitors/pause-a-monitor)             | Pause a monitor.                                               | `monitors:write` |
+| [`resume_monitor`](/api-reference/uptime/monitors/resume-a-monitor)           | Resume a paused monitor.                                       | `monitors:write` |
+| [`delete_monitor`](/api-reference/uptime/monitors/delete-a-monitor)           | Delete a monitor.                                              | `monitors:write` |
+
+### Reports
+
+| Tool                                                     | Description                                                                   | Permission     |
+| :------------------------------------------------------- | :---------------------------------------------------------------------------- | :------------- |
+| [`get_report`](/api-reference/uptime/reports/get-a-report) | Get the uptime statistics of all the monitors of the project, over up to one year. | `reports:read` |
+
+### Incidents
+
+| Tool                                                                    | Description                                                    | Permission        |
+| :---------------------------------------------------------------------- | :------------------------------------------------------------- | :---------------- |
+| [`list_incidents`](/api-reference/uptime/incidents/list-incidents)       | List the incidents of the project.                             | `incidents:read`  |
+| [`get_incident`](/api-reference/uptime/incidents/get-an-incident)        | Get an incident by ID.                                         | `incidents:read`  |
+| [`create_incident`](/api-reference/uptime/incidents/create-an-incident)  | Create an incident.                                            | `incidents:write` |
+| [`update_incident`](/api-reference/uptime/incidents/update-an-incident)  | Update an incident.                                            | `incidents:write` |
+| [`recover_incident`](/api-reference/uptime/incidents/recover-an-incident) | Recover an incident now.                                      | `incidents:write` |
+| [`delete_incident`](/api-reference/uptime/incidents/delete-an-incident)  | Delete an incident.                                            | `incidents:write` |
+
+### Incident updates
+
+| Tool                                                                                        | Description                                                              | Permission        |
+| :------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------- | :---------------- |
+| [`list_incident_updates`](/api-reference/uptime/incidents/updates/list-incident-updates)     | List the updates of an incident.                                         | `incidents:read`  |
+| [`get_incident_update`](/api-reference/uptime/incidents/updates/get-an-incident-update)      | Get an incident update by ID.                                            | `incidents:read`  |
+| [`create_incident_update`](/api-reference/uptime/incidents/updates/create-an-incident-update) | Post an incident update, an update with the `resolved` state recovers the incident. | `incidents:write` |
+| [`update_incident_update`](/api-reference/uptime/incidents/updates/update-an-incident-update) | Update an incident update.                                              | `incidents:write` |
+| [`delete_incident_update`](/api-reference/uptime/incidents/updates/delete-an-incident-update) | Delete an incident update.                                              | `incidents:write` |
+
+### Maintenance windows
+
+| Tool                                                                                              | Description                                         | Permission                  |
+| :------------------------------------------------------------------------------------------------ | :-------------------------------------------------- | :-------------------------- |
+| [`list_maintenance_windows`](/api-reference/uptime/maintenance-windows/list-maintenance-windows)   | List the maintenance windows of the project.        | `maintenance_windows:read`  |
+| [`get_maintenance_window`](/api-reference/uptime/maintenance-windows/get-a-maintenance-window)     | Get a maintenance window by ID.                     | `maintenance_windows:read`  |
+| [`create_maintenance_window`](/api-reference/uptime/maintenance-windows/create-a-maintenance-window) | Schedule a maintenance window.                    | `maintenance_windows:write` |
+| [`update_maintenance_window`](/api-reference/uptime/maintenance-windows/update-a-maintenance-window) | Update a maintenance window.                      | `maintenance_windows:write` |
+| [`complete_maintenance_window`](/api-reference/uptime/maintenance-windows/complete-a-maintenance-window) | Complete a maintenance window in progress.    | `maintenance_windows:write` |
+| [`cancel_maintenance_window`](/api-reference/uptime/maintenance-windows/cancel-a-maintenance-window) | Cancel a scheduled or in progress maintenance window. | `maintenance_windows:write` |
+| [`delete_maintenance_window`](/api-reference/uptime/maintenance-windows/delete-a-maintenance-window) | Delete a maintenance window.                      | `maintenance_windows:write` |
+
+### Status pages
+
+| Tool                                                                                                 | Description                                        | Permission           |
+| :--------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------------- |
+| [`list_status_pages`](/api-reference/uptime/status-pages/list-status-pages)                           | List the status pages of the project.              | `status_pages:read`  |
+| [`get_status_page`](/api-reference/uptime/status-pages/get-a-status-page)                             | Get a status page by ID.                           | `status_pages:read`  |
+| [`get_status_page_current_status`](/api-reference/uptime/status-pages/get-a-status-page-current-status) | Get the current status of a status page.         | `status_pages:read`  |
+| [`create_status_page`](/api-reference/uptime/status-pages/create-a-status-page)                       | Create a status page.                              | `status_pages:write` |
+| [`update_status_page`](/api-reference/uptime/status-pages/update-a-status-page)                       | Update a status page.                              | `status_pages:write` |
+| [`delete_status_page`](/api-reference/uptime/status-pages/delete-a-status-page)                       | Delete a status page.                              | `status_pages:write` |
+
+## Disconnecting an application
+
+Your applications are listed in the connected applications section of your <a href="https://app.phare.io/user/settings#connected-applications" rel="nofollow">user settings</a>, with the site they send you to and when they were last active. Click the trash icon next to an application to disconnect it, it loses access to your account until you connect it again.
+
+Phare also disconnects all your applications when:
+
+- You change your password or your email address, or reset your password.
+- You enable or disable two-factor authentication.
+- Single sign-on is enabled or removed for your organization.
+
+<Note>
+    An application unused for 30 days must be connected again.
+</Note>
+
+## Security
+
+You receive an email when an application is connected to your account, with the date, IP address and browser of the connection. If the connection is unexpected, [disconnect the application](#disconnecting-an-application), reset your password and contact [support@phare.io](mailto:support@phare.io) right away.
+
+Phare uses the OAuth authorization code flow with PKCE. Access tokens expire after one hour, and only the known web applications and the applications running on your computer can connect.
+
+## Rate limiting
+
+The MCP server is rate limited to **100 requests per minute** across the organization. All members share the same limit, separate from the [API rate limit](/api-reference/introduction#rate-limiting).
+
+---
+
+If a tool is missing or a custom rate limit is needed, [contact support](mailto:support@phare.io). Phare can help find a solution that fits the use case.

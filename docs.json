@@ -58,7 +58,13 @@
                   "integrations/slack",
                   "integrations/telegram"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "group": "Automation",
+            "pages": [
+              "integrations/mcp",
               "integrations/terraform",
               "integrations/ansible",
               "integrations/nixos"
