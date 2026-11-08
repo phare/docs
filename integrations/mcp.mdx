@@ -60,17 +60,17 @@ Select your application below for step-by-step instructions, with a link to its 
 
     <Accordion title="Claude">
         <Steps>
-            <Step title="Add the MCP server">
-                In Claude, open **Customize** > **Connectors**, click **+ Add** and choose **Add custom connector**. Enter `Phare` as the name and `https://mcp.phare.io/mcp` as the URL, then click **Continue**, **Continue** and **Add**.
+            <Step title="Add the connector">
+                Open [Phare in the Claude directory](https://claude.ai/directory/phare) and click **Connect**.
             </Step>
             <Step title="Log in to Phare">
                 Log in to Phare when Claude asks you to, and [approve the connection](#approving-the-connection).
             </Step>
         </Steps>
 
-        On Team and Enterprise plans, an owner adds the connector in **Organization settings** > **Connectors**, then members click **Connect** next to Phare in **Customize** > **Connectors**.
+        On Team and Enterprise plans, an owner first adds Phare in **Organization settings** > **Connectors**: click **Browse connectors**, select Phare and click **Add to your team**. Members then connect it from the directory.
 
-        Check out the [Claude documentation](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) for more details.
+        Check out the [Claude documentation](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) for more details.
     </Accordion>
 
     <Accordion title="Claude Code">
@@ -86,6 +86,8 @@ Select your application below for step-by-step instructions, with a link to its 
                 In Claude Code, run `/mcp`, select **phare** and follow the steps in your browser to log in to Phare and [approve the connection](#approving-the-connection).
             </Step>
         </Steps>
+
+        Already connected Phare in Claude? Claude Code uses the same connection when you log in with your Claude account, listed as **claude.ai Phare** in `/mcp`.
 
         Check out the [Claude Code documentation](https://code.claude.com/docs/en/mcp) for more details.
     </Accordion>
