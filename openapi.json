@@ -77,7 +77,7 @@
                     "Alert Rules"
                 ],
                 "summary": "List alert rules",
-                "description": "Get a paginated list of alert rules. Organization-scoped alert rules are listed alongside the alert rules of the current project.\n\nRequires the `alert_rules:read` permission.",
+                "description": "Get a paginated list of the alert rules notifying an integration when an event happens in the project: the project alert rules first, then the organization-wide ones.\n\nRequires the `alert_rules:read` permission.",
                 "operationId": "getAlertRules",
                 "responses": {
                     "200": {
@@ -233,7 +233,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Create an alert rule",
-                "description": "Create an alert rule.\n\nRequires the `alert_rules:write` permission.",
+                "description": "Create an alert rule notifying an integration each time an event happens in the project, or in every project with the `organization` scope. The app of the integration must support the event.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "createUptimeAlertRule",
                 "requestBody": {
                     "description": "Alert rule request",
@@ -462,7 +462,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Get an alert rule",
-                "description": "Get an alert rule by ID.\n\nRequires the `alert_rules:read` permission.",
+                "description": "Get an alert rule by ID, with its event, integration, rate limit and settings.\n\nRequires the `alert_rules:read` permission.",
                 "operationId": "getAlertRule",
                 "parameters": [
                     {
@@ -607,7 +607,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Update an alert rule",
-                "description": "Update an alert rule by ID.\n\nRequires the `alert_rules:write` permission.",
+                "description": "Update an alert rule by ID, the fields left out keep their current value. Changing its event or integration replaces their settings, send the settings of the new event or integration.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "updateUptimeAlertRule",
                 "parameters": [
                     {
@@ -840,7 +840,7 @@
                     "Alert Rules"
                 ],
                 "summary": "Delete an alert rule",
-                "description": "Delete an alert rule by ID.\n\nRequires the `alert_rules:write` permission.",
+                "description": "Delete an alert rule by ID, its event stops notifying its integration. The integration is kept.\n\nRequires the `alert_rules:write` permission.",
                 "operationId": "deleteUptimeAlertRule",
                 "parameters": [
                     {
@@ -889,7 +889,7 @@
                     "Integrations"
                 ],
                 "summary": "List integrations",
-                "description": "Get a paginated list of integrations for a specific app.\n\nRequires the `integrations:read` permission.",
+                "description": "Get a paginated list of the integrations of an app, newest first. Filter them by name. Integrations belong to the organization and deliver the notifications of the alert rules.\n\nRequires the `integrations:read` permission.",
                 "operationId": "getIntegrations",
                 "parameters": [
                     {
@@ -1034,7 +1034,7 @@
                     "Integrations"
                 ],
                 "summary": "Create an integration",
-                "description": "Create an integration for a specific app.\n\nRequires the `integrations:write` permission.",
+                "description": "Create an integration of an app for the whole organization, then used by alert rules to deliver their notifications. The apps connected from the dashboard, like Slack, Discord and Telegram, cannot be created this way, and the SMS app requires a Scale plan subscription.\n\nRequires the `integrations:write` permission.",
                 "operationId": "createIntegration",
                 "parameters": [
                     {
@@ -1201,7 +1201,7 @@
                     "Integrations"
                 ],
                 "summary": "Get an integration",
-                "description": "Get an integration by ID.\n\nRequires the `integrations:read` permission.",
+                "description": "Get an integration of an app by ID. Its credentials are write-only and never returned.\n\nRequires the `integrations:read` permission.",
                 "operationId": "getIntegration",
                 "parameters": [
                     {
@@ -1321,7 +1321,7 @@
                     "Integrations"
                 ],
                 "summary": "Update an integration",
-                "description": "Update an integration by ID.\n\nRequires the `integrations:write` permission.",
+                "description": "Update an integration by ID. The fields and settings left out keep their current value, credentials included.\n\nRequires the `integrations:write` permission.",
                 "operationId": "updateIntegration",
                 "parameters": [
                     {
@@ -1600,7 +1600,7 @@
                     "Integrations"
                 ],
                 "summary": "Delete an integration",
-                "description": "Delete an integration by ID. Integrations used by alert rules can not be deleted.\n\nRequires the `integrations:write` permission.",
+                "description": "Delete an integration by ID. Integrations used by alert rules cannot be deleted, delete those alert rules or move them to another integration first.\n\nRequires the `integrations:write` permission.",
                 "operationId": "deleteIntegration",
                 "parameters": [
                     {
@@ -1669,7 +1669,7 @@
                     "Projects"
                 ],
                 "summary": "List projects",
-                "description": "Get a paginated list of projects. Requires an organization-scoped API key.\n\nRequires the `projects:read` permission.",
+                "description": "Get a paginated list of the projects you can access, newest first, with the IDs of their members. Requires an organization-scoped API key.\n\nRequires the `projects:read` permission.",
                 "operationId": "getProjects",
                 "responses": {
                     "200": {
@@ -1803,7 +1803,7 @@
                     "Projects"
                 ],
                 "summary": "Create a project",
-                "description": "Create a project. Requires an organization-scoped API key.\n\nRequires the `projects:write` permission.",
+                "description": "Create a project grouping monitors, incidents, maintenance windows, status pages and alert rules, with the users who can access it as members. Requires an organization-scoped API key.\n\nRequires the `projects:write` permission.",
                 "operationId": "createProject",
                 "requestBody": {
                     "description": "Project request",
@@ -1984,7 +1984,7 @@
                     "Projects"
                 ],
                 "summary": "Get a project",
-                "description": "Get a project by ID.\n\nRequires the `projects:read` permission.",
+                "description": "Get a project by ID, with the IDs of its members and its incident settings.\n\nRequires the `projects:read` permission.",
                 "operationId": "getProject",
                 "parameters": [
                     {
@@ -2107,7 +2107,7 @@
                     "Projects"
                 ],
                 "summary": "Update a project",
-                "description": "Update a project by ID.\n\nRequires the `projects:write` permission.",
+                "description": "Update a project by ID, the fields left out keep their current value. A `members` list replaces the current members.\n\nRequires the `projects:write` permission.",
                 "operationId": "updateProject",
                 "parameters": [
                     {
@@ -2296,7 +2296,7 @@
                     "Projects"
                 ],
                 "summary": "Delete a project",
-                "description": "Delete a project by ID. Requires an organization-scoped API key, and the last project of an organization can not be deleted.\n\nRequires the `projects:write` permission.",
+                "description": "Delete a project by ID with everything it contains: monitors with their incidents and check history, maintenance windows, status pages with their custom domain certificates, project alert rules and API keys. This cannot be undone. Requires an organization-scoped API key, and the last project of an organization cannot be deleted.\n\nRequires the `projects:write` permission.",
                 "operationId": "deleteProject",
                 "parameters": [
                     {
@@ -2339,7 +2339,7 @@
                     "Users"
                 ],
                 "summary": "List users",
-                "description": "Get a paginated list of users.\n\nRequires the `members:read` permission.",
+                "description": "Get a paginated list of the users of the organization, newest first. Filter them by email address to find the user IDs used by the project members and the email and SMS recipients.\n\nRequires the `members:read` permission.",
                 "operationId": "getUsers",
                 "parameters": [
                     {
@@ -2436,7 +2436,7 @@
                     "Users"
                 ],
                 "summary": "Get a user",
-                "description": "Get a user by ID.\n\nRequires the `members:read` permission.",
+                "description": "Get a user of the organization by ID, with their email address and role.\n\nRequires the `members:read` permission.",
                 "operationId": "getUser",
                 "parameters": [
                     {
@@ -2511,7 +2511,7 @@
                     "Incidents"
                 ],
                 "summary": "List incidents",
-                "description": "Get a paginated list of incidents.\n\nRequires the `incidents:read` permission.",
+                "description": "Get a paginated list of the incidents of the project, newest first: the ones opened by failing monitors and the manual ones. Filter them by monitor or tag.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidents",
                 "parameters": [
                     {
@@ -2711,7 +2711,7 @@
                     "Incidents"
                 ],
                 "summary": "Create an incident",
-                "description": "Create an incident.\n\nRequires the `incidents:write` permission.",
+                "description": "Create a manual incident affecting monitors of the project, for an outage the monitors did not catch. It triggers the `uptime.incident.created` alert rules, unless it is created already recovered with `recovery_at`. Status pages show its title once an incident update is published.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncident",
                 "requestBody": {
                     "description": "Incident request",
@@ -2967,7 +2967,7 @@
                     "Incidents"
                 ],
                 "summary": "Get an incident",
-                "description": "Get an incident by ID.\n\nRequires the `incidents:read` permission.",
+                "description": "Get an incident by ID, with its impact, status, state, dates and affected monitors.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncident",
                 "parameters": [
                     {
@@ -3134,7 +3134,7 @@
                     "Incidents"
                 ],
                 "summary": "Update an incident",
-                "description": "Update an incident by ID.\n\nRequires the `incidents:write` permission.",
+                "description": "Update an incident by ID, the fields left out keep their current value. A `monitors` list replaces the affected monitors of a manual incident and is ignored on the incidents opened by monitors. Setting `recovery_at` on an ongoing incident recovers it and triggers the `uptime.incident.recovered` alert rules, and the changes are logged in its timeline.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncident",
                 "parameters": [
                     {
@@ -3394,7 +3394,7 @@
                     "Incidents"
                 ],
                 "summary": "Delete an incident",
-                "description": "Delete an incident by ID.\n\nRequires the `incidents:write` permission.",
+                "description": "Delete an incident by ID with its updates, comments and timeline, it disappears from the status pages and the reports. This cannot be undone and triggers no alert rule.\n\nRequires the `incidents:write` permission.",
                 "operationId": "deleteUptimeIncident",
                 "parameters": [
                     {
@@ -3443,7 +3443,7 @@
                     "Incidents"
                 ],
                 "summary": "Recover an incident",
-                "description": "Recover an incident by ID, setting its recovery date to the current date.\n\nRequires the `incidents:write` permission.",
+                "description": "Recover an ongoing incident by ID, setting its recovery date to the current date, and trigger the `uptime.incident.recovered` alert rules.\n\nRequires the `incidents:write` permission.",
                 "operationId": "recoverUptimeIncident",
                 "parameters": [
                     {
@@ -3492,7 +3492,7 @@
                     "Incidents"
                 ],
                 "summary": "List incident updates",
-                "description": "Get a paginated list of incident updates.\n\nRequires the `incidents:read` permission.",
+                "description": "Get a paginated list of the updates of an incident, the messages published on the status pages, newest first.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidentUpdates",
                 "parameters": [
                     {
@@ -3630,7 +3630,7 @@
                     "Incidents"
                 ],
                 "summary": "Create an incident update",
-                "description": "Create an incident update. Publishing an update with the `resolved` state recovers the incident.\n\nRequires the `incidents:write` permission.",
+                "description": "Publish an update of an incident on the status pages and trigger the `uptime.incident_update.published` alert rules. Its state raises the state of the incident, and the `resolved` state recovers an ongoing incident.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3783,7 +3783,7 @@
                     "Incidents"
                 ],
                 "summary": "Get an incident update",
-                "description": "Get an incident update by ID.\n\nRequires the `incidents:read` permission.",
+                "description": "Get an incident update by ID, with its state, message, publication date and author.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -3907,7 +3907,7 @@
                     "Incidents"
                 ],
                 "summary": "Update an incident update",
-                "description": "Update an incident update by ID.\n\nRequires the `incidents:write` permission.",
+                "description": "Update the state and message of an incident update by ID, the state of the incident is recalculated. Its publication date cannot be changed, no alert rule is triggered and the `resolved` state does not recover the incident. Only its author or a user with the `incidents:moderate` permission can update it.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -4063,7 +4063,7 @@
                     "Incidents"
                 ],
                 "summary": "Delete an incident update",
-                "description": "Delete an incident update by ID.\n\nRequires the `incidents:write` permission.",
+                "description": "Delete an incident update by ID, it disappears from the status pages and the state of the incident is recalculated, a recovered incident stays recovered. Only its author or a user with the `incidents:moderate` permission can delete it.\n\nRequires the `incidents:write` permission.",
                 "operationId": "deleteUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -4121,7 +4121,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "List maintenance windows",
-                "description": "Get a paginated list of maintenance windows.\n\nRequires the `maintenance_windows:read` permission.",
+                "description": "Get a paginated list of the maintenance windows of the project, newest first. Filter them by state, monitor, status page or tag.\n\nRequires the `maintenance_windows:read` permission.",
                 "operationId": "getUptimeMaintenanceWindows",
                 "parameters": [
                     {
@@ -4334,7 +4334,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Create a maintenance window",
-                "description": "Create a maintenance window.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Schedule a maintenance window for monitors of the project, shown right away on the linked status pages. It starts at `starts_at` and ends at `ends_at` on its own, and its `monitoring_mode` sets what happens to the monitors meanwhile: `pause` pauses them, `mute` keeps checking them without incident alerts, `normal` only announces the maintenance.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "createUptimeMaintenanceWindow",
                 "requestBody": {
                     "description": "Maintenance window request",
@@ -4581,7 +4581,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Get a maintenance window",
-                "description": "Get a maintenance window by ID.\n\nRequires the `maintenance_windows:read` permission.",
+                "description": "Get a maintenance window by ID, with its state, schedule, monitoring mode, monitors and status pages.\n\nRequires the `maintenance_windows:read` permission.",
                 "operationId": "getUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4991,7 +4991,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Delete a maintenance window",
-                "description": "Delete a maintenance window by ID.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Delete a maintenance window by ID in any state, it disappears from the status pages and the monitors it paused are resumed. This cannot be undone and triggers no alert rule.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "deleteUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5040,7 +5040,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Cancel a maintenance window",
-                "description": "Cancel a maintenance window by ID. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Cancel a scheduled or in-progress maintenance window by ID and trigger the `uptime.maintenance_window.cancelled` alert rules, the monitors it paused are resumed. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "cancelUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5089,7 +5089,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Complete a maintenance window",
-                "description": "Complete a maintenance window by ID. Only in-progress maintenance windows can be completed, and `ends_at` is set to the current time if it is in the future.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Complete an in-progress maintenance window by ID and trigger the `uptime.maintenance_window.completed` alert rules, the monitors it paused are resumed and `ends_at` is set to the current time if it is in the future. Only in-progress maintenance windows can be completed.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "completeUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5251,7 +5251,7 @@
                     "Monitors"
                 ],
                 "summary": "List monitors",
-                "description": "Get a paginated list of monitors.\n\nRequires the `monitors:read` permission.",
+                "description": "Get a paginated list of the monitors of the project, newest first, with their current status and response time. Filter them by tag.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitors",
                 "parameters": [
                     {
@@ -5763,7 +5763,7 @@
                     "Monitors"
                 ],
                 "summary": "Create a monitor",
-                "description": "Create a monitor.\n\nRequires the `monitors:write` permission.",
+                "description": "Create an HTTP, TCP or ICMP monitor checking a service at a regular interval from 1 to 10 regions, it opens an incident once the failures are confirmed. The first check runs right away when the organization has monitoring events left in its quota, and the `uptime.monitor.created` alert rules are triggered.\n\nRequires the `monitors:write` permission.",
                 "operationId": "createUptimeMonitor",
                 "requestBody": {
                     "description": "Monitor request",
@@ -6649,7 +6649,7 @@
                     "Monitors"
                 ],
                 "summary": "Get a monitor",
-                "description": "Get a monitor by ID.\n\nRequires the `monitors:read` permission.",
+                "description": "Get a monitor by ID, with its current status, response time, request settings and check regions.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitor",
                 "parameters": [
                     {
@@ -7139,7 +7139,7 @@
                     "Monitors"
                 ],
                 "summary": "Update a monitor",
-                "description": "Update a monitor by ID.\n\nRequires the `monitors:write` permission.",
+                "description": "Update a monitor by ID, the fields left out keep their current value and the ones sent replace it entirely, like the whole `request` object. A check runs right away when the organization has monitoring events left in its quota, and the changes are logged in the timeline of its ongoing incidents.\n\nRequires the `monitors:write` permission.",
                 "operationId": "updateUptimeMonitor",
                 "parameters": [
                     {
@@ -8029,7 +8029,7 @@
                     "Monitors"
                 ],
                 "summary": "Delete a monitor",
-                "description": "Delete a monitor by ID.\n\nRequires the `monitors:write` permission.",
+                "description": "Delete a monitor by ID with its check history, its status page components, and the incidents and maintenance windows of this monitor only, the ones shared with other monitors are kept. This cannot be undone, and triggers the `uptime.monitor.deleted` alert rules.\n\nRequires the `monitors:write` permission.",
                 "operationId": "deleteUptimeMonitor",
                 "parameters": [
                     {
@@ -8078,7 +8078,7 @@
                     "Monitors"
                 ],
                 "summary": "Pause a monitor",
-                "description": "Pause a monitor by ID.\n\nRequires the `monitors:write` permission.",
+                "description": "Pause a monitor by ID, its checks stop until it is resumed. Its ongoing incidents stay open.\n\nRequires the `monitors:write` permission.",
                 "operationId": "pauseUptimeMonitor",
                 "parameters": [
                     {
@@ -8127,7 +8127,7 @@
                     "Monitors"
                 ],
                 "summary": "Resume a monitor",
-                "description": "Resume a monitor by ID.\n\nRequires the `monitors:write` permission.",
+                "description": "Resume a paused monitor by ID, its checks start again and the next one runs right away when the last one is older than its interval.\n\nRequires the `monitors:write` permission.",
                 "operationId": "resumeUptimeMonitor",
                 "parameters": [
                     {
@@ -8176,7 +8176,7 @@
                     "Monitors"
                 ],
                 "summary": "Get a monitor report",
-                "description": "Get uptime statistics for a single monitor by ID in the selected time window of up to 1 year.\n\nRequires the `monitors:read` permission.",
+                "description": "Get the availability, downtime, incident count, MTTR and MTBF of a monitor by ID, with its incidents, between two past dates up to 1 year apart, the last 30 days by default.\n\nRequires the `monitors:read` permission.",
                 "operationId": "getUptimeMonitorReport",
                 "parameters": [
                     {
@@ -8426,7 +8426,7 @@
                     "Reports"
                 ],
                 "summary": "Get report",
-                "description": "Get aggregated uptime statistics for all monitors of the project in the selected time window of up to 1 year.\n\nRequires the `reports:read` permission.",
+                "description": "Get the availability, downtime, incident count, MTTR and MTBF of every monitor of the project and their aggregates, between two past dates up to 1 year apart, the last 30 days by default.\n\nRequires the `reports:read` permission.",
                 "operationId": "getUptimeReport",
                 "parameters": [
                     {
@@ -8731,7 +8731,7 @@
                     "Status Pages"
                 ],
                 "summary": "List status pages",
-                "description": "Get a paginated list of status pages.\n\nRequires the `status_pages:read` permission.",
+                "description": "Get a paginated list of the status pages of the project, newest first, with their components. Filter them by tag.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPages",
                 "parameters": [
                     {
@@ -8862,46 +8862,57 @@
                                                                 "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                                 "properties": {
                                                                     "operational": {
+                                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                                         "type": "string",
                                                                         "example": "#16a34a"
                                                                     },
                                                                     "degraded_performance": {
+                                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                                         "type": "string",
                                                                         "example": "#fbbf24"
                                                                     },
                                                                     "partial_outage": {
+                                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                                         "type": "string",
                                                                         "example": "#f59e0b"
                                                                     },
                                                                     "major_outage": {
+                                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                                         "type": "string",
                                                                         "example": "#ef4444"
                                                                     },
                                                                     "maintenance": {
+                                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                                         "type": "string",
                                                                         "example": "#6366f1"
                                                                     },
                                                                     "empty": {
+                                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                                         "type": "string",
                                                                         "example": "#d3d3d3"
                                                                     },
                                                                     "background": {
+                                                                        "description": "Page background color",
                                                                         "type": "string",
                                                                         "example": "#ffffff"
                                                                     },
                                                                     "border": {
+                                                                        "description": "Border color",
                                                                         "type": "string",
                                                                         "example": "#e5e5e5"
                                                                     },
                                                                     "foreground": {
+                                                                        "description": "Text color",
                                                                         "type": "string",
                                                                         "example": "#000000"
                                                                     },
                                                                     "foreground_muted": {
+                                                                        "description": "Secondary text color",
                                                                         "type": "string",
                                                                         "example": "#737373"
                                                                     },
                                                                     "background_card": {
+                                                                        "description": "Background color of the cards",
                                                                         "type": "string",
                                                                         "example": "#fafafa"
                                                                     }
@@ -8912,46 +8923,57 @@
                                                                 "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                                 "properties": {
                                                                     "operational": {
+                                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                                         "type": "string",
                                                                         "example": "#16a34a"
                                                                     },
                                                                     "degraded_performance": {
+                                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                                         "type": "string",
                                                                         "example": "#fbbf24"
                                                                     },
                                                                     "partial_outage": {
+                                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                                         "type": "string",
                                                                         "example": "#f59e0b"
                                                                     },
                                                                     "major_outage": {
+                                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                                         "type": "string",
                                                                         "example": "#ef4444"
                                                                     },
                                                                     "maintenance": {
+                                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                                         "type": "string",
                                                                         "example": "#6366f1"
                                                                     },
                                                                     "empty": {
+                                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                                         "type": "string",
                                                                         "example": "#d3d3d3"
                                                                     },
                                                                     "background": {
+                                                                        "description": "Page background color",
                                                                         "type": "string",
                                                                         "example": "#111111"
                                                                     },
                                                                     "border": {
+                                                                        "description": "Border color",
                                                                         "type": "string",
                                                                         "example": "#3f3f46"
                                                                     },
                                                                     "foreground": {
+                                                                        "description": "Text color",
                                                                         "type": "string",
                                                                         "example": "#ffffff"
                                                                     },
                                                                     "foreground_muted": {
+                                                                        "description": "Secondary text color",
                                                                         "type": "string",
                                                                         "example": "#959595"
                                                                     },
                                                                     "background_card": {
+                                                                        "description": "Background color of the cards",
                                                                         "type": "string",
                                                                         "example": "#1a1a1a"
                                                                     }
@@ -8959,11 +8981,13 @@
                                                                 "type": "object"
                                                             },
                                                             "rounded": {
+                                                                "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                                 "type": "boolean",
                                                                 "example": true,
                                                                 "default": true
                                                             },
                                                             "border_width": {
+                                                                "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                                 "type": "integer",
                                                                 "example": 2,
                                                                 "default": 1,
@@ -8986,6 +9010,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
+                                                                            "description": "Shows a monitor",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/monitor"
@@ -9007,6 +9032,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
+                                                                            "description": "Shows a group of monitors",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/group"
@@ -9034,6 +9060,7 @@
                                                                                 ],
                                                                                 "properties": {
                                                                                     "componentable_type": {
+                                                                                        "description": "Shows a monitor",
                                                                                         "type": "string",
                                                                                         "enum": [
                                                                                             "uptime/monitor"
@@ -9173,7 +9200,7 @@
                     "Status Pages"
                 ],
                 "summary": "Create a status page",
-                "description": "Create a status page.\n\nRequires the `status_pages:write` permission.",
+                "description": "Create a public status page showing monitors of the project, online right away at `{subdomain}.status.phare.io`. A custom domain needs a CNAME record pointing to `cname.status.phare.io`, its SSL certificate is then issued automatically. Logos and favicons can only be uploaded with a `multipart/form-data` request.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "createUptimeStatusPage",
                 "requestBody": {
                     "description": "Status page request, sent as JSON or as `multipart/form-data` to upload logos and favicons. With `multipart/form-data`, booleans must be sent as `1` or `0` and nested fields with the bracket notation, e.g. `components[0][componentable_id]`.",
@@ -9250,46 +9277,57 @@
                                                 "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#e5e5e5"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#000000"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#737373"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#fafafa"
                                                     }
@@ -9300,46 +9338,57 @@
                                                 "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#111111"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#3f3f46"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#959595"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#1a1a1a"
                                                     }
@@ -9347,11 +9396,13 @@
                                                 "type": "object"
                                             },
                                             "rounded": {
+                                                "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                 "type": "boolean",
                                                 "example": true,
                                                 "default": true
                                             },
                                             "border_width": {
+                                                "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                 "type": "integer",
                                                 "example": 2,
                                                 "default": 1,
@@ -9374,6 +9425,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a monitor",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/monitor"
@@ -9395,6 +9447,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a group of monitors",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -9422,6 +9475,7 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
+                                                                        "description": "Shows a monitor",
                                                                         "type": "string",
                                                                         "enum": [
                                                                             "uptime/monitor"
@@ -9709,46 +9763,57 @@
                                                 "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#e5e5e5"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#000000"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#737373"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#fafafa"
                                                     }
@@ -9759,46 +9824,57 @@
                                                 "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#111111"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#3f3f46"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#959595"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#1a1a1a"
                                                     }
@@ -9806,11 +9882,13 @@
                                                 "type": "object"
                                             },
                                             "rounded": {
+                                                "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                 "type": "boolean",
                                                 "example": true,
                                                 "default": true
                                             },
                                             "border_width": {
+                                                "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                 "type": "integer",
                                                 "example": 2,
                                                 "default": 1,
@@ -9833,6 +9911,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a monitor",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/monitor"
@@ -9854,6 +9933,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a group of monitors",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -9881,6 +9961,7 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
+                                                                        "description": "Shows a monitor",
                                                                         "type": "string",
                                                                         "enum": [
                                                                             "uptime/monitor"
@@ -10177,46 +10258,57 @@
                                                     "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#e5e5e5"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#000000"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#737373"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#fafafa"
                                                         }
@@ -10227,46 +10319,57 @@
                                                     "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#111111"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#3f3f46"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#959595"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#1a1a1a"
                                                         }
@@ -10274,11 +10377,13 @@
                                                     "type": "object"
                                                 },
                                                 "rounded": {
+                                                    "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                     "type": "boolean",
                                                     "example": true,
                                                     "default": true
                                                 },
                                                 "border_width": {
+                                                    "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                     "type": "integer",
                                                     "example": 2,
                                                     "default": 1,
@@ -10301,6 +10406,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a monitor",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/monitor"
@@ -10322,6 +10428,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a group of monitors",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -10349,6 +10456,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
+                                                                            "description": "Shows a monitor",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/monitor"
@@ -10488,7 +10596,7 @@
                     "Status Pages"
                 ],
                 "summary": "Get a status page",
-                "description": "Get a status page by ID.\n\nRequires the `status_pages:read` permission.",
+                "description": "Get the settings of a status page by ID, with its components. The status it shows is returned by its current status.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPage",
                 "parameters": [
                     {
@@ -10607,46 +10715,57 @@
                                                     "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#e5e5e5"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#000000"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#737373"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#fafafa"
                                                         }
@@ -10657,46 +10776,57 @@
                                                     "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#111111"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#3f3f46"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#959595"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#1a1a1a"
                                                         }
@@ -10704,11 +10834,13 @@
                                                     "type": "object"
                                                 },
                                                 "rounded": {
+                                                    "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                     "type": "boolean",
                                                     "example": true,
                                                     "default": true
                                                 },
                                                 "border_width": {
+                                                    "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                     "type": "integer",
                                                     "example": 2,
                                                     "default": 1,
@@ -10731,6 +10863,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a monitor",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/monitor"
@@ -10752,6 +10885,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a group of monitors",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -10779,6 +10913,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
+                                                                            "description": "Shows a monitor",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/monitor"
@@ -10908,7 +11043,7 @@
                     "Status Pages"
                 ],
                 "summary": "Update a status page",
-                "description": "Update a status page by ID.\n\nRequires the `status_pages:write` permission.",
+                "description": "Update a status page by ID, the fields left out keep their current value. A `components` list replaces the current components, and a new `domain` replaces its custom domain certificate, issued automatically once the domain has a CNAME record pointing to `cname.status.phare.io`. Logos and favicons can only be uploaded with a `multipart/form-data` request.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "updateUptimeStatusPage",
                 "parameters": [
                     {
@@ -11002,46 +11137,57 @@
                                                 "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#e5e5e5"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#000000"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#737373"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#fafafa"
                                                     }
@@ -11052,46 +11198,57 @@
                                                 "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#111111"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#3f3f46"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#959595"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#1a1a1a"
                                                     }
@@ -11099,11 +11256,13 @@
                                                 "type": "object"
                                             },
                                             "rounded": {
+                                                "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                 "type": "boolean",
                                                 "example": true,
                                                 "default": true
                                             },
                                             "border_width": {
+                                                "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                 "type": "integer",
                                                 "example": 2,
                                                 "default": 1,
@@ -11126,6 +11285,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a monitor",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/monitor"
@@ -11147,6 +11307,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a group of monitors",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -11174,6 +11335,7 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
+                                                                        "description": "Shows a monitor",
                                                                         "type": "string",
                                                                         "enum": [
                                                                             "uptime/monitor"
@@ -11451,46 +11613,57 @@
                                                 "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#e5e5e5"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#000000"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#737373"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#fafafa"
                                                     }
@@ -11501,46 +11674,57 @@
                                                 "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                 "properties": {
                                                     "operational": {
+                                                        "description": "Color of the operational status, and of the timeline days without incident",
                                                         "type": "string",
                                                         "example": "#16a34a"
                                                     },
                                                     "degraded_performance": {
+                                                        "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                         "type": "string",
                                                         "example": "#fbbf24"
                                                     },
                                                     "partial_outage": {
+                                                        "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                         "type": "string",
                                                         "example": "#f59e0b"
                                                     },
                                                     "major_outage": {
+                                                        "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                         "type": "string",
                                                         "example": "#ef4444"
                                                     },
                                                     "maintenance": {
+                                                        "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                         "type": "string",
                                                         "example": "#6366f1"
                                                     },
                                                     "empty": {
+                                                        "description": "Color of the timeline days without data, before the monitor was created",
                                                         "type": "string",
                                                         "example": "#d3d3d3"
                                                     },
                                                     "background": {
+                                                        "description": "Page background color",
                                                         "type": "string",
                                                         "example": "#111111"
                                                     },
                                                     "border": {
+                                                        "description": "Border color",
                                                         "type": "string",
                                                         "example": "#3f3f46"
                                                     },
                                                     "foreground": {
+                                                        "description": "Text color",
                                                         "type": "string",
                                                         "example": "#ffffff"
                                                     },
                                                     "foreground_muted": {
+                                                        "description": "Secondary text color",
                                                         "type": "string",
                                                         "example": "#959595"
                                                     },
                                                     "background_card": {
+                                                        "description": "Background color of the cards",
                                                         "type": "string",
                                                         "example": "#1a1a1a"
                                                     }
@@ -11548,11 +11732,13 @@
                                                 "type": "object"
                                             },
                                             "rounded": {
+                                                "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                 "type": "boolean",
                                                 "example": true,
                                                 "default": true
                                             },
                                             "border_width": {
+                                                "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                 "type": "integer",
                                                 "example": 2,
                                                 "default": 1,
@@ -11575,6 +11761,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a monitor",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/monitor"
@@ -11596,6 +11783,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
+                                                            "description": "Shows a group of monitors",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -11623,6 +11811,7 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
+                                                                        "description": "Shows a monitor",
                                                                         "type": "string",
                                                                         "enum": [
                                                                             "uptime/monitor"
@@ -11909,46 +12098,57 @@
                                                     "description": "Light theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#e5e5e5"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#000000"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#737373"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#fafafa"
                                                         }
@@ -11959,46 +12159,57 @@
                                                     "description": "Dark theme colors, as lowercase 6-digit hexadecimal codes",
                                                     "properties": {
                                                         "operational": {
+                                                            "description": "Color of the operational status, and of the timeline days without incident",
                                                             "type": "string",
                                                             "example": "#16a34a"
                                                         },
                                                         "degraded_performance": {
+                                                            "description": "Color of the degraded performance status, and of the timeline days with a degraded performance incident",
                                                             "type": "string",
                                                             "example": "#fbbf24"
                                                         },
                                                         "partial_outage": {
+                                                            "description": "Color of the partial outage status, and of the timeline days with a partial outage incident",
                                                             "type": "string",
                                                             "example": "#f59e0b"
                                                         },
                                                         "major_outage": {
+                                                            "description": "Color of the major outage status, and of the timeline days with a major outage incident",
                                                             "type": "string",
                                                             "example": "#ef4444"
                                                         },
                                                         "maintenance": {
+                                                            "description": "Color of the maintenance status, and of the timeline days with a maintenance",
                                                             "type": "string",
                                                             "example": "#6366f1"
                                                         },
                                                         "empty": {
+                                                            "description": "Color of the timeline days without data, before the monitor was created",
                                                             "type": "string",
                                                             "example": "#d3d3d3"
                                                         },
                                                         "background": {
+                                                            "description": "Page background color",
                                                             "type": "string",
                                                             "example": "#111111"
                                                         },
                                                         "border": {
+                                                            "description": "Border color",
                                                             "type": "string",
                                                             "example": "#3f3f46"
                                                         },
                                                         "foreground": {
+                                                            "description": "Text color",
                                                             "type": "string",
                                                             "example": "#ffffff"
                                                         },
                                                         "foreground_muted": {
+                                                            "description": "Secondary text color",
                                                             "type": "string",
                                                             "example": "#959595"
                                                         },
                                                         "background_card": {
+                                                            "description": "Background color of the cards",
                                                             "type": "string",
                                                             "example": "#1a1a1a"
                                                         }
@@ -12006,11 +12217,13 @@
                                                     "type": "object"
                                                 },
                                                 "rounded": {
+                                                    "description": "Whether the corners of the page elements are rounded, square otherwise",
                                                     "type": "boolean",
                                                     "example": true,
                                                     "default": true
                                                 },
                                                 "border_width": {
+                                                    "description": "Width of the borders, in pixels, from 2 the icons are drawn bolder too",
                                                     "type": "integer",
                                                     "example": 2,
                                                     "default": 1,
@@ -12033,6 +12246,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a monitor",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/monitor"
@@ -12054,6 +12268,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
+                                                                "description": "Shows a group of monitors",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -12081,6 +12296,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
+                                                                            "description": "Shows a monitor",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/monitor"
@@ -12213,7 +12429,7 @@
                     "Status Pages"
                 ],
                 "summary": "Delete a status page",
-                "description": "Delete a status page by ID.\n\nRequires the `status_pages:write` permission.",
+                "description": "Delete a status page by ID with its components and custom domain certificate, it goes offline right away. The monitors, incidents and maintenance windows it showed are kept. This cannot be undone.\n\nRequires the `status_pages:write` permission.",
                 "operationId": "deleteUptimeStatusPage",
                 "parameters": [
                     {
@@ -12262,7 +12478,7 @@
                     "Status Pages"
                 ],
                 "summary": "Get a status page current status",
-                "description": "Get a status page current status by ID.\n\nRequires the `status_pages:read` permission.",
+                "description": "Get what a status page shows right now: the impact of its active incidents or maintenance, its availability over its timeframe, the status of each component and its published active incidents.\n\nRequires the `status_pages:read` permission.",
                 "operationId": "getUptimeStatusPageCurrentStatus",
                 "parameters": [
                     {
@@ -12527,11 +12743,17 @@
                         "example": 2
                     },
                     "from": {
-                        "type": "integer",
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
                         "example": 11
                     },
                     "to": {
-                        "type": "integer",
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
                         "example": 20
                     },
                     "per_page": {
@@ -12735,7 +12957,7 @@
                         ]
                     },
                     "retry": {
-                        "description": "Retry interval in seconds (required for emergency priority)",
+                        "description": "Seconds between the repeats of an `emergency` priority notification until it is acknowledged. Required by the `emergency` priority, unused by the others.",
                         "type": [
                             "integer",
                             "null"
@@ -12745,7 +12967,7 @@
                         "minimum": 30
                     },
                     "expire": {
-                        "description": "Expiration time in seconds (required for emergency priority)",
+                        "description": "Seconds after which an unacknowledged `emergency` priority notification stops repeating. Required by the `emergency` priority, unused by the others.",
                         "type": [
                             "integer",
                             "null"
