@@ -41,7 +41,7 @@ When creating HTTP monitors, you can choose which method to use for your request
 - **POST**, **PUT**, **PATCH**: For testing form submissions or API endpoints that require data input. You can customize the request body to simulate real user interactions or API calls.
 - **OPTIONS**: For checking API configuration and CORS policies without triggering data changes. Great for testing API availability without actually using it.
 
-When sending a request body with the POST, PUT or PATCH methods, a `Content-Type` header of your choice will be added automatically. You are free to change it if needed.
+Switching to the POST, PUT or PATCH methods adds a `Content-Type: text/plain` header to the [headers](#headers) of the request, unless there is one already. Change its value to match your request body, such as `application/json`.
 
 <Frame>
     <img
@@ -66,9 +66,11 @@ Every HTTP request from Phare carries the following user-agent signature:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime)`
 
-If you add a `secret-value` to the user agent header for firewall filtering, it will look like this:
+Turn on the user agent secret to add a `secret-value` to the user agent header for firewall filtering, it will look like this:
 
 > `Mozilla/5.0 (compatible; Phare/1.0; +https://phare.io/products/uptime; Secret=secret-value)`
+
+The secret value is encrypted and never shown again once saved.
 
 ### Headers
 
@@ -89,6 +91,19 @@ Need to get past authentication or test an API with specific requirements? Phare
 <Info>
     To prevent abuse, it is not possible to set a custom `User-Agent` header, with the exception of adding a secret value for firewall filtering.
 </Info>
+
+### Encrypted headers
+
+Click the lock in the value of a header to encrypt it, such as an `Authorization` token or an API key. An encrypted header value is never shown again once saved, not in the dashboard, API, MCP, or the alert payloads.
+
+<Frame>
+    <img
+        src="/images/uptime/monitors/http-encrypted-header.avif"
+        alt="Encrypted Authorization header value being replaced"
+    />
+</Frame>
+
+Duplicating a monitor leaves out its user agent secret and encrypted header values, type them again in the new monitor.
 
 ### Success assertions
 
