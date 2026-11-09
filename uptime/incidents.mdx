@@ -4,7 +4,7 @@ description: "Learn how to manage the lifecycle of an incident with Phare Uptime
 sidebarTitle: "Incidents"
 ---
 
-When things go wrong, having a clear process makes all the difference. Phare's incident management system takes care of the entire incident lifecycle automatically, from the moment a problem is detected to when everything's back to normal.
+When things go wrong, having a clear process makes all the difference. Phare's [incident management](https://phare.io/products/uptime/incident-management) system takes care of the entire incident lifecycle automatically, from the moment a problem is detected to when everything's back to normal.
 
 ## Programmatic incidents
 
@@ -128,7 +128,7 @@ While comments help private collaboration, incident updates are designed for ext
 - When they can expect resolution
 - Workarounds they can use in the meantime
 
-Each update allows you to communicate progress as you mitigate the issue and is automatically published to connected status pages, helping maintain transparency with users during outages. Each update has a state (investigating, identified, monitoring or resolved) and a publication time.
+Each update allows you to communicate progress as you mitigate the issue and is automatically published to connected status pages, helping maintain transparency with users during outages. Each update has a state (investigating, identified, monitoring or resolved) and a publication time. Updates can also be published with the [create an incident update](/api-reference/uptime/incidents/updates/create-an-incident-update) endpoint.
 
 Consistent, clear communication during incidents builds trust. Users appreciate knowing the situation is under control even when things aren't working perfectly.
 
@@ -192,7 +192,7 @@ Incident AI can be activated per-project, allowing compliance with different dat
 
 When activated, Phare will automatically generate an AI incident summary when an automated incident is created, and a post-mortem report when it is resolved. Incident AI is not active on manually created incidents.
 
-Each AI generation consumes one credit from your plan's monthly allowance. When the quota is exhausted, no further AI generation is performed until the next billing cycle. Additional quota can be configured if your organization is subscribed to the Scale plan.
+Each AI generation consumes one credit from your plan's monthly allowance. When the [quota](/billing-quotas) is exhausted, no further AI generation is performed until the next billing cycle. Additional quota can be configured if your organization is subscribed to the Scale plan.
 
 <Frame>
     <img
