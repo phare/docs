@@ -1389,7 +1389,7 @@
                                                 "title": "ilert",
                                                 "properties": {
                                                     "integration_key": {
-                                                        "description": "ilert alert source integration key",
+                                                        "description": "ilert alert source integration key. It is never returned, an update without it keeps the current key.",
                                                         "type": "string",
                                                         "writeOnly": true,
                                                         "example": "il1api00000000000000000000000000000000000000",
@@ -1417,7 +1417,7 @@
                                                         "minLength": 1
                                                     },
                                                     "access_token": {
-                                                        "description": "Ntfy access token used for authenticated topics, must start with `tk_`",
+                                                        "description": "Ntfy access token used for authenticated topics, must start with `tk_`. It is never returned, an update without it keeps the current token and null removes it.",
                                                         "type": [
                                                             "string",
                                                             "null"
@@ -1426,6 +1426,12 @@
                                                         "example": "tk_00000000000000000000000000000",
                                                         "maxLength": 32,
                                                         "minLength": 32
+                                                    },
+                                                    "access_token_enabled": {
+                                                        "description": "Whether an access token is set",
+                                                        "type": "boolean",
+                                                        "readOnly": true,
+                                                        "example": true
                                                     }
                                                 },
                                                 "type": "object"
@@ -1441,7 +1447,7 @@
                                                         "maxLength": 250
                                                     },
                                                     "secret": {
-                                                        "description": "Secret used to sign the webhook requests",
+                                                        "description": "Secret used to sign the webhook requests. It is never returned, an update without it keeps the current secret.",
                                                         "type": "string",
                                                         "writeOnly": true,
                                                         "example": "a-very-secure-secret",
@@ -1455,7 +1461,7 @@
                                                 "title": "Pushover",
                                                 "properties": {
                                                     "user_key": {
-                                                        "description": "Pushover user or group key",
+                                                        "description": "Pushover user or group key. It is never returned, an update without it keeps the current key.",
                                                         "type": "string",
                                                         "writeOnly": true,
                                                         "example": "u00000000000000000000000000000",
@@ -1463,7 +1469,7 @@
                                                         "minLength": 30
                                                     },
                                                     "api_key": {
-                                                        "description": "Pushover application API token",
+                                                        "description": "Pushover application API token. It is never returned, an update without it keeps the current token.",
                                                         "type": "string",
                                                         "writeOnly": true,
                                                         "example": "a00000000000000000000000000000",
@@ -5396,14 +5402,21 @@
                                                                         "default": true
                                                                     },
                                                                     "user_agent_secret": {
-                                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                                         "type": [
                                                                             "string",
                                                                             "null"
                                                                         ],
+                                                                        "writeOnly": true,
                                                                         "example": "definitely-not-a-bot",
                                                                         "maxLength": 50,
                                                                         "minLength": 1
+                                                                    },
+                                                                    "user_agent_secret_enabled": {
+                                                                        "description": "Whether a user agent secret is set",
+                                                                        "type": "boolean",
+                                                                        "readOnly": true,
+                                                                        "example": true
                                                                     },
                                                                     "headers": {
                                                                         "description": "Additional HTTP headers to add to the request",
@@ -5413,21 +5426,25 @@
                                                                         ],
                                                                         "items": {
                                                                             "required": [
-                                                                                "name",
-                                                                                "value"
+                                                                                "name"
                                                                             ],
                                                                             "properties": {
                                                                                 "name": {
-                                                                                    "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                                    "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                                     "type": "string",
                                                                                     "example": "X-Phare-Says",
                                                                                     "maxLength": 50
                                                                                 },
                                                                                 "value": {
-                                                                                    "description": "Header value",
+                                                                                    "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                                     "type": "string",
                                                                                     "example": "Hello world!",
                                                                                     "maxLength": 1024
+                                                                                },
+                                                                                "secret": {
+                                                                                    "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                                    "type": "boolean",
+                                                                                    "example": false
                                                                                 }
                                                                             },
                                                                             "type": "object"
@@ -5852,14 +5869,21 @@
                                                         "default": true
                                                     },
                                                     "user_agent_secret": {
-                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                         "type": [
                                                             "string",
                                                             "null"
                                                         ],
+                                                        "writeOnly": true,
                                                         "example": "definitely-not-a-bot",
                                                         "maxLength": 50,
                                                         "minLength": 1
+                                                    },
+                                                    "user_agent_secret_enabled": {
+                                                        "description": "Whether a user agent secret is set",
+                                                        "type": "boolean",
+                                                        "readOnly": true,
+                                                        "example": true
                                                     },
                                                     "headers": {
                                                         "description": "Additional HTTP headers to add to the request",
@@ -5869,21 +5893,25 @@
                                                         ],
                                                         "items": {
                                                             "required": [
-                                                                "name",
-                                                                "value"
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "name": {
-                                                                    "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                    "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                     "type": "string",
                                                                     "example": "X-Phare-Says",
                                                                     "maxLength": 50
                                                                 },
                                                                 "value": {
-                                                                    "description": "Header value",
+                                                                    "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                     "type": "string",
                                                                     "example": "Hello world!",
                                                                     "maxLength": 1024
+                                                                },
+                                                                "secret": {
+                                                                    "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                    "type": "boolean",
+                                                                    "example": false
                                                                 }
                                                             },
                                                             "type": "object"
@@ -6282,14 +6310,21 @@
                                                             "default": true
                                                         },
                                                         "user_agent_secret": {
-                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                             "type": [
                                                                 "string",
                                                                 "null"
                                                             ],
+                                                            "writeOnly": true,
                                                             "example": "definitely-not-a-bot",
                                                             "maxLength": 50,
                                                             "minLength": 1
+                                                        },
+                                                        "user_agent_secret_enabled": {
+                                                            "description": "Whether a user agent secret is set",
+                                                            "type": "boolean",
+                                                            "readOnly": true,
+                                                            "example": true
                                                         },
                                                         "headers": {
                                                             "description": "Additional HTTP headers to add to the request",
@@ -6299,21 +6334,25 @@
                                                             ],
                                                             "items": {
                                                                 "required": [
-                                                                    "name",
-                                                                    "value"
+                                                                    "name"
                                                                 ],
                                                                 "properties": {
                                                                     "name": {
-                                                                        "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                        "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                         "type": "string",
                                                                         "example": "X-Phare-Says",
                                                                         "maxLength": 50
                                                                     },
                                                                     "value": {
-                                                                        "description": "Header value",
+                                                                        "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                         "type": "string",
                                                                         "example": "Hello world!",
                                                                         "maxLength": 1024
+                                                                    },
+                                                                    "secret": {
+                                                                        "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                        "type": "boolean",
+                                                                        "example": false
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -6782,14 +6821,21 @@
                                                             "default": true
                                                         },
                                                         "user_agent_secret": {
-                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                             "type": [
                                                                 "string",
                                                                 "null"
                                                             ],
+                                                            "writeOnly": true,
                                                             "example": "definitely-not-a-bot",
                                                             "maxLength": 50,
                                                             "minLength": 1
+                                                        },
+                                                        "user_agent_secret_enabled": {
+                                                            "description": "Whether a user agent secret is set",
+                                                            "type": "boolean",
+                                                            "readOnly": true,
+                                                            "example": true
                                                         },
                                                         "headers": {
                                                             "description": "Additional HTTP headers to add to the request",
@@ -6799,21 +6845,25 @@
                                                             ],
                                                             "items": {
                                                                 "required": [
-                                                                    "name",
-                                                                    "value"
+                                                                    "name"
                                                                 ],
                                                                 "properties": {
                                                                     "name": {
-                                                                        "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                        "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                         "type": "string",
                                                                         "example": "X-Phare-Says",
                                                                         "maxLength": 50
                                                                     },
                                                                     "value": {
-                                                                        "description": "Header value",
+                                                                        "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                         "type": "string",
                                                                         "example": "Hello world!",
                                                                         "maxLength": 1024
+                                                                    },
+                                                                    "secret": {
+                                                                        "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                        "type": "boolean",
+                                                                        "example": false
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -7245,14 +7295,21 @@
                                                         "default": true
                                                     },
                                                     "user_agent_secret": {
-                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                        "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                         "type": [
                                                             "string",
                                                             "null"
                                                         ],
+                                                        "writeOnly": true,
                                                         "example": "definitely-not-a-bot",
                                                         "maxLength": 50,
                                                         "minLength": 1
+                                                    },
+                                                    "user_agent_secret_enabled": {
+                                                        "description": "Whether a user agent secret is set",
+                                                        "type": "boolean",
+                                                        "readOnly": true,
+                                                        "example": true
                                                     },
                                                     "headers": {
                                                         "description": "Additional HTTP headers to add to the request",
@@ -7262,21 +7319,25 @@
                                                         ],
                                                         "items": {
                                                             "required": [
-                                                                "name",
-                                                                "value"
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "name": {
-                                                                    "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                    "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                     "type": "string",
                                                                     "example": "X-Phare-Says",
                                                                     "maxLength": 50
                                                                 },
                                                                 "value": {
-                                                                    "description": "Header value",
+                                                                    "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                     "type": "string",
                                                                     "example": "Hello world!",
                                                                     "maxLength": 1024
+                                                                },
+                                                                "secret": {
+                                                                    "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                    "type": "boolean",
+                                                                    "example": false
                                                                 }
                                                             },
                                                             "type": "object"
@@ -7669,14 +7730,21 @@
                                                             "default": true
                                                         },
                                                         "user_agent_secret": {
-                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request",
+                                                            "description": "A secret value to be used in the User-Agent header for authenticating the request. It is never returned, an update without it keeps the current secret and null removes it.",
                                                             "type": [
                                                                 "string",
                                                                 "null"
                                                             ],
+                                                            "writeOnly": true,
                                                             "example": "definitely-not-a-bot",
                                                             "maxLength": 50,
                                                             "minLength": 1
+                                                        },
+                                                        "user_agent_secret_enabled": {
+                                                            "description": "Whether a user agent secret is set",
+                                                            "type": "boolean",
+                                                            "readOnly": true,
+                                                            "example": true
                                                         },
                                                         "headers": {
                                                             "description": "Additional HTTP headers to add to the request",
@@ -7686,21 +7754,25 @@
                                                             ],
                                                             "items": {
                                                                 "required": [
-                                                                    "name",
-                                                                    "value"
+                                                                    "name"
                                                                 ],
                                                                 "properties": {
                                                                     "name": {
-                                                                        "description": "Header name, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
+                                                                        "description": "Header name, unique per request, the User-Agent, Signature, Signature-Input and Signature-Agent headers are not allowed",
                                                                         "type": "string",
                                                                         "example": "X-Phare-Says",
                                                                         "maxLength": 50
                                                                     },
                                                                     "value": {
-                                                                        "description": "Header value",
+                                                                        "description": "Header value, always required on create. A secret header value is never returned, so on update it is only optional for a secret header that is already set: without it, the header keeps its current value, matched by name.",
                                                                         "type": "string",
                                                                         "example": "Hello world!",
                                                                         "maxLength": 1024
+                                                                    },
+                                                                    "secret": {
+                                                                        "description": "Whether the header value is a secret, encrypted and never returned. False for a new header, an update without it keeps the current flag of the header with the same name.",
+                                                                        "type": "boolean",
+                                                                        "example": false
                                                                     }
                                                                 },
                                                                 "type": "object"
@@ -12831,7 +12903,7 @@
                 ],
                 "properties": {
                     "integration_key": {
-                        "description": "ilert alert source integration key",
+                        "description": "ilert alert source integration key. It is never returned, an update without it keeps the current key.",
                         "type": "string",
                         "writeOnly": true,
                         "example": "il1api00000000000000000000000000000000000000",
@@ -12884,7 +12956,7 @@
                         "minLength": 1
                     },
                     "access_token": {
-                        "description": "Ntfy access token used for authenticated topics, must start with `tk_`",
+                        "description": "Ntfy access token used for authenticated topics, must start with `tk_`. It is never returned, an update without it keeps the current token and null removes it.",
                         "type": [
                             "string",
                             "null"
@@ -12893,6 +12965,12 @@
                         "example": "tk_00000000000000000000000000000",
                         "maxLength": 32,
                         "minLength": 32
+                    },
+                    "access_token_enabled": {
+                        "description": "Whether an access token is set",
+                        "type": "boolean",
+                        "readOnly": true,
+                        "example": true
                     }
                 },
                 "type": "object"
@@ -12928,7 +13006,7 @@
                         "maxLength": 250
                     },
                     "secret": {
-                        "description": "Secret used to sign the webhook requests",
+                        "description": "Secret used to sign the webhook requests. It is never returned, an update without it keeps the current secret.",
                         "type": "string",
                         "writeOnly": true,
                         "example": "a-very-secure-secret",
@@ -12987,7 +13065,7 @@
                 ],
                 "properties": {
                     "user_key": {
-                        "description": "Pushover user or group key",
+                        "description": "Pushover user or group key. It is never returned, an update without it keeps the current key.",
                         "type": "string",
                         "writeOnly": true,
                         "example": "u00000000000000000000000000000",
@@ -12995,7 +13073,7 @@
                         "minLength": 30
                     },
                     "api_key": {
-                        "description": "Pushover application API token",
+                        "description": "Pushover application API token. It is never returned, an update without it keeps the current token.",
                         "type": "string",
                         "writeOnly": true,
                         "example": "a00000000000000000000000000000",

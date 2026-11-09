@@ -5,6 +5,22 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
+<Update label="Nov 9, 2026" id="encrypted-monitor-headers-and-integration-credentials" tags={["Monitors", "Integrations"]} rss={{ title: "Encrypted monitor headers and integration credentials", date: "2026-11-09" }}>
+    ## Encrypted monitor headers and integration credentials
+
+    <Frame>
+        <img src="/images/changelog/143-encrypted-monitor-headers.avif" alt="Monitor user agent secret and headers, with an encrypted Authorization header value" />
+    </Frame>
+
+    You can now choose to encrypt the value of a monitor header, keeping your `Authorization` token or an API key secret. An encrypted value is never shown again once saved, not in the dashboard, the API, the MCP, or the alert payloads.
+
+    The user agent secret and the credentials of your integrations, such as the ntfy access token, the Pushover keys, the ilert integration key and the outgoing webhook signing secret, are now encrypted the same way and similarly hidden from the API, MCP or any other payloads.
+
+    Existing known headers, named like usual credentials, such as `Authorization`, `X-API-Key` or `Cookie`, were encrypted automatically. Check your monitors to lock the other headers that hold a secret.
+
+    Check out the [monitors documentation](/uptime/monitors#encrypted-headers) for more details.
+</Update>
+
 <Update label="Nov 5, 2026" id="viewer-and-responder-roles" tags={["Account"]} rss={{ title: "Viewer and Responder roles", date: "2026-11-05" }}>
     ## Viewer and Responder roles
 
