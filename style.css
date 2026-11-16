@@ -31,3 +31,8 @@ html:not(.dark) .card {
     background-color: color-mix(in oklab, oklch(97% 0.001 106.424), oklch(92.3% 0.003 48.717));
     border: 0 !important;
 }
+
+/* The MCP logo is drawn in black, so it disappears on the dark theme */
+html.dark img[src*="/images/integrations/mcp/mcp.svg"] {
+    filter: invert(1);
+}
