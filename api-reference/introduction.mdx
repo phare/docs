@@ -122,6 +122,16 @@ curl \
 
 Project-scoped API keys always act on their scoped project and do not require a project selection header.
 
+## Plan and quotas
+
+When the plan or the quotas of your organization do not allow a request, the API responds with a `402` status code. This happens when a feature requires the [Scale plan](https://phare.io/pricing), or when creating, updating or resuming a monitor would bring your organization above its [monitoring events quota](/billing-quotas#going-above-your-quota):
+
+```json
+{
+  "message": "This change brings your monitoring events to 652,400 per month, above the 550,000 allowed by your quota and its free overage. Increase your additional quota, or pause or reduce your other monitors and heartbeats."
+}
+```
+
 ## Rate limiting
 
 Access to the API is currently rate limited to **100 calls per minute** across the organization. All API keys share the same limit. Calls made through the [MCP server](/integrations/mcp) don't count toward this limit, they have [their own](/integrations/mcp#rate-limiting).

@@ -12,9 +12,31 @@ Phare tracks usage with the following quotas:
 
 | Quota | Description |
 | :--- | :--- |
-| Monitoring events | Number of HTTP, TCP and ICMP ping checks you can use each month, usage depends on your monitoring strategy. |
+| Monitoring events | Number of events your monitors and heartbeats can use each month, usage depends on your monitoring strategy. |
 | AI generations | Number of AI incident summaries and postmortem that you can generate each month. |
 | SMS / Voice alerts | Number of SMS or Voice alert that you can receive each month. |
+
+## Monitoring events
+
+Monitoring events measure how much monitoring you use. They depend on how your monitors and heartbeats are set up, so you always know your usage in advance:
+
+- A **monitor** uses one event each time it is checked, in each region. Checking more often, or from more regions, uses more events.
+- A **heartbeat** uses one event each time a ping is expected.
+- Each monitor and heartbeat consumes a minimum of **5,000 events**, if running for a whole month.
+
+Here are a few common setup examples:
+
+| Setup | Events per month |
+| :--- | :--- |
+| Monitor checked every minute from 2 regions | 87,600 |
+| Monitor checked every 5 minutes from 2 regions | 17,520 |
+| Monitor checked every hour from 2 regions | 5,000 (the minimum) |
+| Heartbeat expected every minute | 43,800 |
+| Heartbeat expected every day | 5,000 (the minimum) |
+
+Usage is calculated on a 730h month, whether it has 28 or 31 days, so a setup that does not change uses the same number of events every month.
+
+A paused monitor or heartbeat does not use any event. If you create, change, pause or delete one during the month, it only counts for the time it was active.
 
 ## Usage and quotas
 
@@ -29,8 +51,12 @@ The billing page shows live usage for the current billing period, with data upda
 
 - **Included quota**: Usage included with the plan.
 - **Additional quota**: Optional limits that can be added on paid plans.
-- **Free overage (+10%)**: A buffer shown in the usage view.
+- **Free overage (+10%)**: A buffer above your quota that is never billed.
 - **Forecast**: A projected usage marker for the current period.
+
+## Going above your quota
+
+Your organization can use up to 10% more than its quota, this free overage is never billed. Monitors and heartbeats stop once the usage of the month reaches the quota and its free overage, until the next billing period or until the quota is increased. You will never be billed for more than your chosen quota limit.
 
 ## Additional quotas
 

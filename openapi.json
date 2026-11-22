@@ -1008,6 +1008,9 @@
                             }
                         }
                     },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -1173,6 +1176,9 @@
                             }
                         }
                     },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -1297,6 +1303,9 @@
                                 }
                             }
                         }
+                    },
+                    "402": {
+                        "$ref": "#/components/responses/402"
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -1579,6 +1588,9 @@
                                 }
                             }
                         }
+                    },
+                    "402": {
+                        "$ref": "#/components/responses/402"
                     },
                     "401": {
                         "$ref": "#/components/responses/401"
@@ -2302,7 +2314,7 @@
                     "Projects"
                 ],
                 "summary": "Delete a project",
-                "description": "Delete a project by ID with everything it contains: monitors with their incidents and check history, maintenance windows, status pages with their custom domain certificates, project alert rules and API keys. This cannot be undone. Requires an organization-scoped API key, and the last project of an organization cannot be deleted.\n\nRequires the `projects:write` permission.",
+                "description": "Delete a project by ID with everything it contains: monitors and heartbeats with their incidents, check and ping history, maintenance windows, status pages with their custom domain certificates, project alert rules and API keys. This cannot be undone. Requires an organization-scoped API key, and the last project of an organization cannot be deleted.\n\nRequires the `projects:write` permission.",
                 "operationId": "deleteProject",
                 "parameters": [
                     {
@@ -2517,7 +2529,7 @@
                     "Incidents"
                 ],
                 "summary": "List incidents",
-                "description": "Get a paginated list of the incidents of the project, newest first: the ones opened by failing monitors and the manual ones. Filter them by monitor or tag.\n\nRequires the `incidents:read` permission.",
+                "description": "Get a paginated list of the incidents of the project, newest first: the ones opened by failing monitors or heartbeats and the manual ones. Filter them by monitor or tag.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncidents",
                 "parameters": [
                     {
@@ -2636,7 +2648,7 @@
                                                         "format": "date-time"
                                                     },
                                                     "monitors": {
-                                                        "description": "List of monitors linked to the incident",
+                                                        "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                                         "type": "array",
                                                         "items": {
                                                             "type": "integer"
@@ -2646,8 +2658,19 @@
                                                             2,
                                                             3
                                                         ],
-                                                        "maxItems": 100,
-                                                        "minItems": 1
+                                                        "maxItems": 100
+                                                    },
+                                                    "heartbeats": {
+                                                        "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            4,
+                                                            5
+                                                        ],
+                                                        "maxItems": 100
                                                     },
                                                     "tags": {
                                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -2677,8 +2700,7 @@
                                                 "required": [
                                                     "impact",
                                                     "title",
-                                                    "exclude_from_downtime",
-                                                    "monitors"
+                                                    "exclude_from_downtime"
                                                 ]
                                             }
                                         },
@@ -2717,7 +2739,7 @@
                     "Incidents"
                 ],
                 "summary": "Create an incident",
-                "description": "Create a manual incident affecting monitors of the project, for an outage the monitors did not catch. It triggers the `uptime.incident.created` alert rules, unless it is created already recovered with `recovery_at`. Status pages show its title once an incident update is published.\n\nRequires the `incidents:write` permission.",
+                "description": "Create a manual incident affecting monitors and heartbeats of the project, for an outage they did not catch. It triggers the `uptime.incident.created` alert rules, unless it is created already recovered with `recovery_at`. Status pages show its title once an incident update is published.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncident",
                 "requestBody": {
                     "description": "Incident request",
@@ -2766,7 +2788,7 @@
                                         "format": "date-time"
                                     },
                                     "monitors": {
-                                        "description": "List of monitors linked to the incident",
+                                        "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                         "type": "array",
                                         "items": {
                                             "type": "integer"
@@ -2776,8 +2798,19 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100,
-                                        "minItems": 1
+                                        "maxItems": 100
+                                    },
+                                    "heartbeats": {
+                                        "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            4,
+                                            5
+                                        ],
+                                        "maxItems": 100
                                     },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -2808,8 +2841,7 @@
                                 "required": [
                                     "impact",
                                     "title",
-                                    "exclude_from_downtime",
-                                    "monitors"
+                                    "exclude_from_downtime"
                                 ]
                             }
                         }
@@ -2892,7 +2924,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitors linked to the incident",
+                                            "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -2902,8 +2934,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -2933,8 +2976,7 @@
                                     "required": [
                                         "impact",
                                         "title",
-                                        "exclude_from_downtime",
-                                        "monitors"
+                                        "exclude_from_downtime"
                                     ]
                                 }
                             }
@@ -2973,7 +3015,7 @@
                     "Incidents"
                 ],
                 "summary": "Get an incident",
-                "description": "Get an incident by ID, with its impact, status, state, dates and affected monitors.\n\nRequires the `incidents:read` permission.",
+                "description": "Get an incident by ID, with its impact, status, state, dates and affected monitors and heartbeats.\n\nRequires the `incidents:read` permission.",
                 "operationId": "getUptimeIncident",
                 "parameters": [
                     {
@@ -3069,7 +3111,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitors linked to the incident",
+                                            "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -3079,8 +3121,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -3110,8 +3163,7 @@
                                     "required": [
                                         "impact",
                                         "title",
-                                        "exclude_from_downtime",
-                                        "monitors"
+                                        "exclude_from_downtime"
                                     ]
                                 }
                             }
@@ -3140,7 +3192,7 @@
                     "Incidents"
                 ],
                 "summary": "Update an incident",
-                "description": "Update an incident by ID, the fields left out keep their current value. A `monitors` list replaces the affected monitors of a manual incident and is ignored on the incidents opened by monitors. Setting `recovery_at` on an ongoing incident recovers it and triggers the `uptime.incident.recovered` alert rules, and the changes are logged in its timeline.\n\nRequires the `incidents:write` permission.",
+                "description": "Update an incident by ID, the fields left out keep their current value. A `monitors` or `heartbeats` list replaces the affected monitors or heartbeats of a manual incident and is ignored on the incidents opened by monitors or heartbeats. Setting `recovery_at` on an ongoing incident recovers it and triggers the `uptime.incident.recovered` alert rules, and the changes are logged in its timeline.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncident",
                 "parameters": [
                     {
@@ -3206,7 +3258,7 @@
                                         "format": "date-time"
                                     },
                                     "monitors": {
-                                        "description": "List of monitors linked to the incident",
+                                        "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                         "type": "array",
                                         "items": {
                                             "type": "integer"
@@ -3216,8 +3268,19 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100,
-                                        "minItems": 1
+                                        "maxItems": 100
+                                    },
+                                    "heartbeats": {
+                                        "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            4,
+                                            5
+                                        ],
+                                        "maxItems": 100
                                     },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -3326,7 +3389,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitors linked to the incident",
+                                            "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -3336,8 +3399,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -3367,8 +3441,7 @@
                                     "required": [
                                         "impact",
                                         "title",
-                                        "exclude_from_downtime",
-                                        "monitors"
+                                        "exclude_from_downtime"
                                     ]
                                 }
                             }
@@ -4243,7 +4316,7 @@
                                                         "format": "date-time"
                                                     },
                                                     "monitors": {
-                                                        "description": "List of monitor IDs linked to the maintenance window",
+                                                        "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                                         "type": "array",
                                                         "items": {
                                                             "type": "integer"
@@ -4253,8 +4326,19 @@
                                                             2,
                                                             3
                                                         ],
-                                                        "maxItems": 100,
-                                                        "minItems": 1
+                                                        "maxItems": 100
+                                                    },
+                                                    "heartbeats": {
+                                                        "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            4,
+                                                            5
+                                                        ],
+                                                        "maxItems": 100
                                                     },
                                                     "status_pages": {
                                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4300,8 +4384,7 @@
                                                     "title",
                                                     "monitoring_mode",
                                                     "starts_at",
-                                                    "ends_at",
-                                                    "monitors"
+                                                    "ends_at"
                                                 ]
                                             }
                                         },
@@ -4340,7 +4423,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Create a maintenance window",
-                "description": "Schedule a maintenance window for monitors of the project, shown right away on the linked status pages. It starts at `starts_at` and ends at `ends_at` on its own, and its `monitoring_mode` sets what happens to the monitors meanwhile: `pause` pauses them, `mute` keeps checking them without incident alerts, `normal` only announces the maintenance.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Schedule a maintenance window for monitors and heartbeats of the project, shown right away on the linked status pages. It starts at `starts_at` and ends at `ends_at` on its own, and its `monitoring_mode` sets what happens to the monitors and heartbeats meanwhile: `pause` pauses them, `mute` keeps checking them without incident alerts, `normal` only announces the maintenance.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "createUptimeMaintenanceWindow",
                 "requestBody": {
                     "description": "Maintenance window request",
@@ -4382,7 +4465,7 @@
                                         "format": "date-time"
                                     },
                                     "monitors": {
-                                        "description": "List of monitor IDs linked to the maintenance window",
+                                        "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                         "type": "array",
                                         "items": {
                                             "type": "integer"
@@ -4392,8 +4475,19 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100,
-                                        "minItems": 1
+                                        "maxItems": 100
+                                    },
+                                    "heartbeats": {
+                                        "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            4,
+                                            5
+                                        ],
+                                        "maxItems": 100
                                     },
                                     "status_pages": {
                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4429,8 +4523,7 @@
                                     "title",
                                     "monitoring_mode",
                                     "starts_at",
-                                    "ends_at",
-                                    "monitors"
+                                    "ends_at"
                                 ]
                             }
                         }
@@ -4490,7 +4583,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -4500,8 +4593,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4547,8 +4651,7 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at",
-                                        "monitors"
+                                        "ends_at"
                                     ]
                                 }
                             }
@@ -4587,7 +4690,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Get a maintenance window",
-                "description": "Get a maintenance window by ID, with its state, schedule, monitoring mode, monitors and status pages.\n\nRequires the `maintenance_windows:read` permission.",
+                "description": "Get a maintenance window by ID, with its state, schedule, monitoring mode, monitors, heartbeats and status pages.\n\nRequires the `maintenance_windows:read` permission.",
                 "operationId": "getUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4660,7 +4763,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -4670,8 +4773,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4717,8 +4831,7 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at",
-                                        "monitors"
+                                        "ends_at"
                                     ]
                                 }
                             }
@@ -4747,7 +4860,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Update a maintenance window",
-                "description": "Update a maintenance window by ID. The `monitoring_mode`, `starts_at`, `ends_at`, `monitors` and `status_pages` fields can only be modified while the maintenance window is scheduled, except for `ends_at` which can be extended while the maintenance window is in progress.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Update a maintenance window by ID. The `monitoring_mode`, `starts_at`, `ends_at`, `monitors`, `heartbeats` and `status_pages` fields can only be modified while the maintenance window is scheduled, except for `ends_at` which can be extended while the maintenance window is in progress.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "updateUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -4806,7 +4919,7 @@
                                         "format": "date-time"
                                     },
                                     "monitors": {
-                                        "description": "List of monitor IDs linked to the maintenance window",
+                                        "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                         "type": "array",
                                         "items": {
                                             "type": "integer"
@@ -4816,8 +4929,19 @@
                                             2,
                                             3
                                         ],
-                                        "maxItems": 100,
-                                        "minItems": 1
+                                        "maxItems": 100
+                                    },
+                                    "heartbeats": {
+                                        "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": [
+                                            4,
+                                            5
+                                        ],
+                                        "maxItems": 100
                                     },
                                     "status_pages": {
                                         "description": "List of status page IDs linked to the maintenance window",
@@ -4907,7 +5031,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -4917,8 +5041,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -4964,8 +5099,7 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at",
-                                        "monitors"
+                                        "ends_at"
                                     ]
                                 }
                             }
@@ -4997,7 +5131,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Delete a maintenance window",
-                "description": "Delete a maintenance window by ID in any state, it disappears from the status pages and the monitors it paused are resumed. This cannot be undone and triggers no alert rule.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Delete a maintenance window by ID in any state, it disappears from the status pages and the monitors and heartbeats it paused are resumed. This cannot be undone and triggers no alert rule.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "deleteUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5046,7 +5180,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Cancel a maintenance window",
-                "description": "Cancel a scheduled or in-progress maintenance window by ID and trigger the `uptime.maintenance_window.cancelled` alert rules, the monitors it paused are resumed. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Cancel a scheduled or in-progress maintenance window by ID and trigger the `uptime.maintenance_window.cancelled` alert rules, the monitors and heartbeats it paused are resumed. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "cancelUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5095,7 +5229,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Complete a maintenance window",
-                "description": "Complete an in-progress maintenance window by ID and trigger the `uptime.maintenance_window.completed` alert rules, the monitors it paused are resumed and `ends_at` is set to the current time if it is in the future. Only in-progress maintenance windows can be completed.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Complete an in-progress maintenance window by ID and trigger the `uptime.maintenance_window.completed` alert rules, the monitors and heartbeats it paused are resumed and `ends_at` is set to the current time if it is in the future. Only in-progress maintenance windows can be completed.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "completeUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -5168,7 +5302,7 @@
                                             "format": "date-time"
                                         },
                                         "monitors": {
-                                            "description": "List of monitor IDs linked to the maintenance window",
+                                            "description": "List of monitor IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
                                             "type": "array",
                                             "items": {
                                                 "type": "integer"
@@ -5178,8 +5312,19 @@
                                                 2,
                                                 3
                                             ],
-                                            "maxItems": 100,
-                                            "minItems": 1
+                                            "maxItems": 100
+                                        },
+                                        "heartbeats": {
+                                            "description": "List of heartbeat IDs linked to the maintenance window. At least one monitor or heartbeat is required.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": [
+                                                4,
+                                                5
+                                            ],
+                                            "maxItems": 100
                                         },
                                         "status_pages": {
                                             "description": "List of status page IDs linked to the maintenance window",
@@ -5225,8 +5370,7 @@
                                         "title",
                                         "monitoring_mode",
                                         "starts_at",
-                                        "ends_at",
-                                        "monitors"
+                                        "ends_at"
                                     ]
                                 }
                             }
@@ -6655,6 +6799,9 @@
                             }
                         }
                     },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -8075,6 +8222,9 @@
                             }
                         }
                     },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -8223,6 +8373,9 @@
                         "description": "Success, monitor resumed",
                         "content": {}
                     },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
                     "401": {
                         "$ref": "#/components/responses/401"
                     },
@@ -8297,33 +8450,33 @@
                                 "schema": {
                                     "properties": {
                                         "id": {
-                                            "description": "Monitor ID",
+                                            "description": "Monitor or heartbeat ID",
                                             "type": "integer",
                                             "example": 12
                                         },
                                         "name": {
-                                            "description": "Monitor name",
+                                            "description": "Monitor or heartbeat name",
                                             "type": "string",
                                             "example": "Website"
                                         },
                                         "incident_count": {
-                                            "description": "Number of incidents affecting this monitor in the selected range",
+                                            "description": "Number of incidents affecting this monitor or heartbeat in the selected range",
                                             "type": "integer",
                                             "example": 2
                                         },
                                         "downtime": {
-                                            "description": "Total downtime for this monitor in seconds",
+                                            "description": "Total downtime for this monitor or heartbeat in seconds",
                                             "type": "integer",
                                             "example": 1500
                                         },
                                         "availability": {
-                                            "description": "Availability for this monitor in the selected range, as a percentage",
+                                            "description": "Availability for this monitor or heartbeat in the selected range, as a percentage",
                                             "type": "number",
                                             "format": "float",
                                             "example": 99.944
                                         },
                                         "mttr": {
-                                            "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
+                                            "description": "Mean time to recovery (MTTR) for this monitor or heartbeat, in seconds",
                                             "type": [
                                                 "integer",
                                                 "null"
@@ -8331,7 +8484,7 @@
                                             "example": 750
                                         },
                                         "mtbf": {
-                                            "description": "Mean time between failures (MTBF) for this monitor, in seconds",
+                                            "description": "Mean time between failures (MTBF) for this monitor or heartbeat, in seconds",
                                             "type": [
                                                 "integer",
                                                 "null"
@@ -8340,11 +8493,11 @@
                                         },
                                         "highest_incident_impact": {
                                             "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                            "description": "Highest impact level observed for this monitor in the selected range",
+                                            "description": "Highest impact level observed for this monitor or heartbeat in the selected range",
                                             "example": "major_outage"
                                         },
                                         "incidents": {
-                                            "description": "Incidents that affected this monitor in the selected range",
+                                            "description": "Incidents that affected this monitor or heartbeat in the selected range",
                                             "type": "array",
                                             "items": {
                                                 "type": "object",
@@ -8418,7 +8571,7 @@
                                                         "format": "date-time"
                                                     },
                                                     "monitors": {
-                                                        "description": "List of monitors linked to the incident",
+                                                        "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                                         "type": "array",
                                                         "items": {
                                                             "type": "integer"
@@ -8428,8 +8581,19 @@
                                                             2,
                                                             3
                                                         ],
-                                                        "maxItems": 100,
-                                                        "minItems": 1
+                                                        "maxItems": 100
+                                                    },
+                                                    "heartbeats": {
+                                                        "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        },
+                                                        "example": [
+                                                            4,
+                                                            5
+                                                        ],
+                                                        "maxItems": 100
                                                     },
                                                     "tags": {
                                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -8459,8 +8623,7 @@
                                                 "required": [
                                                     "impact",
                                                     "title",
-                                                    "exclude_from_downtime",
-                                                    "monitors"
+                                                    "exclude_from_downtime"
                                                 ]
                                             }
                                         }
@@ -8498,7 +8661,7 @@
                     "Reports"
                 ],
                 "summary": "Get report",
-                "description": "Get the availability, downtime, incident count, MTTR and MTBF of every monitor of the project and their aggregates, between two past dates up to 1 year apart, the last 30 days by default.\n\nRequires the `reports:read` permission.",
+                "description": "Get the availability, downtime, incident count, MTTR and MTBF of every monitor and heartbeat of the project and their aggregates, between two past dates up to 1 year apart, the last 30 days by default.\n\nRequires the `reports:read` permission.",
                 "operationId": "getUptimeReport",
                 "parameters": [
                     {
@@ -8538,30 +8701,30 @@
                                 "schema": {
                                     "properties": {
                                         "downtime": {
-                                            "description": "Total downtime across all monitors in seconds",
+                                            "description": "Total downtime across all monitors and heartbeats in seconds",
                                             "type": "integer",
                                             "example": 2940
                                         },
                                         "availability": {
-                                            "description": "Mean monitor availability across the selected range, as a percentage",
+                                            "description": "Mean monitor and heartbeat availability across the selected range, as a percentage",
                                             "type": "number",
                                             "format": "float",
                                             "example": 99.9634
                                         },
                                         "min_availability": {
-                                            "description": "Lowest monitor availability in the selected range, as a percentage",
+                                            "description": "Lowest monitor or heartbeat availability in the selected range, as a percentage",
                                             "type": "number",
                                             "format": "float",
                                             "example": 99.9125
                                         },
                                         "max_availability": {
-                                            "description": "Highest monitor availability in the selected range, as a percentage",
+                                            "description": "Highest monitor or heartbeat availability in the selected range, as a percentage",
                                             "type": "number",
                                             "format": "float",
                                             "example": 100
                                         },
                                         "mttr": {
-                                            "description": "Mean time to recovery (MTTR) average for monitors with downtime, in seconds",
+                                            "description": "Mean time to recovery (MTTR) average for monitors and heartbeats with downtime, in seconds",
                                             "type": [
                                                 "number",
                                                 "null"
@@ -8570,7 +8733,7 @@
                                             "example": 735
                                         },
                                         "mtbf": {
-                                            "description": "Mean time between failures (MTBF) average for monitors with downtime, in seconds",
+                                            "description": "Mean time between failures (MTBF) average for monitors and heartbeats with downtime, in seconds",
                                             "type": [
                                                 "number",
                                                 "null"
@@ -8601,33 +8764,33 @@
                                             "items": {
                                                 "properties": {
                                                     "id": {
-                                                        "description": "Monitor ID",
+                                                        "description": "Monitor or heartbeat ID",
                                                         "type": "integer",
                                                         "example": 12
                                                     },
                                                     "name": {
-                                                        "description": "Monitor name",
+                                                        "description": "Monitor or heartbeat name",
                                                         "type": "string",
                                                         "example": "Website"
                                                     },
                                                     "incident_count": {
-                                                        "description": "Number of incidents affecting this monitor in the selected range",
+                                                        "description": "Number of incidents affecting this monitor or heartbeat in the selected range",
                                                         "type": "integer",
                                                         "example": 2
                                                     },
                                                     "downtime": {
-                                                        "description": "Total downtime for this monitor in seconds",
+                                                        "description": "Total downtime for this monitor or heartbeat in seconds",
                                                         "type": "integer",
                                                         "example": 1500
                                                     },
                                                     "availability": {
-                                                        "description": "Availability for this monitor in the selected range, as a percentage",
+                                                        "description": "Availability for this monitor or heartbeat in the selected range, as a percentage",
                                                         "type": "number",
                                                         "format": "float",
                                                         "example": 99.944
                                                     },
                                                     "mttr": {
-                                                        "description": "Mean time to recovery (MTTR) for this monitor, in seconds",
+                                                        "description": "Mean time to recovery (MTTR) for this monitor or heartbeat, in seconds",
                                                         "type": [
                                                             "integer",
                                                             "null"
@@ -8635,7 +8798,7 @@
                                                         "example": 750
                                                     },
                                                     "mtbf": {
-                                                        "description": "Mean time between failures (MTBF) for this monitor, in seconds",
+                                                        "description": "Mean time between failures (MTBF) for this monitor or heartbeat, in seconds",
                                                         "type": [
                                                             "integer",
                                                             "null"
@@ -8644,11 +8807,11 @@
                                                     },
                                                     "highest_incident_impact": {
                                                         "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                                        "description": "Highest impact level observed for this monitor in the selected range",
+                                                        "description": "Highest impact level observed for this monitor or heartbeat in the selected range",
                                                         "example": "major_outage"
                                                     },
                                                     "incidents": {
-                                                        "description": "Incidents that affected this monitor in the selected range",
+                                                        "description": "Incidents that affected this monitor or heartbeat in the selected range",
                                                         "type": "array",
                                                         "items": {
                                                             "type": "object",
@@ -8722,7 +8885,7 @@
                                                                     "format": "date-time"
                                                                 },
                                                                 "monitors": {
-                                                                    "description": "List of monitors linked to the incident",
+                                                                    "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
                                                                     "type": "array",
                                                                     "items": {
                                                                         "type": "integer"
@@ -8732,8 +8895,19 @@
                                                                         2,
                                                                         3
                                                                     ],
-                                                                    "maxItems": 100,
-                                                                    "minItems": 1
+                                                                    "maxItems": 100
+                                                                },
+                                                                "heartbeats": {
+                                                                    "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "example": [
+                                                                        4,
+                                                                        5
+                                                                    ],
+                                                                    "maxItems": 100
                                                                 },
                                                                 "tags": {
                                                                     "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -8763,8 +8937,194 @@
                                                             "required": [
                                                                 "impact",
                                                                 "title",
-                                                                "exclude_from_downtime",
-                                                                "monitors"
+                                                                "exclude_from_downtime"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "heartbeats": {
+                                            "description": "Per-heartbeat statistics for all heartbeats included in the report",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Monitor or heartbeat ID",
+                                                        "type": "integer",
+                                                        "example": 12
+                                                    },
+                                                    "name": {
+                                                        "description": "Monitor or heartbeat name",
+                                                        "type": "string",
+                                                        "example": "Website"
+                                                    },
+                                                    "incident_count": {
+                                                        "description": "Number of incidents affecting this monitor or heartbeat in the selected range",
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "downtime": {
+                                                        "description": "Total downtime for this monitor or heartbeat in seconds",
+                                                        "type": "integer",
+                                                        "example": 1500
+                                                    },
+                                                    "availability": {
+                                                        "description": "Availability for this monitor or heartbeat in the selected range, as a percentage",
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 99.944
+                                                    },
+                                                    "mttr": {
+                                                        "description": "Mean time to recovery (MTTR) for this monitor or heartbeat, in seconds",
+                                                        "type": [
+                                                            "integer",
+                                                            "null"
+                                                        ],
+                                                        "example": 750
+                                                    },
+                                                    "mtbf": {
+                                                        "description": "Mean time between failures (MTBF) for this monitor or heartbeat, in seconds",
+                                                        "type": [
+                                                            "integer",
+                                                            "null"
+                                                        ],
+                                                        "example": 43200
+                                                    },
+                                                    "highest_incident_impact": {
+                                                        "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
+                                                        "description": "Highest impact level observed for this monitor or heartbeat in the selected range",
+                                                        "example": "major_outage"
+                                                    },
+                                                    "incidents": {
+                                                        "description": "Incidents that affected this monitor or heartbeat in the selected range",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "project_id": {
+                                                                    "description": "Parent project ID",
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "type": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.TypeEnum",
+                                                                    "description": "Incident type"
+                                                                },
+                                                                "slug": {
+                                                                    "description": "Incident unique slug name",
+                                                                    "type": "string",
+                                                                    "example": "APP-123"
+                                                                },
+                                                                "impact": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
+                                                                    "description": "Incident impact"
+                                                                },
+                                                                "state": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.StateEnum",
+                                                                    "description": "Incident state"
+                                                                },
+                                                                "status": {
+                                                                    "$ref": "#/components/schemas/Uptime.Incident.StatusEnum",
+                                                                    "description": "Incident status"
+                                                                },
+                                                                "title": {
+                                                                    "description": "Incident title",
+                                                                    "type": "string",
+                                                                    "example": "Service is not working as expected",
+                                                                    "maxLength": 250,
+                                                                    "minLength": 1
+                                                                },
+                                                                "description": {
+                                                                    "description": "Description of the error that caused the incident",
+                                                                    "type": [
+                                                                        "string",
+                                                                        "null"
+                                                                    ],
+                                                                    "example": "The server answered with an unexpected status code: 503.",
+                                                                    "maxLength": 2000,
+                                                                    "minLength": 1
+                                                                },
+                                                                "exclude_from_downtime": {
+                                                                    "description": "Flag to exclude the incident from downtime calculations",
+                                                                    "type": "boolean",
+                                                                    "example": false
+                                                                },
+                                                                "incident_at": {
+                                                                    "description": "Date of incident confirmation, defaults to the current date on creation. Must be within the last year and no more than 10 minutes in the future.",
+                                                                    "type": [
+                                                                        "string",
+                                                                        "null"
+                                                                    ],
+                                                                    "format": "date-time"
+                                                                },
+                                                                "recovery_at": {
+                                                                    "description": "Date of incident recovery. Must be after `incident_at`, within the last year and no more than 10 minutes in the future. Cannot be removed once the incident is recovered.",
+                                                                    "type": [
+                                                                        "string",
+                                                                        "null"
+                                                                    ],
+                                                                    "format": "date-time"
+                                                                },
+                                                                "monitors": {
+                                                                    "description": "List of monitors linked to the incident. At least one monitor or heartbeat is required.",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "example": [
+                                                                        1,
+                                                                        2,
+                                                                        3
+                                                                    ],
+                                                                    "maxItems": 100
+                                                                },
+                                                                "heartbeats": {
+                                                                    "description": "List of heartbeats linked to the incident. At least one monitor or heartbeat is required.",
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "example": [
+                                                                        4,
+                                                                        5
+                                                                    ],
+                                                                    "maxItems": 100
+                                                                },
+                                                                "tags": {
+                                                                    "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                                                    "type": [
+                                                                        "array",
+                                                                        "null"
+                                                                    ],
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "environment:production",
+                                                                        "maxLength": 100,
+                                                                        "minLength": 1
+                                                                    },
+                                                                    "maxItems": 20
+                                                                },
+                                                                "created_at": {
+                                                                    "description": "Date of creation for the entity",
+                                                                    "type": "string",
+                                                                    "format": "date-time"
+                                                                },
+                                                                "updated_at": {
+                                                                    "description": "Date of last update for the entity",
+                                                                    "type": "string",
+                                                                    "format": "date-time"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "impact",
+                                                                "title",
+                                                                "exclude_from_downtime"
                                                             ]
                                                         }
                                                     }
@@ -9070,7 +9430,7 @@
                                                         "type": "object"
                                                     },
                                                     "components": {
-                                                        "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                                        "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                                         "type": "array",
                                                         "items": {
                                                             "oneOf": [
@@ -9096,6 +9456,27 @@
                                                                     "type": "object"
                                                                 },
                                                                 {
+                                                                    "title": "Heartbeat component",
+                                                                    "required": [
+                                                                        "componentable_type",
+                                                                        "componentable_id"
+                                                                    ],
+                                                                    "properties": {
+                                                                        "componentable_type": {
+                                                                            "description": "Shows a heartbeat",
+                                                                            "type": "string",
+                                                                            "enum": [
+                                                                                "uptime/heartbeat"
+                                                                            ]
+                                                                        },
+                                                                        "componentable_id": {
+                                                                            "description": "ID of the heartbeat to show",
+                                                                            "type": "integer"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                },
+                                                                {
                                                                     "title": "Group component",
                                                                     "required": [
                                                                         "componentable_type",
@@ -9104,7 +9485,7 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
-                                                                            "description": "Shows a group of monitors",
+                                                                            "description": "Shows a group of monitors and heartbeats",
                                                                             "type": "string",
                                                                             "enum": [
                                                                                 "uptime/group"
@@ -9123,7 +9504,7 @@
                                                                             "default": false
                                                                         },
                                                                         "components": {
-                                                                            "description": "List of monitor components shown inside the group",
+                                                                            "description": "List of monitor and heartbeat components shown inside the group",
                                                                             "type": "array",
                                                                             "items": {
                                                                                 "required": [
@@ -9132,14 +9513,15 @@
                                                                                 ],
                                                                                 "properties": {
                                                                                     "componentable_type": {
-                                                                                        "description": "Shows a monitor",
+                                                                                        "description": "Shows a monitor or a heartbeat",
                                                                                         "type": "string",
                                                                                         "enum": [
-                                                                                            "uptime/monitor"
+                                                                                            "uptime/monitor",
+                                                                                            "uptime/heartbeat"
                                                                                         ]
                                                                                     },
                                                                                     "componentable_id": {
-                                                                                        "description": "ID of the monitor to show",
+                                                                                        "description": "ID of the monitor or heartbeat to show",
                                                                                         "type": "integer"
                                                                                     }
                                                                                 },
@@ -9485,7 +9867,7 @@
                                         "type": "object"
                                     },
                                     "components": {
-                                        "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                        "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -9511,6 +9893,27 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "title": "Heartbeat component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "componentable_id"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "description": "Shows a heartbeat",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/heartbeat"
+                                                            ]
+                                                        },
+                                                        "componentable_id": {
+                                                            "description": "ID of the heartbeat to show",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
                                                     "title": "Group component",
                                                     "required": [
                                                         "componentable_type",
@@ -9519,7 +9922,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
-                                                            "description": "Shows a group of monitors",
+                                                            "description": "Shows a group of monitors and heartbeats",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -9538,7 +9941,7 @@
                                                             "default": false
                                                         },
                                                         "components": {
-                                                            "description": "List of monitor components shown inside the group",
+                                                            "description": "List of monitor and heartbeat components shown inside the group",
                                                             "type": "array",
                                                             "items": {
                                                                 "required": [
@@ -9547,14 +9950,15 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
-                                                                        "description": "Shows a monitor",
+                                                                        "description": "Shows a monitor or a heartbeat",
                                                                         "type": "string",
                                                                         "enum": [
-                                                                            "uptime/monitor"
+                                                                            "uptime/monitor",
+                                                                            "uptime/heartbeat"
                                                                         ]
                                                                     },
                                                                     "componentable_id": {
-                                                                        "description": "ID of the monitor to show",
+                                                                        "description": "ID of the monitor or heartbeat to show",
                                                                         "type": "integer"
                                                                     }
                                                                 },
@@ -9971,7 +10375,7 @@
                                         "type": "object"
                                     },
                                     "components": {
-                                        "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                        "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -9997,6 +10401,27 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "title": "Heartbeat component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "componentable_id"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "description": "Shows a heartbeat",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/heartbeat"
+                                                            ]
+                                                        },
+                                                        "componentable_id": {
+                                                            "description": "ID of the heartbeat to show",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
                                                     "title": "Group component",
                                                     "required": [
                                                         "componentable_type",
@@ -10005,7 +10430,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
-                                                            "description": "Shows a group of monitors",
+                                                            "description": "Shows a group of monitors and heartbeats",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -10024,7 +10449,7 @@
                                                             "default": false
                                                         },
                                                         "components": {
-                                                            "description": "List of monitor components shown inside the group",
+                                                            "description": "List of monitor and heartbeat components shown inside the group",
                                                             "type": "array",
                                                             "items": {
                                                                 "required": [
@@ -10033,14 +10458,15 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
-                                                                        "description": "Shows a monitor",
+                                                                        "description": "Shows a monitor or a heartbeat",
                                                                         "type": "string",
                                                                         "enum": [
-                                                                            "uptime/monitor"
+                                                                            "uptime/monitor",
+                                                                            "uptime/heartbeat"
                                                                         ]
                                                                     },
                                                                     "componentable_id": {
-                                                                        "description": "ID of the monitor to show",
+                                                                        "description": "ID of the monitor or heartbeat to show",
                                                                         "type": "integer"
                                                                     }
                                                                 },
@@ -10466,7 +10892,7 @@
                                             "type": "object"
                                         },
                                         "components": {
-                                            "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                            "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -10492,6 +10918,27 @@
                                                         "type": "object"
                                                     },
                                                     {
+                                                        "title": "Heartbeat component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "componentable_id"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "description": "Shows a heartbeat",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/heartbeat"
+                                                                ]
+                                                            },
+                                                            "componentable_id": {
+                                                                "description": "ID of the heartbeat to show",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
                                                         "title": "Group component",
                                                         "required": [
                                                             "componentable_type",
@@ -10500,7 +10947,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
-                                                                "description": "Shows a group of monitors",
+                                                                "description": "Shows a group of monitors and heartbeats",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -10519,7 +10966,7 @@
                                                                 "default": false
                                                             },
                                                             "components": {
-                                                                "description": "List of monitor components shown inside the group",
+                                                                "description": "List of monitor and heartbeat components shown inside the group",
                                                                 "type": "array",
                                                                 "items": {
                                                                     "required": [
@@ -10528,14 +10975,15 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
-                                                                            "description": "Shows a monitor",
+                                                                            "description": "Shows a monitor or a heartbeat",
                                                                             "type": "string",
                                                                             "enum": [
-                                                                                "uptime/monitor"
+                                                                                "uptime/monitor",
+                                                                                "uptime/heartbeat"
                                                                             ]
                                                                         },
                                                                         "componentable_id": {
-                                                                            "description": "ID of the monitor to show",
+                                                                            "description": "ID of the monitor or heartbeat to show",
                                                                             "type": "integer"
                                                                         }
                                                                     },
@@ -10923,7 +11371,7 @@
                                             "type": "object"
                                         },
                                         "components": {
-                                            "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                            "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -10949,6 +11397,27 @@
                                                         "type": "object"
                                                     },
                                                     {
+                                                        "title": "Heartbeat component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "componentable_id"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "description": "Shows a heartbeat",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/heartbeat"
+                                                                ]
+                                                            },
+                                                            "componentable_id": {
+                                                                "description": "ID of the heartbeat to show",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
                                                         "title": "Group component",
                                                         "required": [
                                                             "componentable_type",
@@ -10957,7 +11426,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
-                                                                "description": "Shows a group of monitors",
+                                                                "description": "Shows a group of monitors and heartbeats",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -10976,7 +11445,7 @@
                                                                 "default": false
                                                             },
                                                             "components": {
-                                                                "description": "List of monitor components shown inside the group",
+                                                                "description": "List of monitor and heartbeat components shown inside the group",
                                                                 "type": "array",
                                                                 "items": {
                                                                     "required": [
@@ -10985,14 +11454,15 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
-                                                                            "description": "Shows a monitor",
+                                                                            "description": "Shows a monitor or a heartbeat",
                                                                             "type": "string",
                                                                             "enum": [
-                                                                                "uptime/monitor"
+                                                                                "uptime/monitor",
+                                                                                "uptime/heartbeat"
                                                                             ]
                                                                         },
                                                                         "componentable_id": {
-                                                                            "description": "ID of the monitor to show",
+                                                                            "description": "ID of the monitor or heartbeat to show",
                                                                             "type": "integer"
                                                                         }
                                                                     },
@@ -11345,7 +11815,7 @@
                                         "type": "object"
                                     },
                                     "components": {
-                                        "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                        "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -11371,6 +11841,27 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "title": "Heartbeat component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "componentable_id"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "description": "Shows a heartbeat",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/heartbeat"
+                                                            ]
+                                                        },
+                                                        "componentable_id": {
+                                                            "description": "ID of the heartbeat to show",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
                                                     "title": "Group component",
                                                     "required": [
                                                         "componentable_type",
@@ -11379,7 +11870,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
-                                                            "description": "Shows a group of monitors",
+                                                            "description": "Shows a group of monitors and heartbeats",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -11398,7 +11889,7 @@
                                                             "default": false
                                                         },
                                                         "components": {
-                                                            "description": "List of monitor components shown inside the group",
+                                                            "description": "List of monitor and heartbeat components shown inside the group",
                                                             "type": "array",
                                                             "items": {
                                                                 "required": [
@@ -11407,14 +11898,15 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
-                                                                        "description": "Shows a monitor",
+                                                                        "description": "Shows a monitor or a heartbeat",
                                                                         "type": "string",
                                                                         "enum": [
-                                                                            "uptime/monitor"
+                                                                            "uptime/monitor",
+                                                                            "uptime/heartbeat"
                                                                         ]
                                                                     },
                                                                     "componentable_id": {
-                                                                        "description": "ID of the monitor to show",
+                                                                        "description": "ID of the monitor or heartbeat to show",
                                                                         "type": "integer"
                                                                     }
                                                                 },
@@ -11821,7 +12313,7 @@
                                         "type": "object"
                                     },
                                     "components": {
-                                        "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                        "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                         "type": "array",
                                         "items": {
                                             "oneOf": [
@@ -11847,6 +12339,27 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "title": "Heartbeat component",
+                                                    "required": [
+                                                        "componentable_type",
+                                                        "componentable_id"
+                                                    ],
+                                                    "properties": {
+                                                        "componentable_type": {
+                                                            "description": "Shows a heartbeat",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "uptime/heartbeat"
+                                                            ]
+                                                        },
+                                                        "componentable_id": {
+                                                            "description": "ID of the heartbeat to show",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                {
                                                     "title": "Group component",
                                                     "required": [
                                                         "componentable_type",
@@ -11855,7 +12368,7 @@
                                                     ],
                                                     "properties": {
                                                         "componentable_type": {
-                                                            "description": "Shows a group of monitors",
+                                                            "description": "Shows a group of monitors and heartbeats",
                                                             "type": "string",
                                                             "enum": [
                                                                 "uptime/group"
@@ -11874,7 +12387,7 @@
                                                             "default": false
                                                         },
                                                         "components": {
-                                                            "description": "List of monitor components shown inside the group",
+                                                            "description": "List of monitor and heartbeat components shown inside the group",
                                                             "type": "array",
                                                             "items": {
                                                                 "required": [
@@ -11883,14 +12396,15 @@
                                                                 ],
                                                                 "properties": {
                                                                     "componentable_type": {
-                                                                        "description": "Shows a monitor",
+                                                                        "description": "Shows a monitor or a heartbeat",
                                                                         "type": "string",
                                                                         "enum": [
-                                                                            "uptime/monitor"
+                                                                            "uptime/monitor",
+                                                                            "uptime/heartbeat"
                                                                         ]
                                                                     },
                                                                     "componentable_id": {
-                                                                        "description": "ID of the monitor to show",
+                                                                        "description": "ID of the monitor or heartbeat to show",
                                                                         "type": "integer"
                                                                     }
                                                                 },
@@ -12306,7 +12820,7 @@
                                             "type": "object"
                                         },
                                         "components": {
-                                            "description": "List of components to show on the status page. A monitor can only be shown once on a status page.",
+                                            "description": "List of components to show on the status page. A monitor or a heartbeat can only be shown once on a status page.",
                                             "type": "array",
                                             "items": {
                                                 "oneOf": [
@@ -12332,6 +12846,27 @@
                                                         "type": "object"
                                                     },
                                                     {
+                                                        "title": "Heartbeat component",
+                                                        "required": [
+                                                            "componentable_type",
+                                                            "componentable_id"
+                                                        ],
+                                                        "properties": {
+                                                            "componentable_type": {
+                                                                "description": "Shows a heartbeat",
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "uptime/heartbeat"
+                                                                ]
+                                                            },
+                                                            "componentable_id": {
+                                                                "description": "ID of the heartbeat to show",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
                                                         "title": "Group component",
                                                         "required": [
                                                             "componentable_type",
@@ -12340,7 +12875,7 @@
                                                         ],
                                                         "properties": {
                                                             "componentable_type": {
-                                                                "description": "Shows a group of monitors",
+                                                                "description": "Shows a group of monitors and heartbeats",
                                                                 "type": "string",
                                                                 "enum": [
                                                                     "uptime/group"
@@ -12359,7 +12894,7 @@
                                                                 "default": false
                                                             },
                                                             "components": {
-                                                                "description": "List of monitor components shown inside the group",
+                                                                "description": "List of monitor and heartbeat components shown inside the group",
                                                                 "type": "array",
                                                                 "items": {
                                                                     "required": [
@@ -12368,14 +12903,15 @@
                                                                     ],
                                                                     "properties": {
                                                                         "componentable_type": {
-                                                                            "description": "Shows a monitor",
+                                                                            "description": "Shows a monitor or a heartbeat",
                                                                             "type": "string",
                                                                             "enum": [
-                                                                                "uptime/monitor"
+                                                                                "uptime/monitor",
+                                                                                "uptime/heartbeat"
                                                                             ]
                                                                         },
                                                                         "componentable_id": {
-                                                                            "description": "ID of the monitor to show",
+                                                                            "description": "ID of the monitor or heartbeat to show",
                                                                             "type": "integer"
                                                                         }
                                                                     },
@@ -12582,7 +13118,7 @@
                                             "description": "Highest impact of all the active incidents linked to the status page, `maintenance` if there is no active incident and a maintenance window linked to the status page is in progress"
                                         },
                                         "availability": {
-                                            "description": "Average availability of all associated monitors over the status page timeframe (30, 60 or 90 days), in percents",
+                                            "description": "Average availability of all associated monitors and heartbeats over the status page timeframe (30, 60 or 90 days), in percents",
                                             "type": "number",
                                             "format": "float",
                                             "example": 99.9999
@@ -12603,7 +13139,8 @@
                                                             "component_type": {
                                                                 "type": "string",
                                                                 "enum": [
-                                                                    "uptime/monitor"
+                                                                    "uptime/monitor",
+                                                                    "uptime/heartbeat"
                                                                 ]
                                                             },
                                                             "component_id": {
@@ -12611,14 +13148,14 @@
                                                                 "example": 1
                                                             },
                                                             "name": {
-                                                                "description": "Monitor display name, or its name when none is set",
+                                                                "description": "Monitor or heartbeat display name, or its name when none is set",
                                                                 "type": "string",
                                                                 "example": "Website",
                                                                 "maxLength": 45,
                                                                 "minLength": 1
                                                             },
                                                             "response_time": {
-                                                                "description": "75th percentile (P75) response time of successful checks over the last 7 days, in milliseconds. Null if unavailable or if response times are hidden on the status page",
+                                                                "description": "75th percentile (P75) response time of successful checks over the last 7 days, in milliseconds. Null if unavailable, if response times are hidden on the status page, or for a heartbeat",
                                                                 "type": [
                                                                     "integer",
                                                                     "null"
@@ -12633,7 +13170,7 @@
                                                             },
                                                             "current_incident_impact": {
                                                                 "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                                                "description": "Highest impact of the active incidents linked to the monitor, `maintenance` if there is no active incident and the monitor is in an in-progress maintenance window"
+                                                                "description": "Highest impact of the active incidents linked to the monitor or heartbeat, `maintenance` if there is no active incident and it is in an in-progress maintenance window"
                                                             }
                                                         },
                                                         "type": "object"
@@ -12680,7 +13217,8 @@
                                                                         "component_type": {
                                                                             "type": "string",
                                                                             "enum": [
-                                                                                "uptime/monitor"
+                                                                                "uptime/monitor",
+                                                                                "uptime/heartbeat"
                                                                             ]
                                                                         },
                                                                         "component_id": {
@@ -12688,14 +13226,14 @@
                                                                             "example": 1
                                                                         },
                                                                         "name": {
-                                                                            "description": "Monitor display name, or its name when none is set",
+                                                                            "description": "Monitor or heartbeat display name, or its name when none is set",
                                                                             "type": "string",
                                                                             "example": "Website",
                                                                             "maxLength": 45,
                                                                             "minLength": 1
                                                                         },
                                                                         "response_time": {
-                                                                            "description": "75th percentile (P75) response time of successful checks over the last 7 days, in milliseconds. Null if unavailable or if response times are hidden on the status page",
+                                                                            "description": "75th percentile (P75) response time of successful checks over the last 7 days, in milliseconds. Null if unavailable, if response times are hidden on the status page, or for a heartbeat",
                                                                             "type": [
                                                                                 "integer",
                                                                                 "null"
@@ -12710,7 +13248,7 @@
                                                                         },
                                                                         "current_incident_impact": {
                                                                             "$ref": "#/components/schemas/Uptime.Incident.ImpactEnum",
-                                                                            "description": "Highest impact of the active incidents linked to the monitor, `maintenance` if there is no active incident and the monitor is in an in-progress maintenance window"
+                                                                            "description": "Highest impact of the active incidents linked to the monitor or heartbeat, `maintenance` if there is no active incident and it is in an in-progress maintenance window"
                                                                         }
                                                                     },
                                                                     "type": "object"
@@ -13117,7 +13655,7 @@
                         "example": "all",
                         "enum": [
                             "all",
-                            "monitor",
+                            "automatic",
                             "manual"
                         ]
                     }
@@ -13199,7 +13737,7 @@
             "Uptime.Incident.TypeEnum": {
                 "type": "string",
                 "enum": [
-                    "monitor",
+                    "automatic",
                     "manual"
                 ]
             },
@@ -13308,6 +13846,23 @@
                                 "message": {
                                     "type": "string",
                                     "example": "Unauthenticated."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "402": {
+                "description": "Error, the plan or the quotas of the organization do not allow this action",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "description": "Payment required error schema",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "A scale plan is required to use this feature"
                                 }
                             },
                             "type": "object"
