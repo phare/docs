@@ -5,6 +5,19 @@ description: "Follow the updates and improvements made to the Phare platform in 
 rss: true
 ---
 
+<Update label="Nov 22, 2026" id="monitoring-events-pricing-update" tags={["Account"]} rss={{ title: "Monitoring events pricing update", date: "2026-11-22" }}>
+    ## Monitoring events pricing update
+
+    Starting **December 1st, 2026**, monitoring events are calculated from the configuration of your monitors and heartbeats, to make pricing simpler and more predictable.
+
+    - Until now, your usage was the number of checks that actually ran, so a 31-day month cost more than a 28-day one. From December, every month counts as the same 730 hours, so your monitors and heartbeats cost exactly the same every month. A monitor checked every minute from two regions always uses 87,600 events.
+    - Each monitor and heartbeat now has a minimum of 5,000 events per month, roughly 5 cents of euro. It only affects very low frequency ones, and is there to avoid abuse and keep Phare sustainable.
+
+    These changes should have no negative impact for the vast majority of users, most will simply see the same usage every month. If you see a big impact on your account, email [support@phare.io](mailto:support@phare.io).
+
+    Check out the [billing documentation](/billing-quotas#monitoring-events) for more details.
+</Update>
+
 <Update label="Nov 15, 2026" id="mcp-server" tags={["Integrations"]} rss={{ title: "MCP server", date: "2026-11-15" }}>
     ## MCP server
 
