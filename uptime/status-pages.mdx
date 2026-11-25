@@ -12,7 +12,7 @@ Status pages are your public-facing communication hub during both good times and
         height="469"
         frameborder="0"
         title="Create a status page"
-        src="https://iframe.mediadelivery.net/embed/238508/958b161f-21ab-43a8-af7f-7062e30de0d9?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+        src="https://iframe.mediadelivery.net/embed/238508/0ac1f04c-3b7e-41e2-8fbf-82648092bf22?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
         loading="lazy"
         allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
         allowfullscreen
@@ -21,7 +21,7 @@ Status pages are your public-facing communication hub during both good times and
 
 ## Creating a status page
 
-Create as many status pages as your projects need, there's no limit. Pick which monitors to display, customize the look to match your brand, and give Phare a few seconds to generate an SSL certificate, your status page will be ready in no time. Status pages can also be created with the [create a status page](/api-reference/uptime/status-pages/create-a-status-page) endpoint.
+Create as many status pages as your projects need, there's no limit. Pick which monitors and heartbeats to display, customize the look to match your brand, and give Phare a few seconds to generate an SSL certificate, your status page will be ready in no time. Status pages can also be created with the [create a status page](/api-reference/uptime/status-pages/create-a-status-page) endpoint.
 
 <Frame>
     <img
@@ -138,7 +138,7 @@ Having trouble? [Contact support](https://phare.io/contact).
     />
 </Frame>
 
-Each monitor on a status page displays an availability history with one bar per day, along with its overall availability percentage. The history window can be set to 30, 60, or 90 days in the status page settings. Days with incidents are highlighted by a marker colored according to the incident [impact level](/uptime/incidents#impact), so a short degraded performance episode is not mistaken for a full day of outage. Visitors can browse previous periods using the navigation arrows.
+Each monitor and heartbeat on a status page displays an availability history with one bar per day, along with its overall availability percentage. The history window can be set to 30, 60, or 90 days in the status page settings. Days with incidents are highlighted by a marker colored according to the incident [impact level](/uptime/incidents#impact), so a short degraded performance episode is not mistaken for a full day of outage. Visitors can browse previous periods using the navigation arrows.
 
 ## Timezone
 
@@ -160,11 +160,11 @@ Each status page has a timezone, `UTC` by default, that can be changed in the st
     />
 </Frame>
 
-To keep status pages organized and readable, you can group multiple monitors into collapsible **groups** (for example, grouping by service, region, or infrastructure layer). Each group displays an aggregated operational status, overall availability, and combined incident history across all nested monitors, with an option to display the group expanded or collapsed by default.
+To keep status pages organized and readable, you can group multiple monitors and heartbeats into collapsible **groups** (for example, grouping by service, region, or infrastructure layer). Each group displays an aggregated operational status, overall availability, and combined incident history across all nested monitors, with an option to display the group expanded or collapsed by default.
 
 ## Monitor display name
 
-You can assign a custom display name to any monitor to show a user-friendly label on your public status page without having to rename the underlying monitor in your dashboard.
+You can assign a custom display name to any monitor and heartbeat to show a user-friendly label on your public status page without having to rename the underlying monitor in your dashboard.
 
 <Frame>
     <img

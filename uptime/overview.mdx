@@ -1,14 +1,14 @@
 ---
 title: "Overview of Phare Uptime"
-description: "Monitor websites, APIs and servers with HTTP, TCP and ICMP ping monitoring, manage incidents and create status pages"
+description: "Monitor websites, APIs and servers with HTTP, TCP and ICMP ping monitoring, watch your cron jobs with heartbeats, manage incidents and create status pages"
 sidebarTitle: "Overview"
 ---
 
-Phare Uptime is your digital babysitter that keeps an eye on your websites, APIs and servers 24/7, alerting you before users start complaining.
+Phare Uptime monitors your websites, APIs, servers and cron jobs, and alerts you when something goes wrong, so you can fix it before your users notice.
 
-## Uptime Monitoring
+## Uptime monitoring
 
-Think of uptime monitoring as your website's health checkup. Phare regularly visits your website or API, checks its vital signs, and lets you know if something looks off. Alongside HTTP and TCP checks, [ICMP ping monitoring](/uptime/monitors#icmp) keeps an eye on your servers' availability and latency.
+Monitors check your websites, APIs and servers from multiple regions at a regular interval. Phare sends HTTP requests, opens TCP connections, or [pings your servers](/uptime/monitors#icmp) with ICMP, and creates an incident when a check fails.
 
 [Learn more about uptime monitoring](/uptime/monitors).
 
@@ -25,9 +25,22 @@ Think of uptime monitoring as your website's health checkup. Phare regularly vis
     ></iframe>
 </Frame>
 
-## Incident Management
+## Cron job monitoring
 
-When things go sideways, you need a system to track what happened, who is fixing it, and when it's resolved. Phare's incident management gives you the tools to handle the entire lifecycle, from "oh no!" to "all good!"
+Cron job monitoring (also known as heartbeat monitoring) is best for jobs that can't be checked from the outside, like a nightly backup, a scheduled task or a worker. Your service sends a ping to Phare each time it runs, and Phare creates an incident when the ping is late, missing, or reports a failure.
+
+[Learn more about heartbeats](/uptime/heartbeats).
+
+<Frame>
+    <img
+        src="/images/uptime/overview/heartbeats-page.avif"
+        alt="Heartbeat of an hourly job with its last ping, the countdown to the next one and the chart of its pings and run time"
+    />
+</Frame>
+
+## Incident management
+
+Phare creates an incident when a monitor or a heartbeat fails, and resolves it when everything is back to normal. Each incident keeps the timeline of what happened, and lets you post updates and write a post-mortem.
 
 [Learn more about incident management](/uptime/incidents).
 
@@ -38,9 +51,9 @@ When things go sideways, you need a system to track what happened, who is fixing
     />
 </Frame>
 
-## Maintenance Windows
+## Maintenance windows
 
-Schedule maintenance windows in advance, pause or mute monitoring checks, and keep your customers informed.
+Schedule maintenance windows in advance to pause or mute your monitors during planned work, and let your users know on your status pages.
 
 [Learn more about maintenance windows](/uptime/maintenance-windows).
 
@@ -53,7 +66,7 @@ Schedule maintenance windows in advance, pause or mute monitoring checks, and ke
 
 ## Status pages
 
-Status pages let your users know what's going on when your service isn't performing as expected. A little transparency goes a long way in building trust.
+Status pages show your users the current status of your services, along with past incidents and scheduled maintenance windows.
 
 [Learn more about status pages](/uptime/status-pages).
 
@@ -66,7 +79,7 @@ Status pages let your users know what's going on when your service isn't perform
 
 ## Alerting
 
-When problems arise, you need to know immediately. Phare's alerting system lets you customize exactly who gets notified, when, and how on the channel of your choice.
+Alert rules decide who gets notified, when, and how, with [integrations](/integrations/overview) for email, SMS, Slack, Discord, webhooks and more.
 
 [Learn more about alerting](/uptime/alerting).
 

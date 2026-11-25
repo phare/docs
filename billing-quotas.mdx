@@ -21,7 +21,7 @@ Phare tracks usage with the following quotas:
 Monitoring events measure how much monitoring you use. They depend on how your monitors and heartbeats are set up, so you always know your usage in advance:
 
 - A **monitor** uses one event each time it is checked, in each region. Checking more often, or from more regions, uses more events.
-- A **heartbeat** uses one event each time a ping is expected.
+- A **heartbeat** uses one event each time a ping is expected, two when its [run time is measured](/uptime/heartbeats#measure-the-run-time) by calling the `/start` endpoint.
 - Each monitor and heartbeat consumes a minimum of **5,000 events**, if running for a whole month.
 
 Here are a few common setup examples:

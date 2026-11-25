@@ -55,7 +55,7 @@ The request body is the rendered JSON schema from the Payload customization sect
         height="469"
         frameborder="0"
         title="Outgoing webhook editor"
-        src="https://player.mediadelivery.net/embed/238508/4147abf7-d8ef-4c1d-95fb-b86b949b2a43?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+        src="https://player.mediadelivery.net/embed/238508/08972c5a-add1-4c5d-a2dd-1615f7960925?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
         loading="lazy"
         allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
         allowfullscreen
@@ -137,11 +137,13 @@ Nested loops are not currently supported.
         - `incident`
         - `project`
         - `affected_monitors` (list)
+        - `affected_heartbeats` (list)
     </Accordion>
     <Accordion title="Incident Recovered">
         - `incident`
         - `project`
         - `affected_monitors` (list)
+        - `affected_heartbeats` (list)
     </Accordion>
     <Accordion title="Incident Propagated">
         - `incident`
@@ -161,6 +163,7 @@ Nested loops are not currently supported.
         - `incident`
         - `project`
         - `affected_monitors` (list)
+        - `affected_heartbeats` (list)
     </Accordion>
     <Accordion title="Incident Update Published">
         - `update`
@@ -168,6 +171,7 @@ Nested loops are not currently supported.
         - `incident`
         - `project`
         - `affected_monitors` (list)
+        - `affected_heartbeats` (list)
     </Accordion>
 </AccordionGroup>
 
@@ -201,6 +205,18 @@ Dates are ISO 8601 strings in UTC, such as `2026-10-17T15:32:48Z`.
         | `incident_confirmations` | Integer | Confirmations required to open an incident |
         | `recovery_confirmations` | Integer | Confirmations required to resolve an incident |
         | `region_threshold` | Integer | Number of regions that must fail before an incident is confirmed |
+        | `tags` | Array of strings | Names of associated tags, `[]` when there are none |
+    </Accordion>
+    <Accordion title="heartbeat">
+        | Field | Type | What it means |
+        | :--- | :--- | :--- |
+        | `id` | Integer | Unique heartbeat ID |
+        | `name` | String | Heartbeat name |
+        | `status` | String | Current status: `waiting`, `online`, `offline`, or `paused` |
+        | `interval` | Integer | Expected time between two pings (seconds) |
+        | `grace` | Integer | Time allowed after the expected ping before an incident is created (seconds) |
+        | `incident_confirmations` | Integer | Confirmations required to open an incident |
+        | `recovery_confirmations` | Integer | Confirmations required to resolve an incident |
         | `tags` | Array of strings | Names of associated tags, `[]` when there are none |
     </Accordion>
     <Accordion title="project">
