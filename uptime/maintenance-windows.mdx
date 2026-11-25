@@ -51,10 +51,10 @@ Phare gives you three modes to handle checks and alerts:
 
 ### Pause monitoring
 
-When a maintenance window starts in **Pause** monitoring mode, Phare stops all attached monitors, effectively pausing checks for the duration of the window.
+When a maintenance window starts in **Pause** monitoring mode, Phare pauses all attached monitors and heartbeats for the duration of the window: monitors stop their checks, and heartbeats ignore their pings.
 
-- **Zero false alarms**: No checks are performed, so no incidents are triggered and your uptime and SLA percentages remain untouched.
-- **Smart resume**: If a monitor was *already* paused before the maintenance window started (for instance, a staging server you took down earlier), Phare remembers that state. When the maintenance window finishes, only monitors that were active beforehand are resumed. Overlapping pause windows are also handled automatically.
+- **Zero false alarms**: Nothing is checked, so no incidents are triggered and your uptime and SLA percentages remain untouched.
+- **Smart resume**: If a monitor or a heartbeat was *already* paused before the maintenance window started (for instance, a staging server you took down earlier), Phare remembers that state. When the maintenance window finishes, only the monitors and heartbeats that were active beforehand are resumed. Overlapping pause windows are also handled automatically.
 
 <Tip>
     Use Pause monitoring for heavy-duty infrastructure work, database migrations, or server reboots where services will be completely unavailable.
@@ -62,10 +62,10 @@ When a maintenance window starts in **Pause** monitoring mode, Phare stops all a
 
 ### Mute alerts
 
-In **Mute** mode, Phare keeps checking your endpoints as usual in the background, but silences all alert notifications.
+In **Mute** mode, Phare keeps checking your endpoints and expecting the pings of your heartbeats as usual in the background, but silences all alert notifications.
 
 - **Live telemetry**: Response times, status codes, and latency charts keep updating in real time.
-- **Quiet incidents**: If an endpoint fails or throws errors during maintenance, an incident is tracked internally, but its alerts are not sent (no Slack pings, Discord alerts, SMS, or emails) when all the monitors of the incident are in the maintenance window. Other alerts, like certificate expiration, are still sent.
+- **Quiet incidents**: If an endpoint fails or throws errors during maintenance, an incident is tracked internally, but its alerts are not sent (no Slack pings, Discord alerts, SMS, or emails) when all the monitors and heartbeats of the incident are in the maintenance window. Other alerts, like certificate expiration, are still sent.
 - **Instant verification**: You can see immediately when services come back up and start returning 200 OK (or whatever HTTP code you configured on your monitor).
 
 <Tip>
@@ -83,9 +83,9 @@ Use this mode for non-disruptive maintenance, like warming up background worker 
 Maintenance windows manage themselves so you don't have to keep an eye on the clock:
 
 - **Scheduled**: Planned for the future. Upcoming notices appear on connected status pages.
-- **In progress**: The window has started. Monitors are paused or muted depending on the monitoring mode, status pages show an active maintenance banner, and your team gets notified if configured.
-- **Completed**: Everything's back to normal. Paused monitors resume automatically and status pages return to operational.
-- **Cancelled**: Called off before or during maintenance. Any paused monitors are immediately restored.
+- **In progress**: The window has started. Monitors and heartbeats are paused or muted depending on the monitoring mode, status pages show an active maintenance banner, and your team gets notified if configured.
+- **Completed**: Everything's back to normal. Paused monitors and heartbeats resume automatically and status pages return to operational.
+- **Cancelled**: Called off before or during maintenance. Any paused monitors and heartbeats are immediately restored.
 
 Phare automatically transitions windows to **In progress** when the start time arrives, and marks them **Completed** when the end time passes.
 
@@ -98,7 +98,7 @@ Phare automatically transitions windows to **In progress** when the start time a
 
 ### Early completion & Cancellation
 
-Finished early? While the window is in progress, you can hit **Complete** from the dashboard to wrap up the window, resume your monitors, and update your status pages immediately. If the maintenance isn't needed anymore, **Cancel** will stop the process and let your users know. The same actions are available with the [complete a maintenance window](/api-reference/uptime/maintenance-windows/complete-a-maintenance-window) and [cancel a maintenance window](/api-reference/uptime/maintenance-windows/cancel-a-maintenance-window) endpoints.
+Finished early? While the window is in progress, you can hit **Complete** from the dashboard to wrap up the window, resume your monitors and heartbeats, and update your status pages immediately. If the maintenance isn't needed anymore, **Cancel** will stop the process and let your users know. The same actions are available with the [complete a maintenance window](/api-reference/uptime/maintenance-windows/complete-a-maintenance-window) and [cancel a maintenance window](/api-reference/uptime/maintenance-windows/cancel-a-maintenance-window) endpoints.
 
 <Frame>
     <img
