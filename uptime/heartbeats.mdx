@@ -1,0 +1,372 @@
+---
+title: "Heartbeats"
+description: "Monitor your cron jobs, scheduled tasks, backups and workers with heartbeats, and get alerted when one of them stops running."
+sidebarTitle: "Heartbeats"
+---
+
+Heartbeats are the [cron job monitoring](https://phare.io/products/uptime/cron-job-monitoring) side of Phare Uptime. A [monitor](/uptime/monitors) asks your service if it is still alive, while a heartbeat lets your job tell Phare how it's doing. It works best with cron jobs, scheduled tasks, backups or workers that can send a ping to Phare each time it runs. Phare creates an incident when the ping is late, missing, or reports a failure.
+
+<Frame>
+    <iframe
+        width="704"
+        height="469"
+        frameborder="0"
+        title="Create a heartbeat"
+        src="https://iframe.mediadelivery.net/embed/238508/2e3b1118-c763-4fa3-bd1c-10792e123262?autoplay=false&loop=true&muted=true&preload=true&responsive=true"
+        loading="lazy"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+        allowfullscreen
+    ></iframe>
+</Frame>
+
+## Setup
+
+Create a heartbeat from the **Heartbeats** page of your project, give it a name, and tell Phare [how often](#schedule) your job runs. The heartbeat page then shows its setup instructions, with a snippet for the tool that runs your job.
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeat-setup.avif"
+        alt="Setup instructions of a heartbeat with its start URL, ping URL and fail URL"
+    />
+</Frame>
+
+A new heartbeat waits for its first ping: nothing is expected from your job until then. Once pinged, the setup instructions stay available from the **Setup instructions** button of the heartbeat page.
+
+### Ping URL
+
+Every heartbeat has its own ping URL:
+
+```
+https://beacon.phare.io/heartbeats/<token>
+```
+
+Request it with `GET`, `HEAD` or `POST` each time your job succeeds, from the job itself or from the tool that runs it. No agent or SDK is needed: anything that can make an HTTP request can ping a heartbeat.
+
+<Info>
+    The ping URL is a secret: anyone who knows it can ping your heartbeat. If it leaks, [rotate it](#rotate-the-ping-url).
+</Info>
+
+### Report a failure
+
+Without a ping, Phare waits for the end of the [grace period](#grace-period) before creating an incident. When your job knows it failed, it can say so right away by requesting the fail URL, the ping URL followed by `/fail`:
+
+```
+https://beacon.phare.io/heartbeats/<token>/fail
+```
+
+An incident is created as soon as the failure is [confirmed](#confirmations-%26-recovery).
+
+### Measure the run time
+
+To know how long your job takes, request the start URL when it begins, the ping URL followed by `/start`:
+
+```
+https://beacon.phare.io/heartbeats/<token>/start
+```
+
+Phare measures the time between the start ping and the next ping or failure, and draws the run time of your job on the [chart](#statistics) of the heartbeat. Turn on **Measure run time** in the setup instructions to add the start ping to the snippets.
+
+A started run is expected to finish within the [grace period](#grace-period). When it does not, a **Run did not finish** incident is created without waiting for the next ping to go missing: the job is stuck, or it crashed before sending its ping.
+
+If your job already knows how long it ran, it can send its run time itself instead of a start ping, in seconds with the `duration` parameter of the ping URL or the fail URL:
+
+```
+https://beacon.phare.io/heartbeats/<token>?duration=42.5
+```
+
+<Info>
+    A run with a start ping counts two pings instead of one, so the heartbeat uses twice the [monitoring events](#monitoring-events). It counts one ping again after 31 days without a start ping.
+</Info>
+
+### Send a message
+
+A `POST` request can carry a message in its body, like the output of your job or the error it failed with. Phare keeps the last 2,000 characters, where a job usually prints what went wrong.
+
+When a ping creates an incident, its message becomes the description of the incident, line breaks included. The reason for the failure is then in front of you, not in a log file on the server.
+
+```bash
+curl -fsSL -m 10 --retry 5 -o /dev/null --data-binary "pg_dump: error: connection to server failed" https://beacon.phare.io/heartbeats/<token>/fail
+```
+
+### Examples
+
+The snippets below measure the run time of the job, ping the heartbeat when it succeeds, and report a failure with its error when it does not. Replace the schedule and the job with your own.
+
+<CodeGroup>
+
+```bash crontab
+0 2 * * * curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>/start; log=$(mktemp); if /path/to/job.sh > $log 2>&1; then u=https://beacon.phare.io/heartbeats/<token>; else u=https://beacon.phare.io/heartbeats/<token>/fail; fi; tail -c 2000 $log | curl -fsSL -m 10 --retry 5 -o /dev/null --data-binary @- $u; rm -f $log
+```
+
+```php Laravel
+Schedule::command('your:command')
+    ->cron('0 2 * * *')
+    ->pingBefore('https://beacon.phare.io/heartbeats/<token>/start')
+    ->pingOnSuccess('https://beacon.phare.io/heartbeats/<token>')
+    ->pingOnFailure('https://beacon.phare.io/heartbeats/<token>/fail');
+```
+
+```javascript Node.js
+import cron from 'node-cron'
+
+cron.schedule('0 2 * * *', async () => {
+  await fetch('https://beacon.phare.io/heartbeats/<token>/start').catch(() => {})
+
+  try {
+    await job()
+  } catch (error) {
+    await fetch('https://beacon.phare.io/heartbeats/<token>/fail', { method: 'POST', body: String(error) })
+    throw error
+  }
+
+  await fetch('https://beacon.phare.io/heartbeats/<token>')
+})
+```
+
+```python Celery
+import requests
+from celery import shared_task
+from celery.schedules import crontab
+
+app.conf.beat_schedule = {
+    "job": {
+        "task": "tasks.job",
+        "schedule": crontab(hour=2, minute=0),
+    },
+}
+
+
+@shared_task
+def job():
+    try:
+        requests.get("https://beacon.phare.io/heartbeats/<token>/start", timeout=10)
+    except requests.RequestException:
+        pass
+
+    try:
+        ...  # Your job
+    except Exception as error:
+        requests.post("https://beacon.phare.io/heartbeats/<token>/fail", data=str(error).encode(), timeout=10)
+        raise
+
+    requests.get("https://beacon.phare.io/heartbeats/<token>", timeout=10)
+```
+
+```ruby Rails
+# config/recurring.yml
+# production:
+#   job:
+#     class: Job
+#     schedule: "0 2 * * *"
+
+class Job < ApplicationJob
+  def perform
+    Net::HTTP.get(URI("https://beacon.phare.io/heartbeats/<token>/start")) rescue nil
+
+    begin
+      # Your job
+    rescue StandardError => error
+      Net::HTTP.post(URI("https://beacon.phare.io/heartbeats/<token>/fail"), error.message)
+      raise
+    end
+
+    Net::HTTP.get(URI("https://beacon.phare.io/heartbeats/<token>"))
+  end
+end
+```
+
+```yaml GitHub Actions
+on:
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>/start
+        continue-on-error: true
+      - run: ./job.sh
+      - if: success()
+        run: curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>
+      - if: failure()
+        run: curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>/fail
+```
+
+```yaml Kubernetes
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: job
+spec:
+  schedule: '0 2 * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: job
+              image: your-image
+              command: ["/bin/sh", "-c"]
+              args: ["curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>/start; /job.sh && curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token> || curl -fsSL -m 10 --retry 5 -o /dev/null https://beacon.phare.io/heartbeats/<token>/fail"]
+```
+
+</CodeGroup>
+
+With curl, `-m 10` gives up after 10 seconds so a network issue never blocks your job, and `--retry 5` sends the ping again when it could not be delivered. The start ping never stops the job from running, even when Phare can't be reached.
+
+### Responses
+
+| Status code | Meaning |
+| :--- | :--- |
+| `200` | The ping was received. A [paused](#pause-a-heartbeat) heartbeat answers the same, but ignores the ping. |
+| `404` | No heartbeat has this ping URL: it was deleted or its URL was rotated. |
+| `429` | The heartbeat received more than 10 pings in a minute. The `Retry-After` header tells how many seconds to wait. |
+| `503` | The ping could not be saved, send it again. |
+
+Pings are processed every minute, so a ping can take up to a minute to show on the heartbeat page.
+
+## Schedule
+
+The schedule of a heartbeat is made of two durations: how often a ping is expected, and how late it can be.
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeat-schedule.avif"
+        alt="Interval and grace period settings of a heartbeat"
+    />
+</Frame>
+
+### Interval
+
+The interval is the time between two runs of your job, anywhere between 1 minute and 31 days. Presets are available for the most common schedules, from every minute to every month.
+
+Heartbeats don't read cron expressions: they count from the last ping: each ping, successful or not, starts a new countdown. For a job that does not run at regular intervals, like a report sent on weekdays only, use the longest time between two runs.
+
+### Grace period
+
+The grace period is the time allowed after the expected ping before an incident is created, anywhere between 1 minute and 7 days. Jobs rarely take the same time twice, set it a little longer than your slowest run to avoid false alarms.
+
+An incident is created when no ping is received for the interval plus the grace period. A heartbeat expected every hour with a grace period of 10 minutes fails 1 hour and 10 minutes after its last ping.
+
+When the [run time is measured](#measure-the-run-time), the grace period is also the time a started run has to finish.
+
+Changing the interval or the grace period starts a new countdown from the time of the change, so a shorter interval never creates an incident for the time already spent.
+
+## Statuses
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeats-list.avif"
+        alt="Heartbeats of a project with their status, interval, grace period and availability"
+    />
+</Frame>
+
+| Status | Meaning |
+| :--- | :--- |
+| Waiting | The heartbeat was never pinged, or its incident was resolved or deleted by hand. Nothing is expected until its next ping. |
+| Online | The last ping was successful and the next one is not late. |
+| Offline | A ping was missed, a run did not finish or a failure was reported, and an incident is ongoing. |
+| Paused | The heartbeat is [paused](#pause-a-heartbeat), its pings are ignored. |
+
+## Confirmations & recovery
+
+By default, the first missed ping or reported failure creates an incident, and the first successful ping resolves it. For a job known to be flaky, you can require up to five consecutive missed pings or failures before an incident is created, and up to five consecutive successful pings before it is resolved.
+
+Each confirmation after the first waits for one more interval: with 2 confirmations, a heartbeat expected every hour with a grace period of 10 minutes fails 2 hours and 10 minutes after its last ping.
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeat-confirmations.avif"
+        alt="Incident confirmations and recovery confirmations settings of a heartbeat"
+    />
+</Frame>
+
+## Incidents
+
+A heartbeat creates the same [incidents](/uptime/incidents) as a monitor, with their timeline, comments and status updates:
+
+- **No ping received**: The heartbeat did not receive a ping within its interval and grace period. The job may have stopped running, or failed before sending its ping.
+- **Failure reported**: The job requested the [fail URL](#report-a-failure) of the heartbeat.
+- **Run did not finish**: The job sent a [start ping](#measure-the-run-time), but sent no ping or failure within the grace period. The job may be stuck, or may have crashed before sending its ping.
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeat-incident.avif"
+        alt="Incident created by a heartbeat reporting a failure, with the error of the job as its description"
+    />
+</Frame>
+
+When the ping that creates the incident carries a [message](#send-a-message), the message is the description of the incident.
+
+The incident is resolved automatically when the job pings the heartbeat again. Unlike the incidents of monitors, the incident of a heartbeat is never [merged](/uptime/incidents#smart-incident-merging) with another one.
+
+You can also select the heartbeats affected by an incident [created manually](/uptime/incidents#manual-incidents).
+
+### Alert rules
+
+Heartbeats don't have their own alert events: they use the [incident events](/uptime/alerting#incident-events): an alert rule on the **Incident created** event notifies you when a heartbeat goes offline, and one on the **Incident recovered** event when it is back.
+
+## Status pages
+
+Heartbeats can be added to your [status pages](/uptime/status-pages) as components, on their own or in a group, next to your monitors. Their incidents and maintenance windows are shown on the status page like the ones of a monitor.
+
+Set a **display name** to show a friendlier name on your status pages: your customers may care more about "Reports" than "Data warehouse sync".
+
+## Maintenance windows
+
+Add heartbeats to a [maintenance window](/uptime/maintenance-windows) when the servers running your jobs are being worked on:
+
+- With the **Pause** monitoring mode, the heartbeats are paused when the maintenance window starts, and resumed when it ends.
+- With the **Mute** monitoring mode, the heartbeats keep expecting their pings, but the alerts of their incidents are not sent.
+
+## Pause a heartbeat
+
+Pause a heartbeat from its page or from the heartbeats list when its job is stopped on purpose. A paused heartbeat ignores its pings, expects none, and does not use any [monitoring event](#monitoring-events).
+
+When resumed, a heartbeat that was already pinged expects its next ping within its interval and grace period.
+
+<Info>
+    On the Hobby plan, a heartbeat that stays offline for 72 hours is paused automatically, and your organization is notified by email.
+</Info>
+
+## Rotate the ping URL
+
+If the ping URL of a heartbeat ends up where it should not, choose **Rotate URL** in the **Actions** menu of the heartbeat page to replace it. The previous URL stops working at once, so update your job with the new one.
+
+## Tags
+
+Heartbeats can be organized with [tags](/uptime/monitors#tags), such as `environment:production` or `team:platform`, shared across your whole organization. Use the **Tags** filter on the heartbeats list, or the `tag` parameter of the [list heartbeats](/api-reference/uptime/heartbeats/list-heartbeats) API endpoint, to find related heartbeats.
+
+## Statistics
+
+<Frame>
+    <img
+        src="/images/uptime/heartbeats/heartbeat-statistics.avif"
+        alt="Statistics of a heartbeat with its last ping, the countdown to the next one, its downtime, its availability and the chart of its pings and run time"
+    />
+</Frame>
+
+Each heartbeat shows when it was last pinged, a countdown to its next ping, and its downtime and availability over the selected time range, from 24 hours up to 90 days. Once the expected time has passed, the next ping is shown as **Late** with the time left in the grace period, then as **Overdue** until the incident is created.
+
+The chart shows every ping received, in green when it was successful and in red when it reported a failure. The incidents and maintenance windows of the heartbeat are drawn over the pings, so you can tell a missed run from planned downtime.
+
+When the [run time is measured](#measure-the-run-time), it is drawn above the pings. On longer time ranges, where a point of the chart holds several runs, choose between the **P75**, **P90** and **P99** percentiles of the run time.
+
+## Monitoring events
+
+A heartbeat uses one [monitoring event](/billing-quotas#monitoring-events) each time a ping is expected, or two when its [run time is measured](#measure-the-run-time) with a start ping, with a minimum of 5,000 events per month.
+
+The heartbeat form shows the estimate and its impact on your quota before you save. Check **Measure run time** in the form to include the start pings in the estimate. This option only changes the estimate, the run time is measured as soon as your job sends its first start ping.
+
+## Automation
+
+Heartbeats can be created and managed with the [API](/api-reference/uptime/heartbeats/list-heartbeats) and the [MCP server](/integrations/mcp#heartbeats), useful when every new scheduled job should come with its own heartbeat.
+
+## Limits
+
+- **10 pings per minute**: A heartbeat accepts up to 10 pings per minute, start pings and failures included. Additional pings get a `429` response.
+- **One minute precision**: Pings are processed every minute, so the shortest interval and grace period are 1 minute.
+- **2,000 characters per message**: Only the end of a longer message is kept.

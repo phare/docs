@@ -2523,6 +2523,1056 @@
                 ]
             }
         },
+        "/uptime/heartbeats": {
+            "get": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "List heartbeats",
+                "description": "Get a paginated list of the heartbeats of the project, newest first, with their current status and ping URL. Filter them by tag.\n\nRequires the `heartbeats:read` permission.",
+                "operationId": "getUptimeHeartbeats",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter heartbeats by tag. Can be specified multiple times to only return heartbeats having all the given tags.",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, heartbeats retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Heartbeat ID",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "project_id": {
+                                                        "description": "Parent project ID",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "status": {
+                                                        "$ref": "#/components/schemas/Uptime.Heartbeat.StatusEnum",
+                                                        "description": "Heartbeat current status, `waiting` until its first ping, and until its next ping after an incident is recovered or deleted by hand"
+                                                    },
+                                                    "paused": {
+                                                        "description": "Whether the heartbeat is currently paused",
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "ping_url": {
+                                                        "description": "URL to request with GET, HEAD or POST when the job succeeds, add `/start` when it begins and `/fail` to report a failure",
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "readOnly": true,
+                                                        "example": "https://beacon.phare.io/heartbeats/tVcyL8FuedAF3RzKgdXxYzznLkXIpo2364OqgVhi4a95ccf5"
+                                                    },
+                                                    "name": {
+                                                        "description": "Heartbeat name",
+                                                        "type": "string",
+                                                        "example": "Nightly backup",
+                                                        "maxLength": 45,
+                                                        "minLength": 2
+                                                    },
+                                                    "display_name": {
+                                                        "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "example": "Backups",
+                                                        "maxLength": 45,
+                                                        "minLength": 2
+                                                    },
+                                                    "interval": {
+                                                        "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                                        "type": "integer",
+                                                        "example": 86400,
+                                                        "maximum": 2678400,
+                                                        "minimum": 60
+                                                    },
+                                                    "grace": {
+                                                        "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                                        "type": "integer",
+                                                        "example": 300,
+                                                        "maximum": 604800,
+                                                        "minimum": 60
+                                                    },
+                                                    "incident_confirmations": {
+                                                        "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                                        "type": "integer",
+                                                        "example": 1,
+                                                        "enum": [
+                                                            1,
+                                                            2,
+                                                            3,
+                                                            4,
+                                                            5
+                                                        ]
+                                                    },
+                                                    "recovery_confirmations": {
+                                                        "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                                        "type": "integer",
+                                                        "example": 1,
+                                                        "enum": [
+                                                            1,
+                                                            2,
+                                                            3,
+                                                            4,
+                                                            5
+                                                        ]
+                                                    },
+                                                    "tags": {
+                                                        "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                                        "type": [
+                                                            "array",
+                                                            "null"
+                                                        ],
+                                                        "items": {
+                                                            "type": "string",
+                                                            "example": "environment:production",
+                                                            "maxLength": 100,
+                                                            "minLength": 1
+                                                        },
+                                                        "maxItems": 20
+                                                    },
+                                                    "last_pinged_at": {
+                                                        "description": "Date of the last successful or failed ping with a 1 minute accuracy",
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "format": "date-time"
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Date of creation for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Date of last update for the entity",
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "name",
+                                                    "display_name",
+                                                    "interval",
+                                                    "grace",
+                                                    "incident_confirmations",
+                                                    "recovery_confirmations"
+                                                ]
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/meta"
+                                        },
+                                        "links": {
+                                            "$ref": "#/components/schemas/links"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:read"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Create a heartbeat",
+                "description": "Create a heartbeat expecting a ping from a cron job or a worker at a regular interval, it opens an incident once the missed or failed pings are confirmed. The job requests its `ping_url` with GET, HEAD or POST when it succeeds, with `/fail` appended when it fails. It stays `waiting` without any incident until its first ping.\n\nRequires the `heartbeats:write` permission.",
+                "operationId": "createUptimeHeartbeat",
+                "requestBody": {
+                    "description": "Heartbeat request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "Heartbeat name",
+                                        "type": "string",
+                                        "example": "Nightly backup",
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
+                                    "display_name": {
+                                        "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "Backups",
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
+                                    "interval": {
+                                        "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                        "type": "integer",
+                                        "example": 86400,
+                                        "maximum": 2678400,
+                                        "minimum": 60
+                                    },
+                                    "grace": {
+                                        "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                        "type": "integer",
+                                        "example": 300,
+                                        "maximum": 604800,
+                                        "minimum": 60
+                                    },
+                                    "incident_confirmations": {
+                                        "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "enum": [
+                                            1,
+                                            2,
+                                            3,
+                                            4,
+                                            5
+                                        ]
+                                    },
+                                    "recovery_confirmations": {
+                                        "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "enum": [
+                                            1,
+                                            2,
+                                            3,
+                                            4,
+                                            5
+                                        ]
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "maxLength": 100,
+                                            "minLength": 1
+                                        },
+                                        "maxItems": 20
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "display_name",
+                                    "interval",
+                                    "grace",
+                                    "incident_confirmations",
+                                    "recovery_confirmations"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success, heartbeat created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Heartbeat ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "status": {
+                                            "$ref": "#/components/schemas/Uptime.Heartbeat.StatusEnum",
+                                            "description": "Heartbeat current status, `waiting` until its first ping, and until its next ping after an incident is recovered or deleted by hand"
+                                        },
+                                        "paused": {
+                                            "description": "Whether the heartbeat is currently paused",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "ping_url": {
+                                            "description": "URL to request with GET, HEAD or POST when the job succeeds, add `/start` when it begins and `/fail` to report a failure",
+                                            "type": "string",
+                                            "format": "uri",
+                                            "readOnly": true,
+                                            "example": "https://beacon.phare.io/heartbeats/tVcyL8FuedAF3RzKgdXxYzznLkXIpo2364OqgVhi4a95ccf5"
+                                        },
+                                        "name": {
+                                            "description": "Heartbeat name",
+                                            "type": "string",
+                                            "example": "Nightly backup",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "display_name": {
+                                            "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Backups",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "interval": {
+                                            "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                            "type": "integer",
+                                            "example": 86400,
+                                            "maximum": 2678400,
+                                            "minimum": 60
+                                        },
+                                        "grace": {
+                                            "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                            "type": "integer",
+                                            "example": 300,
+                                            "maximum": 604800,
+                                            "minimum": 60
+                                        },
+                                        "incident_confirmations": {
+                                            "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "recovery_confirmations": {
+                                            "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                            "type": [
+                                                "array",
+                                                "null"
+                                            ],
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "maxLength": 100,
+                                                "minLength": 1
+                                            },
+                                            "maxItems": 20
+                                        },
+                                        "last_pinged_at": {
+                                            "description": "Date of the last successful or failed ping with a 1 minute accuracy",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "format": "date-time"
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "display_name",
+                                        "interval",
+                                        "grace",
+                                        "incident_confirmations",
+                                        "recovery_confirmations"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                },
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:write"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/uptime/heartbeats/{heartbeatId}": {
+            "get": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Get a heartbeat",
+                "description": "Get a heartbeat by ID, with its current status, ping URL, expected interval and date of the last ping.\n\nRequires the `heartbeats:read` permission.",
+                "operationId": "getUptimeHeartbeat",
+                "parameters": [
+                    {
+                        "name": "heartbeatId",
+                        "in": "path",
+                        "description": "ID of the heartbeat to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, heartbeat retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Heartbeat ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "status": {
+                                            "$ref": "#/components/schemas/Uptime.Heartbeat.StatusEnum",
+                                            "description": "Heartbeat current status, `waiting` until its first ping, and until its next ping after an incident is recovered or deleted by hand"
+                                        },
+                                        "paused": {
+                                            "description": "Whether the heartbeat is currently paused",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "ping_url": {
+                                            "description": "URL to request with GET, HEAD or POST when the job succeeds, add `/start` when it begins and `/fail` to report a failure",
+                                            "type": "string",
+                                            "format": "uri",
+                                            "readOnly": true,
+                                            "example": "https://beacon.phare.io/heartbeats/tVcyL8FuedAF3RzKgdXxYzznLkXIpo2364OqgVhi4a95ccf5"
+                                        },
+                                        "name": {
+                                            "description": "Heartbeat name",
+                                            "type": "string",
+                                            "example": "Nightly backup",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "display_name": {
+                                            "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Backups",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "interval": {
+                                            "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                            "type": "integer",
+                                            "example": 86400,
+                                            "maximum": 2678400,
+                                            "minimum": 60
+                                        },
+                                        "grace": {
+                                            "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                            "type": "integer",
+                                            "example": 300,
+                                            "maximum": 604800,
+                                            "minimum": 60
+                                        },
+                                        "incident_confirmations": {
+                                            "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "recovery_confirmations": {
+                                            "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                            "type": [
+                                                "array",
+                                                "null"
+                                            ],
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "maxLength": 100,
+                                                "minLength": 1
+                                            },
+                                            "maxItems": 20
+                                        },
+                                        "last_pinged_at": {
+                                            "description": "Date of the last successful or failed ping with a 1 minute accuracy",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "format": "date-time"
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "display_name",
+                                        "interval",
+                                        "grace",
+                                        "incident_confirmations",
+                                        "recovery_confirmations"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:read"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Update a heartbeat",
+                "description": "Update a heartbeat by ID, the fields left out keep their current value and the ones sent replace it entirely, like the whole `tags` list. A new `interval` or `grace` expects the next ping within the new interval and grace from now, and the ping URL stays the same.\n\nRequires the `heartbeats:write` permission.",
+                "operationId": "updateUptimeHeartbeat",
+                "parameters": [
+                    {
+                        "name": "heartbeatId",
+                        "in": "path",
+                        "description": "ID of the heartbeat to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Heartbeat request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "Heartbeat name",
+                                        "type": "string",
+                                        "example": "Nightly backup",
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
+                                    "display_name": {
+                                        "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "Backups",
+                                        "maxLength": 45,
+                                        "minLength": 2
+                                    },
+                                    "interval": {
+                                        "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                        "type": "integer",
+                                        "example": 86400,
+                                        "maximum": 2678400,
+                                        "minimum": 60
+                                    },
+                                    "grace": {
+                                        "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                        "type": "integer",
+                                        "example": 300,
+                                        "maximum": 604800,
+                                        "minimum": 60
+                                    },
+                                    "incident_confirmations": {
+                                        "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "enum": [
+                                            1,
+                                            2,
+                                            3,
+                                            4,
+                                            5
+                                        ]
+                                    },
+                                    "recovery_confirmations": {
+                                        "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                        "type": "integer",
+                                        "example": 1,
+                                        "enum": [
+                                            1,
+                                            2,
+                                            3,
+                                            4,
+                                            5
+                                        ]
+                                    },
+                                    "tags": {
+                                        "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                        "type": [
+                                            "array",
+                                            "null"
+                                        ],
+                                        "items": {
+                                            "type": "string",
+                                            "example": "environment:production",
+                                            "maxLength": 100,
+                                            "minLength": 1
+                                        },
+                                        "maxItems": 20
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success, heartbeat updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Heartbeat ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "project_id": {
+                                            "description": "Parent project ID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "status": {
+                                            "$ref": "#/components/schemas/Uptime.Heartbeat.StatusEnum",
+                                            "description": "Heartbeat current status, `waiting` until its first ping, and until its next ping after an incident is recovered or deleted by hand"
+                                        },
+                                        "paused": {
+                                            "description": "Whether the heartbeat is currently paused",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "ping_url": {
+                                            "description": "URL to request with GET, HEAD or POST when the job succeeds, add `/start` when it begins and `/fail` to report a failure",
+                                            "type": "string",
+                                            "format": "uri",
+                                            "readOnly": true,
+                                            "example": "https://beacon.phare.io/heartbeats/tVcyL8FuedAF3RzKgdXxYzznLkXIpo2364OqgVhi4a95ccf5"
+                                        },
+                                        "name": {
+                                            "description": "Heartbeat name",
+                                            "type": "string",
+                                            "example": "Nightly backup",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "display_name": {
+                                            "description": "Public name of the heartbeat on status pages, defaults to the heartbeat name",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "Backups",
+                                            "maxLength": 45,
+                                            "minLength": 2
+                                        },
+                                        "interval": {
+                                            "description": "Expected time between two pings, in seconds, a whole number of minutes from 1 minute to 31 days",
+                                            "type": "integer",
+                                            "example": 86400,
+                                            "maximum": 2678400,
+                                            "minimum": 60
+                                        },
+                                        "grace": {
+                                            "description": "Time allowed after an expected ping before it counts as missed, in seconds, a whole number of minutes from 1 minute to 7 days",
+                                            "type": "integer",
+                                            "example": 300,
+                                            "maximum": 604800,
+                                            "minimum": 60
+                                        },
+                                        "incident_confirmations": {
+                                            "description": "Number of uninterrupted missed or failed pings required to create an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "recovery_confirmations": {
+                                            "description": "Number of uninterrupted successful pings required to resolve an incident",
+                                            "type": "integer",
+                                            "example": 1,
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5
+                                            ]
+                                        },
+                                        "tags": {
+                                            "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
+                                            "type": [
+                                                "array",
+                                                "null"
+                                            ],
+                                            "items": {
+                                                "type": "string",
+                                                "example": "environment:production",
+                                                "maxLength": 100,
+                                                "minLength": 1
+                                            },
+                                            "maxItems": 20
+                                        },
+                                        "last_pinged_at": {
+                                            "description": "Date of the last successful or failed ping with a 1 minute accuracy",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "format": "date-time"
+                                        },
+                                        "created_at": {
+                                            "description": "Date of creation for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Date of last update for the entity",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": [
+                                        "name",
+                                        "display_name",
+                                        "interval",
+                                        "grace",
+                                        "incident_confirmations",
+                                        "recovery_confirmations"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:write"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Delete a heartbeat",
+                "description": "Delete a heartbeat by ID with its ping history, its status page components, and the incidents and maintenance windows of this heartbeat only, the ones shared with other heartbeats or monitors are kept. Its ping URL returns a 404 from then on, and this cannot be undone.\n\nRequires the `heartbeats:write` permission.",
+                "operationId": "deleteUptimeHeartbeat",
+                "parameters": [
+                    {
+                        "name": "heartbeatId",
+                        "in": "path",
+                        "description": "ID of the heartbeat to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, heartbeat deleted",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:write"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/uptime/heartbeats/{heartbeatId}/pause": {
+            "post": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Pause a heartbeat",
+                "description": "Pause a heartbeat by ID, its pings are ignored until it is resumed. Its ongoing incidents stay open.\n\nRequires the `heartbeats:write` permission.",
+                "operationId": "pauseUptimeHeartbeat",
+                "parameters": [
+                    {
+                        "name": "heartbeatId",
+                        "in": "path",
+                        "description": "ID of the heartbeat to pause",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, heartbeat paused",
+                        "content": {}
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:write"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/uptime/heartbeats/{heartbeatId}/resume": {
+            "post": {
+                "tags": [
+                    "Heartbeats"
+                ],
+                "summary": "Resume a heartbeat",
+                "description": "Resume a paused heartbeat by ID, its next ping is expected within its interval and grace from now. A heartbeat never pinged keeps waiting for its first ping, and one with an ongoing incident recovers on its next successful pings.\n\nRequires the `heartbeats:write` permission.",
+                "operationId": "resumeUptimeHeartbeat",
+                "parameters": [
+                    {
+                        "name": "heartbeatId",
+                        "in": "path",
+                        "description": "ID of the heartbeat to resume",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/header_project_slug"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success, heartbeat resumed",
+                        "content": {}
+                    },
+                    "402": {
+                        "$ref": "#/components/responses/402"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": [
+                            "heartbeats:write"
+                        ]
+                    }
+                ]
+            }
+        },
         "/uptime/incidents": {
             "get": {
                 "tags": [
@@ -13705,6 +14755,15 @@
                     "admin"
                 ]
             },
+            "Uptime.Heartbeat.StatusEnum": {
+                "type": "string",
+                "enum": [
+                    "waiting",
+                    "online",
+                    "offline",
+                    "paused"
+                ]
+            },
             "Uptime.Incident.ImpactEnum": {
                 "type": "string",
                 "enum": [
@@ -14018,6 +15077,10 @@
             "description": "Monitors"
         },
         {
+            "name": "Heartbeats",
+            "description": "Heartbeats"
+        },
+        {
             "name": "Incidents",
             "description": "Incidents"
         },
@@ -14049,6 +15112,7 @@
             "name": "Phare uptime",
             "tags": [
                 "Monitors",
+                "Heartbeats",
                 "Incidents",
                 "Maintenance Windows",
                 "Status Pages",

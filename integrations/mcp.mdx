@@ -278,7 +278,7 @@ Each tool tells the application whether it reads, creates, or changes and delete
 
 The tools run the endpoints of the [Phare API](/api-reference/introduction), with the same arguments, validation and responses. Click a tool to see all its arguments in the API reference.
 
-The alert rules, monitors, reports, incidents, maintenance windows and status pages tools act inside a project and require a `project_id` argument: the ID of one of your projects, found with `whoami` or `list_projects`.
+The alert rules, monitors, heartbeats, reports, incidents, maintenance windows and status pages tools act inside a project and require a `project_id` argument: the ID of one of your projects, found with `whoami` or `list_projects`.
 
 List tools return 20 results per page by default, up to 100 with the `per_page` argument. The application gets the next results with the `page` argument.
 
@@ -337,6 +337,18 @@ List tools return 20 results per page by default, up to 100 with the `per_page` 
 | [`pause_monitor`](/api-reference/uptime/monitors/pause-a-monitor)             | Pause a monitor.                                               | `monitors:write` |
 | [`resume_monitor`](/api-reference/uptime/monitors/resume-a-monitor)           | Resume a paused monitor.                                       | `monitors:write` |
 | [`delete_monitor`](/api-reference/uptime/monitors/delete-a-monitor)           | Delete a monitor.                                              | `monitors:write` |
+
+### Heartbeats
+
+| Tool                                                                          | Description                                               | Permission         |
+| :---------------------------------------------------------------------------- | :-------------------------------------------------------- | :----------------- |
+| [`list_heartbeats`](/api-reference/uptime/heartbeats/list-heartbeats)         | List the heartbeats of the project, with their ping URL.  | `heartbeats:read`  |
+| [`get_heartbeat`](/api-reference/uptime/heartbeats/get-a-heartbeat)           | Get a heartbeat by ID.                                    | `heartbeats:read`  |
+| [`create_heartbeat`](/api-reference/uptime/heartbeats/create-a-heartbeat)     | Create a heartbeat.                                       | `heartbeats:write` |
+| [`update_heartbeat`](/api-reference/uptime/heartbeats/update-a-heartbeat)     | Update a heartbeat.                                       | `heartbeats:write` |
+| [`pause_heartbeat`](/api-reference/uptime/heartbeats/pause-a-heartbeat)       | Pause a heartbeat.                                        | `heartbeats:write` |
+| [`resume_heartbeat`](/api-reference/uptime/heartbeats/resume-a-heartbeat)     | Resume a paused heartbeat.                                | `heartbeats:write` |
+| [`delete_heartbeat`](/api-reference/uptime/heartbeats/delete-a-heartbeat)     | Delete a heartbeat.                                       | `heartbeats:write` |
 
 ### Reports
 

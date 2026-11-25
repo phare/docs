@@ -34,6 +34,7 @@
             "pages": [
               "uptime/overview",
               "uptime/monitors",
+              "uptime/heartbeats",
               "uptime/incidents",
               "uptime/maintenance-windows",
               "uptime/status-pages",
@@ -137,6 +138,18 @@
                   "api-reference/uptime/monitors/resume-a-monitor",
                   "api-reference/uptime/monitors/delete-a-monitor",
                   "api-reference/uptime/monitors/get-a-monitor-report"
+                ]
+              },
+              {
+                "group": "Heartbeats",
+                "pages": [
+                  "api-reference/uptime/heartbeats/list-heartbeats",
+                  "api-reference/uptime/heartbeats/get-a-heartbeat",
+                  "api-reference/uptime/heartbeats/create-a-heartbeat",
+                  "api-reference/uptime/heartbeats/update-a-heartbeat",
+                  "api-reference/uptime/heartbeats/pause-a-heartbeat",
+                  "api-reference/uptime/heartbeats/resume-a-heartbeat",
+                  "api-reference/uptime/heartbeats/delete-a-heartbeat"
                 ]
               },
               {
