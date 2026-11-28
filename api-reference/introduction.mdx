@@ -88,6 +88,20 @@ When an API key is missing a permission, the API responds with a `403` status co
 
 <Info>You can create as many keys as necessary to fit your use case.</Info>
 
+## Expiration
+
+API keys expire after 1 year by default. When creating a key, you can choose another duration, a custom date, or no expiration. The expiration can't be changed afterwards.
+
+Members who can manage API keys receive an email 30 days and 7 days before a key expires.
+
+When an API key is expired, the API responds with a `401` status code:
+
+```json
+{
+  "message": "This API key expired on 2026-11-26T00:00:00Z, create a new one in your organization settings."
+}
+```
+
 ## Authentication
 
 The Phare API uses Bearer Token Authentication to secure access to its endpoints. To authenticate your requests, include the API key in the Authorization header of your HTTP requests:
