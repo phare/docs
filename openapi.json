@@ -1453,7 +1453,7 @@
                                                         "type": "string",
                                                         "format": "uri",
                                                         "example": "https://example.com/webhooks/phare",
-                                                        "maxLength": 250
+                                                        "maxLength": 2048
                                                     },
                                                     "secret": {
                                                         "description": "Secret used to sign the webhook requests. It is never returned, an update without it keeps the current secret.",
@@ -3789,7 +3789,7 @@
                     "Incidents"
                 ],
                 "summary": "Create an incident",
-                "description": "Create a manual incident affecting monitors and heartbeats of the project, for an outage they did not catch. It triggers the `uptime.incident.created` alert rules, unless it is created already recovered with `recovery_at`. Status pages show its title once an incident update is published.\n\nRequires the `incidents:write` permission.",
+                "description": "Create a manual incident affecting monitors and heartbeats of the project, for an outage they did not catch. Status pages show its title once an incident update is published.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncident",
                 "requestBody": {
                     "description": "Incident request",
@@ -4242,7 +4242,7 @@
                     "Incidents"
                 ],
                 "summary": "Update an incident",
-                "description": "Update an incident by ID, the fields left out keep their current value. A `monitors` or `heartbeats` list replaces the affected monitors or heartbeats of a manual incident and is ignored on the incidents opened by monitors or heartbeats. Setting `recovery_at` on an ongoing incident recovers it and triggers the `uptime.incident.recovered` alert rules, and the changes are logged in its timeline.\n\nRequires the `incidents:write` permission.",
+                "description": "Update an incident by ID, the fields left out keep their current value. A `monitors` or `heartbeats` list replaces the affected monitors or heartbeats of a manual incident and is ignored on the incidents opened by monitors or heartbeats. Setting `recovery_at` on an ongoing incident recovers it, and the changes are logged in its timeline.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncident",
                 "parameters": [
                     {
@@ -4523,7 +4523,7 @@
                     "Incidents"
                 ],
                 "summary": "Delete an incident",
-                "description": "Delete an incident by ID with its updates, comments and timeline, it disappears from the status pages and the reports. This cannot be undone and triggers no alert rule.\n\nRequires the `incidents:write` permission.",
+                "description": "Delete an incident by ID with its updates, comments and timeline, it disappears from the status pages and the reports. This cannot be undone.\n\nRequires the `incidents:write` permission.",
                 "operationId": "deleteUptimeIncident",
                 "parameters": [
                     {
@@ -4572,7 +4572,7 @@
                     "Incidents"
                 ],
                 "summary": "Recover an incident",
-                "description": "Recover an ongoing incident by ID, setting its recovery date to the current date, and trigger the `uptime.incident.recovered` alert rules.\n\nRequires the `incidents:write` permission.",
+                "description": "Recover an ongoing incident by ID, setting its recovery date to the current date.\n\nRequires the `incidents:write` permission.",
                 "operationId": "recoverUptimeIncident",
                 "parameters": [
                     {
@@ -4759,7 +4759,7 @@
                     "Incidents"
                 ],
                 "summary": "Create an incident update",
-                "description": "Publish an update of an incident on the status pages and trigger the `uptime.incident_update.published` alert rules. Its state raises the state of the incident, and the `resolved` state recovers an ongoing incident.\n\nRequires the `incidents:write` permission.",
+                "description": "Publish an update of an incident on the status pages. Its state raises the state of the incident, and the `resolved` state recovers an ongoing incident.\n\nRequires the `incidents:write` permission.",
                 "operationId": "createUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -5036,7 +5036,7 @@
                     "Incidents"
                 ],
                 "summary": "Update an incident update",
-                "description": "Update the state and message of an incident update by ID, the state of the incident is recalculated. Its publication date cannot be changed, no alert rule is triggered and the `resolved` state does not recover the incident. Only its author or a user with the `incidents:moderate` permission can update it.\n\nRequires the `incidents:write` permission.",
+                "description": "Update the state and message of an incident update by ID, the state of the incident is recalculated. Its publication date cannot be changed and the `resolved` state does not recover the incident. Only its author or a user with the `incidents:moderate` permission can update it.\n\nRequires the `incidents:write` permission.",
                 "operationId": "updateUptimeIncidentUpdate",
                 "parameters": [
                     {
@@ -6181,7 +6181,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Delete a maintenance window",
-                "description": "Delete a maintenance window by ID in any state, it disappears from the status pages and the monitors and heartbeats it paused are resumed. This cannot be undone and triggers no alert rule.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Delete a maintenance window by ID in any state, it disappears from the status pages and the monitors and heartbeats it paused are resumed. This cannot be undone.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "deleteUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -6230,7 +6230,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Cancel a maintenance window",
-                "description": "Cancel a scheduled or in-progress maintenance window by ID and trigger the `uptime.maintenance_window.cancelled` alert rules, the monitors and heartbeats it paused are resumed. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Cancel a scheduled or in-progress maintenance window by ID, the monitors and heartbeats it paused are resumed. Completed or already cancelled maintenance windows cannot be cancelled.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "cancelUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -6279,7 +6279,7 @@
                     "Maintenance Windows"
                 ],
                 "summary": "Complete a maintenance window",
-                "description": "Complete an in-progress maintenance window by ID and trigger the `uptime.maintenance_window.completed` alert rules, the monitors and heartbeats it paused are resumed and `ends_at` is set to the current time if it is in the future. Only in-progress maintenance windows can be completed.\n\nRequires the `maintenance_windows:write` permission.",
+                "description": "Complete an in-progress maintenance window by ID, the monitors and heartbeats it paused are resumed and `ends_at` is set to the current time if it is in the future. Only in-progress maintenance windows can be completed.\n\nRequires the `maintenance_windows:write` permission.",
                 "operationId": "completeUptimeMaintenanceWindow",
                 "parameters": [
                     {
@@ -6974,7 +6974,7 @@
                     "Monitors"
                 ],
                 "summary": "Create a monitor",
-                "description": "Create an HTTP, TCP or ICMP monitor checking a service at a regular interval from 1 to 10 regions, it opens an incident once the failures are confirmed. The first check runs right away when the organization has monitoring events left in its quota, and the `uptime.monitor.created` alert rules are triggered.\n\nRequires the `monitors:write` permission.",
+                "description": "Create an HTTP, TCP or ICMP monitor checking a service at a regular interval from 1 to 10 regions, it opens an incident once the failures are confirmed. The first check runs right away when the organization has monitoring events left in its quota.\n\nRequires the `monitors:write` permission.",
                 "operationId": "createUptimeMonitor",
                 "requestBody": {
                     "description": "Monitor request",
@@ -9301,7 +9301,7 @@
                     "Monitors"
                 ],
                 "summary": "Delete a monitor",
-                "description": "Delete a monitor by ID with its check history, its status page components, and the incidents and maintenance windows of this monitor only, the ones shared with other monitors are kept. This cannot be undone, and triggers the `uptime.monitor.deleted` alert rules.\n\nRequires the `monitors:write` permission.",
+                "description": "Delete a monitor by ID with its check history, its status page components, and the incidents and maintenance windows of this monitor only, the ones shared with other monitors are kept. This cannot be undone.\n\nRequires the `monitors:write` permission.",
                 "operationId": "deleteUptimeMonitor",
                 "parameters": [
                     {
@@ -10263,7 +10263,7 @@
                                                         "example": 1
                                                     },
                                                     "is_private": {
-                                                        "description": "Whether access to the status page is restricted by a password, a secret token or an IP allowlist",
+                                                        "description": "Whether access to the status page is restricted by a password, a secret token, an IP allowlist or an identity provider",
                                                         "type": "boolean",
                                                         "example": false
                                                     },
@@ -10631,6 +10631,18 @@
                                                         },
                                                         "maxItems": 50,
                                                         "minItems": 1
+                                                    },
+                                                    "access_identity_provider": {
+                                                        "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                                        "type": [
+                                                            "string",
+                                                            "null"
+                                                        ],
+                                                        "example": "phare",
+                                                        "enum": [
+                                                            "phare",
+                                                            null
+                                                        ]
                                                     },
                                                     "tags": {
                                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -11068,6 +11080,18 @@
                                         },
                                         "maxItems": 50,
                                         "minItems": 1
+                                    },
+                                    "access_identity_provider": {
+                                        "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "phare",
+                                        "enum": [
+                                            "phare",
+                                            null
+                                        ]
                                     },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -11577,6 +11601,18 @@
                                         "maxItems": 50,
                                         "minItems": 1
                                     },
+                                    "access_identity_provider": {
+                                        "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "phare",
+                                        "enum": [
+                                            "phare",
+                                            null
+                                        ]
+                                    },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
                                         "type": [
@@ -11725,7 +11761,7 @@
                                             "example": 1
                                         },
                                         "is_private": {
-                                            "description": "Whether access to the status page is restricted by a password, a secret token or an IP allowlist",
+                                            "description": "Whether access to the status page is restricted by a password, a secret token, an IP allowlist or an identity provider",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -12093,6 +12129,18 @@
                                             },
                                             "maxItems": 50,
                                             "minItems": 1
+                                        },
+                                        "access_identity_provider": {
+                                            "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "phare",
+                                            "enum": [
+                                                "phare",
+                                                null
+                                            ]
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -12204,7 +12252,7 @@
                                             "example": 1
                                         },
                                         "is_private": {
-                                            "description": "Whether access to the status page is restricted by a password, a secret token or an IP allowlist",
+                                            "description": "Whether access to the status page is restricted by a password, a secret token, an IP allowlist or an identity provider",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -12572,6 +12620,18 @@
                                             },
                                             "maxItems": 50,
                                             "minItems": 1
+                                        },
+                                        "access_identity_provider": {
+                                            "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "phare",
+                                            "enum": [
+                                                "phare",
+                                                null
+                                            ]
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -13017,6 +13077,18 @@
                                         "maxItems": 50,
                                         "minItems": 1
                                     },
+                                    "access_identity_provider": {
+                                        "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "phare",
+                                        "enum": [
+                                            "phare",
+                                            null
+                                        ]
+                                    },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
                                         "type": [
@@ -13515,6 +13587,18 @@
                                         "maxItems": 50,
                                         "minItems": 1
                                     },
+                                    "access_identity_provider": {
+                                        "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "example": "phare",
+                                        "enum": [
+                                            "phare",
+                                            null
+                                        ]
+                                    },
                                     "tags": {
                                         "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
                                         "type": [
@@ -13653,7 +13737,7 @@
                                             "example": 1
                                         },
                                         "is_private": {
-                                            "description": "Whether access to the status page is restricted by a password, a secret token or an IP allowlist",
+                                            "description": "Whether access to the status page is restricted by a password, a secret token, an IP allowlist or an identity provider",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -14021,6 +14105,18 @@
                                             },
                                             "maxItems": 50,
                                             "minItems": 1
+                                        },
+                                        "access_identity_provider": {
+                                            "description": "Identity provider whose users can access the status page, `phare` allows the members of the organization who can view the status page in Phare. Requires an active Scale plan subscription.",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ],
+                                            "example": "phare",
+                                            "enum": [
+                                                "phare",
+                                                null
+                                            ]
                                         },
                                         "tags": {
                                             "description": "Resource tags, made of lowercase letters, numbers, `.`, `_`, `:` and `-`. An organization can have up to 200 tags.",
@@ -14591,7 +14687,7 @@
                         "type": "string",
                         "format": "uri",
                         "example": "https://example.com/webhooks/phare",
-                        "maxLength": 250
+                        "maxLength": 2048
                     },
                     "secret": {
                         "description": "Secret used to sign the webhook requests. It is never returned, an update without it keeps the current secret.",
@@ -14733,6 +14829,8 @@
                 "enum": [
                     "uptime.monitor.created",
                     "uptime.monitor.deleted",
+                    "uptime.heartbeat.created",
+                    "uptime.heartbeat.deleted",
                     "uptime.monitor_certificate.discovered",
                     "uptime.monitor_certificate.expiring",
                     "uptime.incident.created",
